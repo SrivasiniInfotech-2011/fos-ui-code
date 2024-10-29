@@ -1,160 +1,167 @@
-:host{
-    overflow: auto;
-}
+// :host{
+//     overflow: auto;
+// }
 
-$animationSpeed: 40s;
-// Animation
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
+// $animationSpeed: 40s;
+// // Animation
+// @keyframes scroll {
+//     0% {
+//         transform: translateX(0);
+//     }
 
-    100% {
-        transform: translateX(calc(-250px * 7))
-    }
-}
+//     100% {
+//         transform: translateX(calc(-250px * 7))
+//     }
+// }
 
 
-// Styling
-.slider {
+// // Styling
+// .slider {
 
-    margin: auto;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
+//     margin: auto;
+//     overflow: hidden;
+//     position: relative;
+//     width: 100%;
 
-    &::after {
-        right: 0;
-        top: 0;
-        transform: rotateZ(180deg);
-    }
+//     &::after {
+//         right: 0;
+//         top: 0;
+//         transform: rotateZ(180deg);
+//     }
 
-    &::before {
-        left: 0;
-        top: 0;
-    }
+//     &::before {
+//         left: 0;
+//         top: 0;
+//     }
 
-    .slide-track {
-        animation: scroll $animationSpeed linear infinite;
-        display: flex;
-        width: calc(250px * 14);
-    }
+//     .slide-track {
+//         animation: scroll $animationSpeed linear infinite;
+//         display: flex;
+//         width: calc(250px * 14);
+//     }
 
-    .slide {
-        width: auto;
-        text-wrap: nowrap;
-        color: #173662;
-        font-size: 16px;
-        font-weight: 600;
-    }
-}
+//     .slide {
+//         width: auto;
+//         text-wrap: nowrap;
+//         color: #173662;
+//         font-size: 16px;
+//         font-weight: 600;
+//     }
+// }
 // header-css start
-.header {
-    top: 0;
-    height: 80px;
-    z-index: 1;
-    left: 0;
-    right: 0;
-    box-shadow: 1px 0 5px 0px #173662;
-    background: #fff;
+// .header {
+//     top: 0;
+//     height: 80px;
+//     z-index: 1;
+//     left: 0;
+//     right: 0;
+//     box-shadow: 1px 0 5px 0px #173662;
+//     background: #fff;
 
-    .logo-box {
-        width: auto;
-        height: 60px;
+//     .logo-box {
+//         width: auto;
+//         height: 60px;
 
-    }
+//     }
 
-    .nav-list {
-        gap: 10px;
+//     .nav-list {
+//         gap: 10px;
 
-        .nav-item {
-            .nav-link {
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 22px;
-                color: #000;
-                border-radius: 5px;
+//         .nav-item {
+//             .nav-link {
+//                 font-size: 14px;
+//                 font-weight: 500;
+//                 line-height: 22px;
+//                 color: #000;
+//                 border-radius: 5px;
 
-                &:hover {
-                    background: #f7811e;
-                    color: #173662;
-                }
+//                 &:hover {
+//                     background: #f7811e;
+//                     color: #173662;
+//                 }
 
-                &.active {
-                    background: #f7811e;
-                    color: #173662;
-                }
-            }
-        }
-    }
-}
-// sidebar css start
-.sidebar-box {
-    box-shadow: 1px 0 5px 0px #173662;
-    height: 100vh;
-    background-color: #173662;
-    position: fixed;
-    left: 0;
-    overflow: auto;
+//                 &.active {
+//                     background: #f7811e;
+//                     color: #173662;
+//                 }
+//             }
+//         }
+//     }
+// }
+// // sidebar css start
+// .sidebar-box {
+//     box-shadow: 1px 0 5px 0px #173662;
+//     height: 100vh;
+//     background-color: #173662;
+//     position: fixed;
+//     left: 0;
+//     overflow: auto;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    .sidebar-item {
-        background-color: #173662;
-    } 
+//     &::-webkit-scrollbar {
+//         display: none;
+//     }
+//     .sidebar-item {
+//         background-color: #173662;
+//     } 
      
-    .item,
-    .item-select {
-        padding: 5px;
-        border-radius: 5px;
-        color:#fff;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 22px;
-        cursor: pointer;
+//     .item,
+//     .item-select {
+//         padding: 5px;
+//         border-radius: 5px;
+//         color:#fff;
+//         font-size: 16px;
+//         font-weight: 400;
+//         line-height: 22px;
+//         cursor: pointer;
 
-        &:hover {
-            background-color: #f0f6ff;
-            color: #173662;
-        }
+//         &:hover {
+//             background-color: #f0f6ff;
+//             color: #173662;
+//         }
 
-    }
+//     }
 
-    .sub-items {
-        cursor: pointer;
-        li {
-            padding: 5px;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 18px;
+//     .sub-items {
+//         cursor: pointer;
+//         li {
+//             padding: 5px;
+//             border-radius: 5px;
+//             color: #fff;
+//             font-size: 14px;
+//             font-weight: 400;
+//             line-height: 18px;
 
-            &:hover {
-                background-color: #f0f6ff;
-                color: #173662;
-            }
+//             &:hover {
+//                 background-color: #f0f6ff;
+//                 color: #173662;
+//             }
 
 
-        }
-    }
-}
-.section {
-    margin-top: 80px;
+//         }
+//     }
+// }
+// .section {
+//     margin-top: 80px;
 
-    .w-200 {
-        width: 200px;
-    }
+//     .w-200 {
+//         width: 200px;
+//     }
 
-    .content-box {
-        width: calc(100% - 200px);
-        background-color:#f0f6ff ;
-        margin-left: 200px;
-        height: 100vh;
-    }
+//     .content-box {
+//         width: calc(100% - 200px);
+//         background-color:#f0f6ff ;
+//         margin-left: 200px;
+//         height: 100vh;
+//     }
+// }
+:host{
+    width: 100%;
 }
 .content-box {
+    width: calc(100% - 200px);
+    background-color:#f0f6ff ;
+    margin-left: 200px;
+    height: 100vh;
     .tab-box{
         font-size: 14px;
         font-weight: 400;

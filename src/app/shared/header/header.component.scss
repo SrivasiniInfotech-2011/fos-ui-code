@@ -45,6 +45,7 @@ $animationSpeed: 40s;
         font-weight: 600;
     }
 }
+
 .header {
     top: 0;
     height: 80px;
@@ -53,11 +54,11 @@ $animationSpeed: 40s;
     right: 0;
     box-shadow: 1px 0 5px 0px #173662;
     background: #fff;
-    
+
     .logo-box {
         width: auto;
         height: 60px;
-
+        padding: 0;
     }
 
     .nav-list {
@@ -84,9 +85,11 @@ $animationSpeed: 40s;
         }
     }
 }
+
 .topnav {
     display: none;
 }
+
 @media only screen and (max-width: 540px) {
     .header {
         height: 60px;
@@ -96,61 +99,66 @@ $animationSpeed: 40s;
     .nav-list {
         display: none !important;
     }
-    .account-nav{
-        display: none  !important;
+
+    .account-nav {
+        display: none !important;
     }
-    .logo-box{
+
+    .logo-box {
         min-width: 150px;
         height: 100%;
-        img{
+
+        img {
             width: 100%;
         }
+    }
+
+    #myLinks {
+        display: none;
+        background-color: #173662;
+        position: absolute;
+        top: 70px;
+        z-index: 1;
+        left: 0;
+        right: 0;
+    }
+
+    a {
+        color: #f7811e;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        border-radius: 5px;
+        display: block;
+
+        &:hover {
+            background-color: #f7811e;
+            color: #173662;
         }
-        #myLinks {
-             display: none;
-                   background-color: #173662;
-                 position: absolute;
-                    top: 70px;
-                    z-index: 1;
-                  left: 0;
-                    right: 0;
-                }
-        
-             a {
-                     color: #f7811e;
-                     padding: 14px 16px;
-                     text-decoration: none;
-                     font-size: 18px;
-                    font-weight: 500;
-                    line-height: 22px;
-                    border-radius: 5px;
-                    display: block;
-        
-             &:hover {
-                        background-color: #f7811e;
-                         color: #173662;
-                     }
-                 }
-        
-                 a.icon {
-                    display: block;
-                 position: absolute;
-                     right: 15px;
-                     top: 12px;
-                     padding: 0;
-                    font-size: 20px;
-        
-                    &:hover {
-                     background-color: transparent;
-                     }
-        
-                }
-            
-.slider{
-    position: absolute;
-    bottom: 0;
-}
-.topnav {
-    display: block;
-}
+    }
+
+    a.icon {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 12px;
+        padding: 0;
+        font-size: 20px;
+
+        &:hover {
+            background-color: transparent;
+        }
+
+    }
+
+    .slider {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .topnav {
+        display: block;
+    }
 }

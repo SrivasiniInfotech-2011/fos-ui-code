@@ -6,13 +6,18 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ModulesComponent } from './modules.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
+import { ProspectDetailsComponent } from './components/prospect-details/prospect-details.component';
+import { LoanDetailsComponent } from './components/loan-details/loan-details.component';
 
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    ModulesComponent
+    ModulesComponent,
+    ProspectDetailsComponent,
+    LoanDetailsComponent,
+  
   ],
   imports: [
     CommonModule,
