@@ -17,7 +17,7 @@
               <div class="slide">
                 * EMI Report Received from Lead Generation Team * Sales Report Generated for Oct-Nov 2023 * EMI Report Received from Lead Generation Team * Sales Report Generated for Oct-Nov 2023
               </div>
-    
+
             </div>
           </div>
 
@@ -59,11 +59,17 @@
             <img src="../../../../assets/images/user.svg" class="w-100 h-100" />
           </div>
           <div class="title py-3">Login</div>
-          <form class="login-form">
+          <form class="login-form" [formGroup]="loginForm">
             <label class="my-1">Username</label>
-            <input type="text" class="p-2 rounded" placeholder="username" />
+            <input type="text" class="p-2 rounded" placeholder="Username" formControlName="userName"/>
+            <div *ngIf="this.loginForm.get('userName')?.touched || isSubmitted">
+              <span class="validation-text" *ngIf="this.loginForm.get('userName')?.hasError('required')">Username is required</span>
+            </div>
             <label class="my-1 mt-4">Password</label>
-            <input type="password" class="p-2 rounded" placeholder="Password" />
+            <input type="password" class="p-2 rounded" placeholder="Password" formControlName="password"/>
+            <div *ngIf="this.loginForm.get('password')?.touched || isSubmitted">
+              <span class="validation-text" *ngIf="this.loginForm.get('password')?.hasError('required')">Password is required</span>
+            </div>
             <div class="pass-option pt-2 d-flex justify-content-between">
               <div class="remember d-flex align-items-center">
                 <input
@@ -73,7 +79,7 @@
               </div>
               <a class="password-option d-inline"> Forgot Your password ? </a>
             </div>
-            <button class="login-button my-4">Login</button>
+            <button class="login-button my-4" (click)="login()">Login</button>
           </form>
         </div>
       </div>
