@@ -4,12 +4,10 @@
     height: 100%;
 }
 
-
-
 .content-box {
     width: calc(100% - 200px);
     margin-left: 200px;
-
+    margin-top: 80px;
     // height: 100vh;
     .tab-box {
         font-size: 14px;
@@ -20,6 +18,7 @@
         border-radius: 5px;
         padding: 10px;
     }
+
     .option-button {
         font-size: 14px;
         font-weight: 400;
@@ -29,12 +28,13 @@
         border: unset;
         padding: 5px 10px;
     }
-    .loan-details-box {
+
+    .prospect-details-box {
         border: 1px solid #cfd9e8;
         border-radius: 5px;
         padding: 10px;
 
-        .loan-details-form {
+        .prospect-details-form {
             caption {
                 font-size: 20px;
                 color: #173966;
@@ -82,4 +82,5 @@
 
         }
     }
+
 }

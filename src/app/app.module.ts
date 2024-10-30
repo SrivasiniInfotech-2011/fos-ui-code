@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ModulesModule } from './modules/modules.module';
 
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthenticationModule } from './modules/pages/authentication/authentication.module';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 
 @NgModule({
@@ -18,8 +18,8 @@ import { AuthenticationModule } from './modules/pages/authentication/authenticat
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthenticationModule,
-    ModulesModule,
+  AuthenticationModule,
+  DashboardModule,
     MatIconModule,
     HttpClientModule,
     BrowserAnimationsModule
