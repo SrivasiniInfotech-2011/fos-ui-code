@@ -236,3 +236,14 @@
 // }
 
 // }
+@media only screen and (max-width: 540px) {
+    .content-box{
+        margin-left:0;
+        width: 100%;
+        .lead-table-box{
+            .serach-box{
+                width: 100%;
+            }
+        }
+    }
+}
