@@ -1,0 +1,99 @@
+.container {
+  width: 200vh;
+  background-color:#f0f6ff ;
+  margin-left: 200px;
+  height: 100vh;
+}
+
+.container {
+  .tab-box {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #173662;
+    border: 1px solid #cfd9e8;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .lead-table-box {
+    border: 1px solid #cfd9e8;
+    border-radius: 5px;
+    padding: 20px;
+
+    .button-box {
+      border: 1px solid #cfd9e8;
+      border-radius: 5px;
+      padding: 10px;
+
+      .option-button {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        color: #fff;
+        background: linear-gradient(45deg, #173966, #1a4575);
+        border: unset;
+        padding: 5px 10px;
+      }
+    }
+
+    .serach-box {
+      background: #fff;
+
+      .form-control {
+        background: transparent;
+
+        &:focus {
+          border: unset;
+          box-shadow: unset;
+        }
+      }
+
+      .input-group-text {
+        background: #fff;
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 500;
+        color: #173662;
+      }
+    }
+
+    .lead-table {
+      .mat-icon {
+        color: #f7811e;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      thead {
+        background-color: #173662;
+
+        th {
+          background: transparent;
+          color: #fff;
+          font-size: 14px;
+          line-height: 22px;
+          font-weight: 500;
+          text-align: center;
+        }
+      }
+
+      td {
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 400;
+        color: #173662;
+        text-align: center;
+
+      }
+
+    }
+
+    .pagination {
+      .page-link {
+        color: #f7811e;
+      }
+    }
+  }
+
+}
