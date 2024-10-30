@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
 import { ProspectDetailsComponent } from './components/prospect-details/prospect-details.component';
 import { LoanDetailsComponent } from './components/loan-details/loan-details.component';
+import { IndividualDetailsComponent } from './components/individual-details/individual-details.component';
 
 
 
@@ -17,6 +18,7 @@ import { LoanDetailsComponent } from './components/loan-details/loan-details.com
     ModulesComponent,
     ProspectDetailsComponent,
     LoanDetailsComponent,
+    IndividualDetailsComponent,
   
   ],
   imports: [
