@@ -1,0 +1,72 @@
+{
+  "NAV_ITEMS": [
+    {
+      "key": "myRequests",
+      "label": "pages.myRequests",
+      "data": "my-requests",
+      "type": "default"
+    },
+    {
+      "key": "systemAdministration",
+      "label": "pages.systemAdministration",
+      "data": null,
+      "type": "default",
+      "children": [
+        {
+          "key": "searchSubmittedRequests",
+          "label": "pages.searchSubmittedRequests",
+          "data": "search-requests",
+          "type": "default"
+        },
+        {
+          "key": "resubmitSearch",
+          "label": "pages.resubmitSearch",
+          "data": "resubmit-search",
+          "type": "default"
+        },
+        {
+          "key": "userAdministration",
+          "label": "pages.userAdministration",
+          "data": "https: //www.google.com",
+          "type": "url"
+        },
+        {
+          "key": "manageHolidays",
+          "label": "pages.manageHolidays",
+          "data": "manage-holidays",
+          "type": "default"
+        },
+        {
+          "key": "deletedRequests",
+          "label": "pages.deletedRequests",
+          "data": "deleted-requests",
+          "type": "default"
+        }
+      ]
+    },
+    {
+      "key": "manageHlLegalEntities",
+      "label": "pages.manageHlLegalEntities",
+      "data": "manage-entities",
+      "type": "default"
+    },
+    {
+      "key": "manualArchive",
+      "label": "pages.manualArchive",
+      "data": "manual-archive",
+      "type": "default"
+    },
+    {
+      "key": "matrixTest",
+      "label": "pages.matrixTest",
+      "data": "matrix-test",
+      "type": "default"
+    },
+    {
+      "key": "cfQuestionAudit",
+      "label": "pages.cfQuestionAudit",
+      "data": "cf-audit",
+      "type": "default"
+    }
+  ]
+}

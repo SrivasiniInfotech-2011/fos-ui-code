@@ -1,0 +1,94 @@
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { IFOSBaseResponse } from '../interfaces/IFOSBaseResponse';
+
+@Injectable()
+export class FOSErrorHandlingInterceptor implements HttpInterceptor {
+
+  constructor() { }
+
+  /**
+   * Intercepts HTTP requests and handles errors.
+   * @param request The HTTP request being intercepted.
+   * @param next The next interceptor in the chain.
+   * @returns An Observable of the HTTP event.
+   */
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request).pipe(
+      catchError((error: ErrorEvent | HttpErrorResponse) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
+  /**
+   * Handles the HTTP error and creates an error response.
+   * @param error The error event or HttpErrorResponse.
+   * @returns An Observable of the HTTP event with an error response.
+   */
+  handleError<T>(error: ErrorEvent | HttpErrorResponse): Observable<HttpEvent<IFOSBaseResponse<T>>> {
+    let errorMessage = this.getErrorMessage(error); // Get the appropriate error message
+
+    let errorResponse: IFOSBaseResponse<T> = {
+      error: {
+        message: errorMessage,
+        exception: error.error || null,
+        innerError: error.error.innerError || null
+      },
+      isSuccessStatusCode: false,
+      statusCode: 0, // default status code
+      data: null
+    };
+
+    if (error instanceof HttpErrorResponse) {
+      errorResponse.statusCode = error.status;
+    } else {
+      errorResponse.statusCode = error.error.status ?? 0;
+    }
+
+    // Provide a fallback value, an empty object of type T
+    const fallbackValue = {} as T;
+    errorResponse.data = fallbackValue;
+
+    // Create an HttpResponse with the errorResponse
+    const httpResponse: HttpResponse<IFOSBaseResponse<T>> = new HttpResponse({
+      status: errorResponse.statusCode,
+      body: errorResponse,
+    });
+
+    console.error(httpResponse);
+
+    // Return an observable that emits the HttpResponse with the error response
+    return throwError(() => httpResponse);
+  }
+
+  /**
+   * Gets the appropriate error message based on the error type.
+   * @param error The error event or HttpErrorResponse.
+   * @returns The error message.
+   */
+  private getErrorMessage(error: ErrorEvent | HttpErrorResponse): string {
+    if (error instanceof HttpErrorResponse) {
+      // Server-side error
+      switch (error.status) {
+        case 400:
+          return 'Bad Request';
+        case 401:
+          return 'Unauthorized';
+        case 403:
+          return 'Forbidden';
+        case 404:
+          return 'Not Found';
+        case 500:
+          return 'Server Error';
+        default:
+          return `Error Code: ${error.status}\nMessage: ${error.message}`;
+      }
+    } else {
+      // Client-side error
+      return `Error: ${error.message}`;
+    }
+  }
+}
