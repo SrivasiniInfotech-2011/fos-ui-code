@@ -8,6 +8,7 @@ import { ListingPageComponent } from './pages/listing-page/listing-page.componen
 import { LoanDetailsComponent } from './pages/loan-details/loan-details.component';
 import { ProspectDetailsComponent } from './pages/prospect-details/prospect-details.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })
