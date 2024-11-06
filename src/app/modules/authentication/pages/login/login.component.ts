@@ -11,6 +11,7 @@ import { UserService } from '../../../../../data/services/shared/user.service';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public isSubmitted: boolean = false;
+  public isLoading:boolean = false;
 
   constructor(private router: Router, private userService: UserService) {
     this.loginForm = new FormGroup({
@@ -25,13 +26,17 @@ export class LoginComponent implements OnInit {
     this.isSubmitted = true;
     if (this.loginForm.valid) {
       this.isSubmitted = false;
+      this.isLoading = true;
       this.userService
         .authenticateUser(
           this.loginForm.value['userName'],
           this.loginForm.value['password']
         )
         .subscribe((userAuthData: any) => {
-          if (userAuthData) this.router.navigate(['/dashboard']);
+          if (userAuthData) {
+            this.isLoading = false;
+            this.router.navigate(['/dashboard']);
+          }
         });
     }
   }

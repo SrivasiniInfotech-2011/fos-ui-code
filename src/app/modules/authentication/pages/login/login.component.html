@@ -1,8 +1,8 @@
-<body>
 
-  <app-header></app-header>
+<app-header></app-header>
 
-  <div class="auth-page d-flex align-items-center">
+<body [hidden]="isLoading">
+  <div class="auth-page d-flex align-items-center" >
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div
@@ -41,6 +41,7 @@
     </div>
   </div>
 
+
   <script>
     function myFunction() {
       var x = document.getElementById("myLinks");
@@ -52,3 +53,8 @@
     }
   </script>
 </body>
+
+
+<div [hidden]="!isLoading" class="loader-class">
+  <img src="/assets/images/loader.svg" height="50" width="50">
+</div>

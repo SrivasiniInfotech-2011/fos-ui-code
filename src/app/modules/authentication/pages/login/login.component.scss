@@ -15,6 +15,14 @@ body {
     z-index: -1;
 }
 
+.loader-class {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 .auth-page {
     margin-top: 80px;
     height: calc(100vh - 80px);
