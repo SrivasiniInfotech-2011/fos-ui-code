@@ -3,20 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { IndividualDetailsComponent } from './pages/individual-details/individual-details.component';
-import { ListingPageComponent } from './pages/listing-page/listing-page.component';
-import { LoanDetailsComponent } from './pages/loan-details/loan-details.component';
-import { ProspectDetailsComponent } from './pages/prospect-details/prospect-details.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FosComponent } from './fos/fos.component';
+import { FosModule } from './fos/fos.module';
+import { AdminComponent } from './admin/admin.component';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({
-  declarations: [DashboardComponent, IndividualDetailsComponent, ListingPageComponent, LoanDetailsComponent, ProspectDetailsComponent],
+  declarations: [DashboardComponent, FosComponent, AdminComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
+    FosModule,
+    AdminModule,
     SharedModule
   ]
 })
