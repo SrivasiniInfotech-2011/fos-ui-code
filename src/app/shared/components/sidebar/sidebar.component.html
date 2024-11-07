@@ -7,8 +7,8 @@
             {{item?.moduleName}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-       <div *ngFor="let menu of item?.menus" (click)="goToMenuItemDetail(item?.moduleName, menu?.title)" >
-        <p style="cursor: pointer;">{{menu?.title}}</p>
+       <div *ngFor="let menu of item?.menus" (click)="goToMenuItemDetail(item?.moduleName, menu)" >
+        <p style="cursor: pointer;">{{menu}}</p>
        </div>
       </mat-expansion-panel>
     </mat-accordion>

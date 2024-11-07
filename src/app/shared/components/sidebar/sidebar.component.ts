@@ -13,30 +13,16 @@ export class SidebarComponent implements OnInit {
   public sideBarList: any[] = [
     {
       "moduleName": "FOS",
-      "menus": [
-        {
-          "title": "Prospect Details"
-        },
-        {
-          "title": "Loan Details"
-        },
-         {
-          "title": "Individual Details"
-        },
-      ]
+      "menus": [ "Prospect Details", "Loan Details", "Individual Details" ]
     },
     {
       "moduleName": "Admin",
-      "menus": [
-        {
-          "title": "User Management"
-        },
-      ]
+      "menus": ["User Management"]
     },
     {
       "moduleName": "Report",
     }
-  ]
+  ];
 
   constructor(private userService: UserService, private router:Router) { }
 
