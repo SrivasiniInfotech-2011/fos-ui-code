@@ -32,8 +32,17 @@ export class LoginComponent implements OnInit {
           this.loginForm.value['userName'],
           this.loginForm.value['password']
         )
-        .subscribe((userAuthData: any) => {
-          if (userAuthData) {
+        .subscribe((res: any) => {
+          if (res) {
+            let token = res?.message?.token
+            localStorage.setItem('userToken', token)
+            let userInfo = res?.message?.user
+            let userData = {
+              userId: userInfo?.userId,
+              userName: userInfo?.userName,
+              companyName: userInfo?.companyName
+            }
+            localStorage.setItem('userDetails', JSON.stringify(userData))
             this.isLoading = false;
             this.router.navigate(['/dashboard']);
           }
