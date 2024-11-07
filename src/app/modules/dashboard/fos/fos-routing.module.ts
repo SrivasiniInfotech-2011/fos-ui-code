@@ -11,10 +11,6 @@ const routes: Routes = [
     path: '',
     component: FosComponent,
     children: [
-      {
-        path:'',
-        component:ListingPageComponent
-      },
 
       {
         path:'individual-details',
@@ -29,7 +25,7 @@ const routes: Routes = [
       {
         path:'prospect-details',
         component:ProspectDetailsComponent
-      },
+      }
     ]
   }
 ];

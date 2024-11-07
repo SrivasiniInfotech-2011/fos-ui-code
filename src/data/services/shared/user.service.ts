@@ -102,4 +102,20 @@ export class UserService {
         })
       );
   }
+
+  getSideBarData(userId:any): Observable<any> {
+    let endPoint: string = this.utilService.buildApiEndpoint(
+      'dev',
+      FOSApiEndPoints.SIDEBAR_API.replace('{userId}', userId),
+      ''
+    );
+    return this.fosBaseWrapper
+      .get(endPoint)
+      .pipe(
+        catchError((error) => {
+          this.fosErrorHandler.handleError(error);
+          return throwError(() => error);
+        })
+      );
+  }
 }

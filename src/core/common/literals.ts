@@ -99,7 +99,8 @@ export const FOSApiEndPoints ={
   REQUEST_API:'/requests/',
   REQUEST_INTERESTED_PARTY_API:'/request/:id/interested-parties',
   INTERESTED_PARTY_CONFIG_LOCAL:"/core/config/interested-party-config.json",
-  USER_LOGIN_API:"/api/Users/GetUserByUserNameAndPassword"
+  USER_LOGIN_API:"/api/Users/GetUserByUserNameAndPassword",
+  SIDEBAR_API: "/api/Home/GetUserMenus/{userId}"
 };
 
 /**
