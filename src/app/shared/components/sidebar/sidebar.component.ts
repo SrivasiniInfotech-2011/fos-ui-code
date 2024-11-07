@@ -10,19 +10,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
 
   public panelOpenState: boolean = false;
-  public sideBarList: any[] = [
-    {
-      "moduleName": "FOS",
-      "menus": [ "Prospect Details", "Loan Details", "Individual Details" ]
-    },
-    {
-      "moduleName": "Admin",
-      "menus": ["User Management"]
-    },
-    {
-      "moduleName": "Report",
-    }
-  ];
+  public sideBarList: any[] = [];
 
   constructor(private userService: UserService, private router:Router) { }
 
@@ -34,7 +22,9 @@ export class SidebarComponent implements OnInit {
     if (localStorage.getItem('userDetails')) {
       let userDetail = JSON.parse(localStorage.getItem('userDetails') || '')
       let userId = userDetail?.userId
-      this.userService.getSideBarData(userId).subscribe((res: any) => { })
+      this.userService.getSideBarData(userId).subscribe((res: any) => {
+        this.sideBarList = res?.message?.userMenus
+       })
     }
   }
 
@@ -43,6 +33,5 @@ export class SidebarComponent implements OnInit {
     let module = moduleName.toLowerCase()
       this.router.navigate(['/dashboard',module, menu])
   }
-
 
 }
