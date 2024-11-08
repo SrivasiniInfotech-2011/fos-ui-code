@@ -9,6 +9,8 @@ import { FosComponent } from './fos/fos.component';
 import { FosModule } from './fos/fos.module';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { FOSRequestInterceptor } from '../../../core/interceptors/fos-request-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { AdminModule } from './admin/admin.module';
     FosModule,
     AdminModule,
     SharedModule
-  ]
+  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: FOSRequestInterceptor, multi: true }]
 })
 export class DashboardModule { }

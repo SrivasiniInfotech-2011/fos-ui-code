@@ -8,16 +8,17 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {Observable, tap} from 'rxjs';
-import {Store} from "@ngrx/store";
-import {IUserAuth} from "../interfaces/user-auth";
+import { Observable, tap } from 'rxjs';
+import { Store } from "@ngrx/store";
+import { IUserAuth } from "../interfaces/user-auth";
 
 @Injectable()
 /**
  * Interceptor for Requests
  */
 export class FOSRequestInterceptor implements HttpInterceptor {
-  userAuth : IUserAuth = {} as IUserAuth;
+  userAuth: IUserAuth = {} as IUserAuth;
+  accessToken: string = "";
 
   /**
    * Constructor to initialize the dependencies
@@ -27,9 +28,7 @@ export class FOSRequestInterceptor implements HttpInterceptor {
   constructor(
     private router: Router
   ) {
-    // this.userAuthStore.select(user => user.login).subscribe(data =>{
-    //   this.userAuth = {...{},...data};
-    // });
+    this.accessToken = localStorage.getItem("userToken") ?? '';
   }
 
   /**
@@ -42,13 +41,12 @@ export class FOSRequestInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let httpHeaders = new HttpHeaders();
-    let accessToken: string = "";
-    if (this.userAuth.accessToken) {
-      accessToken = this.userAuth.accessToken;
-    }
+    console.log(this.accessToken);
+    let accessToken: string = this.accessToken;
+    
     httpHeaders = httpHeaders.append(
-        'Authorization',
-        `Bearer ${accessToken}`
+      'Authorization',
+      `Bearer ${accessToken}`
     );
     const httpReq = req.clone({
       headers: httpHeaders,
