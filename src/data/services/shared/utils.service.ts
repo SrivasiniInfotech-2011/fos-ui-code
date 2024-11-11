@@ -1,10 +1,10 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {utils, WorkBook, WorkSheet, writeFile} from 'xlsx';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { utils, WorkBook, WorkSheet, writeFile } from 'xlsx';
 import moment from 'moment';
 import momentTz from 'moment-timezone';
-import {DateFormat, FOSServiceDomain} from '../../../core/common/literals';
-import {environment} from "../../../environments/environment";
+import { DateFormat, FOSServiceDomain } from '../../../core/common/literals';
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class UtilsService {
    * Constructor for initializing the dependencies
    * @param http
    */
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    * Export a xlsx file when receiving a object and information of the file name and structure.
@@ -56,30 +56,30 @@ export class UtilsService {
    * @param payload
    * @param fileName
    */
-  downloadFileFromApi<T>(endPoint:string,  headers: HttpHeaders, payload:T, fileName:string):void{
+  downloadFileFromApi<T>(endPoint: string, headers: HttpHeaders, payload: T, fileName: string): void {
     this.http.post(endPoint, payload, {
       headers,
-      responseType : "blob" as "json"
-    }).subscribe((response: any) =>{
-        let dataType = response.type;
-        let binaryData = [];
-        binaryData.push(response);
-        let downloadLink = document.createElement('a');
-        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
-        downloadLink.setAttribute('download', fileName);
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-      }
+      responseType: "blob" as "json"
+    }).subscribe((response: any) => {
+      let dataType = response.type;
+      let binaryData = [];
+      binaryData.push(response);
+      let downloadLink = document.createElement('a');
+      downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: dataType }));
+      downloadLink.setAttribute('download', fileName);
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    }
     )
   };
 
-/**
- * convert date into utc format
- * @param date
- * @returns
- */
-  convertDateToUTC(date : string) {
+  /**
+   * convert date into utc format
+   * @param date
+   * @returns
+   */
+  convertDateToUTC(date: string) {
     return moment(date).utc().format(DateFormat.UTC_DATE_FORMAT.UTC_FORMAT)
   }
 
@@ -100,12 +100,12 @@ export class UtilsService {
    * @param path
    * @param localPath
    */
-  buildApiEndpoint(domain:string, path : string, localPath?: string | null): string {
-    if (environment.loadConfigFromApi && domain.trim() && path.trim()){
+  buildApiEndpoint(domain: string, path: string, localPath?: string | null): string {
+    if (environment.loadConfigFromApi && domain.trim() && path.trim()) {
       return `${environment.apiBaseUrl.replace(FOSServiceDomain, domain)}${path}`;
-    } else if(localPath?.trim()) {
+    } else if (localPath?.trim()) {
       return `${environment.appBaseUrl}${localPath}`;
-    }else{
+    } else {
       return "";
     }
   }
@@ -115,11 +115,11 @@ export class UtilsService {
    * @param date
    * @param dateTimeFormat
    */
-  convertToPacificTime(date:string, timeZone:string): string {
+  convertToPacificTime(date: string, timeZone: string): string {
     let currentTimeZoneDate = moment(date);
     let currentTimeZoneOffset = currentTimeZoneDate.utcOffset();
     let pacificOffset = moment().tz(timeZone).utcOffset();
-    if(currentTimeZoneOffset == pacificOffset){
+    if (currentTimeZoneOffset == pacificOffset) {
       return date;
     }
     let totalOffset = currentTimeZoneOffset - pacificOffset;

@@ -41,7 +41,6 @@ export class FOSRequestInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let httpHeaders = new HttpHeaders();
-    console.log(this.accessToken);
     let accessToken: string = this.accessToken;
     
     httpHeaders = httpHeaders.append(
