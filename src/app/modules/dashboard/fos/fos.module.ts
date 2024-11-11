@@ -8,10 +8,11 @@ import { ProspectDetailsComponent } from './pages/prospect-details/prospect-deta
 import { IndividualDetailsComponent } from './pages/individual-details/individual-details.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ViewloanDetailsComponent } from './pages/viewloan-details/viewloan-details.component';
 
 
 @NgModule({
-  declarations: [ListingPageComponent, LoanDetailsComponent, ProspectDetailsComponent, IndividualDetailsComponent],
+  declarations: [ListingPageComponent, LoanDetailsComponent, ProspectDetailsComponent, IndividualDetailsComponent, ViewloanDetailsComponent],
   imports: [
     CommonModule,
     FosRoutingModule,
