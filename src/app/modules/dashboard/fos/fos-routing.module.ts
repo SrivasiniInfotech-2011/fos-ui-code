@@ -23,7 +23,7 @@ const routes: Routes = [
       },
 
       {
-        path:'prospect-details',
+        path:'prospect-master',
         component:ProspectDetailsComponent
       }
     ]
