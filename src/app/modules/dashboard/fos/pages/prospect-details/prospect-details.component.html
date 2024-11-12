@@ -1,648 +1,228 @@
-<div class="content-box pt-2">
-  <div class="container">
+<div class="prospect-details-page">
+  <div class="form-container">
+    <!-- Basic Details Section -->
+    <div class="section">
+      <div class="section-title">
+        <span>Basic</span> <span>Details</span>
+      </div>
+      <form [formGroup]="prospectDetailsForm1" class="form" *ngIf="prospectDetailsForm1">
+        <div class="form-group">
+          <span class="label">Mobile Number<span class="required">*</span></span>
+          <div class="input"><input type="text" placeholder="Enter Mobile Number" formControlName="mobileNumber"></div>
+        </div>
+        <div class="form-group">
+          <span class="label">Aadhar Number<span class="required">*</span></span>
+          <div class="input"><input type="text" placeholder="Enter Aadhar Number" formControlName="aadharNumber"></div>
+        </div>
+        <div class="form-group">
+          <span class="label">PAN Number<span class="required">*</span></span>
+          <div class="input"><input type="text" placeholder="Enter Pan Number" formControlName="panNumber"></div>
+        </div>
+        <div class="note" *ngIf="prospectDetailsForm1.errors?.['aadharOrPanRequired'] && prospectDetailsForm1.touched">
+          <span>*Any two fields required with Mobile Number as mandatory</span>
+        </div>
+        <div class="button">
+          <span>Go</span>
+        </div>
 
-    <div class="prospect-details-box my-3">
-      <form [formGroup]="basicDetailForm" class="prospect-details-form">
-        <caption class="d-flex">
-          BasicDetails
-        </caption>
-        <div class="row d-flex">
-          <div class="col-12 col-md-4">
-            <label>Mobile Number<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Enter Mobile Number"
-              formControlName="mobileNumber"
-              class="form-control mt-2 mb-1"
-            />
-            <div class="massage-text">Mobile Number is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>Aadhar Number<span class="required">*</span></label>
-            <input
-              class="form-control  mt-2 mb-1"
-              type="text"
-              placeholder="Enter Aadhar Number"
-              formControlName="aadharNumber"
-            />
-            <div class="massage-text">Aadhar Number is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>PAN Number<span class="required">*</span></label>
-            <input
-              type="text"
-              class="form-control  mt-2 mb-1"
-              placeholder="Enter Pan Number"
-              formControlName="panNumber"
-            />
-            <div class="massage-text">PAN Number is required</div>
-            <!-- <div
-              class="note"
-              *ngIf="basicDetailForm.errors?.['aadharOrPanRequired'] && basicDetailForm.touched"
-            >
-              <div
-                >*Any two fields required with Mobile Number as mandatory</div
-              >
-            </div> -->
-          </div>
-        </div>
-        <div class="col-auto pt-2 d-flex justify-content-end">
-          <button
-            class="next-button d-flex align-items-center mt-4 px-4 rounded"
-          >
-            <mat-icon class="d-flex align-items-center" style="font-size: 14px"
-              >arrow_forward</mat-icon
-            >Go
-          </button>
-        </div>
       </form>
     </div>
 
-    <!-- <div class="form-group">
-          <span class="label">PAN Number<span class="required">*</span></span>
-          <div class="input">
-            <input
-              type="text"
-              placeholder="Enter Pan Number"
-              formControlName="panNumber"
-            />
+    <!-- Prospect Details Section -->
+    <form [formGroup]="prospectDetailsForm2" *ngIf="prospectDetailsForm2">
+      <div class="section">
+        <div class="section-title">
+          <span>Prospect</span> <span>Details</span>
+        </div>
+        <div class="form">
+          <div class="form-group">
+            <span class="label">Branch<span class="required">*</span></span>
+            <div class="input"><input type="text" placeholder="Enter Branch" formControlName="branch"></div>
           </div>
-        </div> -->
-    <!-- <div
-          class="note"
-          *ngIf="basicDetailForm.errors?.['aadharOrPanRequired'] && basicDetailForm.touched"
-        >
-          <span>*Any two fields required with Mobile Number as mandatory</span>
-        </div> -->
-
-    <div class="prospect-details-box my-3">
-      <form class="prospect-details-form" [formGroup]="prospectDetailForm">
-        <caption class="d-flex">
-          Prospect Details
-        </caption>
-        <div class="row d-flex">
-          <div class="col-12 col-md-4">
-            <label class="label">Branch<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Enter Branch"
-              formControlName="branch"
-              class="form-control mt-2 mb-1"
-            />
-            <div class="massage-text">Branch is required</div>
+          <div class="form-group">
+            <span class="label">Prospect Name<span class="required">*</span></span>
+            <div class="input"><input type="text" placeholder="Enter the name" formControlName="prospectName"></div>
           </div>
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Date of Birth<span class="required">*</span></label
-            >
-            <input
-              type="date"
-              class="form-control mt-2 mb-1"
-              formControlName="dob"
-            />
-            <div class="massage-text">Date is required</div>
+          <div class="form-group">
+            <span class="label">Date of Birth<span class="required">*</span></span>
+            <div class="input"><input type="date" formControlName="dob"></div>
           </div>
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Mobile Number<span class="required">*</span></label
-            >
+          <div class="form-group">
+            <span class="label">Mobile Number<span class="required">*</span></span>
+            <div class="input"><input type="text" placeholder="Enter Mobile Number" formControlName="mobileNo"></div>
+          </div>
+          <div class="form-group">
+            <span class="label">Prospect Code</span>
+            <div class="input"><input type="text" placeholder="Enter Prospect Code" formControlName="prospectCode"></div>
+          </div>
+          <div class="form-group">
+            <span class="label">Prospect Type<span class="required">*</span></span>
             <div class="input">
-              <input
-                type="text"
-                placeholder="Enter Mobile Number"
-                formControlName="mobileNumber"
-                class="form-control mt-2 mb-1"
-              />
-              <div class="massage-text">Mobile Number is required</div>
+              <select formControlName="prospectType">
+                <option>Type 1</option>
+                <option>Type 2</option>
+              </select>
             </div>
           </div>
-          <div class="col-12 col-md-4">
-            <label>Prospect Code</label>
-            <input
-              type="text"
-              class="form-control mt-2 mb-1"
-              placeholder="Enter Prospect Code"
-              formControlName="prospectCode"
-            />
-            <div class="massage-text">Prospect Code is required</div>
+          <div class="form-group">
+            <span class="label">Age<span class="required">*</span></span>
+            <div class="input"><input type="text" placeholder="Enter the Age" formControlName="age"></div>
           </div>
-          <div class="col-12 col-md-4">
-            <label>Prospect Type<span class="required">*</span></label>
-            <select formControlName="prospectType" class="form-select  mt-2 mb-1">
-              <option>Type 1</option>
-              <option>Type 2</option>
-            </select>
+          <div class="form-group">
+            <span class="label">Alternate Mobile</span>
+            <div class="input"><input type="text" placeholder="Alternate Mobile" formControlName="alternateMobileNumber"></div>
           </div>
-          <div class="col-12 col-md-4">
-            <label>Age<span class="required">*</span></label>
-
-            <input
-              type="text"
-              placeholder="Enter the Age"
-              formControlName="age"
-              class="form-control mt-2 mb-1"
-            />
-            <div class="massage-text">Age is required</div>
+          <div class="form-group">
+            <span class="label">Prospect Date<span class="required">*</span></span>
+            <div class="input"><input type="date" value="2024-11-11" formControlName="prospectDate"></div>
           </div>
-          <div class="col-12 col-md-4">
-            <label>Alternate Mobile</label>
-            <input
-              class="form-control mt-2 mb-1"
-              type="text"
-              placeholder="Alternate Mobile"
-              formControlName="alternateMobileNumber"
-            />
-            <div class="massage-text">Age is required</div>
+          <div class="form-group">
+            <span class="label">Website</span>
+            <div class="input"><input type="text" placeholder="Website Name" formControlName="website"></div>
           </div>
-          <div class="col-12 col-md-4">
-            <label>Prospect Date<span class="required">*</span></label>
-            <input
-              class="form-control mt-2 mb-1"
-              type="date"
-              value="2024-11-11"
-              formControlName="prospectDate"
-            />
-            <div class="massage-text">Prospect Date is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>Website</label>
-            <input
-              class="form-control mt-2 mb-1"
-              type="text"
-              placeholder="Website Name"
-              formControlName="website"
-            />
-            <div class="massage-text">Website is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>Gender<span class="required">*</span></label>
-         
-              <select formControlName="gender" class="form-select mt-2 mb-1">
+          <div class="form-group">
+            <span class="label">Gender<span class="required">*</span></span>
+            <div class="input">
+              <select formControlName="gender">
                 <option>Male</option>
                 <option>Female</option>
               </select>
-              <div class="massage-text">Gender is required</div>
+            </div>
           </div>
-          <div class="col-12 col-md-4">
-            <label>Email</label>
-              <input
-                type="email"
-                placeholder="Enter the Email"
-                formControlName="email"
-                class="form-control mt-2 mb-1"
-                
-              />
-              <div class="massage-text">Email is required</div>
+          <div class="form-group">
+            <span class="label">Email</span>
+            <div class="input"><input type="email" placeholder="Enter the Email" formControlName="email"></div>
           </div>
         </div>
-      </form>
       </div>
-
-      <div class="prospect-details-box my-3" formArrayName="communicationAddress">
-        <form class="prospect-details-form" [formGroup]="prospectDetailForm">
-          <caption class="d-flex">
-            Communication Address
-          </caption>
-          <div class="row d-flex">
-          <div class="col-12 col-md-4">
-            <label>Address Line 1</label>
-              <input
-                type="text"
-                placeholder="Address Line 1"
-                formControlName="addressLine1"
-                class="form-control mt-2 mb-1"
-                
-              />
-              <div class="massage-text">Address Line 1 required</div>
+      <!-- formArrayName="communicationAddress" -->
+      <div class="address">
+        <div class="section" >
+          <div class="section-title">
+            <span>Communication</span> <span>Address</span><span class="required">*</span>
           </div>
-          <div class="col-12 col-md-4">
-            <label>Address Line 2</label>
-              <input
-                type="text"
-                placeholder="Address Line 2"
-                formControlName="addressLine2"
-                class="form-control mt-2 mb-1"
-                
-              />
-              <div class="massage-text">Address Line 2 is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>Landmark</label>
-              <input
-                type="text"
-                placeholder="Landmark"
-                formControlName="landmark"
-                class="form-control mt-2 mb-1"
-                
-              />
-              <div class="massage-text">Landmark is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>City</label>
-              <input
-                type="text"
-                placeholder="Enter the City"
-                formControlName="city"
-                class="form-control mt-2 mb-1"
-                
-              />
-              <div class="massage-text">City is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>State</label>
-              <input
-                type="email"
-                placeholder="Enter the State"
-                formControlName="State"
-                class="form-control mt-2 mb-1"
-                
-              />
-              <div class="massage-text">State is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>Country</label>
-              <input
-                type="text"
-                placeholder="Enter the Country"
-                formControlName="Country"
-                class="form-control mt-2 mb-1 "
-                
-              />
-              <div class="massage-text">Country is required</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>Pin Code</label>
-              <input
-                type="number"
-                placeholder="Enter the Pin Code"
-                formControlName="number"
-                class="form-control mt-2 mb-1"
-                
-              />
-              <div class="massage-text">Pin Code is required</div>
-          </div>
-         
-          </div>
-          <div class="row d-flex py-4">
-            <div class="col-12 d-flex align-items-center">
-            <input type="checkbox" style="width:25px;height:25px;" class="me-2"><caption>Enter Permanent Address As Same</caption>
-            </div>
-          </div>
-          <div class="row d-flex">
-            <div class="col-12 col-md-4">
-              <label>Address Line 1</label>
-                <input
-                  type="text"
-                  placeholder="Address Line 1"
-                  formControlName="addressLine1"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">Address Line 1 required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>Address Line 2</label>
-                <input
-                  type="text"
-                  placeholder="Address Line 2"
-                  formControlName="addressLine2"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">Address Line 2 is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>Landmark</label>
-                <input
-                  type="text"
-                  placeholder="Landmark"
-                  formControlName="landmark"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">Landmark is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>City</label>
-                <input
-                  type="text"
-                  placeholder="Enter the City"
-                  formControlName="city"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">City is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>State</label>
-                <input
-                  type="email"
-                  placeholder="Enter the State"
-                  formControlName="State"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">State is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>Country</label>
-                <input
-                  type="text"
-                  placeholder="Enter the Country"
-                  formControlName="Country"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">Country is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>Pin Code</label>
-                <input
-                  type="number"
-                  placeholder="Enter the Pin Code"
-                  formControlName="number"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">Pin Code is required</div>
-            </div>
-           
-            </div>
-        </form>
-      </div>
-      <div class="prospect-details-box my-3" formArrayName="communicationAddress">
-        <form class="prospect-details-form" [formGroup]="prospectDetailForm">
-          <caption class="d-flex">
-            Primary KYC Upload
-          </caption>
-          <div class="row d-flex">
-            <div class="col-12 col-md-4">
-              <label>Aadhar Number</label>
-                <input
-                  type="number"
-                  placeholder="Enter the Aadhar Number"
-                  formControlName="number"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">Aadhar Number is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>PAN Number</label>
-                <input
-                  type="number"
-                  placeholder="Enter the PAN Number "
-                  formControlName="number"
-                  class="form-control mt-2 mb-1"
-                  
-                />
-                <div class="massage-text">PAN Number is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>Prospect Image</label>
-                <input
-                  type="file"
-                  class="form-control mt-2 mb-1"
-                  placeholder="upload Image"
-                />
-                <div class="massage-text">Prospect Image  is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>Adhar Image</label>
-                <input
-                  type="file"
-                  class="form-control mt-2 mb-1"
-                  placeholder="upload Adhar Image"
-                />
-                <div class="massage-text">Adhar Image  is required</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label>PAN Image</label>
-                <input
-                  type="file"
-                  class="form-control mt-2 mb-1"
-                  placeholder="upload PAN Image"
-                />
-                <div class="massage-text">PAN Image  is required</div>
-            </div>
-          </div>
-          </form>
-          </div>
-        <!-- <div class="address">
-          <div class="section" >
-        
-            <div
-              class="form2"
-              *ngFor="
-                let address of communicationAddressFormValue.controls;
-                let i = index
-              "
-            >
-              <div [formGroupName]="i" class="pt-5">
-                <div class="form-group">
-                  <span class="label">Address Line 1</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Address Line 1"
-                      formControlName="addressLine1"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Address Line 2</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Address Line 2"
-                      formControlName="addressLine2"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Landmark</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Landmark"
-                      formControlName="landmark"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">City</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="City"
-                      formControlName="city"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">State</span>
-                  <div class="input">
-                    <select formControlName="state">
-                      <option>Choose State</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Country</span>
-                  <div class="input">
-                    <select formControlName="country">
-                      <option>Country</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Pin Code</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Pin Code"
-                      formControlName="pincode"
-                    />
-                  </div>
+          <!-- <div class="form2" *ngFor="let address of prospectDetailsForm2?.controls; let i = index">
+            <div [formGroupName]="i" class="pt-5">
+              <div class="form-group">
+                <span class="label">Address Line 1</span>
+                <div class="input"><input type="text" placeholder="Address Line 1" formControlName="addressLine1"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">Address Line 2</span>
+                <div class="input"><input type="text" placeholder="Address Line 2" formControlName="addressLine2"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">Landmark</span>
+                <div class="input"><input type="text" placeholder="Landmark" formControlName="landmark"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">City</span>
+                <div class="input"><input type="text" placeholder="City" formControlName="city"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">State</span>
+                <div class="input">
+                  <select formControlName="state">
+                    <option>Choose State</option>
+                  </select>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="section" formArrayName="permanantAddress">
-            <div class="section-title">
-              <span>Permanent</span> <span>Address</span
-              ><span class="required">*</span>
-            </div>
-            <div
-              class="form2"
-              *ngFor="
-                let address of permanantAddressFormValue.controls;
-                let i = index
-              "
-            >
-              <div [formGroupName]="i" class="pt-1">
-                <div class="form-group">
-                  <div class="input d-flex align-items-center gap-2">
-                    <input
-                      type="checkbox"
-                      class="w-25 d-flex justify-content-start"
-                    />
-                    <span
-                      class="checkbox-label w-75 d-flex justify-content-start"
-                      >Enter Permanent Address As Same</span
-                    >
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Address Line 1</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Address Line 1"
-                      formControlName="addressLine1"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Address Line 2</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Address Line 2"
-                      formControlName="addressLine2"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Landmark</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Landmark"
-                      formControlName="landmark"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">City</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="City"
-                      formControlName="city"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">State</span>
-                  <div class="input">
-                    <select formControlName="state">
-                      <option>Choose State</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Country</span>
-                  <div class="input">
-                    <select formControlName="country">
-                      <option>Country</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <span class="label">Pin Code</span>
-                  <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Pin Code"
-                      formControlName="pincode"
-                    />
-                  </div>
+              <div class="form-group">
+                <span class="label">Country</span>
+                <div class="input">
+                  <select formControlName="country">
+                    <option>Country</option>
+                  </select>
                 </div>
               </div>
+              <div class="form-group">
+                <span class="label">Pin Code</span>
+                <div class="input"><input type="text" placeholder="Pin Code" formControlName="pincode"></div>
+              </div>
             </div>
+          </div> -->
+        </div>
+        <!-- formArrayName="permanantAddress" -->
+        <div class="section" >
+          <div class="section-title">
+            <span>Permanent</span> <span>Address</span><span class="required">*</span>
           </div>
-        </div> -->
-      
-    <!-- <div class="section">
+          <!-- <div class="form2" *ngFor="let address of prospectDetailsForm2?.controls; let i = index">
+            <div [formGroupName]="i" class="pt-1">
+              <div class="form-group">
+                <div class="input d-flex align-items-center gap-2">
+                  <input type="checkbox" class="w-25 d-flex justify-content-start">
+                  <span class="checkbox-label w-75 d-flex justify-content-start">Enter Permanent Address As Same</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label">Address Line 1</span>
+                <div class="input"><input type="text" placeholder="Address Line 1" formControlName="addressLine1"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">Address Line 2</span>
+                <div class="input"><input type="text" placeholder="Address Line 2" formControlName="addressLine2"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">Landmark</span>
+                <div class="input"><input type="text" placeholder="Landmark" formControlName="landmark"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">City</span>
+                <div class="input"><input type="text" placeholder="City" formControlName="city"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">State</span>
+                <div class="input">
+                  <select formControlName="state">
+                    <option>Choose State</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label">Country</span>
+                <div class="input">
+                  <select formControlName="country">
+                    <option>Country</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label">Pin Code</span>
+                <div class="input"><input type="text" placeholder="Pin Code" formControlName="pincode"></div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </form>
+
+    <div class="section">
       <div class="section-title">
         <span>Primary</span> <span>KYC Upload</span>
       </div>
       <div class="form">
         <div class="form-group">
-          <span class="label"
-            >Aadhar Number<span class="required">*</span></span
-          >
-          <div class="input">
-            <input type="text" placeholder="Aadhar Number" />
-          </div>
+          <span class="label">Aadhar Number<span class="required">*</span></span>
+          <div class="input"><input type="text" placeholder="Aadhar Number"></div>
         </div>
         <div class="form-group">
           <span class="label">Pan Number<span class="required">*</span></span>
-          <div class="input">
-            <input type="text" placeholder="Pan Number" />
-          </div>
+          <div class="input"><input type="text" placeholder="Pan Number"></div>
         </div>
         <div class="form-group">
-          <span class="label"
-            >Prospect Image<span class="required">*</span></span
-          >
-          <div class="input"><input type="file" /></div>
+          <span class="label">Prospect Image<span class="required">*</span></span>
+          <div class="input"><input type="file"></div>
         </div>
         <div class="form-group">
           <span class="label">Aadhar Image<span class="required">*</span></span>
-          <div class="input">
-            <input type="file" placeholder="Enter Mobile Number" />
-          </div>
+          <div class="input"><input type="file" placeholder="Enter Mobile Number"></div>
         </div>
         <div class="form-group">
           <span class="label">PAN Image<span class="required">*</span></span>
-          <div class="input">
-            <input type="file" placeholder="Enter Mobile Number" />
-          </div>
+          <div class="input"><input type="file" placeholder="Enter Mobile Number"></div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
-
+</div>
