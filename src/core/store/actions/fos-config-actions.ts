@@ -5,7 +5,7 @@ import {IFOSSearchFilter} from "../../interfaces/store/IFOSSearchFilter";
 import { IFOSTableDataSetting } from "../../../core/interfaces/store/IFOSTableData";
 import {IFOSMyRequestTableUserSetting, IFOSUserConfig} from "../../interfaces/store/IFOSConfig";
 import { IFOSTabViewSetting } from "../../../core/interfaces/store/IFOSTabView";
-import {IFOSInterestedPartyTableSettings} from "../../interfaces/app/request/IFOSCcRequest";
+import {IFOSInterestedPartyTableSettings} from "../../interfaces/app/request/IFOSModels";
 
 /**
  * Action for storing the My Request Table Settings

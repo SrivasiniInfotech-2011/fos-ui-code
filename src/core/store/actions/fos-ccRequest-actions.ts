@@ -4,7 +4,7 @@ import {
   IFOSCommentHistory, IFOSConflictCheck, IFOSFscgAccount,
   IFOSInterestedPartyData, IFOSInterestedPartyPageView,
   IFOSQuestionAnswer, IFOSRequestBasicInfo
-} from "../../interfaces/app/request/IFOSCcRequest";
+} from "../../interfaces/app/request/IFOSModels";
 
 /**
  * Action for storing the basic info
