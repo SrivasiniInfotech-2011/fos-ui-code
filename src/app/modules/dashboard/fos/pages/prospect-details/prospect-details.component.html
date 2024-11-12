@@ -1,138 +1,228 @@
-<div class="content-box pt-2">
-  <div class="container">
-    <div class="tab-box d-flex align-items-center gap-2 my-3">
-      <mat-icon>home</mat-icon><mat-icon>keyboard_arrow_right</mat-icon>Lead
-      Generation
-    </div>
-    <div class="d-flex align-items-center flex-wrap gap-3">
-      <button class="option-button d-flex align-items-center">
-        Prospect-Details
-      </button>
-      <button class="option-button d-flex align-items-center">
-        Loan-details
-      </button>
-      <button class="option-button d-flex align-items-center">
-        Individual
-      </button>
-      <button class="option-button d-flex align-items-center">
-        Non Individual
-      </button>
-      <button class="option-button d-flex align-items-center">
-        Guarantor 1
-      </button>
-      <button class="option-button d-flex align-items-center">
-        Guarantor 2
-      </button>
-
-    </div>
-    <div class="prospect-details-box my-3">
-      <form class="prospect-details-form" [formGroup]="prospectDetailsForm1">
-        <caption class="d-flex">Prospect Details</caption>
-        <div class="row d-flex ">
-          <div class="col-12 col-md-3">
-            <label>Mobile Number</label>
-            <input type="number" class="form-control my-1" formControlName="mobileNumber">
-            <div *ngIf="prospectDetailsForm1.get('mobileNumber')?.touched || submittedForm1">
-              <span class="massage-text" *ngIf="prospectDetailsForm1.get('mobileNumber')?.hasError('required')">Mobile Number is required</span>
-            </div>
+<div class="prospect-details-page">
+    <div class="form-container">
+        <!-- Basic Details Section -->
+        <div class="section">
+          <div class="section-title">
+            <span>Basic</span> <span>Details</span>
           </div>
-          <div class="col-12 col-md-3">
-            <label>Aadhar Number </label>
-            <input type="number" class="form-control my-1" formControlName="aadharNumber">
-            <div *ngIf="prospectDetailsForm1.get('aadharNumber')?.touched || submittedForm1">
-              <span class="massage-text" *ngIf="prospectDetailsForm1.get('aadharNumber')?.hasError('required')">Aadhar Number is required</span>
+          <form [formGroup]="basicDetailForm" class="form">
+            <div class="form-group">
+              <span class="label">Mobile Number<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Enter Mobile Number" formControlName="mobileNumber"></div>
             </div>
-          </div>
-          <div class="col-12 col-md-3">
-            <label>PAN Number</label>
-            <input type="text" class="form-control my-1" formControlName="panNumber">
-            <div *ngIf="prospectDetailsForm1.get('panNumber')?.touched || submittedForm1">
-              <span class="massage-text" *ngIf="prospectDetailsForm1.get('panNumber')?.hasError('required')">PAN Number is required</span>
+            <div class="form-group">
+              <span class="label">Aadhar Number<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Enter Aadhar Number" formControlName="aadharNumber"></div>
             </div>
+            <div class="form-group">
+              <span class="label">PAN Number<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Enter Pan Number" formControlName="panNumber"></div>
+            </div>
+            <div class="note" *ngIf="basicDetailForm.errors?.['aadharOrPanRequired'] && basicDetailForm.touched">
+              <span>*Any two fields required with Mobile Number as mandatory</span>
+            </div>
+            <div class="button">
+              <span>Go</span>
+            </div>
+            
+          </form>
+        </div>
+    
+        <!-- Prospect Details Section -->
+        <form [formGroup]="prospectDetailForm">
+        <div class="section">
+          <div class="section-title">
+            <span>Prospect</span> <span>Details</span>
           </div>
-          <div class="col-auto pt-2">
-            <button class="next-button d-flex align-items-center  mt-4 px-4 rounded" (click)="go()"> <mat-icon
-                class="d-flex align-items-center" style="font-size: 14px">arrow_forward</mat-icon>Go</button>
+          <div  class="form">
+            <div class="form-group">
+              <span class="label">Branch<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Enter Branch" formControlName="branch"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Prospect Name<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Enter the name" formControlName="prospectName"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Date of Birth<span class="required">*</span></span>
+              <div class="input"><input type="date" formControlName="dob"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Mobile Number<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Enter Mobile Number" formControlName="mobileNumber"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Prospect Code</span>
+              <div class="input"><input type="text" placeholder="Enter Prospect Code" formControlName="prospectCode"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Prospect Type<span class="required">*</span></span>
+              <div class="input">
+                <select formControlName="prospectType">
+                  <option>Type 1</option>
+                  <option>Type 2</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <span class="label">Age<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Enter the Age" formControlName="age"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Alternate Mobile</span>
+              <div class="input"><input type="text" placeholder="Alternate Mobile" formControlName="alternateMobileNumber"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Prospect Date<span class="required">*</span></span>
+              <div class="input"><input type="date" value="2024-11-11" formControlName="prospectDate"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Website</span>
+              <div class="input"><input type="text" placeholder="Website Name" formControlName="website"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Gender<span class="required">*</span></span>
+              <div class="input">
+                <select formControlName="gender">
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <span class="label">Email</span>
+              <div class="input"><input type="email" placeholder="Enter the Email" formControlName="email"></div>
+            </div>
           </div>
         </div>
 
-      </form>
-    </div>
-    <div class="prospect-details-box my-3">
-      <form class="prospect-details-form" [formGroup]="prospectDetailsForm2">
-        <caption class="d-flex">Prospect Details</caption>
-        <div class="row d-flex ">
-          <div class="col-12 col-md-3">
-            <label>Mobile Number</label>
-            <input type="number" class="form-control my-1" formControlName="mobileNo">
-            <div *ngIf="prospectDetailsForm2.get('mobileNo')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('mobileNo')?.hasError('required')">Mobile Number is required</span>
+        <div class="address">
+          <div class="section" formArrayName="communicationAddress">
+            <div class="section-title">
+              <span>Communication</span> <span>Address</span><span class="required">*</span>
+            </div>
+            <div class="form2" *ngFor="let address of communicationAddressFormValue.controls; let i = index">
+              <div [formGroupName]="i" class="pt-5">
+              <div class="form-group">
+                <span class="label">Address Line 1</span>
+                <div class="input"><input type="text" placeholder="Address Line 1" formControlName="addressLine1"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">Address Line 2</span>
+                <div class="input"><input type="text" placeholder="Address Line 2" formControlName="addressLine2"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">Landmark</span>
+                <div class="input"><input type="text" placeholder="Landmark" formControlName="landmark"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">City</span>
+                <div class="input"><input type="text" placeholder="City" formControlName="city"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">State</span>
+                <div class="input">
+                  <select formControlName="state">
+                    <option>Choose State</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label">Country</span>
+                <div class="input">
+                  <select formControlName="country">
+                    <option>Country</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label">Pin Code</span>
+                <div class="input"><input type="text" placeholder="Pin Code" formControlName="pincode"></div>
+              </div>
+            </div>
             </div>
           </div>
-          <div class="col-12 col-md-3">
-            <label>Branch</label>
-            <input type="text" class="form-control my-1" formControlName="branch">
-            <div *ngIf="prospectDetailsForm2.get('branch')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('branch')?.hasError('required')">Branch is required</span>
+  
+          <div class="section" formArrayName="permanantAddress">
+            <div class="section-title">
+              <span>Permanent</span> <span>Address</span><span class="required">*</span>
             </div>
-          </div>
-          <div class="col-12 col-md-3">
-            <label>Lead Number</label>
-            <input type="number" class="form-control my-1" formControlName="leadNumber">
-            <div *ngIf="prospectDetailsForm2.get('leadNumber')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('leadNumber')?.hasError('required')">Lead Number is required</span>
+            <div class="form2" *ngFor="let address of permanantAddressFormValue.controls; let i = index">
+              <div [formGroupName]="i" class="pt-1">
+              <div class="form-group">
+                <div class="input d-flex align-items-center gap-2">
+                  <input type="checkbox" class="w-25 d-flex justify-content-start">
+                  <span class="checkbox-label w-75 d-flex justify-content-start">Enter Permanent Address As Same</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label">Address Line 1</span>
+                <div class="input"><input type="text" placeholder="Address Line 1" formControlName="addressLine1"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">Address Line 2</span>
+                <div class="input"><input type="text" placeholder="Address Line 2" formControlName="addressLine2"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">Landmark</span>
+                <div class="input"><input type="text" placeholder="Landmark" formControlName="landmark"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">City</span>
+                <div class="input"><input type="text" placeholder="City" formControlName="city"></div>
+              </div>
+              <div class="form-group">
+                <span class="label">State</span>
+                <div class="input">
+                  <select formControlName="state">
+                    <option>Choose State</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label">Country</span>
+                <div class="input">
+                  <select formControlName="country">
+                    <option>Country</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label">Pin Code</span>
+                <div class="input"><input type="text" placeholder="Pin Code" formControlName="pincode"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-12 col-md-3">
-            <label>Lead Date</label>
-            <input type="date" class="form-control my-1"  formControlName="leadDate">
-            <div *ngIf="prospectDetailsForm2.get('leadDate')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('leadDate')?.hasError('required')">Lead Date is required</span>
             </div>
-          </div>
-          <div class="col-12 col-md-3">
-            <label>Lead Type</label>
-            <input type="text" class="form-control my-1" formControlName="leadType">
-            <div *ngIf="prospectDetailsForm2.get('leadType')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('leadType')?.hasError('required')">Lead Type is required</span>
-            </div>
-          </div>
-          <div class="col-12 col-md-3">
-            <label>Prospect Name</label>
-            <input type="text" class="form-control my-1" formControlName="prospectName">
-            <div *ngIf="prospectDetailsForm2.get('prospectName')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('prospectName')?.hasError('required')">Prospect Name is required</span>
-            </div>
-          </div>
-          <div class="col-12 col-md-3">
-            <label>Vehicle Number</label>
-            <input type="text" class="form-control my-1" formControlName="vehicleNumber">
-            <div *ngIf="prospectDetailsForm2.get('vehicleNumber')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3">
-            <label>Prospect Type</label>
-            <input type="text" class="form-control my-1" formControlName="prospectType">
-            <div *ngIf="prospectDetailsForm2.get('prospectType')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('prospectType')?.hasError('required')">Prospect Type is required</span>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3">
-            <label>Prospect Address</label>
-            <textarea class="form-control my-2" rows="3" formControlName="prospectAddress"></textarea>
-            <div *ngIf="prospectDetailsForm2.get('prospectAddress')?.touched || submittedForm2">
-              <span class="massage-text" *ngIf="prospectDetailsForm2.get('prospectAddress')?.hasError('required')">Prospect Address is required</span>
-            </div>
-          </div>
-          <div class="col-auto d-flex align-items-center justify-content-end">
-            <button class="next-button  d-flex align-items-center px-4 rounded" (click)="generateLead()"> <mat-icon
-                class="d-flex align-items-center" style="font-size: 14px">add</mat-icon> Generate Lead</button>
           </div>
         </div>
-      </form>
-    </div>
-  </div>
+        </form>
+
+        <div class="section">
+          <div class="section-title">
+            <span>Primary</span> <span>KYC Upload</span>
+          </div>
+          <div class="form">
+            <div class="form-group">
+              <span class="label">Aadhar Number<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Aadhar Number"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Pan Number<span class="required">*</span></span>
+              <div class="input"><input type="text" placeholder="Pan Number"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Prospect Image<span class="required">*</span></span>
+              <div class="input"><input type="file"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">Aadhar Image<span class="required">*</span></span>
+              <div class="input"><input type="file" placeholder="Enter Mobile Number"></div>
+            </div>
+            <div class="form-group">
+              <span class="label">PAN Image<span class="required">*</span></span>
+              <div class="input"><input type="file" placeholder="Enter Mobile Number"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>

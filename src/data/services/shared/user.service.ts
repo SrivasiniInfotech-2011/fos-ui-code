@@ -37,7 +37,7 @@ export class UserService {
     private userMapper: UserMapper,
     private store: Store<{ login: IUserAuth }>,
     public fosErrorHandler: FOSErrorhandlingService
-  ) {}
+  ) { }
 
   /**
    * Init the user information.
@@ -103,7 +103,7 @@ export class UserService {
       );
   }
 
-  getSideBarData(userId:any): Observable<any> {
+  getSideBarData(userId: any): Observable<any> {
     let endPoint: string = this.utilService.buildApiEndpoint(
       null,
       FOSApiEndPoints.SIDEBAR_API.replace('{userId}', userId),
@@ -117,5 +117,10 @@ export class UserService {
           return throwError(() => error);
         })
       );
+  }
+
+  getSideBarMaster(): Observable<any> {
+    const url: string = FOSApiEndPoints.NAV_MENU_LOCAL;
+    return this.fosBaseWrapper.get(url);
   }
 }

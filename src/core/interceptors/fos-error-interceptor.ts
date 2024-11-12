@@ -24,7 +24,7 @@ export class FOSErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       retry({
-        count: 3,
+        count: 1,
         delay: (_, retryCount) => timer(retryCount * 1000),
       }),
       catchError((error: HttpErrorResponse) => {

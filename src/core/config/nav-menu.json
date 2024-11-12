@@ -1,72 +1,100 @@
 {
   "NAV_ITEMS": [
     {
-      "key": "myRequests",
-      "label": "pages.myRequests",
-      "data": "my-requests",
-      "type": "default"
+      "Role_Code_ID": 1,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 1,
+      "Program_Code": "CMPN",
+      "Program_Name": "Company Master"
     },
     {
-      "key": "systemAdministration",
-      "label": "pages.systemAdministration",
-      "data": null,
-      "type": "default",
-      "children": [
-        {
-          "key": "searchSubmittedRequests",
-          "label": "pages.searchSubmittedRequests",
-          "data": "search-requests",
-          "type": "default"
-        },
-        {
-          "key": "resubmitSearch",
-          "label": "pages.resubmitSearch",
-          "data": "resubmit-search",
-          "type": "default"
-        },
-        {
-          "key": "userAdministration",
-          "label": "pages.userAdministration",
-          "data": "https: //www.google.com",
-          "type": "url"
-        },
-        {
-          "key": "manageHolidays",
-          "label": "pages.manageHolidays",
-          "data": "manage-holidays",
-          "type": "default"
-        },
-        {
-          "key": "deletedRequests",
-          "label": "pages.deletedRequests",
-          "data": "deleted-requests",
-          "type": "default"
-        }
-      ]
+      "Role_Code_ID": 2,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 3,
+      "Program_Code": "PROD",
+      "Program_Name": "Product Master"
     },
     {
-      "key": "manageHlLegalEntities",
-      "label": "pages.manageHlLegalEntities",
-      "data": "manage-entities",
-      "type": "default"
+      "Role_Code_ID": 3,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 4,
+      "Program_Code": "DCNC",
+      "Program_Name": "Document Number Control"
     },
     {
-      "key": "manualArchive",
-      "label": "pages.manualArchive",
-      "data": "manual-archive",
-      "type": "default"
+      "Role_Code_ID": 4,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 5,
+      "Program_Code": "ROCE",
+      "Program_Name": "Role Center Master"
     },
     {
-      "key": "matrixTest",
-      "label": "pages.matrixTest",
-      "data": "matrix-test",
-      "type": "default"
+      "Role_Code_ID": 5,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 6,
+      "Program_Code": "UMGT",
+      "Program_Name": "User Management"
     },
     {
-      "key": "cfQuestionAudit",
-      "label": "pages.cfQuestionAudit",
-      "data": "cf-audit",
-      "type": "default"
+      "Role_Code_ID": 6,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 7,
+      "Program_Code": "DCPT",
+      "Program_Name": "Document Path Setup"
+    },
+    {
+      "Role_Code_ID": 7,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 8,
+      "Program_Code": "HIM",
+      "Program_Name": "Hierarchy Master"
+    },
+    {
+      "Role_Code_ID": 8,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 9,
+      "Program_Code": "LMV",
+      "Program_Name": "Location Master"
+    },
+    {
+      "Role_Code_ID": 9,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 10,
+      "Program_Code": "RCM",
+      "Program_Name": "Role Code Master"
+    },
+    {
+      "Role_Code_ID": 10,
+      "Module_ID": 1,
+      "Module_Name": "System Admin",
+      "Program_ID": 11,
+      "Program_Code": "UAA",
+      "Program_Name": "User Activity Access"
+    },
+    {
+      "Role_Code_ID": 11,
+      "Module_ID": 2,
+      "Module_Name": "FOS",
+      "Program_ID": 12,
+      "Program_Code": "PROM",
+      "Program_Name": "Prospect Master"
+    },
+    {
+      "Role_Code_ID": 12,
+      "Module_ID": 2,
+      "Module_Name": "FOS",
+      "Program_ID": 13,
+      "Program_Code": "LDGN",
+      "Program_Name": "Lead Generation"
     }
   ]
 }

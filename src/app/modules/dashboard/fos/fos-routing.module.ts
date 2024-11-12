@@ -5,26 +5,28 @@ import { IndividualDetailsComponent } from './pages/individual-details/individua
 import { ListingPageComponent } from './pages/listing-page/listing-page.component';
 import { LoanDetailsComponent } from './pages/loan-details/loan-details.component';
 import { ProspectDetailsComponent } from './pages/prospect-details/prospect-details.component';
+import { ViewloanDetailsComponent } from './pages/viewloan-details/viewloan-details.component';
 
 const routes: Routes = [
   {
     path: '',
     component: FosComponent,
     children: [
-
       {
-        path:'individual-details',
-        component:IndividualDetailsComponent
+        path: 'individual-details',
+        component: IndividualDetailsComponent
       },
-
       {
-        path:'loan-details',
-        component:LoanDetailsComponent
+        path: 'loan-master',
+        component: LoanDetailsComponent
       },
-
       {
-        path:'prospect-details',
-        component:ProspectDetailsComponent
+        path: 'viewloan-details',
+        component: ViewloanDetailsComponent
+      },
+      {
+        path: 'prospect-master',
+        component: ProspectDetailsComponent
       }
     ]
   }
