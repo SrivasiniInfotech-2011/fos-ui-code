@@ -83,10 +83,10 @@ export const FOSCCApiQueryParams = {
 * Literals for the API end points
 * **/
 export const FOSApiEndPoints ={
-  CONFIG_API : "/configuration",
-  CONFIG_LOCAL:"/core/config/config.json",
-  STATUS_LOCAL:"/core/config/request_status_response.json",
-  STATUS_API:"/request-statuses",
+  PROSPECT_LOOKUP_API : "/api/Prospects/GetProspectLookup",
+  BRANCH_LOOKUP_API:"/api/Prospects/GetBranchLocations",
+  EXISTING_PROSPECT_API:"/api/Prospects/GetExistingProspectDetailsForCustomer",
+  CREATE_PROSPECT_API:"/api/Prospects/CreateNewProspect",
   REQUESTS_API : "/my-requests",
   USER_CONFIG_LOCAL:"/core/config/user-config.json",
   TAB_CONFIG_LOCAL:"/core/config/tab-config.json",

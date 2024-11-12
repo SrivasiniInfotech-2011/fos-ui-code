@@ -3,7 +3,7 @@ import IFOSStoreCcMyRequest from "../interfaces/store/IFOSStoreCcMyRequest";
 import {IFOSMyRequestSearch} from "../interfaces/IFOSMyRequest";
 import {
   IFOSViewRequestPage
-} from "../interfaces/app/request/IFOSCcRequest";
+} from "../interfaces/app/request/IFOSModels";
 
 /*
 * Functions to return the pages with initial values

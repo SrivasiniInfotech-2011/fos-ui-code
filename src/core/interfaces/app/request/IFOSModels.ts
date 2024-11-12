@@ -3,15 +3,21 @@ import IFOSTableColumn from "../../IFOSTableColumn";
 import {FOSPageViewMode} from "../../../common/enum";
 
 /**
- * Interface for a Conflicts Check Request
- * Note: This may grow once we have other pages like (Candidate List, Search Result, Final Disposition is prepared.)
+ * Interface for Branch Locations
  */
-export interface IFOSCcRequest{
-  basicInfo : IFOSRequestBasicInfo;
-  interestedParties:IFOSInterestedPartyData[];
-  fscgAccounts: IFOSFscgAccount[];
-  questions:IFOSQuestionAnswer[];
-  comment:IFOSCommentHistory;
+export interface IFOBranchLocation{
+  locationId:number;
+  locationName:string;
+}
+
+/**
+ * Interface for Lookup.
+ */
+export interface IFOSLookup{
+  lookupTypeId:number;
+  lookupTypeDescription:string;
+  lookupValueId:number;
+  lookupValueDescription:string;
 }
 
 /**
@@ -137,4 +143,59 @@ export interface IFOSViewRequestPage{
   prevConflictCheck: IFOSConflictCheck[];
   subsequentConflictCheck:IFOSConflictCheck[];
   interestedParties: IFOSInterestedPartyPageView[];
+}
+
+export interface IBranchLocationRequest{
+  userId?: number;
+  companyId?: number;
+  lobId?:number;
+  isActive?:boolean;
+}
+
+
+export interface ICustomerProspectRequest{
+  userId?: number;
+  companyId?: number;
+  prospectId?: number;
+  mobileNumber?: string;
+  aadharNumber?: string;
+  panNumber?: string;
+}
+
+
+export interface IAddress{
+  address1:string;
+  address2:string;
+  landmark:string;
+  city:number;
+  stateId:number;
+  countryId:number;
+  pincode:string;
+
+}
+export interface ICustomerProspectData{
+  companyId?: number;
+  prospectId?: number;
+  prospectCode?: string;
+  locationId?: number;
+  locationDescription?: string;
+  dateofBirth?: Date;
+  prospectDate?:Date;
+  prospectTypeId?:number;
+  customerId?:number;
+  customerCode?:string;
+  genderId?:number;
+  genderName?:string;
+  prospectName?:string;
+  mobileNumber?:string;
+  alternateMobileNumber?:string;
+  website?:string;
+  email?:string;
+  communicationAddress?:IAddress;
+  permanentAddress?:IAddress;
+  aadharNumber?:string;
+  aadharImagePath?:string;
+  panNumber?:string;
+  panNumberImagePath?:string;
+  prospectImagePath?:string;
 }
