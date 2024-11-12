@@ -2,8 +2,8 @@
   <div class="container">
     <!-- Basic Details Section -->
 
-    <div class="prospect-details-box my-3">
-      <form class="prospect-details-form">
+    <div class="prospect-details-box my-3" *ngIf="basicDetailForm">
+      <form class="prospect-details-form" [formGroup]="basicDetailForm">
         <caption class="d-flex">
           BasicDetails
         </caption>
@@ -36,7 +36,7 @@
     </div>
 
     <!-- Prospect Details Section -->
-    <div class="prospect-details-box my-3">
+    <div class="prospect-details-box my-3" *ngIf="prospectDetailForm">
       <form [formGroup]="prospectDetailForm" class="prospect-details-form">
         <caption class="d-flex">
           Prospect Details
@@ -104,13 +104,13 @@
         </div>
       </form>
     </div>
-    <div class="prospect-details-box my-3" formArrayName="communicationAddress">
+    <div class="prospect-details-box my-3" *ngIf="prospectDetailForm">
       <form [formGroup]="prospectDetailForm" class="prospect-details-form">
         <caption class="d-flex">
           Communication Address
         </caption>
-        <ng-container *ngFor="
-        let address of communicationAddressFormValue.controls;
+        <div formArrayName="communicationAddress" *ngFor="
+        let address of prospectDetailForm.get('communicationAddress')?.controls;
         let i = index
       ">
           <div [formGroupName]="i" class="row d-flex">
@@ -158,17 +158,17 @@
               <input type="text" placeholder="Pin Code" formControlName="pincode" class="form-control mt-2 mb-1" />
             </div>
           </div>
-        </ng-container>
+        </div>
         <div class="row d-flex py-4">
           <div class="col-12 d-flex align-items-center">
             <input type="checkbox" style="width:25px;height:25px;" class="me-2">
             <caption class="pb-0">Enter Permanent Address As Same</caption>
           </div>
         </div>
-        <ng-container *ngFor="
-            let address of permanantAddressFormValue.controls;
+        <div *ngFor="
+            let address of prospectDetailForm.get('permanantAddress')?.controls;
             let i = index
-          ">
+          " formArrayName="permanantAddress">
           <div [formGroupName]="i" class="row d-flex">
 
             <div class="col-12 col-md-4">
@@ -210,43 +210,42 @@
             </div>
             <div class="col-12 col-md-4">
               <label class="label">Pin Code</label>
-
               <input type="text" placeholder="Pin Code" formControlName="pincode" class="form-control mt-2 mb-1" />
             </div>
           </div>
-        </ng-container>
+        </div>
       </form>
     </div>
 
-    <div class="prospect-details-box my-3">
-      <form [formGroup]="prospectDetailForm" class="prospect-details-form">
+    <div class="prospect-details-box my-3" *ngIf="kycDetailForm">
+      <form [formGroup]="kycDetailForm" class="prospect-details-form">
         <caption class="d-flex">
           Primary KYC Upload
         </caption>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label class="label">Aadhar Number<span class="required">*</span></label>
-            <input type="text" placeholder="Aadhar Number" class="form-control mt-2 mb-1" />
+            <input type="text" placeholder="Aadhar Number" class="form-control mt-2 mb-1" formControlName="aadharNumber" />
           </div>
           <div class="col-12 col-md-4">
             <label class="label">Pan Number<span class="required">*</span></label>
-            <input type="text" placeholder="Pan Number" class="form-control mt-2 mb-1" />
+            <input type="text" placeholder="Pan Number" class="form-control mt-2 mb-1" formControlName="panNumber" />
           </div>
 
           <div class="col-12 col-md-4">
             <label class="label">Prospect Image<span class="required">*</span></label>
-            <input type="file" class="form-control mt-2 mb-1" />
+            <input type="file" class="form-control mt-2 mb-1" formControlName="prospectImage" />
           </div>
 
           <div class="col-12 col-md-4">
             <label class="label">Aadhar Image<span class="required">*</span></label>
 
-            <input type="file" placeholder="Enter Mobile Number" class="form-control mt-2 mb-1" />
+            <input type="file" placeholder="Enter Mobile Number" class="form-control mt-2 mb-1" formControlName="aadharImage" />
           </div>
           <div class="col-12 col-md-4">
             <label class="label">PAN Image<span class="required">*</span></label>
 
-            <input type="file" placeholder="Enter Mobile Number" class="form-control mt-2 mb-1" />
+            <input type="file" placeholder="Enter Mobile Number" class="form-control mt-2 mb-1" formControlName="panImage" />
           </div>
         </div>
       </form>

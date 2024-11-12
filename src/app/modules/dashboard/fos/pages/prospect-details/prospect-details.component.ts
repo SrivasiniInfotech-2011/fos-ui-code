@@ -23,8 +23,9 @@ import { FOSProspectService } from '../../../../../../data/services/feature/pros
 /* The ProspectDetailsComponent class in TypeScript defines form groups for basic and prospect details,
 handles address addition, validation, and API calls related to prospect data. */
 export class ProspectDetailsComponent implements OnInit {
-  public basicDetailForm: FormGroup = new FormGroup({});
-  public prospectDetailForm: FormGroup = new FormGroup({});
+  public basicDetailForm: FormGroup | any = new FormGroup({});
+  public prospectDetailForm: FormGroup | any = new FormGroup({});
+  public kycDetailForm: FormGroup | any = new FormGroup({});
   public countryLookup: IFOSLookup[] = [];
   public genderLookup: IFOSLookup[] = [];
   public prospectTypeLookup: IFOSLookup[] = [];
@@ -36,11 +37,14 @@ export class ProspectDetailsComponent implements OnInit {
   ) {
     this.setBasicDetailsForm();
     this.setProspectDetails();
+    this.setPrimaryKYCUplods();
     this.addAddress('communicationAddress');
     this.addAddress('permanantAddress');
   }
   ngOnInit(): void {
     this.getProspectLookup();
+    this.setProspectDetails();
+    this.setPrimaryKYCUplods();
   }
 
   setBasicDetailsForm = () => {
@@ -74,7 +78,7 @@ export class ProspectDetailsComponent implements OnInit {
   };
 
   setPrimaryKYCUplods() {
-    this.prospectDetailForm = this.fb.group({
+    this.kycDetailForm = this.fb.group({
       aadharNumber: this.fb.control('', [Validators.required]),
       panNumber: this.fb.control('', [Validators.required]),
       aadharImage: this.fb.control('', [Validators.required]),
@@ -104,7 +108,7 @@ export class ProspectDetailsComponent implements OnInit {
       pincode: [data?.pincode ? data?.pincode : ''],
     });
 
-    (this.prospectDetailForm.get(control) as FormArray).push(value);
+    (this.prospectDetailForm.get(control) as FormArray)?.push(value);
   }
 
   aadharOrPanRequired(control: AbstractControl): ValidationErrors | null {
@@ -129,13 +133,13 @@ export class ProspectDetailsComponent implements OnInit {
           (s: IFOSLookup) => s.lookupTypeId == 2
         );
         this.countryLookup = lookItems.filter(
-          (s: IFOSLookup) => s.lookupTypeId ==22
+          (s: IFOSLookup) => s.lookupTypeId == 22
         );
       }
     });
   }
 
-  onSearch() {}
+  onSearch() { }
 
   getBranchLocations() {
     this.prospectService
@@ -146,8 +150,8 @@ export class ProspectDetailsComponent implements OnInit {
         userId: 0,
       })
       .subscribe({
-        next(data: any) {},
-        error(err: any) {},
+        next(data: any) { },
+        error(err: any) { },
       });
   }
 
@@ -162,8 +166,8 @@ export class ProspectDetailsComponent implements OnInit {
         prospectId: 0,
       })
       .subscribe({
-        next(data: any) {},
-        error(err: any) {},
+        next(data: any) { },
+        error(err: any) { },
       });
   }
 
@@ -195,8 +199,8 @@ export class ProspectDetailsComponent implements OnInit {
       website: '',
     } as ICustomerProspectData;
     this.prospectService.createNewProspect(customerProspectData).subscribe({
-      next(data: any) {},
-      error(err: any) {},
+      next(data: any) { },
+      error(err: any) { },
     });
   }
 }
