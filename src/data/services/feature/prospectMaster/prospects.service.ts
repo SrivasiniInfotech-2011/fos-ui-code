@@ -29,14 +29,19 @@ export class FOSProspectService{
   /**
    * Method to fetch the Prospect Lookup.
    */
-  fetchProspectLookup(callback: Function): void{
+  fetchProspectLookup(): Observable<any>{
     let endPoint = this.utilsService.buildApiEndpoint(environment.prospectsApi,FOSApiEndPoints.PROSPECT_LOOKUP_API);
     if(endPoint.trim()){
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
     }
-   this.fosBaseWrapper.get<any>(endPoint).subscribe(data =>{
-      callback(data);
-    });
+    return this.fosBaseWrapper
+    .get(endPoint)
+    .pipe(
+      catchError((error) => {
+        this.fosErrorHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
   };
 
    /**
