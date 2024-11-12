@@ -1,9 +1,9 @@
 import { FOSBaseWrapperService } from "../../shared/fos-basewrapper.service";
 import { UtilsService } from "../../shared/utils.service";
-import { IFOSInterestedPartyData, IFOSRequestBasicInfo } from "../../../../core/interfaces/app/request/IFOSCcRequest";
 import { FOSApiEndPoints, FOSCCMicroApiDomain } from "../../../../core/common/literals";
 import { take } from "rxjs";
 import { Injectable } from "@angular/core";
+import { IFOSInterestedPartyData, IFOSRequestBasicInfo } from "../../../../core/interfaces/app/request/IFOSModels";
 
 @Injectable({
   providedIn: 'root'
