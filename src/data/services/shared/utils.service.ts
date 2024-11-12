@@ -100,9 +100,10 @@ export class UtilsService {
    * @param path
    * @param localPath
    */
-  buildApiEndpoint(domain:string, path : string, localPath?: string | null): string {
-    if (environment.loadConfigFromApi && domain.trim() && path.trim()){
-      return `${environment.apiBaseUrl.replace(FOSServiceDomain, domain)}${path}`;
+  buildApiEndpoint(baseUrl:string|null, path : string, localPath?: string | null): string {
+    let apiBaseUrl=baseUrl??environment.apiBaseUrl;
+    if (environment.loadConfigFromApi && path.trim()){
+      return `${apiBaseUrl}${path}`;
     } else if(localPath?.trim()) {
       return `${environment.appBaseUrl}${localPath}`;
     }else{

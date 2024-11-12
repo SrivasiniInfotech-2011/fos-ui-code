@@ -28,7 +28,7 @@ export class FOSRequestInterceptor implements HttpInterceptor {
   constructor(
     private router: Router
   ) {
-    this.accessToken = localStorage.getItem("userToken") ?? '';
+  
   }
 
   /**
@@ -42,7 +42,7 @@ export class FOSRequestInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let httpHeaders = new HttpHeaders();
     console.log(this.accessToken);
-    let accessToken: string = this.accessToken;
+    let accessToken: string = localStorage.getItem("userToken") ?? '';
     
     httpHeaders = httpHeaders.append(
       'Authorization',

@@ -3,6 +3,7 @@ export const environment = {
   name: 'localhost',
   label: '*** localhost ***',
   appBaseUrl: 'http://localhost:4200/',
-  apiBaseUrl: 'https://localhost:7296',
+  apiBaseUrl: 'http://localhost:1403',
+  prospectsApi:'http://localhost:1407',
   loadConfigFromApi:true
 };

@@ -35,7 +35,6 @@ import {
 } from '../core/store/reducers/fos-config-reducer';
 // import {RequestSharedModule} from "./request/shared/request-shared-module";
 import {
-  ccRequestReducer,
   ccRequestViewReducer,
 } from '../core/store/reducers/fos-ccRequest-reducer';
 // import { HLTabViewModule } from './shared/tab-view/tab-view.module';
@@ -60,7 +59,7 @@ import {
     StoreModule.forRoot({"login":logInReducer,
       "myRequest":myRequestReducer, "myRequestConfig":myRequestConfigReducer,
       'userConfig': userSettingReducer, 'myRequestTableUserSetting':myRequestTableUserSetting,
-      'requestConfig':requestConfigReducer,'ccRequest':ccRequestReducer,
+      'requestConfig':requestConfigReducer,
       'ccRequestView':ccRequestViewReducer, 'ccRequestInterestedParty':requestInterestedPartySettingsReducer}),
   ],
   providers: [

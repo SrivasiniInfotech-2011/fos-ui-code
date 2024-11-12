@@ -5,6 +5,7 @@ import {FOSApiEndPoints, FOSCCMicroApiDomain} from "../../../../core/common/lite
 import {catchError, Observable, take, throwError} from "rxjs";
 import {Injectable} from "@angular/core";
 import { FOSErrorhandlingService } from "../../shared/fos-error-handling.service";
+import { environment } from "../../../../environments/environment";
 
 @Injectable({
   providedIn:'root'
@@ -29,7 +30,7 @@ export class FOSProspectService{
    * Method to fetch the Prospect Lookup.
    */
   fetchProspectLookup(callback: Function): void{
-    let endPoint = this.utilsService.buildApiEndpoint(FOSCCMicroApiDomain.REQUEST,FOSApiEndPoints.PROSPECT_LOOKUP_API);
+    let endPoint = this.utilsService.buildApiEndpoint(environment.prospectsApi,FOSApiEndPoints.PROSPECT_LOOKUP_API);
     if(endPoint.trim()){
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
     }
@@ -43,7 +44,7 @@ export class FOSProspectService{
    * @param data
    */
    fetchBranchLocation(data: IBranchLocationRequest): Observable<any>{
-    let endPoint = this.utilsService.buildApiEndpoint(FOSCCMicroApiDomain.REQUEST,FOSApiEndPoints.BRANCH_LOOKUP_API);
+    let endPoint = this.utilsService.buildApiEndpoint(environment.prospectsApi,FOSApiEndPoints.BRANCH_LOOKUP_API);
     if(endPoint.trim()){
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
     }
@@ -63,7 +64,7 @@ export class FOSProspectService{
    * @param request
    */
   fetchCustomerProspect(request:ICustomerProspectRequest):Observable<ICustomerProspectData>{
-    let endPoint = this.utilsService.buildApiEndpoint(FOSCCMicroApiDomain.REQUEST,FOSApiEndPoints.EXISTING_PROSPECT_API);
+    let endPoint = this.utilsService.buildApiEndpoint(environment.prospectsApi,FOSApiEndPoints.EXISTING_PROSPECT_API);
     if(endPoint.trim()){
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
     }
@@ -83,7 +84,7 @@ export class FOSProspectService{
    * @param request
    */
    createNewProspect(request:ICustomerProspectData):Observable<any>{
-    let endPoint = this.utilsService.buildApiEndpoint(FOSCCMicroApiDomain.REQUEST,FOSApiEndPoints.CREATE_PROSPECT_API);
+    let endPoint = this.utilsService.buildApiEndpoint(environment.prospectsApi,FOSApiEndPoints.CREATE_PROSPECT_API);
     if(endPoint.trim()){
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
     }
