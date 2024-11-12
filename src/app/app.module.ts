@@ -37,6 +37,7 @@ import {
 import {
   ccRequestViewReducer,
 } from '../core/store/reducers/fos-ccRequest-reducer';
+import { ToastrModule } from 'ngx-toastr';
 // import { HLTabViewModule } from './shared/tab-view/tab-view.module';
 
 @NgModule({
@@ -49,6 +50,11 @@ import {
     MatIconModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000, // 3 seconds
+      positionClass: 'toast-bottom-right', // Position of the toast
+      preventDuplicates: true,
+    }),
     // TranslateModule.forRoot({
     //   loader: {
     //     provide: TranslateLoader,
