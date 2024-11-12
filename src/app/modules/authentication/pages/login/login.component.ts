@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
             let userData = {
               userId: userInfo?.userId,
               userName: userInfo?.userName,
-              companyName: userInfo?.companyName
+              companyName: userInfo?.companyName,
+              companyId:userInfo?.companyId
             }
             localStorage.setItem('userDetails', JSON.stringify(userData))
             this.isLoading = false;
