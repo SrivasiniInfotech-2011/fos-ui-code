@@ -72,7 +72,7 @@ export class FOSErrorHandlingInterceptor implements HttpInterceptor {
   private getErrorMessage(error: ErrorEvent | HttpErrorResponse): string {
     if (error instanceof HttpErrorResponse) {
       // Server-side error
-      switch (error.status) {
+      switch (error.error.statusCode) {
         case 400:
           return 'Bad Request';
         case 401:
@@ -84,7 +84,7 @@ export class FOSErrorHandlingInterceptor implements HttpInterceptor {
         case 500:
           return 'Server Error';
         default:
-          return `Error Code: ${error.status}\nMessage: ${error.message}`;
+          return `Error Code: ${error.error.statusCode}\nMessage: ${error.error.message}`;
       }
     } else {
       // Client-side error
