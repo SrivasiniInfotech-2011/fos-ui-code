@@ -10,7 +10,7 @@ export class HeaderComponent {
 
   public isLoggedIn: boolean = false;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
 
     this.route.url.subscribe((url) => {
       if (url[0]?.path === 'login') {
@@ -21,5 +21,9 @@ export class HeaderComponent {
       }
     })
 
+  }
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

@@ -4,8 +4,6 @@ import {
   AbstractControl,
   FormArray,
   FormBuilder,
-  FormControl,
-  FormControlDirective,
   FormGroup,
   ValidationErrors,
   Validators,
@@ -44,16 +42,18 @@ export class ProspectDetailsComponent implements OnInit {
     private utilityService: UtilsService,
     private loaderService: LoaderService
   ) {
-    
+
   }
   ngOnInit(): void {
-    this.loggedInUser = JSON.parse(localStorage.getItem('userDetails') || '');
+    if (localStorage.getItem('userDetails')) {
+      this.loggedInUser = JSON.parse(localStorage.getItem('userDetails') || '');
+    }
     this.setBasicDetailsForm();
     this.getProspectLookup();
     this.setProspectDetails();
     this.setPrimaryKYCUplods();
-    this.addAddress('communicationAddress',{} as IAddress);
-    this.addAddress('permanantAddress',{} as IAddress);
+    this.addAddress('communicationAddress', {} as IAddress);
+    this.addAddress('permanantAddress', {} as IAddress);
 
     this.aadharImageFilePath = '';
     this.panNumberImageFilePath = '';
@@ -64,8 +64,8 @@ export class ProspectDetailsComponent implements OnInit {
     this.basicDetailForm = this.fb.group(
       {
         mobileNumber: this.fb.control('', [Validators.required]),
-        aadharNumber: this.fb.control(''),
-        panNumber: this.fb.control(''),
+        aadharNumber: this.fb.control('', [Validators.required]),
+        panNumber: this.fb.control('', [Validators.required]),
       },
       { validators: this.aadharOrPanRequired }
     );
@@ -74,17 +74,17 @@ export class ProspectDetailsComponent implements OnInit {
   setProspectDetails = () => {
     this.prospectDetailForm = this.fb.group({
       branch: this.fb.control('', [Validators.required]),
-      prospectCode: this.fb.control('', [Validators.required]),
+      prospectCode: this.fb.control(''),
       prospectDate: this.fb.control('', [Validators.required]),
       prospectName: this.fb.control('', [Validators.required]),
       prospectType: this.fb.control('', [Validators.required]),
-      website: this.fb.control('', [Validators.required]),
+      website: this.fb.control(''),
       dob: this.fb.control('', [Validators.required]),
       age: this.fb.control('', [Validators.required]),
       gender: this.fb.control('', [Validators.required]),
       mobileNumber: this.fb.control('', [Validators.required]),
-      alternateMobileNumber: this.fb.control('', [Validators.required]),
-      email: this.fb.control('', [Validators.required]),
+      alternateMobileNumber: this.fb.control(''),
+      email: this.fb.control(''),
       communicationAddress: this.fb.array([]),
       permanantAddress: this.fb.array([]),
     });
@@ -112,13 +112,13 @@ export class ProspectDetailsComponent implements OnInit {
 
   addAddress(control: string, data?: IAddress) {
     const value = this.fb.group({
-      addressLine1: data?.addressLine1 ? data?.addressLine1 : '',
-      addressLine2: data?.addressLine2 ? data?.addressLine2 : '',
-      landmark: data?.landmark ? data?.landmark : '',
-      city: data?.city ? data?.city : '',
-      state: data?.stateId ? data?.stateId : 0,
-      country: data?.countryId ? data?.countryId : 0,
-      pincode: data?.pincode ? data?.pincode : '',
+      addressLine1: [data?.addressLine1 ? data?.addressLine1 : '', Validators.required],
+      addressLine2: [data?.addressLine2 ? data?.addressLine2 : ''],
+      landmark: [data?.landmark ? data?.landmark : '', Validators.required],
+      city: [data?.city ? data?.city : '', Validators.required],
+      state: [data?.stateId ? data?.stateId :'', Validators.required],
+      country: [data?.countryId ? data?.countryId : '', Validators.required],
+      pincode: [data?.pincode ? data?.pincode : '', Validators.required],
     });
 
     (this.prospectDetailForm.get(control) as FormArray)?.push(value);
@@ -133,7 +133,7 @@ export class ProspectDetailsComponent implements OnInit {
       state: data?.stateId ? data?.stateId : 0,
       country: data?.countryId ? data?.countryId : 0,
       pincode: data?.pincode ? data?.pincode : '',
-     });
+    });
     //   addressLine1: [data?.addressLine1 ? data?.addressLine1 : ''],
     //   addressLine2: [data?.addressLine2 ? data?.addressLine2 : ''],
     //   landmark: [data?.landmark ? data?.landmark : ''],
@@ -180,7 +180,7 @@ export class ProspectDetailsComponent implements OnInit {
     );
   }
 
-  onSearch() {}
+  onSearch() { }
 
   getBranchLocations() {
     this.prospectService
@@ -194,7 +194,7 @@ export class ProspectDetailsComponent implements OnInit {
         next(data: any) {
           console.log(data);
         },
-        error(err: any) {},
+        error(err: any) { },
       });
   }
 
@@ -323,8 +323,8 @@ export class ProspectDetailsComponent implements OnInit {
       website: prospectData.website,
     } as ICustomerProspectData;
     this.prospectService.createNewProspect(customerProspectData).subscribe({
-      next(data: any) {},
-      error(err: any) {},
+      next(data: any) { },
+      error(err: any) { },
     });
   }
 }

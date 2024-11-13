@@ -65,6 +65,8 @@ $animationSpeed: 40s;
         gap: 10px;
 
         .nav-item {
+            cursor: pointer;
+
             .nav-link {
                 font-size: 14px;
                 font-weight: 500;
@@ -93,7 +95,7 @@ $animationSpeed: 40s;
 @media only screen and (max-width: 540px) {
     .header {
         height: 70px;
-        padding-bottom:20px;
+        padding-bottom: 20px;
     }
 
     .nav-list {

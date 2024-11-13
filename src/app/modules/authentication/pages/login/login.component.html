@@ -1,7 +1,7 @@
 
 <app-header></app-header>
 
-<body [hidden]="isLoading">
+<body>
   <div class="auth-page d-flex align-items-center" >
     <div class="container">
       <div class="row d-flex justify-content-center">
@@ -55,6 +55,6 @@
 </body>
 
 
-<div [hidden]="!isLoading" class="loader-class">
-  <img src="/assets/images/loader.svg" height="50" width="50">
+<div *ngIf="isLoading" class="loader-class">
+  <img src="/assets/images/loader.svg" height="100" width="200">
 </div>

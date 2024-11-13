@@ -51,8 +51,8 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 3000, // 3 seconds
-      positionClass: 'toast-bottom-right', // Position of the toast
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
     // TranslateModule.forRoot({
