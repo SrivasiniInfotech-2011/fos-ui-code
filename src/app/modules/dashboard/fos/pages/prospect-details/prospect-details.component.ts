@@ -27,6 +27,8 @@ handles address addition, validation, and API calls related to prospect data. */
 export class ProspectDetailsComponent implements OnInit {
   public basicDetailForm: FormGroup | any = new FormGroup({});
   public prospectDetailForm: FormGroup | any = new FormGroup({});
+  public communicationAddressForm: FormGroup | any = new FormGroup({});
+  public permanantAddressForm: FormGroup | any = new FormGroup({});
   public kycDetailForm: FormGroup | any = new FormGroup({});
   public countryLookup: IFOSLookup[] = [];
   public genderLookup: IFOSLookup[] = [];
@@ -52,6 +54,8 @@ export class ProspectDetailsComponent implements OnInit {
     this.getProspectLookup();
     this.setProspectDetails();
     this.setPrimaryKYCUplods();
+    this.setCommunicationAddress();
+    this.setPermanantAddress();
     this.addAddress('communicationAddress', {} as IAddress);
     this.addAddress('permanantAddress', {} as IAddress);
 
@@ -85,8 +89,8 @@ export class ProspectDetailsComponent implements OnInit {
       mobileNumber: this.fb.control('', [Validators.required]),
       alternateMobileNumber: this.fb.control(''),
       email: this.fb.control(''),
-      communicationAddress: this.fb.array([]),
-      permanantAddress: this.fb.array([]),
+      // communicationAddress: this.fb.array([]),
+      // permanantAddress: this.fb.array([]),
     });
   };
 
@@ -99,7 +103,28 @@ export class ProspectDetailsComponent implements OnInit {
       prospectImage: this.fb.control('', [Validators.required]),
     });
   }
-
+  setCommunicationAddress() {
+    this.communicationAddressForm = this.fb.group({
+      addressLine1: this.fb.control('', [Validators.required]),
+      addressLine2: this.fb.control(''),
+      landmark: this.fb.control('', [Validators.required]),
+      city: this.fb.control('', [Validators.required]),
+      state: this.fb.control('', [Validators.required]),
+      country: this.fb.control('', [Validators.required]),
+      pincode: this.fb.control('', [Validators.required]),
+    });
+  }
+  setPermanantAddress() {
+    this.permanantAddressForm = this.fb.group({
+      addressLine1: this.fb.control('', [Validators.required]),
+      addressLine2: this.fb.control(''),
+      landmark: this.fb.control('', [Validators.required]),
+      city: this.fb.control('', [Validators.required]),
+      state: this.fb.control('', [Validators.required]),
+      country: this.fb.control('', [Validators.required]),
+      pincode: this.fb.control('', [Validators.required]),
+    });
+  }
   get communicationAddressFormValue() {
     return this.prospectDetailForm.controls[
       'communicationAddress'
@@ -116,7 +141,7 @@ export class ProspectDetailsComponent implements OnInit {
       addressLine2: [data?.addressLine2 ? data?.addressLine2 : ''],
       landmark: [data?.landmark ? data?.landmark : '', Validators.required],
       city: [data?.city ? data?.city : '', Validators.required],
-      state: [data?.stateId ? data?.stateId :'', Validators.required],
+      state: [data?.stateId ? data?.stateId : '', Validators.required],
       country: [data?.countryId ? data?.countryId : '', Validators.required],
       pincode: [data?.pincode ? data?.pincode : '', Validators.required],
     });
