@@ -89,11 +89,11 @@ import { ToastrModule } from 'ngx-toastr';
       provide: ErrorHandler,
       useClass: GlobalErrorHandlingService,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: FOSErrorInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: FOSErrorInterceptor,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })

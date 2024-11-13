@@ -29,39 +29,39 @@ export class FOSErrorHandlingInterceptor implements HttpInterceptor {
    * @returns An Observable of the HTTP event with an error response.
    */
   handleError<T>(error: ErrorEvent | HttpErrorResponse): Observable<HttpEvent<IFOSBaseResponse<T>>> {
-    let errorMessage = this.getErrorMessage(error); // Get the appropriate error message
+    // let errorMessage = this.getErrorMessage(error); // Get the appropriate error message
 
-    let errorResponse: IFOSBaseResponse<T> = {
-      error: {
-        message: errorMessage,
-        exception: error.error || null,
-        innerError: error.error.innerError || null
-      },
-      isSuccessStatusCode: false,
-      statusCode: 0, // default status code
-      data: null
-    };
+    // let errorResponse: IFOSBaseResponse<T> = {
+    //   error: {
+    //     message: errorMessage,
+    //     exception: error.error || null,
+    //     innerError: error.error.innerError || null
+    //   },
+    //   isSuccessStatusCode: false,
+    //   statusCode: 0, // default status code
+    //   data: null
+    // };
 
-    if (error instanceof HttpErrorResponse) {
-      errorResponse.statusCode = error.status;
-    } else {
-      errorResponse.statusCode = error.error.status ?? 0;
-    }
+    // if (error instanceof HttpErrorResponse) {
+    //   errorResponse.statusCode = error.status;
+    // } else {
+    //   errorResponse.statusCode = error.error.status ?? 0;
+    // }
 
-    // Provide a fallback value, an empty object of type T
-    const fallbackValue = {} as T;
-    errorResponse.data = fallbackValue;
+    // // Provide a fallback value, an empty object of type T
+    // const fallbackValue = {} as T;
+    // errorResponse.data = fallbackValue;
 
-    // Create an HttpResponse with the errorResponse
-    const httpResponse: HttpResponse<IFOSBaseResponse<T>> = new HttpResponse({
-      status: errorResponse.statusCode,
-      body: errorResponse,
-    });
+    // // Create an HttpResponse with the errorResponse
+    // const httpResponse: HttpResponse<IFOSBaseResponse<T>> = new HttpResponse({
+    //   status: errorResponse.statusCode,
+    //   body: errorResponse,
+    // });
 
-    console.error(httpResponse);
+    // console.error(httpResponse);
 
     // Return an observable that emits the HttpResponse with the error response
-    return throwError(() => httpResponse);
+    return throwError(() => new Error(error.error.error.message));
   }
 
   /**

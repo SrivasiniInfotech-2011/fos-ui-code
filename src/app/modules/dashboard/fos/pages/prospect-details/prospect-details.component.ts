@@ -52,19 +52,8 @@ export class ProspectDetailsComponent implements OnInit {
     if (localStorage.getItem('userDetails')) {
       this.loggedInUser = JSON.parse(localStorage.getItem('userDetails') || '');
     }
-    this.setBasicDetailsForm();
-    this.getProspectLookup();
-    this.setProspectDetails();
-    this.setPrimaryKYCUplods();
-    this.setCommunicationAddress();
-    this.setPermanantAddress();
-    this.addAddress('communicationAddress', {} as IAddress);
-    this.addAddress('permanantAddress', {} as IAddress);
-
-      this.aadharImageFilePath = '';
-      this.panNumberImageFilePath = '';
-      this.prospectImageFilePath = '';
-    }
+    this.refreshForm();
+  }
 
   setBasicDetailsForm = () => {
     this.basicDetailForm = this.fb.group(
@@ -95,6 +84,22 @@ export class ProspectDetailsComponent implements OnInit {
       // permanantAddress: this.fb.array([]),
     });
   };
+
+  private refreshForm() {
+    this.setBasicDetailsForm();
+    this.getProspectLookup();
+    this.getStates();
+    this.setProspectDetails();
+    this.setPrimaryKYCUplods();
+    this.setCommunicationAddress();
+    this.setPermanantAddress();
+    this.addAddress('communicationAddress', {} as IAddress);
+    this.addAddress('permanantAddress', {} as IAddress);
+
+    this.aadharImageFilePath = '';
+    this.panNumberImageFilePath = '';
+    this.prospectImageFilePath = '';
+  }
 
   setPrimaryKYCUplods() {
     this.kycDetailForm = this.fb.group({
@@ -154,26 +159,26 @@ export class ProspectDetailsComponent implements OnInit {
     (this.prospectDetailForm.get(control) as FormArray)?.push(value);
   }
 
-  setAddress(control: string, data?: IAddress) {
-    this.prospectDetailForm.get(control).controls[0].setValue({
-      addressLine1: data?.addressLine1 ? data?.addressLine1 : '',
-      addressLine2: data?.addressLine2 ? data?.addressLine2 : '',
-      landmark: data?.landmark ? data?.landmark : '',
-      city: data?.city ? data?.city : '',
-      state: data?.stateId ? data?.stateId : 0,
-      country: [String(data?.countryId ? data?.countryId : 0)],
-      pincode: data?.pincode ? data?.pincode : '',
-    });
-    //   addressLine1: [data?.addressLine1 ? data?.addressLine1 : ''],
-    //   addressLine2: [data?.addressLine2 ? data?.addressLine2 : ''],
-    //   landmark: [data?.landmark ? data?.landmark : ''],
-    //   city: [data?.city ? data?.city : ''],
-    //   state: [data?.stateId ? data?.stateId : 0],
-    //   country: [data?.countryId ? data?.countryId : 0],
-    //   pincode: [data?.pincode ? data?.pincode : ''],
-    // });
+  setCommunicationAddressData(data?: IAddress) {
+    this.communicationAddressForm
+      .get('addressLine1')!
+      .setValue(data!.addressLine1);
+    this.communicationAddressForm
+      .get('addressLine2')!
+      .setValue(data!.addressLine2);
+    this.communicationAddressForm.get('landmark')!.setValue(data!.landmark);
+    this.communicationAddressForm.get('city')!.setValue(data!.city);
+    this.communicationAddressForm.get('state')!.setValue(data!.stateId);
+    this.communicationAddressForm.get('country')!.setValue(data!.countryId);
+  }
 
-    // (this.prospectDetailForm.get(control) as FormArray)?.push(value);
+  setPermanentAddressData(data?: IAddress) {
+    this.permanantAddressForm.get('addressLine1')!.setValue(data!.addressLine1);
+    this.permanantAddressForm.get('addressLine2')!.setValue(data!.addressLine2);
+    this.permanantAddressForm.get('landmark')!.setValue(data!.landmark);
+    this.permanantAddressForm.get('city')!.setValue(data!.city);
+    this.permanantAddressForm.get('state')!.setValue(data!.stateId);
+    this.permanantAddressForm.get('country')!.setValue(data!.countryId);
   }
 
   aadharOrPanRequired(control: AbstractControl): ValidationErrors | null {
@@ -259,6 +264,11 @@ export class ProspectDetailsComponent implements OnInit {
           this.prospectDetailForm
             .get('prospectCode')!
             .setValue(this.customerProspectData.prospectCode);
+
+            this.prospectDetailForm
+            .get('mobileNumber')!
+            .setValue(this.basicDetailForm.value.mobileNumber);
+
           this.prospectDetailForm
             .get('prospectDate')!
             .setValue(
@@ -320,13 +330,11 @@ export class ProspectDetailsComponent implements OnInit {
             this.customerProspectData.prospectImagePath!;
 
           if (this.customerProspectData.communicationAddress)
-            this.setAddress(
-              'communicationAddress',
+            this.setCommunicationAddressData(
               this.customerProspectData.communicationAddress
             );
           if (this.customerProspectData.permanentAddress)
-            this.setAddress(
-              'permanantAddress',
+            this.setPermanentAddressData(
               this.customerProspectData.permanentAddress
             );
         }
@@ -338,22 +346,24 @@ export class ProspectDetailsComponent implements OnInit {
     this.loaderService.showLoader();
     const kycData = this.kycDetailForm.value;
     const prospectData = this.prospectDetailForm.value;
+    const communicationAddress=this.communicationAddressForm.value;
+    const permanentAddress=this.permanantAddressForm.value;
     var customerProspectRequestData = {
       aadharNumber: kycData.aadharNumber,
       companyId: this.loggedInUser.companyId,
       mobileNumber: prospectData.mobileNumber,
       panNumber: kycData.panNumber,
-      prospectId: this.customerProspectData.prospectId,
+      prospectId: 0,
       aadharImagePath: kycData.aadharImage,
       alternateMobileNumber: prospectData.alternateMobileNumber,
       communicationAddress: {
-        addressLine1: prospectData.communicationAddress[0].addressLine1,
-        addressLine2: prospectData.communicationAddress[0].addressLine2,
-        city: prospectData.communicationAddress[0].city,
-        countryId: prospectData.communicationAddress[0].country,
-        landmark: prospectData.communicationAddress[0].landmark,
-        pincode: prospectData.communicationAddress[0].pincode,
-        stateId: prospectData.communicationAddress[0].state,
+        addressLine1: communicationAddress.addressLine1,
+        addressLine2: communicationAddress.addressLine2,
+        city: communicationAddress.city,
+        countryId: communicationAddress.country,
+        landmark: communicationAddress.landmark,
+        pincode: communicationAddress.pincode,
+        stateId: communicationAddress.state,
       },
       email: prospectData.email,
       genderId: prospectData.gender,
@@ -362,13 +372,13 @@ export class ProspectDetailsComponent implements OnInit {
       locationId: 0,
       panNumberImagePath: kycData.panImage,
       permanentAddress: {
-        addressLine1: prospectData.permanantAddress[0].addressLine1,
-        addressLine2: prospectData.permanantAddress[0].addressLine2,
-        city: prospectData.permanantAddress[0].city,
-        countryId: prospectData.permanantAddress[0].country,
-        landmark: prospectData.permanantAddress[0].landmark,
-        pincode: prospectData.permanantAddress[0].pincode,
-        stateId: prospectData.permanantAddress[0].state,
+        addressLine1: permanentAddress.addressLine1,
+        addressLine2: permanentAddress.addressLine2,
+        city: permanentAddress.city,
+        countryId: permanentAddress.country,
+        landmark: permanentAddress.landmark,
+        pincode: permanentAddress.pincode,
+        stateId: permanentAddress.state,
       },
       prospectCode: prospectData.prospectCode,
       prospectDate: prospectData.prospectDate,
@@ -386,12 +396,10 @@ export class ProspectDetailsComponent implements OnInit {
       prospect: customerProspectRequestData,
     } as ICreateProspectRequest;
 
-    this.prospectService
-      .createNewProspect(request)
-      .subscribe((data: any) => {
-        this.toasterService.success(data.message,"Update Prospect Details")
-        this.loaderService.hideLoader();
-        this.refreshForm() 
-      });
+    this.prospectService.createNewProspect(request).subscribe((data: any) => {
+      this.toasterService.success(data.message, 'Update Prospect Details');
+      this.loaderService.hideLoader();
+      this.refreshForm();
+    });
   }
 }
