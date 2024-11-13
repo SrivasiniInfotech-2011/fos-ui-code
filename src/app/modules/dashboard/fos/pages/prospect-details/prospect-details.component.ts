@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {
   AbstractControl,
   FormArray,
@@ -14,6 +15,7 @@ import {
   IFOSLookup,
 } from '../../../../../../core/interfaces/app/request/IFOSModels';
 import { FOSProspectService } from '../../../../../../data/services/feature/prospectMaster/prospects.service';
+import { UtilsService } from '../../../../../../data/services/shared/utils.service';
 
 @Component({
   selector: 'app-prospect-details',
@@ -30,10 +32,11 @@ export class ProspectDetailsComponent implements OnInit {
   public genderLookup: IFOSLookup[] = [];
   public prospectTypeLookup: IFOSLookup[] = [];
   public customerProspectData: ICustomerProspectData = {};
-
+  public loggedInUser: any = {};
   constructor(
     private fb: FormBuilder,
-    private prospectService: FOSProspectService
+    private prospectService: FOSProspectService,
+    private utilityService: UtilsService
   ) {
     this.setBasicDetailsForm();
     this.setProspectDetails();
@@ -42,6 +45,7 @@ export class ProspectDetailsComponent implements OnInit {
     this.addAddress('permanantAddress');
   }
   ngOnInit(): void {
+    this.loggedInUser = JSON.parse(localStorage.getItem('userDetails') || '');
     this.getProspectLookup();
     this.setProspectDetails();
     this.setPrimaryKYCUplods();
@@ -144,30 +148,108 @@ export class ProspectDetailsComponent implements OnInit {
   getBranchLocations() {
     this.prospectService
       .fetchBranchLocation({
-        companyId: 0,
+        companyId: this.loggedInUser.companyId,
         isActive: false,
         lobId: 0,
-        userId: 0,
+        userId: this.loggedInUser.userId,
       })
       .subscribe({
-        next(data: any) { },
-        error(err: any) { },
+        next(data: any) {
+          console.log(data);
+        },
+        error(err: any) {},
       });
   }
 
   getCustomerProspect() {
     this.prospectService
       .fetchCustomerProspect({
-        companyId: 0,
-        aadharNumber: '',
-        mobileNumber: '',
-        userId: 0,
-        panNumber: '',
+        companyId: this.loggedInUser.companyId,
+        aadharNumber: this.basicDetailForm.value.aadharNumber,
+        mobileNumber: this.basicDetailForm.value.mobileNumber,
+        userId: this.loggedInUser.userId,
+        panNumber: this.basicDetailForm.value.panNumber,
         prospectId: 0,
       })
-      .subscribe({
-        next(data: any) { },
-        error(err: any) { },
+      .subscribe((data: any) => {
+        if (data && data.message) {
+          let customerProspectData = data.message as ICustomerProspectData;
+          this.prospectDetailForm
+            .get('prospectCode')!
+            .setValue(customerProspectData.prospectCode);
+          this.prospectDetailForm
+            .get('prospectDate')!
+            .setValue(
+              this.utilityService.transformDate(
+                String(customerProspectData.prospectDate),
+                'YYYY-MM-DD'
+              )
+            );
+          this.prospectDetailForm
+            .get('prospectName')!
+            .setValue(customerProspectData.prospectName);
+          this.prospectDetailForm
+            .get('prospectType')!
+            .setValue(customerProspectData.prospectTypeId);
+          this.prospectDetailForm
+            .get('website')!
+            .setValue(customerProspectData.website);
+          this.prospectDetailForm
+            .get('dob')!
+            .setValue(
+              this.utilityService.transformDate(
+                String(customerProspectData.dateofBirth),
+                'YYYY-MM-DD'
+              )
+            );
+          if (customerProspectData.dateofBirth)
+            this.prospectDetailForm
+              .get('age')!
+              .setValue(
+                this.utilityService.getAge(
+                  String(customerProspectData.dateofBirth)
+                )
+              );
+          this.prospectDetailForm
+            .get('gender')!
+            .setValue(customerProspectData.genderId);
+          this.prospectDetailForm
+            .get('mobileNumber')!
+            .setValue(customerProspectData.mobileNumber);
+          this.prospectDetailForm
+            .get('alternateMobileNumber')!
+            .setValue(customerProspectData.alternateMobileNumber);
+          this.prospectDetailForm
+            .get('email')!
+            .setValue(customerProspectData.email);
+
+            
+            this.prospectDetailForm
+            .get('email')!
+            .setValue(customerProspectData.email);
+
+            this.prospectDetailForm
+            .get('email')!
+            .setValue(customerProspectData.email);
+
+            this.prospectDetailForm
+            .get('email')!
+            .setValue(customerProspectData.email);
+
+            this.prospectDetailForm
+            .get('email')!
+            .setValue(customerProspectData.email);
+          if (customerProspectData.communicationAddress)
+            this.addAddress(
+              'communicationAddress',
+              customerProspectData.communicationAddress
+            );
+          if (customerProspectData.permanentAddress)
+            this.addAddress(
+              'permanantAddress',
+              customerProspectData.permanentAddress
+            );
+        }
       });
   }
 

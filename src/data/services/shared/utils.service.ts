@@ -1,11 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { utils, WorkBook, WorkSheet, writeFile } from 'xlsx';
-import moment from 'moment';
 import momentTz from 'moment-timezone';
 import { DateFormat, FOSServiceDomain } from '../../../core/common/literals';
-import { environment } from "../../../environments/environment";
-
+import { environment } from '../../../environments/environment';
+import moment from 'moment';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +16,7 @@ export class UtilsService {
    * Constructor for initializing the dependencies
    * @param http
    */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /**
    * Export a xlsx file when receiving a object and information of the file name and structure.
@@ -56,23 +55,31 @@ export class UtilsService {
    * @param payload
    * @param fileName
    */
-  downloadFileFromApi<T>(endPoint: string, headers: HttpHeaders, payload: T, fileName: string): void {
-    this.http.post(endPoint, payload, {
-      headers,
-      responseType: "blob" as "json"
-    }).subscribe((response: any) => {
-      let dataType = response.type;
-      let binaryData = [];
-      binaryData.push(response);
-      let downloadLink = document.createElement('a');
-      downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: dataType }));
-      downloadLink.setAttribute('download', fileName);
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    }
-    )
-  };
+  downloadFileFromApi<T>(
+    endPoint: string,
+    headers: HttpHeaders,
+    payload: T,
+    fileName: string
+  ): void {
+    this.http
+      .post(endPoint, payload, {
+        headers,
+        responseType: 'blob' as 'json',
+      })
+      .subscribe((response: any) => {
+        let dataType = response.type;
+        let binaryData = [];
+        binaryData.push(response);
+        let downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(
+          new Blob(binaryData, { type: dataType })
+        );
+        downloadLink.setAttribute('download', fileName);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      });
+  }
 
   /**
    * convert date into utc format
@@ -80,7 +87,7 @@ export class UtilsService {
    * @returns
    */
   convertDateToUTC(date: string) {
-    return moment(date).utc().format(DateFormat.UTC_DATE_FORMAT.UTC_FORMAT)
+    return moment(date).utc().format(DateFormat.UTC_DATE_FORMAT.UTC_FORMAT);
   }
 
   /**
@@ -90,8 +97,14 @@ export class UtilsService {
    * @param dateFormatPDT
    * @returns
    */
-  convertDateToConfiguredFormat(date: string, timeZoneCode: string, dateFormatPDT: string): string {
-    return momentTz(date + "Z").tz(timeZoneCode).format(dateFormatPDT);
+  convertDateToConfiguredFormat(
+    date: string,
+    timeZoneCode: string,
+    dateFormatPDT: string
+  ): string {
+    return momentTz(date + 'Z')
+      .tz(timeZoneCode)
+      .format(dateFormatPDT);
   }
 
   /**
@@ -100,14 +113,18 @@ export class UtilsService {
    * @param path
    * @param localPath
    */
-  buildApiEndpoint(baseUrl:string|null, path : string, localPath?: string | null): string {
-    let apiBaseUrl=baseUrl??environment.apiBaseUrl;
-    if (environment.loadConfigFromApi && path.trim()){
+  buildApiEndpoint(
+    baseUrl: string | null,
+    path: string,
+    localPath?: string | null
+  ): string {
+    let apiBaseUrl = baseUrl ?? environment.apiBaseUrl;
+    if (environment.loadConfigFromApi && path.trim()) {
       return `${apiBaseUrl}${path}`;
-    } else if(localPath?.trim()) {
+    } else if (localPath?.trim()) {
       return `${environment.appBaseUrl}${localPath}`;
     } else {
-      return "";
+      return '';
     }
   }
 
@@ -124,15 +141,35 @@ export class UtilsService {
       return date;
     }
     let totalOffset = currentTimeZoneOffset - pacificOffset;
-    let relatedPacificDate = momentTz(moment(currentTimeZoneDate).add(totalOffset, 'm').toString()).tz(timeZone).toString();
+    let relatedPacificDate = momentTz(
+      moment(currentTimeZoneDate).add(totalOffset, 'm').toString()
+    )
+      .tz(timeZone)
+      .toString();
     return relatedPacificDate;
   }
 
   groupByKey(array: any, key: any) {
-    return array
-      .reduce((hash: any, obj: any) => {
-        if (obj[key] === undefined) return hash;
-        return Object.assign(hash, { [obj[key]]: (hash[obj[key]] || []).concat(obj) })
-      }, {})
+    return array.reduce((hash: any, obj: any) => {
+      if (obj[key] === undefined) return hash;
+      return Object.assign(hash, {
+        [obj[key]]: (hash[obj[key]] || []).concat(obj),
+      });
+    }, {});
+  }
+
+  getAge(dateString: string) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
+  transformDate(value: string,format:string): string {
+    return moment(value).format(format);
   }
 }

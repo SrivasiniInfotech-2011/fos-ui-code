@@ -14,14 +14,18 @@ export class LoginComponent implements OnInit {
   public isSubmitted: boolean = false;
   public isLoading: boolean = false;
 
-  constructor(private router: Router, private userService: UserService, private toastr: ToastrService) {
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private toastr: ToastrService
+  ) {
     this.loginForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   login() {
     this.isSubmitted = true;
@@ -36,22 +40,23 @@ export class LoginComponent implements OnInit {
         .subscribe({
           next: (res: any) => {
             if (res) {
-              let token = res?.message?.token
-              localStorage.setItem('userToken', token)
-              let userInfo = res?.message?.user
+              let token = res?.message?.token;
+              localStorage.setItem('userToken', token);
+              let userInfo = res?.message?.user;
               let userData = {
                 userId: userInfo?.userId,
                 userName: userInfo?.userName,
-                companyName: userInfo?.companyName
-              }
-              localStorage.setItem('userDetails', JSON.stringify(userData))
+                companyName: userInfo?.companyName,
+                companyId: userInfo?.companyId,
+              };
+              localStorage.setItem('userDetails', JSON.stringify(userData));
               this.isLoading = false;
               this.router.navigate(['/dashboard']);
             }
           },
           error: (error: Error) => {
             this.toastr.error(error.message, 'Error');
-          }
+          },
         });
     }
   }
