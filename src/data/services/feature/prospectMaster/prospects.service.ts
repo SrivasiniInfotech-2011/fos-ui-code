@@ -1,6 +1,6 @@
 import {FOSBaseWrapperService} from "../../shared/fos-basewrapper.service";
 import {UtilsService} from "../../shared/utils.service";
-import {IBranchLocationRequest, ICustomerProspectData, ICustomerProspectRequest, IFOBranchLocation, IFOSLookup} from "../../../../core/interfaces/app/request/IFOSModels";
+import {IBranchLocationRequest, ICreateProspectRequest, ICustomerProspectData, ICustomerProspectRequest, IFOBranchLocation, IFOSLookup} from "../../../../core/interfaces/app/request/IFOSModels";
 import {FOSApiEndPoints, FOSCCMicroApiDomain} from "../../../../core/common/literals";
 import {catchError, Observable, take, throwError} from "rxjs";
 import {Injectable} from "@angular/core";
@@ -88,7 +88,7 @@ export class FOSProspectService{
    * Create a new Customer Prospect.
    * @param request
    */
-   createNewProspect(request:ICustomerProspectData):Observable<any>{
+   createNewProspect(request:ICreateProspectRequest):Observable<any>{
     let endPoint = this.utilsService.buildApiEndpoint(environment.prospectsApi,FOSApiEndPoints.CREATE_PROSPECT_API);
     if(endPoint.trim()){
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this

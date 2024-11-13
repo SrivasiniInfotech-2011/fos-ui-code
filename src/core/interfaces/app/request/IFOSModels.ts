@@ -199,3 +199,8 @@ export interface ICustomerProspectData{
   panNumberImagePath?:string;
   prospectImagePath?:string;
 }
+
+export interface ICreateProspectRequest{
+  userId:number,
+  prospect:ICustomerProspectData
+}

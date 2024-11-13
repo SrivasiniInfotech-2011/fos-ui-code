@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import {
   IAddress,
+  ICreateProspectRequest,
   ICustomerProspectData,
   IFOSLookup,
 } from '../../../../../../core/interfaces/app/request/IFOSModels';
@@ -50,6 +51,8 @@ export class ProspectDetailsComponent implements OnInit {
     }
     this.setBasicDetailsForm();
     this.getProspectLookup();
+    this.getBranchLocations();
+
     this.setProspectDetails();
     this.setPrimaryKYCUplods();
     this.addAddress('communicationAddress', {} as IAddress);
@@ -131,7 +134,7 @@ export class ProspectDetailsComponent implements OnInit {
       landmark: data?.landmark ? data?.landmark : '',
       city: data?.city ? data?.city : '',
       state: data?.stateId ? data?.stateId : 0,
-      country: data?.countryId ? data?.countryId : 0,
+      country: [String(data?.countryId ? data?.countryId : 0)],
       pincode: data?.pincode ? data?.pincode : '',
     });
     //   addressLine1: [data?.addressLine1 ? data?.addressLine1 : ''],
@@ -187,7 +190,7 @@ export class ProspectDetailsComponent implements OnInit {
       .fetchBranchLocation({
         companyId: this.loggedInUser.companyId,
         isActive: false,
-        lobId: 0,
+        lobId: 1,
         userId: this.loggedInUser.userId,
       })
       .subscribe({
@@ -215,78 +218,79 @@ export class ProspectDetailsComponent implements OnInit {
             localStorage.getItem('lookups')!
           ) as IFOSLookup[];
           this.SetLookups(lookItems);
-          let customerProspectData = data.message as ICustomerProspectData;
+          this.customerProspectData = data.message as ICustomerProspectData;
           this.prospectDetailForm
             .get('prospectCode')!
-            .setValue(customerProspectData.prospectCode);
+            .setValue(this.customerProspectData.prospectCode);
           this.prospectDetailForm
             .get('prospectDate')!
             .setValue(
               this.utilityService.transformDate(
-                String(customerProspectData.prospectDate),
+                String(this.customerProspectData.prospectDate),
                 'YYYY-MM-DD'
               )
             );
           this.prospectDetailForm
             .get('prospectName')!
-            .setValue(customerProspectData.prospectName);
+            .setValue(this.customerProspectData.prospectName);
           this.prospectDetailForm
             .get('prospectType')!
-            .setValue(customerProspectData.prospectTypeId);
+            .setValue(this.customerProspectData.prospectTypeId);
           this.prospectDetailForm
             .get('website')!
-            .setValue(customerProspectData.website);
+            .setValue(this.customerProspectData.website);
           this.prospectDetailForm
             .get('dob')!
             .setValue(
               this.utilityService.transformDate(
-                String(customerProspectData.dateofBirth),
+                String(this.customerProspectData.dateofBirth),
                 'YYYY-MM-DD'
               )
             );
-          if (customerProspectData.dateofBirth)
+          if (this.customerProspectData.dateofBirth)
             this.prospectDetailForm
               .get('age')!
               .setValue(
                 this.utilityService.getAge(
-                  String(customerProspectData.dateofBirth)
+                  String(this.customerProspectData.dateofBirth)
                 )
               );
           this.prospectDetailForm
             .get('gender')!
-            .setValue(customerProspectData.genderId);
+            .setValue(this.customerProspectData.genderId);
           this.prospectDetailForm
             .get('mobileNumber')!
-            .setValue(customerProspectData.mobileNumber);
+            .setValue(this.customerProspectData.mobileNumber);
           this.prospectDetailForm
             .get('alternateMobileNumber')!
-            .setValue(customerProspectData.alternateMobileNumber);
+            .setValue(this.customerProspectData.alternateMobileNumber);
           this.prospectDetailForm
             .get('email')!
-            .setValue(customerProspectData.email);
+            .setValue(this.customerProspectData.email);
 
           this.kycDetailForm
             .get('aadharNumber')!
-            .setValue(customerProspectData.aadharNumber);
+            .setValue(this.customerProspectData.aadharNumber);
 
           this.kycDetailForm
             .get('panNumber')!
-            .setValue(customerProspectData.panNumber);
+            .setValue(this.customerProspectData.panNumber);
 
-          this.aadharImageFilePath = customerProspectData.aadharImagePath!;
+          this.aadharImageFilePath = this.customerProspectData.aadharImagePath!;
           this.panNumberImageFilePath =
-            customerProspectData.panNumberImagePath!;
-          this.prospectImageFilePath = customerProspectData.prospectImagePath!;
+            this.customerProspectData.panNumberImagePath!;
+          this.prospectImageFilePath =
+            this.customerProspectData.prospectImagePath!;
 
-          if (customerProspectData.communicationAddress)
+          if (this.customerProspectData.communicationAddress)
             this.setAddress(
               'communicationAddress',
-              customerProspectData.communicationAddress
+              this.customerProspectData.communicationAddress
             );
-          if (customerProspectData.permanentAddress)
+          if (this.customerProspectData.permanentAddress)
             this.setAddress(
               'permanantAddress',
-              customerProspectData.permanentAddress
+              this.customerProspectData.permanentAddress
             );
         }
         this.loaderService.hideLoader();
@@ -296,35 +300,59 @@ export class ProspectDetailsComponent implements OnInit {
   saveCustomerProspect() {
     const kycData = this.kycDetailForm.value;
     const prospectData = this.prospectDetailForm.value;
-    var customerProspectData = {
+    var customerProspectRequestData = {
       aadharNumber: kycData.aadharNumber,
-      companyId: 0,
+      companyId: this.loggedInUser.companyId,
       mobileNumber: prospectData.mobileNumber,
       panNumber: kycData.panNumber,
-      prospectId: 0,
-      aadharImagePath: kycData.aadharImagePath,
+      prospectId: this.customerProspectData.prospectId,
+      aadharImagePath: kycData.aadharImage,
       alternateMobileNumber: prospectData.alternateMobileNumber,
-      communicationAddress: prospectData.communicationAddress,
+      communicationAddress: {
+        addressLine1: prospectData.communicationAddress[0].addressLine1,
+        addressLine2: prospectData.communicationAddress[0].addressLine2,
+        city: prospectData.communicationAddress[0].city,
+        countryId: prospectData.communicationAddress[0].country,
+        landmark: prospectData.communicationAddress[0].landmark,
+        pincode: prospectData.communicationAddress[0].pincode,
+        stateId: prospectData.communicationAddress[0].state,
+      },
       email: prospectData.email,
       genderId: prospectData.gender,
-      genderName: prospectData.gender,
+      genderName: '',
       locationDescription: '',
       locationId: 0,
       panNumberImagePath: kycData.panImage,
-      permanentAddress: prospectData.permanentAddress,
+      permanentAddress: {
+        addressLine1: prospectData.permanantAddress[0].addressLine1,
+        addressLine2: prospectData.permanantAddress[0].addressLine2,
+        city: prospectData.permanantAddress[0].city,
+        countryId: prospectData.permanantAddress[0].country,
+        landmark: prospectData.permanantAddress[0].landmark,
+        pincode: prospectData.permanantAddress[0].pincode,
+        stateId: prospectData.permanantAddress[0].state,
+      },
       prospectCode: prospectData.prospectCode,
       prospectDate: prospectData.prospectDate,
       customerCode: '',
-      customerId: 0,
+      customerId: 1,
       dateofBirth: prospectData.dob,
       prospectImagePath: kycData.prospectImage,
       prospectName: prospectData.prospectName,
-      prospectTypeId: prospectData.prospectTypeId,
+      prospectTypeId: this.customerProspectData.prospectTypeId,
       website: prospectData.website,
     } as ICustomerProspectData;
-    this.prospectService.createNewProspect(customerProspectData).subscribe({
-      next(data: any) { },
-      error(err: any) { },
+
+    var request = {
+      userId: this.loggedInUser.userId,
+      prospect: customerProspectRequestData,
+    } as ICreateProspectRequest;
+
+    this.prospectService.createNewProspect(request).subscribe({
+      next(data: any) {
+        console.log(data);
+      },
+      error(err: any) {},
     });
   }
 }

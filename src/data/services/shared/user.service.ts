@@ -79,7 +79,6 @@ export class UserService {
   }
 
   authenticateUser(userName: string, password: string): Observable<any> {
-    // this.hlLoaderService.showLoader();
     let endPoint: string = this.utilService.buildApiEndpoint(
       null,
       FOSApiEndPoints.USER_LOGIN_API,
