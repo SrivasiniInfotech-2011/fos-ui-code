@@ -44,6 +44,21 @@ export class FOSProspectService{
     );
   };
 
+  fetchStates(): Observable<any>{
+    let endPoint = this.utilsService.buildApiEndpoint(environment.prospectsApi,FOSApiEndPoints.STATES_LOOKUP_API);
+    if(endPoint.trim()){
+      //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
+    }
+    return this.fosBaseWrapper
+    .get(endPoint)
+    .pipe(
+      catchError((error) => {
+        this.fosErrorHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
+  };
+
    /**
    * Method to fetch the Branch Location.
    * @param data

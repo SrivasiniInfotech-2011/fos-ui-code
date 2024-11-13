@@ -17,6 +17,7 @@ import {
 import { FOSProspectService } from '../../../../../../data/services/feature/prospectMaster/prospects.service';
 import { UtilsService } from '../../../../../../data/services/shared/utils.service';
 import { LoaderService } from '../../../../../../data/services/shared/loader.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-prospect-details',
@@ -31,6 +32,7 @@ export class ProspectDetailsComponent implements OnInit {
   public kycDetailForm: FormGroup | any = new FormGroup({});
   public countryLookup: IFOSLookup[] = [];
   public genderLookup: IFOSLookup[] = [];
+  public stateLookup: IFOSLookup[] = [];
   public prospectTypeLookup: IFOSLookup[] = [];
   public customerProspectData: ICustomerProspectData = {};
   public loggedInUser: any = {};
@@ -41,27 +43,29 @@ export class ProspectDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private prospectService: FOSProspectService,
     private utilityService: UtilsService,
-    private loaderService: LoaderService
-  ) {
-
-  }
+    private loaderService: LoaderService,
+    private toasterService: ToastrService
+  ) {}
   ngOnInit(): void {
     if (localStorage.getItem('userDetails')) {
       this.loggedInUser = JSON.parse(localStorage.getItem('userDetails') || '');
     }
-    this.setBasicDetailsForm();
-    this.getProspectLookup();
-    this.getBranchLocations();
-
-    this.setProspectDetails();
-    this.setPrimaryKYCUplods();
-    this.addAddress('communicationAddress', {} as IAddress);
-    this.addAddress('permanantAddress', {} as IAddress);
-
-    this.aadharImageFilePath = '';
-    this.panNumberImageFilePath = '';
-    this.prospectImageFilePath = '';
+    this.refreshForm();
   }
+    refreshForm() {
+      this.setBasicDetailsForm();
+      this.getProspectLookup();
+      this.getBranchLocations();
+      this.getStates();
+      this.setProspectDetails();
+      this.setPrimaryKYCUplods();
+      this.addAddress('communicationAddress', {} as IAddress);
+      this.addAddress('permanantAddress', {} as IAddress);
+
+      this.aadharImageFilePath = '';
+      this.panNumberImageFilePath = '';
+      this.prospectImageFilePath = '';
+    }
 
   setBasicDetailsForm = () => {
     this.basicDetailForm = this.fb.group(
@@ -115,11 +119,14 @@ export class ProspectDetailsComponent implements OnInit {
 
   addAddress(control: string, data?: IAddress) {
     const value = this.fb.group({
-      addressLine1: [data?.addressLine1 ? data?.addressLine1 : '', Validators.required],
+      addressLine1: [
+        data?.addressLine1 ? data?.addressLine1 : '',
+        Validators.required,
+      ],
       addressLine2: [data?.addressLine2 ? data?.addressLine2 : ''],
       landmark: [data?.landmark ? data?.landmark : '', Validators.required],
       city: [data?.city ? data?.city : '', Validators.required],
-      state: [data?.stateId ? data?.stateId :'', Validators.required],
+      state: [data?.stateId ? data?.stateId : '', Validators.required],
       country: [data?.countryId ? data?.countryId : '', Validators.required],
       pincode: [data?.pincode ? data?.pincode : '', Validators.required],
     });
@@ -171,6 +178,16 @@ export class ProspectDetailsComponent implements OnInit {
     });
   }
 
+  getStates() {
+    this.prospectService.fetchStates().subscribe((data: any) => {
+      this.loaderService.hideLoader();
+      if (data && data.message) {
+        let lookItems = data.message as IFOSLookup[];
+        this.stateLookup = lookItems;
+      }
+    });
+  }
+
   private SetLookups(lookItems: IFOSLookup[]) {
     this.prospectTypeLookup = lookItems.filter(
       (s: IFOSLookup) => s.lookupTypeId == 1
@@ -183,7 +200,7 @@ export class ProspectDetailsComponent implements OnInit {
     );
   }
 
-  onSearch() { }
+  onSearch() {}
 
   getBranchLocations() {
     this.prospectService
@@ -197,7 +214,7 @@ export class ProspectDetailsComponent implements OnInit {
         next(data: any) {
           console.log(data);
         },
-        error(err: any) { },
+        error(err: any) {},
       });
   }
 
@@ -298,6 +315,7 @@ export class ProspectDetailsComponent implements OnInit {
   }
 
   saveCustomerProspect() {
+    this.loaderService.showLoader();
     const kycData = this.kycDetailForm.value;
     const prospectData = this.prospectDetailForm.value;
     var customerProspectRequestData = {
@@ -348,11 +366,12 @@ export class ProspectDetailsComponent implements OnInit {
       prospect: customerProspectRequestData,
     } as ICreateProspectRequest;
 
-    this.prospectService.createNewProspect(request).subscribe({
-      next(data: any) {
-        console.log(data);
-      },
-      error(err: any) {},
-    });
+    this.prospectService
+      .createNewProspect(request)
+      .subscribe((data: any) => {
+        this.toasterService.success(data.message,"Update Prospect Details")
+        this.loaderService.hideLoader();
+        this.refreshForm() 
+      });
   }
 }
