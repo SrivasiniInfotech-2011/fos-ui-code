@@ -164,8 +164,8 @@ export interface ICustomerProspectRequest{
 
 
 export interface IAddress{
-  address1:string;
-  address2:string;
+  addressLine1:string;
+  addressLine2:string;
   landmark:string;
   city:number;
   stateId:number;

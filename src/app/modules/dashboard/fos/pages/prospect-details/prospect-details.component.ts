@@ -11,11 +11,13 @@ import {
   Validators,
 } from '@angular/forms';
 import {
+  IAddress,
   ICustomerProspectData,
   IFOSLookup,
 } from '../../../../../../core/interfaces/app/request/IFOSModels';
 import { FOSProspectService } from '../../../../../../data/services/feature/prospectMaster/prospects.service';
 import { UtilsService } from '../../../../../../data/services/shared/utils.service';
+import { LoaderService } from '../../../../../../data/services/shared/loader.service';
 
 @Component({
   selector: 'app-prospect-details',
@@ -33,22 +35,29 @@ export class ProspectDetailsComponent implements OnInit {
   public prospectTypeLookup: IFOSLookup[] = [];
   public customerProspectData: ICustomerProspectData = {};
   public loggedInUser: any = {};
+  public aadharImageFilePath: string = '';
+  public panNumberImageFilePath: string = '';
+  public prospectImageFilePath: string = '';
   constructor(
     private fb: FormBuilder,
     private prospectService: FOSProspectService,
-    private utilityService: UtilsService
+    private utilityService: UtilsService,
+    private loaderService: LoaderService
   ) {
-    this.setBasicDetailsForm();
-    this.setProspectDetails();
-    this.setPrimaryKYCUplods();
-    this.addAddress('communicationAddress');
-    this.addAddress('permanantAddress');
+    
   }
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(localStorage.getItem('userDetails') || '');
+    this.setBasicDetailsForm();
     this.getProspectLookup();
     this.setProspectDetails();
     this.setPrimaryKYCUplods();
+    this.addAddress('communicationAddress',{} as IAddress);
+    this.addAddress('permanantAddress',{} as IAddress);
+
+    this.aadharImageFilePath = '';
+    this.panNumberImageFilePath = '';
+    this.prospectImageFilePath = '';
   }
 
   setBasicDetailsForm = () => {
@@ -101,18 +110,40 @@ export class ProspectDetailsComponent implements OnInit {
     return this.prospectDetailForm.controls['permanantAddress'] as FormArray;
   }
 
-  addAddress(control: string, data?: any) {
+  addAddress(control: string, data?: IAddress) {
     const value = this.fb.group({
-      addressLine1: [data?.addressLine1 ? data?.addressLine1 : ''],
-      addressLine2: [data?.addressLine2 ? data?.addressLine2 : ''],
-      landmark: [data?.landmark ? data?.landmark : ''],
-      city: [data?.city ? data?.city : ''],
-      state: [data?.state ? data?.state : ''],
-      country: [data?.country ? data?.country : ''],
-      pincode: [data?.pincode ? data?.pincode : ''],
+      addressLine1: data?.addressLine1 ? data?.addressLine1 : '',
+      addressLine2: data?.addressLine2 ? data?.addressLine2 : '',
+      landmark: data?.landmark ? data?.landmark : '',
+      city: data?.city ? data?.city : '',
+      state: data?.stateId ? data?.stateId : 0,
+      country: data?.countryId ? data?.countryId : 0,
+      pincode: data?.pincode ? data?.pincode : '',
     });
 
     (this.prospectDetailForm.get(control) as FormArray)?.push(value);
+  }
+
+  setAddress(control: string, data?: IAddress) {
+    this.prospectDetailForm.get(control).controls[0].setValue({
+      addressLine1: data?.addressLine1 ? data?.addressLine1 : '',
+      addressLine2: data?.addressLine2 ? data?.addressLine2 : '',
+      landmark: data?.landmark ? data?.landmark : '',
+      city: data?.city ? data?.city : '',
+      state: data?.stateId ? data?.stateId : 0,
+      country: data?.countryId ? data?.countryId : 0,
+      pincode: data?.pincode ? data?.pincode : '',
+     });
+    //   addressLine1: [data?.addressLine1 ? data?.addressLine1 : ''],
+    //   addressLine2: [data?.addressLine2 ? data?.addressLine2 : ''],
+    //   landmark: [data?.landmark ? data?.landmark : ''],
+    //   city: [data?.city ? data?.city : ''],
+    //   state: [data?.stateId ? data?.stateId : 0],
+    //   country: [data?.countryId ? data?.countryId : 0],
+    //   pincode: [data?.pincode ? data?.pincode : ''],
+    // });
+
+    // (this.prospectDetailForm.get(control) as FormArray)?.push(value);
   }
 
   aadharOrPanRequired(control: AbstractControl): ValidationErrors | null {
@@ -128,22 +159,28 @@ export class ProspectDetailsComponent implements OnInit {
   }
   getProspectLookup() {
     this.prospectService.fetchProspectLookup().subscribe((data: any) => {
+      this.loaderService.hideLoader();
       if (data && data.message) {
         let lookItems = data.message as IFOSLookup[];
-        this.prospectTypeLookup = lookItems.filter(
-          (s: IFOSLookup) => s.lookupTypeId == 1
-        );
-        this.genderLookup = lookItems.filter(
-          (s: IFOSLookup) => s.lookupTypeId == 2
-        );
-        this.countryLookup = lookItems.filter(
-          (s: IFOSLookup) => s.lookupTypeId == 22
-        );
+        localStorage.setItem('lookups', JSON.stringify(lookItems));
+        this.SetLookups(lookItems);
       }
     });
   }
 
-  onSearch() { }
+  private SetLookups(lookItems: IFOSLookup[]) {
+    this.prospectTypeLookup = lookItems.filter(
+      (s: IFOSLookup) => s.lookupTypeId == 1
+    );
+    this.genderLookup = lookItems.filter(
+      (s: IFOSLookup) => s.lookupTypeId == 2
+    );
+    this.countryLookup = lookItems.filter(
+      (s: IFOSLookup) => s.lookupTypeId == 22
+    );
+  }
+
+  onSearch() {}
 
   getBranchLocations() {
     this.prospectService
@@ -162,6 +199,7 @@ export class ProspectDetailsComponent implements OnInit {
   }
 
   getCustomerProspect() {
+    this.loaderService.showLoader();
     this.prospectService
       .fetchCustomerProspect({
         companyId: this.loggedInUser.companyId,
@@ -173,6 +211,10 @@ export class ProspectDetailsComponent implements OnInit {
       })
       .subscribe((data: any) => {
         if (data && data.message) {
+          let lookItems = JSON.parse(
+            localStorage.getItem('lookups')!
+          ) as IFOSLookup[];
+          this.SetLookups(lookItems);
           let customerProspectData = data.message as ICustomerProspectData;
           this.prospectDetailForm
             .get('prospectCode')!
@@ -223,33 +265,31 @@ export class ProspectDetailsComponent implements OnInit {
             .get('email')!
             .setValue(customerProspectData.email);
 
-            
-            this.prospectDetailForm
-            .get('email')!
-            .setValue(customerProspectData.email);
+          this.kycDetailForm
+            .get('aadharNumber')!
+            .setValue(customerProspectData.aadharNumber);
 
-            this.prospectDetailForm
-            .get('email')!
-            .setValue(customerProspectData.email);
+          this.kycDetailForm
+            .get('panNumber')!
+            .setValue(customerProspectData.panNumber);
 
-            this.prospectDetailForm
-            .get('email')!
-            .setValue(customerProspectData.email);
+          this.aadharImageFilePath = customerProspectData.aadharImagePath!;
+          this.panNumberImageFilePath =
+            customerProspectData.panNumberImagePath!;
+          this.prospectImageFilePath = customerProspectData.prospectImagePath!;
 
-            this.prospectDetailForm
-            .get('email')!
-            .setValue(customerProspectData.email);
           if (customerProspectData.communicationAddress)
-            this.addAddress(
+            this.setAddress(
               'communicationAddress',
               customerProspectData.communicationAddress
             );
           if (customerProspectData.permanentAddress)
-            this.addAddress(
+            this.setAddress(
               'permanantAddress',
               customerProspectData.permanentAddress
             );
         }
+        this.loaderService.hideLoader();
       });
   }
 
@@ -283,8 +323,8 @@ export class ProspectDetailsComponent implements OnInit {
       website: prospectData.website,
     } as ICustomerProspectData;
     this.prospectService.createNewProspect(customerProspectData).subscribe({
-      next(data: any) { },
-      error(err: any) { },
+      next(data: any) {},
+      error(err: any) {},
     });
   }
 }
