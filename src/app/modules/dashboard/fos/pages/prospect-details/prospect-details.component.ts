@@ -193,23 +193,35 @@ export class ProspectDetailsComponent implements OnInit {
     return { aadharOrPanRequired: true }; // Invalid
   }
   getProspectLookup() {
-    this.prospectService.fetchProspectLookup().subscribe((data: any) => {
-      this.loaderService.hideLoader();
-      if (data && data.message) {
-        let lookItems = data.message as IFOSLookup[];
-        localStorage.setItem('lookups', JSON.stringify(lookItems));
-        this.SetLookups(lookItems);
-      }
+    this.prospectService.fetchProspectLookup().subscribe({
+      next: (data: any) => {
+        this.loaderService.hideLoader();
+        if (data && data.message) {
+          let lookItems = data.message as IFOSLookup[];
+          localStorage.setItem('lookups', JSON.stringify(lookItems));
+          this.SetLookups(lookItems);
+        }
+      },
+      error: (error: any) => {
+        this.loaderService.hideLoader();
+        this.toasterService.error(error.message, 'Error', { timeOut: 3000 });
+      },
     });
   }
 
   getStates() {
-    this.prospectService.fetchStates().subscribe((data: any) => {
-      this.loaderService.hideLoader();
-      if (data && data.message) {
-        let lookItems = data.message as IFOSLookup[];
-        this.stateLookup = lookItems;
-      }
+    this.prospectService.fetchStates().subscribe({
+      next: (data: any) => {
+        this.loaderService.hideLoader();
+        if (data && data.message) {
+          let lookItems = data.message as IFOSLookup[];
+          this.stateLookup = lookItems;
+        }
+      },
+      error: (error: any) => {
+        this.loaderService.hideLoader();
+        this.toasterService.error(error.message, 'Error', { timeOut: 3000 });
+      },
     });
   }
 
@@ -224,8 +236,6 @@ export class ProspectDetailsComponent implements OnInit {
       (s: IFOSLookup) => s.lookupTypeId == 22
     );
   }
-
-  onSearch() {}
 
   getBranchLocations() {
     this.prospectService
@@ -254,91 +264,107 @@ export class ProspectDetailsComponent implements OnInit {
         panNumber: this.basicDetailForm.value.panNumber,
         prospectId: 0,
       })
-      .subscribe((data: any) => {
-        if (data && data.message) {
-          let lookItems = JSON.parse(
-            localStorage.getItem('lookups')!
-          ) as IFOSLookup[];
-          this.SetLookups(lookItems);
-          this.customerProspectData = data.message as ICustomerProspectData;
-          this.prospectDetailForm
-            .get('prospectCode')!
-            .setValue(this.customerProspectData.prospectCode);
+      .subscribe({
+        next: (data: any) => {
+          if (data && data.message) {
+            let lookItems = JSON.parse(
+              localStorage.getItem('lookups')!
+            ) as IFOSLookup[];
+            this.SetLookups(lookItems);
+            this.customerProspectData = data.message as ICustomerProspectData;
+            this.prospectDetailForm
+              .get('prospectCode')!
+              .setValue(this.customerProspectData.prospectCode);
 
             this.prospectDetailForm
-            .get('mobileNumber')!
-            .setValue(this.basicDetailForm.value.mobileNumber);
+              .get('mobileNumber')!
+              .setValue(this.basicDetailForm.value.mobileNumber);
 
-          this.prospectDetailForm
-            .get('prospectDate')!
-            .setValue(
-              this.utilityService.transformDate(
-                String(this.customerProspectData.prospectDate),
-                'YYYY-MM-DD'
-              )
-            );
-          this.prospectDetailForm
-            .get('prospectName')!
-            .setValue(this.customerProspectData.prospectName);
-          this.prospectDetailForm
-            .get('prospectType')!
-            .setValue(this.customerProspectData.prospectTypeId);
-          this.prospectDetailForm
-            .get('website')!
-            .setValue(this.customerProspectData.website);
-          this.prospectDetailForm
-            .get('dob')!
-            .setValue(
-              this.utilityService.transformDate(
-                String(this.customerProspectData.dateofBirth),
-                'YYYY-MM-DD'
-              )
-            );
-          if (this.customerProspectData.dateofBirth)
             this.prospectDetailForm
-              .get('age')!
+              .get('prospectDate')!
               .setValue(
-                this.utilityService.getAge(
-                  String(this.customerProspectData.dateofBirth)
+                this.utilityService.transformDate(
+                  String(this.customerProspectData.prospectDate),
+                  'YYYY-MM-DD'
                 )
               );
-          this.prospectDetailForm
-            .get('gender')!
-            .setValue(this.customerProspectData.genderId);
-          this.prospectDetailForm
-            .get('mobileNumber')!
-            .setValue(this.customerProspectData.mobileNumber);
-          this.prospectDetailForm
-            .get('alternateMobileNumber')!
-            .setValue(this.customerProspectData.alternateMobileNumber);
-          this.prospectDetailForm
-            .get('email')!
-            .setValue(this.customerProspectData.email);
+            this.prospectDetailForm
+              .get('prospectName')!
+              .setValue(this.customerProspectData.prospectName);
+            this.prospectDetailForm
+              .get('prospectType')!
+              .setValue(this.customerProspectData.prospectTypeId);
+            this.prospectDetailForm
+              .get('website')!
+              .setValue(this.customerProspectData.website);
+            this.prospectDetailForm
+              .get('dob')!
+              .setValue(
+                this.utilityService.transformDate(
+                  String(this.customerProspectData.dateofBirth),
+                  'YYYY-MM-DD'
+                )
+              );
+            if (this.customerProspectData.dateofBirth)
+              this.prospectDetailForm
+                .get('age')!
+                .setValue(
+                  this.utilityService.getAge(
+                    String(this.customerProspectData.dateofBirth)
+                  )
+                );
+            this.prospectDetailForm
+              .get('gender')!
+              .setValue(this.customerProspectData.genderId);
 
-          this.kycDetailForm
-            .get('aadharNumber')!
-            .setValue(this.customerProspectData.aadharNumber);
+            this.prospectDetailForm
+              .get('alternateMobileNumber')!
+              .setValue(this.customerProspectData.alternateMobileNumber);
+            this.prospectDetailForm
+              .get('email')!
+              .setValue(this.customerProspectData.email);
 
-          this.kycDetailForm
-            .get('panNumber')!
-            .setValue(this.customerProspectData.panNumber);
+            this.kycDetailForm
+              .get('aadharNumber')!
+              .setValue(this.customerProspectData.aadharNumber);
 
-          this.aadharImageFilePath = this.customerProspectData.aadharImagePath!;
-          this.panNumberImageFilePath =
-            this.customerProspectData.panNumberImagePath!;
-          this.prospectImageFilePath =
-            this.customerProspectData.prospectImagePath!;
+            this.kycDetailForm
+              .get('panNumber')!
+              .setValue(this.customerProspectData.panNumber);
 
-          if (this.customerProspectData.communicationAddress)
-            this.setCommunicationAddressData(
-              this.customerProspectData.communicationAddress
-            );
-          if (this.customerProspectData.permanentAddress)
-            this.setPermanentAddressData(
-              this.customerProspectData.permanentAddress
-            );
-        }
-        this.loaderService.hideLoader();
+            this.basicDetailForm
+              .get('panNumber')!
+              .setValue(this.customerProspectData.panNumber);
+
+            this.aadharImageFilePath =
+              this.customerProspectData.aadharImagePath!;
+            this.panNumberImageFilePath =
+              this.customerProspectData.panNumberImagePath!;
+            this.prospectImageFilePath =
+              this.customerProspectData.prospectImagePath!;
+
+            if (this.customerProspectData.communicationAddress)
+              this.setCommunicationAddressData(
+                this.customerProspectData.communicationAddress
+              );
+            if (this.customerProspectData.permanentAddress)
+              this.setPermanentAddressData(
+                this.customerProspectData.permanentAddress
+              );
+            this.loaderService.hideLoader();
+          }
+        },
+
+        error: (error: Error) => {
+          this.loaderService.hideLoader();
+
+          let errorMessages = error.message.split('|');
+          for (const key in errorMessages) {
+            this.toasterService.error(errorMessages[key], 'Error', {
+              timeOut: 2000,
+            });
+          }
+        },
       });
   }
 
@@ -346,8 +372,8 @@ export class ProspectDetailsComponent implements OnInit {
     this.loaderService.showLoader();
     const kycData = this.kycDetailForm.value;
     const prospectData = this.prospectDetailForm.value;
-    const communicationAddress=this.communicationAddressForm.value;
-    const permanentAddress=this.permanantAddressForm.value;
+    const communicationAddress = this.communicationAddressForm.value;
+    const permanentAddress = this.permanantAddressForm.value;
     var customerProspectRequestData = {
       aadharNumber: kycData.aadharNumber,
       companyId: this.loggedInUser.companyId,
@@ -396,10 +422,23 @@ export class ProspectDetailsComponent implements OnInit {
       prospect: customerProspectRequestData,
     } as ICreateProspectRequest;
 
-    this.prospectService.createNewProspect(request).subscribe((data: any) => {
-      this.toasterService.success(data.message, 'Update Prospect Details');
-      this.loaderService.hideLoader();
-      this.refreshForm();
+    this.prospectService.createNewProspect(request).subscribe({
+      next: (data: any) => {
+        this.toasterService.success(data.message, 'Update Prospect Details', {
+          timeOut: 3000,
+        });
+        this.loaderService.hideLoader();
+        this.refreshForm();
+      },
+      error: (error: any) => {
+        this.loaderService.hideLoader();
+        let errorMessages = error.message.split('|');
+        for (const key in errorMessages) {
+          this.toasterService.error(errorMessages[key], 'Error', {
+            timeOut: 2000,
+          });
+        }
+      },
     });
   }
 }

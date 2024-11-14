@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IFOSBaseResponse } from '../interfaces/IFOSBaseResponse';
 
 @Injectable()
 export class FOSErrorHandlingInterceptor implements HttpInterceptor {
-
-  constructor() { }
+  constructor() {}
 
   /**
    * Intercepts HTTP requests and handles errors.
@@ -15,7 +21,10 @@ export class FOSErrorHandlingInterceptor implements HttpInterceptor {
    * @param next The next interceptor in the chain.
    * @returns An Observable of the HTTP event.
    */
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: ErrorEvent | HttpErrorResponse) => {
         return this.handleError(error);
@@ -28,7 +37,9 @@ export class FOSErrorHandlingInterceptor implements HttpInterceptor {
    * @param error The error event or HttpErrorResponse.
    * @returns An Observable of the HTTP event with an error response.
    */
-  handleError<T>(error: ErrorEvent | HttpErrorResponse): Observable<HttpEvent<IFOSBaseResponse<T>>> {
+  handleError<T>(
+    error: ErrorEvent | HttpErrorResponse
+  ): Observable<HttpEvent<IFOSBaseResponse<T>>> {
     // let errorMessage = this.getErrorMessage(error); // Get the appropriate error message
 
     // let errorResponse: IFOSBaseResponse<T> = {
@@ -61,6 +72,32 @@ export class FOSErrorHandlingInterceptor implements HttpInterceptor {
     // console.error(httpResponse);
 
     // Return an observable that emits the HttpResponse with the error response
+    if (error instanceof HttpErrorResponse) {
+      if (error.status == 401)
+        return throwError(
+          () =>
+            new Error(
+              'Unable to connect to the server. Please login and try again.'
+            )
+        );
+      else if (error.status == 400) {
+        let consolidatedErrors = '';
+        let consolidatedErrorArray=[];
+        if (error.error.errors) {
+          let errorData = error.error.errors;
+          for (const key in errorData) {
+            if (Object.prototype.hasOwnProperty.call(errorData, key)) {
+              const errorProp = errorData[key];
+              for (const key in errorProp) {
+                consolidatedErrorArray.push(errorProp[key]);
+              }
+            }
+          }
+          consolidatedErrors += consolidatedErrorArray.join("|");
+        }
+        return throwError(() => new Error(consolidatedErrors));
+      }
+    }
     return throwError(() => new Error(error.error.error.message));
   }
 

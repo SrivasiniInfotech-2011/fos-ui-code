@@ -185,6 +185,7 @@
             <select
               formControlName="prospectType"
               class="form-select mt-2 mb-1"
+              name="prospectType"
             >
               <option
                 *ngFor="let c of prospectTypeLookup"
@@ -261,7 +262,11 @@
           </div>
           <div class="col-12 col-md-4">
             <label class="label">Gender<span class="required">*</span></label>
-            <select formControlName="gender" class="form-select mt-2 mb-1">
+            <select
+              formControlName="gender"
+              class="form-select mt-2 mb-1"
+              name="gender"
+            >
               <option
                 *ngFor="let c of genderLookup"
                 [ngValue]="c.lookupValueId"
@@ -370,8 +375,12 @@
 
           <div class="col-12 col-md-4">
             <label class="label">State<span class="required">*</span></label>
-            <select formControlName="state" class="form-select mt-2 mb-1">
-              <option>Choose State</option>
+            <select
+              formControlName="state"
+              class="form-select mt-2 mb-1"
+              name="state"
+            >
+              <option value="" disabled>Choose State</option>
               <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
@@ -509,8 +518,12 @@
           </div>
           <div class="col-12 col-md-4">
             <label class="label">State<span class="required">*</span></label>
-            <select formControlName="state" class="form-select mt-2 mb-1">
-              <option>Choose State</option>
+            <select
+              formControlName="state"
+              class="form-select mt-2 mb-1"
+              name="state"
+            >
+              <option value="" disabled>Choose State</option>
               <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
