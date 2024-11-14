@@ -390,7 +390,7 @@
           <div class="col-12 col-md-4">
             <label class="label">Country<span class="required">*</span></label>
             <select formControlName="country" class="form-select mt-2 mb-1">
-              <option>Country</option>
+              <option value="" disabled>Choose Country</option>
               <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
@@ -529,7 +529,7 @@
           <div class="col-12 col-md-4">
             <label class="label">Country<span class="required">*</span></label>
             <select formControlName="country" class="form-select mt-2 mb-1">
-              <option>Country</option>
+              <option value="" disabled>Choose Country</option>
               <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
