@@ -17,12 +17,12 @@ export abstract class FOSBaseWrapperService {
   /**
    * Constructor for initializing the dependencies
    * @param http
-   * @param hlErrorHandlingService
+   * @param fosErrorHandlingService
    * @param logger
    */
   constructor(
     public http: HttpClient,
-    public hlErrorHandlingService: FOSErrorhandlingService,
+    public fosErrorHandlingService: FOSErrorhandlingService,
     public logger: LoggerService
     ) { }
 
@@ -35,7 +35,7 @@ export abstract class FOSBaseWrapperService {
   get<T>(url: string, params?: HttpParams): Observable<any> {
     return this.http.get<any>(url, { params }).pipe(
       catchError((error: HttpErrorResponse) => {
-        return this.hlErrorHandlingService.handleError(error);
+        return this.fosErrorHandlingService.handleError(error);
       })
     );
   }
@@ -50,7 +50,7 @@ export abstract class FOSBaseWrapperService {
     return this.http.post<T>(url, body).pipe(
       catchError(error => {
         return throwError(() => {
-          new Error(error)
+          return error;
         });
       })
     );

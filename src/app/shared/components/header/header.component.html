@@ -27,13 +27,19 @@
         <li class="nav-item">
           <a><mat-icon>calendar_today</mat-icon></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" [matMenuTriggerFor]="menu">
           <a><mat-icon>person</mat-icon></a>
         </li>
         <li class="nav-item">
           <a><mat-icon>settings </mat-icon></a>
         </li>
       </div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
       <!-- <ul class="nav-list d-flex list-unstyled m-0 p-0 align-items-center">
                  <li class="nav-item"><a class="nav-link active px-3 py-2 ">Home</a></li>
                  <li class="nav-item"><a class="nav-link p-2 px-3 " >About</a></li>

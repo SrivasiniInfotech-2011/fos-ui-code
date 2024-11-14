@@ -85,6 +85,7 @@ export const FOSCCApiQueryParams = {
 export const FOSApiEndPoints ={
   PROSPECT_LOOKUP_API : "/api/Prospects/GetProspectLookup",
   BRANCH_LOOKUP_API:"/api/Prospects/GetBranchLocations",
+  STATES_LOOKUP_API:"/api/Prospects/GetStates",
   EXISTING_PROSPECT_API:"/api/Prospects/GetExistingProspectDetailsForCustomer",
   CREATE_PROSPECT_API:"/api/Prospects/CreateNewProspect",
   REQUESTS_API : "/my-requests",

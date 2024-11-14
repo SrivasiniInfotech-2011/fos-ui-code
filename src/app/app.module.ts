@@ -35,9 +35,9 @@ import {
 } from '../core/store/reducers/fos-config-reducer';
 // import {RequestSharedModule} from "./request/shared/request-shared-module";
 import {
-  ccRequestReducer,
   ccRequestViewReducer,
 } from '../core/store/reducers/fos-ccRequest-reducer';
+import { ToastrModule } from 'ngx-toastr';
 // import { HLTabViewModule } from './shared/tab-view/tab-view.module';
 
 @NgModule({
@@ -50,6 +50,11 @@ import {
     MatIconModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     // TranslateModule.forRoot({
     //   loader: {
     //     provide: TranslateLoader,
@@ -60,7 +65,7 @@ import {
     StoreModule.forRoot({"login":logInReducer,
       "myRequest":myRequestReducer, "myRequestConfig":myRequestConfigReducer,
       'userConfig': userSettingReducer, 'myRequestTableUserSetting':myRequestTableUserSetting,
-      'requestConfig':requestConfigReducer,'ccRequest':ccRequestReducer,
+      'requestConfig':requestConfigReducer,
       'ccRequestView':ccRequestViewReducer, 'ccRequestInterestedParty':requestInterestedPartySettingsReducer}),
   ],
   providers: [
@@ -84,11 +89,11 @@ import {
       provide: ErrorHandler,
       useClass: GlobalErrorHandlingService,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: FOSErrorInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: FOSErrorInterceptor,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })

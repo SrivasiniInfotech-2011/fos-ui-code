@@ -79,9 +79,8 @@ export class UserService {
   }
 
   authenticateUser(userName: string, password: string): Observable<any> {
-    // this.hlLoaderService.showLoader();
     let endPoint: string = this.utilService.buildApiEndpoint(
-      'dev',
+      null,
       FOSApiEndPoints.USER_LOGIN_API,
       ''
     );
@@ -105,7 +104,7 @@ export class UserService {
 
   getSideBarData(userId: any): Observable<any> {
     let endPoint: string = this.utilService.buildApiEndpoint(
-      'dev',
+      null,
       FOSApiEndPoints.SIDEBAR_API.replace('{userId}', userId),
       ''
     );

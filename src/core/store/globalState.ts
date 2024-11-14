@@ -7,7 +7,6 @@ import {
   IFOSRequestTabConfig,
   IFOSUserConfig
 } from "../interfaces/store/IFOSConfig";
-// import {IFOSCcRequest} from "../interfaces/app/request/IFOSModels";
 
 /*
 * Global State object of the Application
@@ -35,6 +34,5 @@ export const globalState: IFOSCCGlobalState = {
         tableSettings:[]
       }
     }
-  } as IFOSUserConfig,
-  conflictsCheckRequest:{} as any //IFOSCcRequest
+  } as IFOSUserConfig
 };

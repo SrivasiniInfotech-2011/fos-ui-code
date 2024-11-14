@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { Store } from "@ngrx/store";
 import { IUserAuth } from "../interfaces/user-auth";
+import { LoaderService } from '../../data/services/shared/loader.service';
 
 @Injectable()
 /**
@@ -26,9 +27,10 @@ export class FOSRequestInterceptor implements HttpInterceptor {
    * @param userAuthStore
    */
   constructor(
-    private router: Router
+    private router: Router,
+    private loadingService:LoaderService
   ) {
-    this.accessToken = localStorage.getItem("userToken") ?? '';
+  
   }
 
   /**
@@ -41,7 +43,7 @@ export class FOSRequestInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let httpHeaders = new HttpHeaders();
-    let accessToken: string = this.accessToken;
+    let accessToken: string = localStorage.getItem("userToken") ?? '';
     
     httpHeaders = httpHeaders.append(
       'Authorization',
@@ -50,6 +52,7 @@ export class FOSRequestInterceptor implements HttpInterceptor {
     const httpReq = req.clone({
       headers: httpHeaders,
     });
+    // this.loadingService.showLoader();
     return next.handle(httpReq).pipe(
       tap(
         (httpEvent: HttpEvent<any>) => {
@@ -58,12 +61,14 @@ export class FOSRequestInterceptor implements HttpInterceptor {
           }
         },
         (httpError: HttpErrorResponse) => {
+          this.loadingService.hideLoader();
           if (
             (httpError && httpError.status == 401) ||
             httpError.status == 403
           ) {
             this.router.navigate(['/access-denied']);
           }
+          
         }
       )
     );

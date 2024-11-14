@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { IFOSBaseResponse } from '../../../core/interfaces/IFOSBaseResponse';
 import { ERROR_MESSAGES } from '../../../data/constants/fos-error-message';
@@ -39,20 +38,20 @@ export class FOSErrorhandlingService {
    * @returns The translated error message.
    */
   private getErrorMessage(status: number): string {
-    // switch (status) {
-    //   case 400:
-    //     return this.translate.instant(ERROR_MESSAGES.BAD_REQUEST);
-    //   case 401:
-    //     return this.translate.instant(ERROR_MESSAGES.UNAUTHORIZED);
-    //   case 403:
-    //     return this.translate.instant(ERROR_MESSAGES.FORBIDDEN);
-    //   case 404:
-    //     return this.translate.instant(ERROR_MESSAGES.NOT_FOUND);
-    //   case 500:
-    //     return this.translate.instant(ERROR_MESSAGES.SERVER_ERROR);
-    //   default:
-    //     return this.translate.instant(ERROR_MESSAGES.UNKNOWN_ERROR);
-    // }
+    switch (status) {
+      case 400:
+        return ERROR_MESSAGES.BAD_REQUEST;
+      case 401:
+        return ERROR_MESSAGES.UNAUTHORIZED;
+      case 403:
+        return ERROR_MESSAGES.FORBIDDEN;
+      case 404:
+        return ERROR_MESSAGES.NOT_FOUND;
+      case 500:
+        return ERROR_MESSAGES.SERVER_ERROR;
+      default:
+        return ERROR_MESSAGES.UNKNOWN_ERROR;
+    }
     return '';
   }
 
