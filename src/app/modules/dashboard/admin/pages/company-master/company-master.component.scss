@@ -11,12 +11,12 @@
     margin-left: 200px;
     margin-top: 80px;
 
-    .user-create-box {
+    .company-master-box {
         border: 1px solid #cfd9e8;
         border-radius: 5px;
         padding: 10px;
 
-        .user-create-form {
+        .company-master-form {
             caption {
                 font-size: 20px;
                 color: #173966;
@@ -41,6 +41,13 @@
                 border: 1px solid #173966;
                 background-color: #fff;
                 border-radius: 5px;
+            }
+            textarea{
+                border-radius: 5px;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: 400;
+                color: #173662;
             }
 
             select {
@@ -108,8 +115,5 @@
         width:100%;
         margin-left: 0;
         margin-top: 80px;
-        .button-box{
-            padding: 20px 30px;
-        }
 }
 }

@@ -6,10 +6,11 @@ import { UserManagementComponent } from './pages/user-management/user-management
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { SharedModule } from '../../../shared/shared.module';
+import { CompanyMasterComponent } from './pages/company-master/company-master.component';
 
 
 @NgModule({
-  declarations: [UserManagementComponent, UserCreateComponent],
+  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
