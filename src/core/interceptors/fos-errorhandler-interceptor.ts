@@ -82,8 +82,10 @@ export class FOSErrorHandlingInterceptor implements HttpInterceptor {
         );
       else if (error.status == 400) {
         let consolidatedErrors = '';
-        let consolidatedErrorArray=[];
-        if (error.error.errors) {
+        let consolidatedErrorArray = [];
+        if (error.error.error && error.error.error.message)
+          return throwError(() => new Error(error.error.error.message));
+        else if (error.error.errors) {
           let errorData = error.error.errors;
           for (const key in errorData) {
             if (Object.prototype.hasOwnProperty.call(errorData, key)) {
@@ -93,8 +95,9 @@ export class FOSErrorHandlingInterceptor implements HttpInterceptor {
               }
             }
           }
-          consolidatedErrors += consolidatedErrorArray.join("|");
+          consolidatedErrors += consolidatedErrorArray.join('|');
         }
+
         return throwError(() => new Error(consolidatedErrors));
       }
     }
