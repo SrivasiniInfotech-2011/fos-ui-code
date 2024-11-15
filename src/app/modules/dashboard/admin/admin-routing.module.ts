@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AssetMasterComponent } from './pages/asset-master/asset-master.component';
 import { CompanyMasterComponent } from './pages/company-master/company-master.component';
 import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
       path:'company-master',
       component:CompanyMasterComponent
+    },
+    {
+      path:'asset-master',
+      component:AssetMasterComponent
     }
 ];
 

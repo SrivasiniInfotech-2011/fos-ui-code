@@ -96,19 +96,16 @@
             border: none;
             color: transparent;
     }
-    .save-button ,.back-button {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 22px;
-        color: #fff;
-        background: linear-gradient(45deg, #173966, #1a4575);
-        border: unset;
-        padding: 5px 10px;
-    }
-    .back-button{
-        background: #f7811e;
-        color: #173966;
-    }
+  
+}
+.back-button{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background: #f7811e;
+    color: #173966;
+    border: unset;
+    padding: 5px 10px;
 }
 @media only screen and (max-width: 540px) {
     .content-box {
