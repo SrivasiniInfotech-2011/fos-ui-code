@@ -38,7 +38,6 @@ export class FOSProspectService{
     .get(endPoint)
     .pipe(
       catchError((error) => {
-        this.fosErrorHandler.handleError(error);
         return throwError(() => error);
       })
     );

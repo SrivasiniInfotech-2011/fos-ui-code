@@ -35,7 +35,9 @@ export abstract class FOSBaseWrapperService {
   get<T>(url: string, params?: HttpParams): Observable<any> {
     return this.http.get<any>(url, { params }).pipe(
       catchError((error: HttpErrorResponse) => {
-        return this.fosErrorHandlingService.handleError(error);
+        return throwError(() => {
+          return error;
+        });
       })
     );
   }
