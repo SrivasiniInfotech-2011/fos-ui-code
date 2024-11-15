@@ -193,6 +193,7 @@ export class ProspectDetailsComponent implements OnInit {
     return { aadharOrPanRequired: true }; // Invalid
   }
   getProspectLookup() {
+    this.loaderService.showLoader();
     this.prospectService.fetchProspectLookup().subscribe({
       next: (data: any) => {
         this.loaderService.hideLoader();
@@ -210,6 +211,7 @@ export class ProspectDetailsComponent implements OnInit {
   }
 
   getStates() {
+    this.loaderService.showLoader();
     this.prospectService.fetchStates().subscribe({
       next: (data: any) => {
         this.loaderService.hideLoader();
@@ -238,6 +240,7 @@ export class ProspectDetailsComponent implements OnInit {
   }
 
   getBranchLocations() {
+    this.loaderService.showLoader();
     this.prospectService
       .fetchBranchLocation({
         companyId: this.loggedInUser.companyId,
@@ -413,7 +416,7 @@ export class ProspectDetailsComponent implements OnInit {
       dateofBirth: prospectData.dob,
       prospectImagePath: kycData.prospectImage,
       prospectName: prospectData.prospectName,
-      prospectTypeId: this.customerProspectData.prospectTypeId,
+      prospectTypeId: prospectData.prospectType,
       website: prospectData.website,
     } as ICustomerProspectData;
 
