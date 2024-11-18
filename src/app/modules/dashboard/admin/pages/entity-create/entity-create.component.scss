@@ -1,0 +1,115 @@
+:host {
+    width: 100%;
+    background-color: #f0f6ff;
+    height: 100%;
+}
+
+
+
+.content-box {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+    margin-top: 80px;
+
+    .user-create-box {
+        border: 1px solid #cfd9e8;
+        border-radius: 5px;
+        padding: 10px;
+
+        .user-create-form {
+            caption {
+                font-size: 20px;
+                color: #173966;
+                padding-top: 0;
+                line-height: 28px;
+                font-weight: 600;
+            }
+
+            label,
+            input {
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: 400;
+                color: #173662;
+
+                &:focus {
+                    box-shadow: unset;
+                }
+            }
+
+            input {
+                border: 1px solid #173966;
+                background-color: #fff;
+                border-radius: 5px;
+            }
+
+            select {
+                border: 1px solid #173966;
+                background-color: #fff;
+                border-radius: 5px;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: 400;
+                color: #173662;
+
+                option {
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 400;
+                }
+
+                &:focus {
+                    box-shadow: unset;
+                }
+            }
+
+
+            .massage-text {
+                color: #f7811e;
+                font-size: 12px;
+                line-height: 18px;
+                font-weight: 400;
+                margin-bottom: 15px;
+                display: inline-bVCBNlock;
+            }
+
+           
+
+        }
+    }
+
+    .addimage-icon {
+        font-size: 100px;
+        width: 100px;
+        height: 100px;
+        color: #173662;
+    }
+    .file-input{
+            background-color: initial;
+            border: none;
+            color: transparent;
+    }
+    .save-button ,.back-button {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        color: #fff;
+        background: linear-gradient(45deg, #173966, #1a4575);
+        border: unset;
+        padding: 5px 10px;
+    }
+    .back-button{
+        background: #f7811e;
+        color: #173966;
+    }
+}
+@media only screen and (max-width: 540px) {
+    .content-box {
+        width:100%;
+        margin-left: 0;
+        margin-top: 80px;
+        .button-box{
+            padding: 20px 30px;
+        }
+}
+}

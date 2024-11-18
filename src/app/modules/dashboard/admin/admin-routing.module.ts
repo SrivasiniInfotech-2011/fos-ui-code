@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AssetCreateComponent } from './pages/asset-create/asset-create.component';
 import { AssetMasterComponent } from './pages/asset-master/asset-master.component';
 import { CompanyMasterComponent } from './pages/company-master/company-master.component';
+import { EntityCreateComponent } from './pages/entity-create/entity-create.component';
 import { EntityMasterComponent } from './pages/entity-master/entity-master.component';
 import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
     {
       path:'entity-master',
       component:EntityMasterComponent
+    },
+    {
+      path:'entity-create',
+      component:EntityCreateComponent
     }
     
 ];

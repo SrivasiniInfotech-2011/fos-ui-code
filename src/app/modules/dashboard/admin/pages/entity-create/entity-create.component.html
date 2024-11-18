@@ -1,0 +1,54 @@
+<div class="content-box pt-2">
+    <div class="container">
+      <div class="user-create-box my-3">
+          <form class="user-create-form">
+            <caption class="d-flex">Entity 
+              Master</caption>
+            <div class="row d-flex ">
+              <div class="col-12 col-md-4">
+                <label>Entity Code</label>
+                <input type="number" class="form-control mt-2" placeholder="Enter the User ID">
+                  <span class="massage-text" ngClass> Entity Code is
+                    required</span>
+              </div>
+              <div class="col-12 col-md-4">
+                  <label>Entity Name</label>
+                  <input type="text" class="form-control mt-2" placeholder="Enter the User Name">
+                    <span class="massage-text" ngClass> Entity Name is
+                      required</span>
+                </div>
+                <div class="col-12 col-md-4">
+                  <label>Entity Type*</label>
+                      <select formControlName="gender" class="form-select mt-2">
+                          <option>Broker</option>
+                          <option>customer</option>
+                          <option>Dealer</option>
+                          <option>Debt collector</option>
+                          <option>DMA</option>
+                          <option>DSA</option>  
+                          <option>Employee</option>  
+                          <option>Field Investigation Agency</option>
+                          <option>Funder</option>
+                          <option>Garage</option>
+                          <option>Insurance Company</option>
+                          <option>Legal Consultants </option>
+                          <option></option>
+                        </select>
+                      <span class="massage-text">Entity Type is required</span>
+                </div>
+                <div class="col-12 col-md-4">
+                  <label>GST No</label>
+                  <input type="number" class="form-control mt-2" placeholder="Enter the Password">
+                    <span class="massage-text" ngClass> GST No is
+                      required</span>
+                </div>
+              
+               
+            </div>
+    
+          </form>
+        </div>
+      
+    </div>
+  </div>
+  

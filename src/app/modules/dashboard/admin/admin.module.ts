@@ -10,10 +10,11 @@ import { CompanyMasterComponent } from './pages/company-master/company-master.co
 import { AssetMasterComponent } from './pages/asset-master/asset-master.component';
 import { AssetCreateComponent } from './pages/asset-create/asset-create.component';
 import { EntityMasterComponent } from './pages/entity-master/entity-master.component';
+import { EntityCreateComponent } from './pages/entity-create/entity-create.component';
 
 
 @NgModule({
-  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent],
+  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent, EntityCreateComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
