@@ -8,10 +8,12 @@ import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { CompanyMasterComponent } from './pages/company-master/company-master.component';
 import { AssetMasterComponent } from './pages/asset-master/asset-master.component';
+import { AssetCreateComponent } from './pages/asset-create/asset-create.component';
+import { EntityMasterComponent } from './pages/entity-master/entity-master.component';
 
 
 @NgModule({
-  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent],
+  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

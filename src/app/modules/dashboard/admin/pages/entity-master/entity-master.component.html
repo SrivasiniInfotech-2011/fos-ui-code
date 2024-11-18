@@ -1,30 +1,11 @@
 <div class="content-box pt-2">
   <div class="container">
-  
-    <div class="asset-master-box my-3">
-      <form class="asset-master-form">
-        <caption class="d-flex">
-          Asset 
-          Master
-        </caption>
-        <div class="row my-3">
-          <div class="col-12 col-md-4">
-            <label>Asset Category Type</label>
-            <select formControlName="gender" class="form-select mt-2">
-              <option>--select--</option>
-              <option>CLASS</option>
-              <option>MAKE</option>
-              <option>TYPE</option>
-              <option>MODEL</option>
-            </select>
-            <span class="massage-text" ngClass>User Group is required</span>
-          </div>
-          <div class="col-12 col-md-4">
-            <label>Asset Code Description</label>
-            <input type="text" class="form-control mt-2" placeholder="Enter Asset Code Description" />
-          </div>
-        </div>
-      </form>
+    <div class="entity-master-box my-3">
+      <caption class="d-flex">
+        Entity Master
+      </caption>
+    
+
       <div class="d-flex align-items-center flex-wrap gap-3 my-4">
         <button class="option-button d-flex align-items-center px-4">
           Search
@@ -36,9 +17,9 @@
           Create
         </button>
       </div>
-      <table class="table table-bordered rounded asset-master-table ">
+      <table class="table table-bordered rounded entity-master-table">
         <thead>
-          <tr> 
+          <tr>
             <th class="col">Category Code</th>
             <th class="col">Category Description</th>
             <th class="col">Category Type</th>
@@ -47,9 +28,8 @@
           </tr>
         </thead>
         <tbody>
-          
           <tr>
-            <td>C2	</td>
+            <td>C2</td>
             <td>BMW</td>
             <td>CLASS</td>
             <td><mat-icon>search</mat-icon></td>
