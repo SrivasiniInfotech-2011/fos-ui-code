@@ -1,5 +1,5 @@
 .w-200 {
-  width: 200px;
+  width: 240px;
 }
 .sidebar-box {
       box-shadow: 1px 0 5px 0px #173662;
@@ -54,6 +54,20 @@
 
       }
   }
+}
+
+.sidebar-close-box {
+    width: 50px;
+    padding-top: 100px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    .sidebar-icon-box{
+        border: 1px solid var(--border-color);
+        cursor: pointer;
+    }
+   
 }
 @media only screen and (max-width: 768px) {
     .sidebar-box{
