@@ -9,12 +9,14 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
 
 import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HeaderComponent, SidebarComponent,LoaderComponent],
   imports: [
     CommonModule,
     MatIconModule,
+    FormsModule,
     RouterModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
