@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AssetCreateComponent } from './pages/asset-create/asset-create.component';
-import { AssetMasterComponent } from './pages/asset-master/asset-master.component';
-import { CompanyMasterComponent } from './pages/company-master/company-master.component';
-import { EntityCreateComponent } from './pages/entity-create/entity-create.component';
-import { EntityMasterComponent } from './pages/entity-master/entity-master.component';
-import { UserCreateComponent } from './pages/user-create/user-create.component';
-import { UserManagementComponent } from './pages/user-management/user-management.component';
+import { AssetCreateComponent } from './pages/asset/asset-create/asset-create.component';
+import { AssetMasterComponent } from './pages/asset/asset-master/asset-master.component';
+import { CompanyMasterComponent } from './pages/company/company-master/company-master.component';
+import { EntityCreateComponent } from './pages/entity/entity-create/entity-create.component';
+import { EntityMasterComponent } from './pages/entity/entity-master/entity-master.component';
+import { UserCreateComponent } from './pages/user/user-create/user-create.component';
+import { UserManagementComponent } from './pages/user/user-management/user-management.component';
 
 const routes: Routes = [
   {
