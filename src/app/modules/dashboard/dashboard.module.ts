@@ -11,10 +11,11 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
 import { FOSRequestInterceptor } from '../../../core/interceptors/fos-request-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, FosComponent, AdminComponent],
+  declarations: [DashboardComponent, FosComponent, AdminComponent, HomeComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

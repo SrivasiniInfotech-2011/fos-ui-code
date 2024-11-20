@@ -4,6 +4,7 @@ export const environment = {
   label: '*** localhost ***',
   appBaseUrl: 'http://localhost:4200/',
   apiBaseUrl: 'http://localhost:1403',
-  prospectsApi:'http://localhost:1407',
-  loadConfigFromApi:true
+  prospectsApi: 'http://localhost:1407',
+  loadConfigFromApi: true,
+  secretKey: 'FOS2024keyToEncrypt'
 };

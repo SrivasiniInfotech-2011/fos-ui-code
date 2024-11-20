@@ -18,6 +18,7 @@ import { FOSProspectService } from '../../../../../../data/services/feature/pros
 import { UtilsService } from '../../../../../../data/services/shared/utils.service';
 import { LoaderService } from '../../../../../../data/services/shared/loader.service';
 import { ToastrService } from 'ngx-toastr';
+import { EncryptionService } from '../../../../../../data/services/shared/encryption.service';
 
 @Component({
   selector: 'app-prospect-details',
@@ -46,11 +47,17 @@ export class ProspectDetailsComponent implements OnInit {
     private prospectService: FOSProspectService,
     private utilityService: UtilsService,
     private loaderService: LoaderService,
-    private toasterService: ToastrService
-  ) {}
+    private toasterService: ToastrService,
+    private encryptionService: EncryptionService
+  ) { }
   ngOnInit(): void {
     if (localStorage.getItem('userDetails')) {
-      this.loggedInUser = JSON.parse(localStorage.getItem('userDetails') || '');
+      const encryptedUserData = localStorage.getItem('userDetails');
+      if (encryptedUserData) {
+        // Decrypt data
+        const decryptedUserData = this.encryptionService.decrypt(encryptedUserData);
+        this.loggedInUser = decryptedUserData || '';
+      }
     }
     this.refreshForm();
   }
@@ -252,7 +259,7 @@ export class ProspectDetailsComponent implements OnInit {
         next(data: any) {
           console.log(data);
         },
-        error(err: any) {},
+        error(err: any) { },
       });
   }
 

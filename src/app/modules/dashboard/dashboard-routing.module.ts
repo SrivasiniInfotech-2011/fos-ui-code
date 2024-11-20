@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ListingPageComponent } from './fos/pages/listing-page/listing-page.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
@@ -9,24 +10,27 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
+      // {
+      //   path:'',
+      //   component:ListingPageComponent
+      // },
       {
-        path:'',
-        component:ListingPageComponent
-      },
-      {
-        path:'fos',
+        path: 'fos',
         loadChildren: () => import('././fos/fos.module').then(m => m.FosModule)
       },
 
       {
-        path:'admin',
+        path: 'admin',
         loadChildren: () => import('././admin/admin.module').then(m => m.AdminModule)
       },
-
       {
-        path:'',
-        redirectTo:'',
-        pathMatch:'full'
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: '',
+        redirectTo: '',
+        pathMatch: 'full'
       }
 
     ]

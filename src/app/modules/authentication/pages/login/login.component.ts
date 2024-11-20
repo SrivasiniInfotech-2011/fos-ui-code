@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../../../../data/services/shared/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { EncryptionService } from '../../../../../data/services/shared/encryption.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private encryptionService: EncryptionService
   ) {
     this.loginForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   login() {
     this.isSubmitted = true;
@@ -49,7 +51,8 @@ export class LoginComponent implements OnInit {
                 companyName: userInfo?.companyName,
                 companyId: userInfo?.companyId,
               };
-              localStorage.setItem('userDetails', JSON.stringify(userData));
+              const encryptedUserData = this.encryptionService.encrypt(userData);
+              localStorage.setItem('userDetails', encryptedUserData);
               this.isLoading = false;
               this.router.navigate(['/dashboard']);
             }
