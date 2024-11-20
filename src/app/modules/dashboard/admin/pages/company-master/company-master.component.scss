@@ -12,14 +12,14 @@
     margin-top: 80px;
 
     .company-master-box {
-        border: 1px solid #cfd9e8;
+        border: 1px solid var(--border-color);
         border-radius: 5px;
         padding: 10px;
 
         .company-master-form {
             caption {
                 font-size: 20px;
-                color: #173966;
+                color: var(--text-bold-color);
                 padding-top: 0;
                 line-height: 28px;
                 font-weight: 600;
@@ -30,7 +30,7 @@
                 font-size: 14px;
                 line-height: 18px;
                 font-weight: 400;
-                color: #173662;
+                color:var(--text-color);
 
                 &:focus {
                     box-shadow: unset;
@@ -38,8 +38,8 @@
             }
 
             input {
-                border: 1px solid #173966;
-                background-color: #fff;
+                border: 1px solid var(--input-border);
+                background-color:var(--input-background);
                 border-radius: 5px;
             }
             textarea{
@@ -51,13 +51,13 @@
             }
 
             select {
-                border: 1px solid #173966;
-                background-color: #fff;
+                border: 1px solid var(--input-border);
+                background-color:var(--input-background);
                 border-radius: 5px;
                 font-size: 14px;
                 line-height: 18px;
                 font-weight: 400;
-                color: #173662;
+                color:var(--text-color);
 
                 option {
                     font-size: 14px;
@@ -89,7 +89,7 @@
         font-size: 100px;
         width: 100px;
         height: 100px;
-        color: #173662;
+        color: var(--text-color);
     }
     .file-input{
             background-color: initial;
@@ -103,7 +103,7 @@
     font-weight: 400;
     line-height: 22px;
     background: #f7811e;
-    color: #173966;
+    color: var( --text-color);
     border: unset;
     padding: 5px 10px;
 }
