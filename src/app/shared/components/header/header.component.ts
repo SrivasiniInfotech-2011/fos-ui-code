@@ -32,7 +32,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   onThemeChange(event: any): void {
-    console.log(event.target.checked)
     const theme = event.target.checked ? 'dark-theme' : 'light-theme';
     this.themeService.setTheme(theme);
   }
