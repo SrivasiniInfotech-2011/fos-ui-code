@@ -1,6 +1,6 @@
 :host {
     width: 100%;
-    background-color: #f0f6ff;
+    background-color: var(--background-color);
     height: 100%;
 }
 
@@ -10,35 +10,39 @@
     width: calc(100% - 240px);
     margin-left: 240px;
     height: 100%;
+    background-color: var(--background-color);
     margin-top: 80px;
+
     // height: 100vh;
     .tab-box {
         font-size: 14px;
         font-weight: 400;
         line-height: 22px;
-        color: #173662;
-        border: 1px solid #cfd9e8;
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
         border-radius: 5px;
         padding: 10px;
     }
+
     .option-button {
         font-size: 14px;
         font-weight: 400;
         line-height: 22px;
-        color: #fff;
-        background: linear-gradient(45deg, #173966, #1a4575);
+        color: var(--button-text-color);
+        background: var(--background-button);
         border: unset;
         padding: 5px 10px;
     }
+
     .individual-details-box {
-        border: 1px solid #cfd9e8;
+        border: 1px solid var(--border-color);
         border-radius: 5px;
         padding: 10px;
 
         .individual-details-form {
             caption {
                 font-size: 20px;
-                color: #173966;
+                color: var(--text-bold-color);
                 padding-top: 0;
                 line-height: 28px;
                 font-weight: 600;
@@ -49,7 +53,7 @@
                 font-size: 14px;
                 line-height: 18px;
                 font-weight: 400;
-                color: #173662;
+                color: var(--text-color);
 
                 &:focus {
                     box-shadow: unset;
@@ -57,9 +61,10 @@
             }
 
             input {
-                border: 1px solid #173966;
-                background-color: #fff;
+                border: 1px solid var(--input-border);
+                background-color: var(--input-background);
                 border-radius: 5px;
+                color: var(--text-dark);
             }
 
             .massage-text {
@@ -75,8 +80,8 @@
                 font-size: 14px;
                 font-weight: 400;
                 line-height: 22px;
-                color: #fff;
-                background: linear-gradient(45deg, #173966, #1a4575);
+                color: var(--button-text-color);
+                background: var(--background-button);
                 border: unset;
                 padding: 5px 10px;
             }
@@ -84,12 +89,14 @@
         }
     }
 }
+
 @media only screen and (max-width: 540px) {
-    .content-box{
-        margin-left:0;
+    .content-box {
+        margin-left: 0;
         width: 100%;
-        .lead-table-box{
-            .serach-box{
+
+        .lead-table-box {
+            .serach-box {
                 width: 100%;
             }
         }

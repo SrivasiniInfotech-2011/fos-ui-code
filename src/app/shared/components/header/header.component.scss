@@ -66,7 +66,6 @@ $animationSpeed: 40s;
 
         .nav-item {
             cursor: pointer;
-
             .nav-link {
                 font-size: 14px;
                 font-weight: 500;
@@ -90,6 +89,16 @@ $animationSpeed: 40s;
 
 .topnav {
     display: none;
+}
+.form-check-input:checked {
+    background-color: #000;
+    border-color: green;
+    box-shadow: unset;
+}
+.form-check-input{
+    background-color:#f0f6ff;
+    border-color: #173662;
+    box-shadow: unset;
 }
 
 @media only screen and (max-width: 540px) {

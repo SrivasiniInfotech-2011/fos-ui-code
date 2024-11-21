@@ -1,7 +1,8 @@
 :host {
   width: 100%;
-  background-color: #f0f6ff;
-  height: 100%;
+  background-color: var(--background-color);
+
+  // height: 100%;
 }
 
 
@@ -10,17 +11,18 @@
   width: calc(100% - 240px);
   margin-left: 240px;
   margin-top: 80px;
-  // height: 100vh;
+  background-color: var(--background-color);
+  height: 100%;
 
   .prospect-details-box {
-    border: 1px solid #cfd9e8;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 10px;
 
     .prospect-details-form {
       caption {
         font-size: 20px;
-        color: #173966;
+        color: var(--text-bold-color);
         padding-top: 0;
         line-height: 28px;
         font-weight: 600;
@@ -31,7 +33,7 @@
         font-size: 14px;
         line-height: 18px;
         font-weight: 400;
-        color: #173662;
+        color: var(--text-color);
 
         &:focus {
           box-shadow: unset;
@@ -39,19 +41,20 @@
       }
 
       input {
-        border: 1px solid #173966;
-        background-color: #fff;
+        border: 1px solid var(--input-border);
+        background-color: var(--input-background);
         border-radius: 5px;
+        color: var(--text-dark);
       }
 
       select {
-        border: 1px solid #173966;
-        background-color: #fff;
+        border: 1px solid var(--input-border);
+        background-color: var(--input-background);
         border-radius: 5px;
         font-size: 14px;
         line-height: 18px;
         font-weight: 400;
-        color: #173662;
+        color: var(--text-dark);
 
       }
 
@@ -61,15 +64,15 @@
         line-height: 18px;
         font-weight: 400;
         margin-bottom: 15px;
-        display: inline-bVCBNlock;
+        display: inline-block;
       }
 
       .next-button {
         font-size: 14px;
         font-weight: 400;
         line-height: 22px;
-        color: #fff;
-        background: linear-gradient(45deg, #173966, #1a4575);
+        color: var(--button-text-color);
+        background: var(--background-button);
         border: unset;
         padding: 5px 10px;
       }
@@ -81,8 +84,8 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    color: #fff;
-    background: linear-gradient(45deg, #173966, #1a4575);
+    color: var( --button-text-color);
+    background: var(--background-button);
     border: unset;
     padding: 5px 10px;
   }

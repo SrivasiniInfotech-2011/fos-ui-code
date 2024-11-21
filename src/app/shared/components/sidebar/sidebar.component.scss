@@ -4,7 +4,7 @@
 .sidebar-box {
       box-shadow: 1px 0 5px 0px #173662;
       height: 100vh;
-      background-color: #173662;
+      background-color: var(--sidebar-background);
       position: fixed;
       left: 0;
       overflow: auto;
@@ -16,7 +16,7 @@
       display: none;
   }
   .sidebar-item {
-      background-color: #173662;
+    //   background-color: #173662;
   }
 
   .item,
