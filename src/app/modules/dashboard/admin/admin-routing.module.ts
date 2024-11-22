@@ -3,8 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AssetCreateComponent } from './pages/asset/asset-create/asset-create.component';
 import { AssetMasterComponent } from './pages/asset/asset-master/asset-master.component';
 import { CompanyMasterComponent } from './pages/company/company-master/company-master.component';
+import { DocumentCreateComponent } from './pages/document/document-create/document-create.component';
+import { DocumentMasterComponent } from './pages/document/document-master/document-master.component';
 import { EntityCreateComponent } from './pages/entity/entity-create/entity-create.component';
 import { EntityMasterComponent } from './pages/entity/entity-master/entity-master.component';
+import { GobalParameterSetupComponent } from './pages/globalparameter/gobal-parameter-setup/gobal-parameter-setup.component';
 import { UserCreateComponent } from './pages/user/user-create/user-create.component';
 import { UserManagementComponent } from './pages/user/user-management/user-management.component';
 
@@ -18,7 +21,7 @@ const routes: Routes = [
     redirectTo:'user-management',
     pathMatch:'full'
   },
-  
+
     {
       path:'user-create',
       component:UserCreateComponent
@@ -42,8 +45,23 @@ const routes: Routes = [
     {
       path:'entity-create',
       component:EntityCreateComponent
+    },
+    {
+      path:'global-parameter',
+      component:GobalParameterSetupComponent
+    },
+    {
+      path:'document-create',
+      component:DocumentCreateComponent
+    },
+    {
+      path:'document-master',
+      component:DocumentMasterComponent
     }
-    
+
+
+
+
 ];
 
 @NgModule({

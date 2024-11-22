@@ -11,10 +11,13 @@ import { AssetMasterComponent } from './pages/asset/asset-master/asset-master.co
 import { AssetCreateComponent } from './pages/asset/asset-create/asset-create.component';
 import { EntityMasterComponent } from './pages/entity/entity-master/entity-master.component';
 import { EntityCreateComponent } from './pages/entity/entity-create/entity-create.component';
+import { GobalParameterSetupComponent } from './pages/globalparameter/gobal-parameter-setup/gobal-parameter-setup.component';
+import { DocumentMasterComponent } from './pages/document/document-master/document-master.component';
+import { DocumentCreateComponent } from './pages/document/document-create/document-create.component';
 
 
 @NgModule({
-  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent, EntityCreateComponent],
+  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent, EntityCreateComponent, GobalParameterSetupComponent, DocumentMasterComponent, DocumentCreateComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

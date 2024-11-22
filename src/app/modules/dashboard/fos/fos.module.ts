@@ -9,15 +9,30 @@ import { IndividualDetailsComponent } from './pages/individual-details/individua
 import { SharedModule } from '../../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewloanDetailsComponent } from './pages/viewloan-details/viewloan-details.component';
-
+import { LeadProspectDetailComponent } from './pages/leadgeneration/lead-prospect-detail/lead-prospect-detail.component';
+import { LeadMasterComponent } from './pages/leadgeneration/lead-master/lead-master.component';
+import { IndividualComponent } from './pages/leadgeneration/individual/individual.component';
+import { Guarantor1Component } from './pages/leadgeneration/guarantor-1/guarantor-1.component';
+import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guarantor-2.component';
 
 @NgModule({
-  declarations: [ListingPageComponent, LoanDetailsComponent, ProspectDetailsComponent, IndividualDetailsComponent, ViewloanDetailsComponent],
+  declarations: [
+    ListingPageComponent,
+    LoanDetailsComponent,
+    ProspectDetailsComponent,
+    IndividualDetailsComponent,
+    ViewloanDetailsComponent,
+    LeadProspectDetailComponent,
+    LeadMasterComponent,
+    IndividualComponent,
+    Guarantor1Component,
+    Guarantor2Component
+  ],
   imports: [
     CommonModule,
     FosRoutingModule,
     SharedModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class FosModule { }
+export class FosModule {}
