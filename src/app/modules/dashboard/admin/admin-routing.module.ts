@@ -13,54 +13,72 @@ import { UserManagementComponent } from './pages/user/user-management/user-manag
 
 const routes: Routes = [
   {
-    path:'user-management',
-    component:UserManagementComponent
+    path: 'user-management',
+    component: UserManagementComponent,
+    data: {
+      title: 'User'
+    }
   },
   {
-    path:'',
-    redirectTo:'user-management',
-    pathMatch:'full'
+    path: '',
+    redirectTo: 'user-management',
+    pathMatch: 'full'
   },
 
-    {
-      path:'user-create',
-      component:UserCreateComponent
-    },
-    {
-      path:'company-master',
-      component:CompanyMasterComponent
-    },
-    {
-      path:'asset-master',
-      component:AssetMasterComponent
-    },
-    {
-      path:'asset-create',
-      component:AssetCreateComponent
-    },
-    {
-      path:'entity-master',
-      component:EntityMasterComponent
-    },
-    {
-      path:'entity-create',
-      component:EntityCreateComponent
-    },
-    {
-      path:'global-parameter',
-      component:GobalParameterSetupComponent
-    },
-    {
-      path:'document-create',
-      component:DocumentCreateComponent
-    },
-    {
-      path:'document-master',
-      component:DocumentMasterComponent
+  {
+    path: 'user-create',
+    component: UserCreateComponent,
+    data: {
+      title: 'User-Create'
     }
-
-
-
+  },
+  {
+    path: 'company-master',
+    component: CompanyMasterComponent,
+    data: {
+      title: 'Company'
+    }
+  },
+  {
+    path: 'asset-master',
+    component: AssetMasterComponent,
+    data: {
+      title: 'Asset'
+    }
+  },
+  {
+    path: 'asset-create',
+    component: AssetCreateComponent,
+    data: {
+      title: 'Asset-Create'
+    }
+  },
+  {
+    path: 'entity-master',
+    component: EntityMasterComponent,
+    data: {
+      title: 'Entity'
+    }
+  },
+  {
+    path: 'entity-create',
+    component: EntityCreateComponent,
+    data: {
+      title: 'Entity-Create'
+    }
+  },
+  {
+    path:'global-parameter',
+    component:GobalParameterSetupComponent
+  },
+  {
+    path:'document-create',
+    component:DocumentCreateComponent
+  },
+  {
+    path:'document-master',
+    component:DocumentMasterComponent
+  }
 
 ];
 

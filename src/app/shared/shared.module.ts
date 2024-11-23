@@ -10,9 +10,10 @@ import { LoaderComponent } from './components/loader/loader.component';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SidebarComponent,LoaderComponent],
+  declarations: [HeaderComponent, SidebarComponent,LoaderComponent, BreadcrumbComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     SidebarComponent,
     LoaderComponent,
+    BreadcrumbComponent,
     MatIconModule,
     MatExpansionModule,
     MatProgressSpinnerModule,

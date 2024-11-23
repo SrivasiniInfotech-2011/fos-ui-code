@@ -50,6 +50,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatIconModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    SharedModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
@@ -62,11 +63,13 @@ import { ToastrModule } from 'ngx-toastr';
     //     deps: [HttpClient],
     //   },
     // }),
-    StoreModule.forRoot({"login":logInReducer,
-      "myRequest":myRequestReducer, "myRequestConfig":myRequestConfigReducer,
-      'userConfig': userSettingReducer, 'myRequestTableUserSetting':myRequestTableUserSetting,
-      'requestConfig':requestConfigReducer,
-      'ccRequestView':ccRequestViewReducer, 'ccRequestInterestedParty':requestInterestedPartySettingsReducer}),
+    StoreModule.forRoot({
+      "login": logInReducer,
+      "myRequest": myRequestReducer, "myRequestConfig": myRequestConfigReducer,
+      'userConfig': userSettingReducer, 'myRequestTableUserSetting': myRequestTableUserSetting,
+      'requestConfig': requestConfigReducer,
+      'ccRequestView': ccRequestViewReducer, 'ccRequestInterestedParty': requestInterestedPartySettingsReducer
+    }),
   ],
   providers: [
     {
@@ -101,4 +104,4 @@ import { ToastrModule } from 'ngx-toastr';
 // export function HTTPLoaderFactory(http: HttpClient): TranslateHttpLoader {
 //   return new TranslateHttpLoader(http, 'core/assets/i18n/', '.json');
 // }
-export class AppModule {}
+export class AppModule { }

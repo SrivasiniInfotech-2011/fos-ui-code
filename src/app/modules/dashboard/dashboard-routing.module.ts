@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    data:{title:''}
     children: [
       // {
       //   path:'',
@@ -16,16 +17,18 @@ const routes: Routes = [
       // },
       {
         path: 'fos',
-        loadChildren: () => import('././fos/fos.module').then(m => m.FosModule)
+        loadChildren: () => import('././fos/fos.module').then(m => m.FosModule),
       },
 
       {
         path: 'admin',
-        loadChildren: () => import('././admin/admin.module').then(m => m.AdminModule)
+        loadChildren: () => import('././admin/admin.module').then(m => m.AdminModule),
+        data: { title: 'Admin' }
       },
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        // data: { title: 'Dashboard' }
       },
       {
         path: '',
