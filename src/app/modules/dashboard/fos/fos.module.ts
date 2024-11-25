@@ -14,6 +14,8 @@ import { LeadMasterComponent } from './pages/leadgeneration/lead-master/lead-mas
 import { IndividualComponent } from './pages/leadgeneration/individual/individual.component';
 import { Guarantor1Component } from './pages/leadgeneration/guarantor-1/guarantor-1.component';
 import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guarantor-2.component';
+import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
+import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guaranto
     LeadMasterComponent,
     IndividualComponent,
     Guarantor1Component,
-    Guarantor2Component
+    Guarantor2Component,
+    FvrHirerMasterComponent,
+    FvrGuarantorComponent
   ],
   imports: [
     CommonModule,
