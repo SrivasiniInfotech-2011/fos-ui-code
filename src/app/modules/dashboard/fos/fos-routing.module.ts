@@ -29,10 +29,10 @@ const routes: Routes = [
         path: 'viewloan-details',
         component: ViewloanDetailsComponent,
       },
-      // {
-      //   path: 'prospect-master',
-      //   component: ProspectDetailsComponent
-      // },
+      {
+        path: 'prospect-master',
+        component: ProspectDetailsComponent
+      },
       {
         path: 'lead-master',
         component: LeadMasterComponent,
