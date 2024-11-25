@@ -3,14 +3,14 @@
     background-color: var(--background-color);
     height: 100vh;
   }
-  
-  
-  
+
+
+
   .content-box {
     width: calc(100% - 240px);
     margin-left: 240px;
     margin-top: 80px;
-  
+
     // height: 100vh;
     .option-button {
       font-size: 14px;
@@ -21,7 +21,7 @@
       border: unset;
       padding: 5px 10px;
     }
-  
+
     .asset-create-box {
         border: 1px solid var(--border-color);
       border-radius: 5px;
@@ -60,7 +60,7 @@
             font-size: 14px;
             line-height: 18px;
             font-weight: 400;
-            color: #173662;
+            color: var(--text-dark);
 
             option {
                 font-size: 14px;
