@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   login() {
     this.isSubmitted = true;
@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
             if (res) {
               let token = res?.message?.token;
               localStorage.setItem('userToken', token);
+              localStorage.setItem('refreshToken', res?.message?.refreshToken);
               let userInfo = res?.message?.user;
               let userData = {
                 userId: userInfo?.userId,
@@ -51,8 +52,21 @@ export class LoginComponent implements OnInit {
                 companyName: userInfo?.companyName,
                 companyId: userInfo?.companyId,
               };
-              const encryptedUserData = this.encryptionService.encrypt(userData);
+              const encryptedUserData =
+                this.encryptionService.encrypt(userData);
               localStorage.setItem('userDetails', encryptedUserData);
+              this.userService.init({
+                accessToken: token,
+                fullName: userInfo?.userName,
+                isAuthenticated: true,
+                loginName: userInfo?.userName,
+                userId: userInfo?.userId,
+                sessionExpireDate: userInfo?.sessionExpireDate,
+              });
+              localStorage.setItem(
+                'sessionExpireDate',
+                userInfo?.sessionExpireDate
+              );
               this.isLoading = false;
               this.router.navigate(['/dashboard']);
             }
