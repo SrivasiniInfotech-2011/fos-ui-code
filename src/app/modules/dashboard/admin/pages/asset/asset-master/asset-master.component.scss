@@ -3,14 +3,14 @@
     background-color: var(--background-color);
     height: 100vh;
   }
-  
-  
-  
+
+
+
   .content-box {
     width: calc(100% - 240px);
     margin-left: 240px;
     margin-top: 80px;
-  
+
     // height: 100vh;
     .option-button {
       font-size: 14px;
@@ -21,12 +21,17 @@
       border: unset;
       padding: 5px 10px;
     }
-  
+
     .asset-master-box {
       border: 1px solid var(--border-color);
       border-radius: 5px;
       padding: 10px;
       .asset-master-form {
+        .breadcrumb{
+          li{
+          color: var(--text-color);
+        }
+        }
         caption {
             font-size: 20px;
             color: var(--text-bold-color);
@@ -83,10 +88,10 @@
             display: inline-block;
         }
 
-       
+
 
     }
-    
+
       .asset-master-table {
         thead {
           tr {
@@ -107,11 +112,11 @@
             color:var(--text-dark);
           }
         }
-  
+
       }
     }
   }
-  
+
   @media only screen and (max-width: 540px) {
     .content-box {
       width: 100%;
@@ -134,7 +139,7 @@
               line-height: 18px;
             }
           }
-    
+
         }
       }
     }

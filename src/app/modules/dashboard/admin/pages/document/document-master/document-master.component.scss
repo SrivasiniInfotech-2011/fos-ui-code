@@ -21,12 +21,17 @@
     border: unset;
     padding: 5px 10px;
   }
+  .breadcrumb{
+    li{
+    color: var(--text-color);
+  }
+  }
 
   .document-master-box {
     border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 10px;
-    .asset-master-form {
+    .document-master-form {
       caption {
           font-size: 20px;
           color: var(--text-bold-color);
