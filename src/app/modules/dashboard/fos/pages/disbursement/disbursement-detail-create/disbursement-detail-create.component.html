@@ -1,1 +1,127 @@
-<p>disbursement-detail-create works!</p>
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="disbursement-create-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li
+            class="breadcrumb-item d-flex align-items-center"
+            aria-current="page"
+          >
+            <mat-icon class="me-2">home</mat-icon>Disbursement Details
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Disbursment-Create
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="disbursement-create-box my-3">
+      <form class="disbursement-create-form">
+        <caption class="d-flex">
+          Disbursement Details
+        </caption>
+        <div class="row d-flex">
+          <div class="col-12 col-md-4 .">
+            <label>Lead Number</label>
+            <input
+              placeholder="Enter Lead Number"
+              type="number"
+              class="form-control mt-1"
+              formControlName="leadnumber"
+            />
+
+            <span class="massage-text">Lead Number is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Vehicle Number</label>
+            <input
+              placeholder="Enter Vehicle Number"
+              type="number"
+              class="form-control mt-1"
+              formControlName="vehicleNumber"
+            />
+
+            <span class="massage-text">Vehicle Number is required</span>
+          </div>
+        </div>
+      </form>
+      <div
+        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
+      >
+        <button class="option-button d-flex align-items-center">Go</button>
+      </div>
+    </div>
+    <div class="disbursement-create-box my-3">
+      <form class="disbursement-create-form">
+        <div class="row d-flex">
+          <div class="col-12 col-md-4">
+            <label>Line Of Business</label>
+            <input type="text" class="form-control mt-1" />
+
+            <span class="massage-text">Line Of Business is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Location</label>
+            <input type="text" class="form-control mt-1" />
+
+            <span class="massage-text">Location is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Customer Type</label>
+            <input type="text" class="form-control mt-1" />
+
+            <span class="massage-text">Customer Type</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Customer Name</label>
+            <input type="text" class="form-control mt-1"  required/>
+
+            <span class="massage-text">Customer Name is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Finance Amount</label>
+            <input type="number" class="form-control mt-1" required />
+
+            <span class="massage-text">Finance Amount is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Tenure(M)</label>
+            <input type="text" class="form-control mt-1" required />
+
+            <span class="massage-text">Tenure(M) is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Rate %</label>
+            <input type="text" class="form-control mt-1" required />
+
+            <span class="massage-text">Rate % is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Repayment Frequency</label>
+            <input type="text" class="form-control mt-1" required />
+
+            <span class="massage-text">Repayment Frequency is required</span>
+          </div>
+          <div class="col-12 col-md-4 .">
+            <label>Total Repayment Amount</label>
+            <input type="text" class="form-control mt-1" required />
+
+            <span class="massage-text">Total Repayment Amount is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Lead Date</label>
+            <input type="date" class="form-control mt-1" required />
+
+            <span class="massage-text">Lead Date is required</span>
+          </div>
+        </div>
+      </form>
+      <div
+        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
+      >
+        <button class="option-button d-flex align-items-center">Go</button>
+        <button class="option-button d-flex align-items-center">Clear</button>
+      </div>
+    </div>
+  </div>
+</div>

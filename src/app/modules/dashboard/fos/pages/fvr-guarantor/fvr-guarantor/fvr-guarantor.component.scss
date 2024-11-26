@@ -13,6 +13,7 @@
   background-color: var(--background-color);
   margin-top: 80px;
 
+
   // height: 100vh;
   .tab-box {
       font-size: 14px;
@@ -38,6 +39,11 @@
       border: 1px solid var(--border-color);
       border-radius: 5px;
       padding: 10px;
+      .breadcrumb{
+        li{
+        color: var(--text-color);
+      }
+      }
 
       .fvrgaurantor-details-form {
           caption {

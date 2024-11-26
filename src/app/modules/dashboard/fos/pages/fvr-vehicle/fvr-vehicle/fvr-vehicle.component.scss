@@ -35,6 +35,11 @@
   }
 
   .fvrvehicle-details-box {
+    .breadcrumb{
+      li{
+      color: var(--text-color);
+    }
+    }
       border: 1px solid var(--border-color);
       border-radius: 5px;
       padding: 10px;

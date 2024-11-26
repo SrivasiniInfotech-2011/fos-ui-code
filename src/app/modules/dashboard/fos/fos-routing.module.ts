@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FosComponent } from './fos.component';
 import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-create/bm-approval-create.component';
 import { BmApprovalMasterComponent } from './pages/bm-approval/bm-approval-master/bm-approval-master.component';
+import { DisbursementDetailCreateComponent } from './pages/disbursement/disbursement-detail-create/disbursement-detail-create.component';
+import { DisbursementDetailMasterComponent } from './pages/disbursement/disbursement-detail-master/disbursement-detail-master.component';
 import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
 import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
@@ -81,6 +83,14 @@ const routes: Routes = [
       {
         path:'BM-approvalcreate',
         component:BmApprovalCreateComponent,
+      },
+      {
+        path:'Disbursement-details',
+        component:DisbursementDetailMasterComponent,
+      },
+      {
+        path:'disbursement-create',
+        component:DisbursementDetailCreateComponent,
       }
     ],
   },

@@ -14,7 +14,7 @@
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="number" class="form-control my-2"
+            <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
               formControlName="leadNumber" />
             <span class="massage-text"
               *ngIf="(leadForm.get('leadNumber')?.touched || isSubmitted)&& leadForm.get('leadNumber')?.hasError('required')">Lead
@@ -22,7 +22,7 @@
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="number" class="form-control my-2"
+            <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
               formControlName="vehicleNumber" />
 
             <span class="massage-text"
@@ -51,7 +51,7 @@
           </div>
           <div class="col-12 col-md-4">
             <label>Finance Amount</label>
-            <input placeholder="Enter the Finance Amount" type="number" class="form-control my-2"
+            <input placeholder="Enter the Finance Amount" type="number" class="form-control mt-1"
               formControlName="financeAmount" />
 
             <span class="massage-text"
@@ -60,7 +60,7 @@
           </div>
           <div class="col-12 col-md-4">
             <label>Tenure</label>
-            <input placeholder="Enter the Tenure" type="number" class="form-control my-2" formControlName="tenure" />
+            <input placeholder="Enter the Tenure" type="number" class="form-control mt-1" formControlName="tenure" />
 
             <span class="massage-text"
               *ngIf="(loanDetailsForm.get('tenure')?.touched || isSubmitted)&& loanDetailsForm.get('tenure')?.hasError('required')">Tenure
@@ -78,7 +78,7 @@
           </div>
           <div class="col-12 col-md-4">
             <label>Rate</label>
-            <input placeholder="Enter the Rate " type="number" class="form-control my-2" formControlName="rate" />
+            <input placeholder="Enter the Rate " type="number" class="form-control mt-1" formControlName="rate" />
 
             <span class="massage-text"
               *ngIf="(loanDetailsForm.get('rate')?.touched || isSubmitted)&& loanDetailsForm.get('rate')?.hasError('required')">Rate
@@ -99,7 +99,7 @@
           </div>
           <div class="col-12 col-md-4">
             <label>Leave Period</label>
-            <input placeholder="Enter the Leave Period" type="text" class="form-control my-2"
+            <input placeholder="Enter the Leave Period" type="text" class="form-control mt-1"
               formControlName="leavePeriod" />
 
             <span class="massage-text"
@@ -175,25 +175,25 @@
 
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter the Vehicle Number " type="number" class="form-control my-2" formControlName="vehicleNumber"/>
+            <input placeholder="Enter the Vehicle Number " type="number" class="form-control mt-1" formControlName="vehicleNumber"/>
 
             <span class="massage-text" *ngIf="(assetDetailsForm.get('vehicleNumber')?.touched || isSubmitted) && assetDetailsForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Engine Number</label>
-            <input placeholder="Enter the Engine Number " type="number" class="form-control my-2" formControlName="engineNumber" />
+            <input placeholder="Enter the Engine Number " type="number" class="form-control mt-1" formControlName="engineNumber" />
 
             <span class="massage-text" *ngIf="(assetDetailsForm.get('engineNumber')?.touched || isSubmitted) && assetDetailsForm.get('engineNumber')?.hasError('required')">Engine Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Chassis Number</label>
-            <input placeholder="Enter the Chassis Number " type="number" class="form-control my-2" formControlName="chassisNumber" />
+            <input placeholder="Enter the Chassis Number " type="number" class="form-control mt-1" formControlName="chassisNumber" />
 
             <span class="massage-text" *ngIf="(assetDetailsForm.get('chassisNumber')?.touched || isSubmitted) && assetDetailsForm.get('chassisNumber')?.hasError('required')">Chassis Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Serial Number</label>
-            <input placeholder="Enter the Serial Number " type="number" class="form-control my-2" formControlName="serialNumber" />
+            <input placeholder="Enter the Serial Number " type="number" class="form-control mt-1" formControlName="serialNumber" />
 
             <span class="massage-text"  *ngIf="(assetDetailsForm.get('serialNumber')?.touched || isSubmitted) && assetDetailsForm.get('serialNumber')?.hasError('required')">Serial Number is required</span>
           </div>
@@ -211,7 +211,7 @@
           </div>
           <div class="col-12 col-md-4">
             <label>Model</label>
-            <input placeholder="Enter the Model " type="text" class="form-control my-2" formControlName="model" />
+            <input placeholder="Enter the Model " type="text" class="form-control mt-1" formControlName="model" />
 
             <span class="massage-text" *ngIf="(assetDetailsForm.get('model')?.touched || isSubmitted) && assetDetailsForm.get('model')?.hasError('required')">Model is required</span>
           </div>

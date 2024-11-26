@@ -16,13 +16,13 @@
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="number" class="form-control my-2"
+            <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
               formControlName="leadNumber" />
             <span class="massage-text" *ngIf="(leadMasterForm.get('leadNumber')?.touched || isSearched)&& leadMasterForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="number" class="form-control my-2"
+            <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
               formControlName="vehicleNumber" />
             <span class="massage-text" *ngIf="(leadMasterForm.get('vehicleNumber')?.touched || isSearched) && leadMasterForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
