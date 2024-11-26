@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FosComponent } from './fos.component';
+import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-create/bm-approval-create.component';
+import { BmApprovalMasterComponent } from './pages/bm-approval/bm-approval-master/bm-approval-master.component';
 import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
+import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
 import { IndividualDetailsComponent } from './pages/individual-details/individual-details.component';
 import { Guarantor1Component } from './pages/leadgeneration/guarantor-1/guarantor-1.component';
 import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guarantor-2.component';
@@ -67,6 +70,18 @@ const routes: Routes = [
         path: 'FVR-gaurantor',
         component: FvrGuarantorComponent,
       },
+      {
+        path:'FVR-vehicle',
+        component:FvrVehicleComponent,
+      },
+      {
+        path:'BM-approval',
+        component:BmApprovalMasterComponent,
+      },
+      {
+        path:'BM-approvalcreate',
+        component:BmApprovalCreateComponent,
+      }
     ],
   },
 ];
