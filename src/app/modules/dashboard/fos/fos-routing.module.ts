@@ -70,7 +70,7 @@ const routes: Routes = [
         component: FvrHirerMasterComponent,
       },
       {
-        path: 'FVR-gaurantor',
+        path: 'FVR-guarantor',
         component: FvrGuarantorComponent,
       },
       {

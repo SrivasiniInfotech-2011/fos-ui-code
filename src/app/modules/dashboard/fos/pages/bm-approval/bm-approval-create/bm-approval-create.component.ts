@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-bm-approval-create',
@@ -7,4 +8,20 @@ import { Component } from '@angular/core';
 })
 export class BmApprovalCreateComponent {
 
+    public bmApprovalForm:FormGroup;
+    public isSubmitted:boolean = false;
+
+    constructor(){
+      this.bmApprovalForm = new FormGroup({
+        leadNumber:new FormControl('', [Validators.required]),
+        vehicleNumber:new FormControl('', [Validators.required])
+      })
+    }
+
+    submit(){
+      this.isSubmitted = true;
+      if(this.bmApprovalForm.valid){
+        this.isSubmitted = false;
+      }
+    }
 }

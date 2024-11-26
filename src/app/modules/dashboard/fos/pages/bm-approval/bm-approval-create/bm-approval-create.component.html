@@ -3,45 +3,35 @@
     <div class="bmaproval-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-            <li class="breadcrumb-item  d-flex align-items-center" aria-current="page"><mat-icon class="me-2">home</mat-icon>BM
-              Approval</li>
-              <li class="breadcrumb-item active" aria-current="page">BM-Approval-Create</li>
+          <li class="breadcrumb-item  d-flex align-items-center" aria-current="page"><mat-icon
+              class="me-2">home</mat-icon>BM
+            Approval</li>
+          <li class="breadcrumb-item active" aria-current="page">BM-Approval-Create</li>
         </ol>
       </nav>
     </div>
     <div class="bmaproval-details-box my-3">
-      <form class="bmaproval-details-form">
+      <form class="bmaproval-details-form" [formGroup]="bmApprovalForm">
 
         <div class="row d-flex">
-          <div class="col-12 col-md-4
-          .">
+          <div class="col-12 col-md-4">
             <label>Lead Number</label>
-            <input
-              placeholder="Enter Lead Number"
-              type="number"
-              class="form-control my-2"
-              formControlName="leadnumber"
-            />
+            <input placeholder="Enter Lead Number" type="number" class="form-control my-2"
+              formControlName="leadNumber" />
 
-            <span class="massage-text">Lead Number is required</span>
+            <span class="massage-text" *ngIf="(bmApprovalForm.get('leadNumber')?.touched || isSubmitted) && bmApprovalForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input
-              placeholder="Enter Vehicle Number"
-              type="number"
-              class="form-control my-2"
-              formControlName="vehicleNumber"
-            />
+            <input placeholder="Enter Vehicle Number" type="number" class="form-control my-2"
+              formControlName="vehicleNumber" />
 
-            <span class="massage-text">Vehicle Number is required</span>
+            <span class="massage-text" *ngIf="(bmApprovalForm.get('vehicleNumber')?.touched || isSubmitted) && bmApprovalForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
         </div>
       </form>
-      <div
-        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
-      >
-        <button class="option-button d-flex align-items-center">GO</button>
+      <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
+        <button class="option-button d-flex align-items-center" (click)="submit()">GO</button>
       </div>
     </div>
 
