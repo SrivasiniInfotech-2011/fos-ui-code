@@ -40,15 +40,14 @@ $FOS-theme: mat.define-light-theme((
 
 html{ height: 100%; }
 body { margin: 0;
-  // height: 100%;
+  height: 100%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow: auto;
+  // background-color:var(--background-color);
 
   &::webkit-scrollbar{
       display: none;
   }
 }
-.section{
-  height: 100%;
-}
+
 
