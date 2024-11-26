@@ -3,71 +3,60 @@
     <div class="lead-master-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page"><mat-icon class="me-2">home</mat-icon>Lead-master</li>
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page"><mat-icon
+              class="me-2">home</mat-icon>Lead-master</li>
         </ol>
-        </nav>
+      </nav>
     </div>
     <div class="lead-master-box my-3">
-      <form class="lead-master-form">
+      <form class="lead-master-form" [formGroup]="leadMasterForm">
         <caption class="d-flex">
           Lead View
         </caption>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Lead Number</label>
-            <input
-            placeholder="Enter Lead Number"
-              type="number"
-              class="form-control my-2"
-              formControlName="leadnumber"
-            />
-
-            <span class="massage-text">Lead Number is required</span>
+            <input placeholder="Enter Lead Number" type="number" class="form-control my-2"
+              formControlName="leadNumber" />
+            <span class="massage-text" *ngIf="(leadMasterForm.get('leadNumber')?.touched || isSearched)&& leadMasterForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input
-            placeholder="Enter Vehicle Number"
-              type="number"
-              class="form-control my-2"
-              formControlName="vehicleNumber"
-            />
-
-            <span class="massage-text">Vehicle Number is required</span>
+            <input placeholder="Enter Vehicle Number" type="number" class="form-control my-2"
+              formControlName="vehicleNumber" />
+            <span class="massage-text" *ngIf="(leadMasterForm.get('vehicleNumber')?.touched || isSearched) && leadMasterForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Status</label>
-                <select formControlName="account" class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Pending</option>
-                    <option>Lead initiated</option>
-                    <option>Assign to FE</option>
-                    <option>Field varification pending</option>
-                    <option>Field varification Complate</option>
-                  </select>
-                <span class="massage-text">Status is required</span>
+            <select formControlName="status" class="form-select mt-2">
+              <option>--Select--</option>
+              <option>Pending</option>
+              <option>Lead initiated</option>
+              <option>Assign to FE</option>
+              <option>Field verification pending</option>
+              <option>Field verification complete</option>
+            </select>
+            <span class="massage-text" *ngIf="(leadMasterForm.get('status')?.touched || isSearched) && leadMasterForm.get('status')?.hasError('required')">Status is required</span>
           </div>
         </div>
       </form>
       <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
-        <button class="option-button d-flex align-items-center">
+        <button class="option-button d-flex align-items-center" (click)="searchLead()">
           Search
         </button>
         <button class="option-button d-flex align-items-center">
-         Create
+          Create
         </button>
         <button class="option-button d-flex align-items-center">
           Clear
-         </button>
+        </button>
       </div>
     </div>
-    <div class="lead-master-box my-3">
-      <table
-        class="lead-master-table table table-bordered table-responsive mb-0"
-      >
+    <div class="lead-master-box my-3" >
+      <table class="lead-master-table table table-bordered table-responsive mb-0">
         <thead>
           <tr>
-            <th scope="col" >Lead Number</th>
+            <th scope="col">Lead Number</th>
             <th class="col">Date</th>
             <th scope="col">Status</th>
             <th scope="col">View</th>
@@ -77,34 +66,34 @@
         <tbody>
 
           <tr>
-            <td>FOSLDN011	</td>
+            <td>FOSLDN011 </td>
             <td>22/11/2024</td>
             <td>Pending</td>
             <td><mat-icon>search</mat-icon></td>
             <td><mat-icon>create</mat-icon></td>
           </tr>
           <tr>
-            <td>FOSLDN011	</td>
+            <td>FOSLDN011 </td>
             <td>22/11/2024</td>
             <td>Pending</td>
             <td><mat-icon>search</mat-icon></td>
             <td><mat-icon>create</mat-icon></td>
           </tr>
 
-            <tr>
-              <td>FOSLDN011	</td>
-              <td>22/11/2024</td>
-              <td>Pending</td>
-              <td><mat-icon>search</mat-icon></td>
-              <td><mat-icon>create</mat-icon></td>
-            </tr>
-            <tr>
-              <td>FOSLDN011	</td>
-              <td>22/11/2024</td>
-              <td>Pending</td>
-              <td><mat-icon>search</mat-icon></td>
-              <td><mat-icon>create</mat-icon></td>
-            </tr>
+          <tr>
+            <td>FOSLDN011 </td>
+            <td>22/11/2024</td>
+            <td>Pending</td>
+            <td><mat-icon>search</mat-icon></td>
+            <td><mat-icon>create</mat-icon></td>
+          </tr>
+          <tr>
+            <td>FOSLDN011 </td>
+            <td>22/11/2024</td>
+            <td>Pending</td>
+            <td><mat-icon>search</mat-icon></td>
+            <td><mat-icon>create</mat-icon></td>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -44,7 +44,7 @@ const routes: Routes = [
         component: LeadProspectDetailComponent,
       },
       {
-        path: 'lead-gaurantor-1',
+        path: 'lead-guarantor-1',
         component: Guarantor1Component,
       },
       {
@@ -56,7 +56,7 @@ const routes: Routes = [
         component: IndividualComponent,
       },
       {
-        path: 'lead-gaurantor-2',
+        path: 'lead-guarantor-2',
         component: Guarantor2Component,
       },
       {
