@@ -16,6 +16,8 @@ import { Guarantor1Component } from './pages/leadgeneration/guarantor-1/guaranto
 import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guarantor-2.component';
 import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
 import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
+import {MatTableModule} from '@angular/material/table';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-g
     FosRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    MatTableModule
   ],
 })
 export class FosModule {}
