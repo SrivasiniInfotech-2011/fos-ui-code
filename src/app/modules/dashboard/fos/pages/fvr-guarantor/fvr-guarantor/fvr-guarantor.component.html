@@ -1,1 +1,134 @@
-<p>fvr-guarantor works!</p>
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="fvrgaurantor-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item">
+            <a href="#" class="text-decoration-none d-flex align-items-center"
+              ><mat-icon class="me-2">home</mat-icon>FVR Gaurantor</a
+            >
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="fvrgaurantor-details-box my-3">
+      <form class="fvrgaurantor-details-form">
+        <caption class="d-flex">
+          FVR
+          Guarantor
+        </caption>
+        <div class="row d-flex">
+          <div class="col-12 col-md-4">
+            <label>Lead Number</label>
+            <input
+              placeholder="Enter Lead Number"
+              type="number"
+              class="form-control my-2"
+              formControlName="leadnumber"
+            />
+
+            <span class="massage-text">Lead Number is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Vehicle Number</label>
+            <input
+              placeholder="Enter Vehicle Number"
+              type="number"
+              class="form-control my-2"
+              formControlName="vehicleNumber"
+            />
+
+            <span class="massage-text">Vehicle Number is required</span>
+          </div>
+        </div>
+      </form>
+      <div
+        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
+      >
+        <button class="option-button d-flex align-items-center">Go</button>
+        <button class="option-button d-flex align-items-center">Clear</button>
+      </div>
+    </div>
+    <div class="fvrgaurantor-details-box my-3">
+      <form class="fvrgaurantor-details-form">
+        <caption class="d-flex">
+          Lead Details
+        </caption>
+        <div class="row d-flex">
+          <div class="col-12 col-md-4">
+            <label>Lead Number</label>
+            <input
+              placeholder="Lead Number "
+              type="number"
+              class="form-control my-2"
+              required
+            />
+
+            <span class="massage-text">Lead Number is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Lead Date</label>
+            <input
+              placeholder="
+              Lead Date"
+              type="date"
+              class="form-control my-2"
+              required
+            />
+
+            <span class="massage-text">Lead Date is required</span>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label>Branch</label>
+            <input
+              placeholder="Branch"
+              type="text"
+              class="form-control my-2"
+              formControlName="Tenure"
+            />
+
+            <span class="massage-text">Branch is required</span>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label>Prospect Name</label>
+            <input
+              placeholder="Prospect Name"
+              type="text"
+              class="form-control my-2"
+              required
+            />
+
+            <span class="massage-text">Prospect Name is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Mobile Number </label>
+            <input
+              placeholder=" Mobile Numbert"
+              type="number"
+              class="form-control my-2"
+              required
+            />
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label>Vehicle Number </label>
+            <input
+              placeholder="Vehicle Number"
+              type="number"
+              class="form-control my-2"
+              required
+            />
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Prospect Address </label>
+            <textarea class="w-100" rows="4" my-2></textarea>
+          </div>
+          <span class="massage-text">Address is required</span>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
