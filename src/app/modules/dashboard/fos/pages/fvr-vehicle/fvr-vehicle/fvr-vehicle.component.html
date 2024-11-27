@@ -4,98 +4,83 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none d-flex align-items-center"
-              ><mat-icon class="me-2">home</mat-icon>FVR
-              Vehicle</a
-            >
+            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon class="me-2">home</mat-icon>FVR
+              Vehicle</a>
           </li>
         </ol>
       </nav>
     </div>
     <div class="fvrvehicle-details-box my-3">
-      <form class="fvrvehicle-details-form">
+      <form class="fvrvehicle-details-form" [formGroup]="fvrVehicleLeadForm">
         <caption class="d-flex">
           FVR
           Vehicle
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4
-          .">
+          <div class="col-12 col-md-4">
             <label>Lead Number</label>
-            <input
-              placeholder="Enter Lead Number"
-              type="number"
-              class="form-control mt-1"
-              formControlName="leadnumber"
-            />
+            <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
+              formControlName="leadNumber" />
 
-            <span class="massage-text">Lead Number is required</span>
+            <span class="massage-text" *ngIf="(fvrVehicleLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrVehicleLeadForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input
-              placeholder="Enter Vehicle Number"
-              type="number"
-              class="form-control mt-1"
-              formControlName="vehicleNumber"
-            />
+            <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
+              formControlName="vehicleNumber" />
 
-            <span class="massage-text">Vehicle Number is required</span>
+            <span class="massage-text" *ngIf="(fvrVehicleLeadForm.get('vehicleNumber')?.touched || isSubmitted) && fvrVehicleLeadForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
         </div>
       </form>
-      <div
-        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
-      >
-        <button class="option-button d-flex align-items-center">Search</button>
+      <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
+        <button class="option-button d-flex align-items-center" (click)="search()">Search</button>
         <button class="option-button d-flex align-items-center">Clear</button>
       </div>
     </div>
     <div class="fvrvehicle-details-box my-3">
-      <table
-      class="fvrvehicle-master-table table table-bordered table-responsive mb-0"
-    >
-      <thead>
-        <tr>
-          <th scope="col" >Lead Number</th>
-          <th class="col">Date</th>
-          <th scope="col">Status</th>
-          <th scope="col">View</th>
+      <table class="fvrvehicle-master-table table table-bordered table-responsive mb-0">
+        <thead>
+          <tr>
+            <th scope="col">Lead Number</th>
+            <th class="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">View</th>
 
-        </tr>
-      </thead>
-      <tbody>
+          </tr>
+        </thead>
+        <tbody>
 
-        <tr>
-          <td>FOSLDN007	</td>
-          <td>22/11/2024</td>
-          <td>Field Verification Completed</td>
-          <td><mat-icon>search</mat-icon></td>
+          <tr>
+            <td>FOSLDN007 </td>
+            <td>22/11/2024</td>
+            <td>Field Verification Completed</td>
+            <td><mat-icon>search</mat-icon></td>
 
-        </tr>
-        <tr>
-          <td>FOSLDN007	</td>
-          <td>22/11/2024</td>
-          <td>Field Verification Completed</td>
-          <td><mat-icon>search</mat-icon></td>
+          </tr>
+          <tr>
+            <td>FOSLDN007 </td>
+            <td>22/11/2024</td>
+            <td>Field Verification Completed</td>
+            <td><mat-icon>search</mat-icon></td>
 
-        </tr>
-        <tr>
-          <td>FOSLDN007	</td>
-          <td>22/11/2024</td>
-          <td>Field Verification Completed</td>
-          <td><mat-icon>search</mat-icon></td>
+          </tr>
+          <tr>
+            <td>FOSLDN007 </td>
+            <td>22/11/2024</td>
+            <td>Field Verification Completed</td>
+            <td><mat-icon>search</mat-icon></td>
 
-        </tr>
-        <tr>
-          <td>FOSLDN007	</td>
-          <td>22/11/2024</td>
-          <td>Field Verification Completed</td>
-          <td><mat-icon>search</mat-icon></td>
+          </tr>
+          <tr>
+            <td>FOSLDN007 </td>
+            <td>22/11/2024</td>
+            <td>Field Verification Completed</td>
+            <td><mat-icon>search</mat-icon></td>
 
-        </tr>
-      </tbody>
-    </table>
+          </tr>
+        </tbody>
+      </table>
 
     </div>
   </div>

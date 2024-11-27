@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-fvr-vehicle',
@@ -7,4 +8,22 @@ import { Component } from '@angular/core';
 })
 export class FvrVehicleComponent {
 
+
+  public fvrVehicleLeadForm:FormGroup;
+  public isSubmitted:boolean = false;
+
+
+  constructor(){
+    this.fvrVehicleLeadForm = new FormGroup({
+      leadNumber:new FormControl('', [Validators.required]),
+      vehicleNumber:new FormControl('', [Validators.required])
+    });
+  }
+
+  search(){
+    this.isSubmitted = true;
+    if(this.fvrVehicleLeadForm.valid){
+      this.isSubmitted = false;
+    }
+  }
 }
