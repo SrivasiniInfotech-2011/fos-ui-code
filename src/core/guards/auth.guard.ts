@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -12,9 +13,7 @@ import { UserService } from '../../data/services/shared/user.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private userService: UserService
-  ) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   /**
    * Check conditions to allow route activation
@@ -22,37 +21,55 @@ export class AuthGuard implements CanActivate {
    * @param state
    * @returns
    */
-  canActivate(
+  async canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    const user = this.userService.getUser();
-    if (user && user.sessionExpireDate) {
+  ): Promise<boolean | UrlTree> {
+    let sessionExpireDate = Number(localStorage.getItem('sessionExpireDate'));
+    if (!sessionExpireDate) this.router.navigate(['/login']);
+    if (sessionExpireDate) {
       const currentDate = new Date().getTime().toString();
       const currentDateWithoutMilliseconds = parseInt(
         currentDate.substring(0, currentDate.length - 3)
       );
-      if (currentDateWithoutMilliseconds < user.sessionExpireDate) {
+      if (currentDateWithoutMilliseconds < sessionExpireDate) {
         return true;
       }
     }
-    return new Observable((observer) => {
-      // this.oidcService.isLoggedIn().then(async (authenticated: boolean) => {
-      //   if (authenticated) {
-      //     observer.next(this.doCanActivate(route, state));
-      //     return;
-      //   }
-      //   await this.authService.authenticate(
-      //     route.url.toString(),
-      //     route.queryParams
-      //   );
-      //   observer.next(false);
-      // });
+    let accessToken = localStorage.getItem('userToken');
+    let refreshToken = localStorage.getItem('refreshToken');
+    const isRefreshSuccess = await this.tryRefreshingTokens(
+      accessToken!,
+      refreshToken!
+    );
+    return isRefreshSuccess;
+  }
+
+  private async tryRefreshingTokens(
+    accessToken: string,
+    refreshToken: string
+  ): Promise<boolean> {
+    if (!accessToken || !refreshToken) {
+      return false;
+    }
+    let isRefreshSuccess: boolean;
+    const refreshRes = await new Promise<any>((resolve, reject) => {
+      this.userService.refreshToken(accessToken, refreshToken).subscribe({
+        next: (res: any) => resolve(res),
+        error: (_) => {
+          reject;
+          isRefreshSuccess = false;
+        },
+      });
     });
+    localStorage.setItem('userToken', refreshRes.message.accessToken);
+    localStorage.setItem('refreshToken', refreshRes.message.refreshToken);
+    localStorage.setItem(
+      'sessionExpireDate',
+      refreshRes.message.sessionExpireDate
+    );
+    isRefreshSuccess = true;
+    return isRefreshSuccess;
   }
 
   /**

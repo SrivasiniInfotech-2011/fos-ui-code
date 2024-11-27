@@ -24,19 +24,6 @@ import { FOSErrorInterceptor } from '../core/interceptors/fos-error-interceptor'
 import { FOSErrorHandlingInterceptor } from '../core/interceptors/fos-errorhandler-interceptor';
 import { StoreModule } from '@ngrx/store';
 import { GlobalErrorHandlingService } from '../data/services/shared/global-error-handling.service';
-import { logInReducer } from '../core/store/reducers/fos-login-reducers';
-import myRequestReducer from '../core/store/reducers/fos-myRequest-reducer';
-import {
-  myRequestConfigReducer,
-  myRequestTableUserSetting,
-  requestConfigReducer,
-  requestInterestedPartySettingsReducer,
-  userSettingReducer,
-} from '../core/store/reducers/fos-config-reducer';
-// import {RequestSharedModule} from "./request/shared/request-shared-module";
-import {
-  ccRequestViewReducer,
-} from '../core/store/reducers/fos-ccRequest-reducer';
 import { ToastrModule } from 'ngx-toastr';
 // import { HLTabViewModule } from './shared/tab-view/tab-view.module';
 
@@ -55,18 +42,6 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    // TranslateModule.forRoot({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: HTTPLoaderFactory,
-    //     deps: [HttpClient],
-    //   },
-    // }),
-    StoreModule.forRoot({"login":logInReducer,
-      "myRequest":myRequestReducer, "myRequestConfig":myRequestConfigReducer,
-      'userConfig': userSettingReducer, 'myRequestTableUserSetting':myRequestTableUserSetting,
-      'requestConfig':requestConfigReducer,
-      'ccRequestView':ccRequestViewReducer, 'ccRequestInterestedParty':requestInterestedPartySettingsReducer}),
   ],
   providers: [
     {

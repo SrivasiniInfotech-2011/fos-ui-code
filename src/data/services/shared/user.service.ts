@@ -15,7 +15,6 @@ import {
 } from '../../../core/common/literals';
 import { IUserAuth } from '../../../core/interfaces/user-auth';
 import { UserMapper } from '../../mappers/user-mapper';
-import { Store } from '@ngrx/store';
 import { UtilsService } from './utils.service';
 import { FOSBaseWrapperService } from './fos-basewrapper.service';
 import { FOSErrorhandlingService } from './fos-error-handling.service';
@@ -29,15 +28,14 @@ import { FOSErrorhandlingService } from './fos-error-handling.service';
 export class UserService {
   private _userSubject: BehaviorSubject<IUserAuth> =
     new BehaviorSubject<IUserAuth>(null as any);
-  user$: Observable<IUserAuth> = this.store.select((state) => state.login);
+  // user$: Observable<IUserAuth> = this.store.select((state) => state.login);
 
   constructor(
     private fosBaseWrapper: FOSBaseWrapperService,
     private utilService: UtilsService,
     private userMapper: UserMapper,
-    private store: Store<{ login: IUserAuth }>,
     public fosErrorHandler: FOSErrorhandlingService
-  ) { }
+  ) {}
 
   /**
    * Init the user information.
@@ -46,19 +44,7 @@ export class UserService {
    *
    */
   init(user: IUserAuth) {
-    this.mapUser(user)
-      .pipe(
-        catchError((err) => throwError(() => new Error(err))),
-        tap((user) => this._userSubject.next(user))
-      )
-      .subscribe();
-  }
-
-  /**
-   * Map user using the userMapper information.
-   */
-  mapUser(user: IUserAuth): Observable<IUserAuth> {
-    return of(user).pipe(map(this.userMapper.map));
+    this._userSubject.next(user);
   }
 
   /**
@@ -66,16 +52,6 @@ export class UserService {
    */
   getUser(): IUserAuth {
     return this._userSubject.value;
-  }
-
-  /**
-   * Check if the user is a system administrator
-   */
-  isSystemAdministrator(): boolean {
-    return (
-      this.getUser()?.securityProfile.role.Roles[0].RoleId ==
-      FOSRoles.SYSTEM_ADMINISTRATOR
-    );
   }
 
   authenticateUser(userName: string, password: string): Observable<any> {
@@ -102,20 +78,35 @@ export class UserService {
       );
   }
 
+  refreshToken(accessToken: string, refreshToken: string): Observable<any> {
+    let endPoint: string = this.utilService.buildApiEndpoint(
+      null,
+      FOSApiEndPoints.USER_REFRESH_TOKEN_API
+    );
+    let body = {
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    };
+    return this.fosBaseWrapper.post<any, any>(endPoint,body).pipe(
+      catchError((error) => {
+        this.fosErrorHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
+  }
+
   getSideBarData(userId: any): Observable<any> {
     let endPoint: string = this.utilService.buildApiEndpoint(
       null,
       FOSApiEndPoints.SIDEBAR_API.replace('{userId}', userId),
       ''
     );
-    return this.fosBaseWrapper
-      .get(endPoint)
-      .pipe(
-        catchError((error) => {
-          this.fosErrorHandler.handleError(error);
-          return throwError(() => error);
-        })
-      );
+    return this.fosBaseWrapper.get(endPoint).pipe(
+      catchError((error) => {
+        this.fosErrorHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
   }
 
   getSideBarMaster(): Observable<any> {

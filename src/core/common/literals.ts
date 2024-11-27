@@ -101,6 +101,7 @@ export const FOSApiEndPoints ={
   REQUEST_INTERESTED_PARTY_API:'/request/:id/interested-parties',
   INTERESTED_PARTY_CONFIG_LOCAL:"/core/config/interested-party-config.json",
   USER_LOGIN_API:"/api/Users/GetUserByUserNameAndPassword",
+  USER_REFRESH_TOKEN_API:"/api/Users/RefreshToken",
   SIDEBAR_API: "/api/Home/GetUserMenus/{userId}"
 };
 
