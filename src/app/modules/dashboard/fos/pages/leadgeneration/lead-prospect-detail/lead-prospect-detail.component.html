@@ -3,35 +3,31 @@
     <div class="lead-prospect-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item"><a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon class="me-2">home</mat-icon>Lead Generation</a></li>
+          <li class="breadcrumb-item"><a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon
+                class="me-2">home</mat-icon>Lead Generation</a></li>
           <li class="breadcrumb-item active" aria-current="page">Prospect Details</li>
         </ol>
       </nav>
     </div>
     <div class="lead-prospect-details-box my-3">
-      <form class="lead-prospect-details-form">
+      <form class="lead-prospect-details-form" [formGroup]="leadForm">
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Lead Number</label>
-            <input
-            placeholder="Enter Lead Number"
-              type="number"
-              class="form-control my-2"
-              formControlName="leadnumber"
-            />
-
-            <span class="massage-text">Lead Number is required</span>
+            <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
+              formControlName="leadNumber" />
+            <span class="massage-text"
+              *ngIf="(leadForm.get('leadNumber')?.touched || isSubmitted)&& leadForm.get('leadNumber')?.hasError('required')">Lead
+              Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input
-            placeholder="Enter Vehicle Number"
-              type="number"
-              class="form-control my-2"
-              formControlName="vehicleNumber"
-            />
+            <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
+              formControlName="vehicleNumber" />
 
-            <span class="massage-text">Vehicle Number is required</span>
+            <span class="massage-text"
+              *ngIf="(leadForm.get('vehicleNumber')?.touched || isSubmitted)&& leadForm.get('vehicleNumber')?.hasError('required')">Vehicle
+              Number is required</span>
           </div>
 
         </div>
@@ -39,96 +35,94 @@
 
     </div>
     <div class="lead-prospect-details-box my-3">
-      <form class="lead-prospect-details-form">
-      <caption>Loan
-        Details</caption>
+      <form class="lead-prospect-details-form" [formGroup]="loanDetailsForm">
+        <caption>Loan
+          Details</caption>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Line Of Business</label>
-                <select class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Hyponthication</option>
-                  </select>
-                <span class="massage-text">Line Of Business is required</span>
+            <select class="form-select mt-2" formControlName="lineOfBusiness">
+              <option>--Select--</option>
+              <option>Hyponthication</option>
+            </select>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('lineOfBusiness')?.touched || isSubmitted)&& loanDetailsForm.get('lineOfBusiness')?.hasError('required')">Line
+              Of Business is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Finance Amount</label>
-            <input
-            placeholder="Enter the Finance Amoun"
-              type="number"
-              class="form-control my-2"
+            <input placeholder="Enter the Finance Amount" type="number" class="form-control mt-1"
+              formControlName="financeAmount" />
 
-              required
-            />
-
-            <span class="massage-text">Finance Amount is required</span>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('financeAmount')?.touched || isSubmitted)&& loanDetailsForm.get('financeAmount')?.hasError('required')">Finance
+              Amount is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Tenure</label>
-            <input
-            placeholder="Enter the Tenure"
-              type="number"
-              class="form-control my-2"
-              formControlName="Tenure"
-            />
+            <input placeholder="Enter the Tenure" type="number" class="form-control mt-1" formControlName="tenure" />
 
-            <span class="massage-text">Tenure is required</span>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('tenure')?.touched || isSubmitted)&& loanDetailsForm.get('tenure')?.hasError('required')">Tenure
+              is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Tenure Type</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Month</option>
-                  </select>
-                <span class="massage-text">Tenure Type is required</span>
+            <select class="form-select mt-2" formControlName="tenureType">
+              <option>--Select--</option>
+              <option>Month</option>
+            </select>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('tenureType')?.touched || isSubmitted)&& loanDetailsForm.get('tenureType')?.hasError('required')">Tenure
+              Type is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Rate</label>
-            <input
-            placeholder="Enter the Rate "
-              type="number"
-              class="form-control my-2"
+            <input placeholder="Enter the Rate " type="number" class="form-control mt-1" formControlName="rate" />
 
-              required
-            />
-
-            <span class="massage-text">Rate is required</span>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('rate')?.touched || isSubmitted)&& loanDetailsForm.get('rate')?.hasError('required')">Rate
+              is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Repayment Frequency</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Monthly</option>
-                    <option>Quaterly</option>
-                    <option>yearly</option>
-                    <option>Annually</option>
-                  </select>
-                <span class="massage-text">Repayment Frequency is required</span>
+            <select class="form-select mt-2" formControlName="repaymentFrequency">
+              <option>--Select--</option>
+              <option>Monthly</option>
+              <option>Quarterly</option>
+              <option>yearly</option>
+              <option>Annually</option>
+            </select>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('repaymentFrequency')?.touched || isSubmitted)&& loanDetailsForm.get('repaymentFrequency')?.hasError('required')">Repayment
+              Frequency is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Leave Period</label>
-            <input
-            placeholder="Enter the Leave Period"
-              type="text"
-              class="form-control my-2"
-              formControlName="Tenure"
-            />
+            <input placeholder="Enter the Leave Period" type="text" class="form-control mt-1"
+              formControlName="leavePeriod" />
 
-            <span class="massage-text">Leave Period is required</span>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('leavePeriod')?.touched || isSubmitted)&& loanDetailsForm.get('leavePeriod')?.hasError('required')">Leave
+              Period is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Field Executive</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                  </select>
-                <span class="massage-text">Field Executive is required</span>
+            <select class="form-select mt-2" formControlName="fieldExecutive">
+              <option>--Select--</option>
+            </select>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('fieldExecutive')?.touched || isSubmitted)&& loanDetailsForm.get('fieldExecutive')?.hasError('required')">Field
+              Executive is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Document Category</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                  </select>
-                <span class="massage-text">Document Category is required</span>
+            <select class="form-select mt-2" formControlName="documentCategory">
+              <option>--Select--</option>
+            </select>
+            <span class="massage-text"
+              *ngIf="(loanDetailsForm.get('documentCategory')?.touched || isSubmitted)&& loanDetailsForm.get('documentCategory')?.hasError('required')">Document
+              Category is required</span>
           </div>
 
         </div>
@@ -136,149 +130,120 @@
 
     </div>
     <div class="lead-prospect-details-box my-3">
-      <form class="lead-prospect-details-form">
-      <caption>Asset
-        Details</caption>
+      <form class="lead-prospect-details-form" [formGroup]="assetDetailsForm">
+        <caption>Asset
+          Details</caption>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Asset Class</label>
-                <select class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Private</option>
-                    <option>Swift Car</option>
-                  </select>
-                <span class="massage-text">Asset Class is required</span>
+            <select class="form-select mt-2" formControlName="assetClass">
+              <option>--Select--</option>
+              <option>Private</option>
+              <option>Swift Car</option>
+            </select>
+            <span class="massage-text"
+              *ngIf="(assetDetailsForm.get('assetClass')?.touched || isSubmitted) && assetDetailsForm.get('assetClass')?.hasError('required')">Asset
+              Class is required</span>
           </div>
 
           <div class="col-12 col-md-4">
             <label>Asset Name</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Ashok Laylend</option>
-                  </select>
-                <span class="massage-text">Asset Name is required</span>
+            <select class="form-select mt-2" formControlName="assetName">
+              <option>--Select--</option>
+              <option>Ashok Leyland</option>
+            </select>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('assetName')?.touched || isSubmitted) && assetDetailsForm.get('assetName')?.hasError('required')">Asset Name is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Asset Type</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Car</option>
-                    <option>Load/Goods</option>
-                  </select>
-                <span class="massage-text">Asset Type is required</span>
+            <select class="form-select mt-2" formControlName="assetType">
+              <option>--Select--</option>
+              <option>Car</option>
+              <option>Load/Goods</option>
+            </select>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('assetType')?.touched || isSubmitted) && assetDetailsForm.get('assetType')?.hasError('required')">Asset Type is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Asset Model</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Swift</option>
-                    <option>Wagon</option>
-                  </select>
-                <span class="massage-text">Asset Model is required</span>
+            <select class="form-select mt-2" formControlName="assetModel">
+              <option>--Select--</option>
+              <option>Swift</option>
+              <option>Wagon</option>
+            </select>
+            <span class="massage-text"  *ngIf="(assetDetailsForm.get('assetModel')?.touched || isSubmitted) && assetDetailsForm.get('assetModel')?.hasError('required')">Asset Model is required</span>
           </div>
 
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input
-            placeholder="Enter the Vehicle Number "
-              type="number"
-              class="form-control my-2"
+            <input placeholder="Enter the Vehicle Number " type="number" class="form-control mt-1" formControlName="vehicleNumber"/>
 
-              required
-            />
-
-            <span class="massage-text">Vehicle Number is required</span>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('vehicleNumber')?.touched || isSubmitted) && assetDetailsForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Engine Number</label>
-            <input
-            placeholder="Enter the Engine Number "
-              type="number"
-              class="form-control my-2"
+            <input placeholder="Enter the Engine Number " type="number" class="form-control mt-1" formControlName="engineNumber" />
 
-              required
-            />
-
-            <span class="massage-text">Engine Number is required</span>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('engineNumber')?.touched || isSubmitted) && assetDetailsForm.get('engineNumber')?.hasError('required')">Engine Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Chassis Number</label>
-            <input
-            placeholder="Enter the Chassis Number "
-              type="number"
-              class="form-control my-2"
+            <input placeholder="Enter the Chassis Number " type="number" class="form-control mt-1" formControlName="chassisNumber" />
 
-              required
-            />
-
-            <span class="massage-text">Chassis Number is required</span>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('chassisNumber')?.touched || isSubmitted) && assetDetailsForm.get('chassisNumber')?.hasError('required')">Chassis Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Serial Number</label>
-            <input
-            placeholder="Enter the Serial Number "
-              type="number"
-              class="form-control my-2"
+            <input placeholder="Enter the Serial Number " type="number" class="form-control mt-1" formControlName="serialNumber" />
 
-              required
-            />
-
-            <span class="massage-text">Serial Number is required</span>
+            <span class="massage-text"  *ngIf="(assetDetailsForm.get('serialNumber')?.touched || isSubmitted) && assetDetailsForm.get('serialNumber')?.hasError('required')">Serial Number is required</span>
           </div>
 
           <div class="col-12 col-md-4">
             <label>Ownership</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>First</option>
-                    <option>Secound</option>
-                    <option>Third</option>
+            <select class="form-select mt-2" formControlName="ownership">
+              <option>--Select--</option>
+              <option>First</option>
+              <option>Second</option>
+              <option>Third</option>
 
-                  </select>
-                <span class="massage-text">Ownership is required</span>
+            </select>
+            <span class="massage-text"  *ngIf="(assetDetailsForm.get('ownership')?.touched || isSubmitted) && assetDetailsForm.get('ownership')?.hasError('required')">Ownership is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Model</label>
-            <input
-            placeholder="Enter the Model "
-              type="text"
-              class="form-control my-2"
+            <input placeholder="Enter the Model " type="text" class="form-control mt-1" formControlName="model" />
 
-              required
-            />
-
-            <span class="massage-text">Model is required</span>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('model')?.touched || isSubmitted) && assetDetailsForm.get('model')?.hasError('required')">Model is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Type</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Own</option>
-                  </select>
-                <span class="massage-text">Vehicle Type is required</span>
+            <select class="form-select mt-2" formControlName="vehicleType">
+              <option>--Select--</option>
+              <option>Own</option>
+            </select>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('vehicleType')?.touched || isSubmitted) && assetDetailsForm.get('vehicleType')?.hasError('required')">Vehicle Type is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Tax Type</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Life Time</option>
-                  </select>
-                <span class="massage-text">Tax Type is required</span>
+            <select class="form-select mt-2" formControlName="taxType">
+              <option>--Select--</option>
+              <option>Life Time</option>
+            </select>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('taxType')?.touched || isSubmitted) && assetDetailsForm.get('taxType')?.hasError('required')">Tax Type is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Fuel Type*</label>
-                <select  class="form-select mt-2" required>
-                    <option>--Select--</option>
-                    <option>Gas</option>
-                    <option>Petrol</option>
-                  </select>
-                <span class="massage-text">Fuel Type is required</span>
+            <select class="form-select mt-2" formControlName="fuelType">
+              <option>--Select--</option>
+              <option>Gas</option>
+              <option>Petrol</option>
+            </select>
+            <span class="massage-text" *ngIf="(assetDetailsForm.get('fuelType')?.touched || isSubmitted) && assetDetailsForm.get('fuelType')?.hasError('required')">Fuel Type is required</span>
           </div>
-
         </div>
       </form>
       <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
-        <button class="option-button d-flex align-items-center">
+        <button class="option-button d-flex align-items-center" (click)="submit()">
           Submit
         </button>
 

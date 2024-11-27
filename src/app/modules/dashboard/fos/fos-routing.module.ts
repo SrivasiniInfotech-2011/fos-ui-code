@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FosComponent } from './fos.component';
+import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-create/bm-approval-create.component';
+import { BmApprovalMasterComponent } from './pages/bm-approval/bm-approval-master/bm-approval-master.component';
+import { DisbursementDetailCreateComponent } from './pages/disbursement/disbursement-detail-create/disbursement-detail-create.component';
+import { DisbursementDetailMasterComponent } from './pages/disbursement/disbursement-detail-master/disbursement-detail-master.component';
+import { DocumentCollectionMasterComponent } from './pages/document-collection/document-collection-master/document-collection-master.component';
 import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
+import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
 import { IndividualDetailsComponent } from './pages/individual-details/individual-details.component';
 import { Guarantor1Component } from './pages/leadgeneration/guarantor-1/guarantor-1.component';
 import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guarantor-2.component';
@@ -44,7 +50,7 @@ const routes: Routes = [
         component: LeadProspectDetailComponent,
       },
       {
-        path: 'lead-gaurantor-1',
+        path: 'lead-guarantor-1',
         component: Guarantor1Component,
       },
       {
@@ -56,7 +62,7 @@ const routes: Routes = [
         component: IndividualComponent,
       },
       {
-        path: 'lead-gaurantor-2',
+        path: 'lead-guarantor-2',
         component: Guarantor2Component,
       },
       {
@@ -64,9 +70,33 @@ const routes: Routes = [
         component: FvrHirerMasterComponent,
       },
       {
-        path: 'FVR-gaurantor',
+        path: 'FVR-guarantor',
         component: FvrGuarantorComponent,
       },
+      {
+        path:'FVR-vehicle',
+        component:FvrVehicleComponent,
+      },
+      {
+        path:'BM-approval',
+        component:BmApprovalMasterComponent,
+      },
+      {
+        path:'BM-approvalcreate',
+        component:BmApprovalCreateComponent,
+      },
+      {
+        path:'Disbursement-details',
+        component:DisbursementDetailMasterComponent,
+      },
+      {
+        path:'disbursement-create',
+        component:DisbursementDetailCreateComponent,
+      },
+      {
+        path:'document-collection',
+        component:DocumentCollectionMasterComponent,
+      }
     ],
   },
 ];

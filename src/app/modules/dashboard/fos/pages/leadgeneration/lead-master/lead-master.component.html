@@ -3,72 +3,58 @@
     <div class="lead-master-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li
-            class="breadcrumb-item active d-flex align-items-center"
-            aria-current="page"
-          >
-            <mat-icon class="me-2">home</mat-icon>Lead Generation
-          </li>
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page"><mat-icon
+              class="me-2">home</mat-icon>Lead-master</li>
         </ol>
       </nav>
     </div>
-    <div class="lead-master-box my-3" *ngIf="searchParametersForm">
-      <form class="lead-master-form" [formGroup]="searchParametersForm">
+    <div class="lead-master-box my-3">
+      <form class="lead-master-form" [formGroup]="leadMasterForm">
         <caption class="d-flex">
           Lead View
         </caption>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Lead Number</label>
-            <input
-              placeholder="Enter Lead Number"
-              type="number"
-              class="form-control my-2"
-              formControlName="leadNumber"
-            />
-
-            <span class="massage-text">Lead Number is required</span>
+            <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
+              formControlName="leadNumber" />
+            <span class="massage-text" *ngIf="(leadMasterForm.get('leadNumber')?.touched || isSearched)&& leadMasterForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input
-              placeholder="Enter Vehicle Number"
-              type="number"
-              class="form-control my-2"
-              formControlName="vehicleNumber"
-            />
-
-            <span class="massage-text">Vehicle Number is required</span>
+            <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
+              formControlName="vehicleNumber" />
+            <span class="massage-text" *ngIf="(leadMasterForm.get('vehicleNumber')?.touched || isSearched) && leadMasterForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Status</label>
-            <select formControlName="status" class="form-select mt-2" required>
-              <option value="" disabled>--Select Status To Filter--</option>
-              <option *ngFor="let c of leadStatuses" [value]="c.statusId">
-                {{ c.statusDescription }}
-              </option>
+            <select formControlName="status" class="form-select mt-2">
+              <option>--Select--</option>
+              <option>Pending</option>
+              <option>Lead initiated</option>
+              <option>Assign to FE</option>
+              <option>Field verification pending</option>
+              <option>Field verification complete</option>
             </select>
-            <span class="massage-text">Status is required</span>
+            <span class="massage-text" *ngIf="(leadMasterForm.get('status')?.touched || isSearched) && leadMasterForm.get('status')?.hasError('required')">Status is required</span>
           </div>
         </div>
       </form>
       <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
-        <button
-          class="option-button d-flex align-items-center"
-          (click)="onSearch()"
-        >
+        <button class="option-button d-flex align-items-center" (click)="searchLead()">
           Search
         </button>
-        <button class="option-button d-flex align-items-center">Create</button>
-        <button class="option-button d-flex align-items-center">Clear</button>
+        <button class="option-button d-flex align-items-center">
+          Create
+        </button>
+        <button class="option-button d-flex align-items-center">
+          Clear
+        </button>
       </div>
     </div>
-    <div class="lead-master-box my-3">
-      <table
-        class="lead-master-table table table-bordered table-responsive mb-0"
-        *ngIf="leads && leads.length > 0"
-      >
-        <thead>
+    <div class="lead-master-box my-3" >
+      <table mat-table [dataSource]="dataSource" class="lead-master-table table table-bordered table-responsive mb-0">
+        <!-- <thead>
           <tr>
             <th scope="col">Lead Number</th>
             <th class="col">Date</th>
@@ -78,14 +64,65 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let leadItem of leads">
-            <td>{{ leadItem.leadNumber }}</td>
-            <td>{{ leadItem.leadDate | date : "dd/MM/yyyy" }}</td>
-            <td>{{ leadItem.leadCurrentStatusDescription }}</td>
+
+          <tr>
+            <td>FOSLDN011 </td>
+            <td>22/11/2024</td>
+            <td>Pending</td>
             <td><mat-icon>search</mat-icon></td>
             <td><mat-icon>create</mat-icon></td>
           </tr>
-        </tbody>
+          <tr>
+            <td>FOSLDN011 </td>
+            <td>22/11/2024</td>
+            <td>Pending</td>
+            <td><mat-icon>search</mat-icon></td>
+            <td><mat-icon>create</mat-icon></td>
+          </tr>
+
+          <tr>
+            <td>FOSLDN011 </td>
+            <td>22/11/2024</td>
+            <td>Pending</td>
+            <td><mat-icon>search</mat-icon></td>
+            <td><mat-icon>create</mat-icon></td>
+          </tr>
+          <tr>
+            <td>FOSLDN011 </td>
+            <td>22/11/2024</td>
+            <td>Pending</td>
+            <td><mat-icon>search</mat-icon></td>
+            <td><mat-icon>create</mat-icon></td>
+          </tr>
+        </tbody> -->
+
+        <ng-container matColumnDef="leadNumber">
+          <th mat-header-cell *matHeaderCellDef> Lead Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.leadNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef> View </th>
+          <td mat-cell *matCellDef="let element"> <mat-icon>search</mat-icon> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modify">
+          <th mat-header-cell *matHeaderCellDef> Modify </th>
+          <td mat-cell *matCellDef="let element"> <mat-icon>create</mat-icon> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
   </div>

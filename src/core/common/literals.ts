@@ -107,6 +107,7 @@ export const FOSApiEndPoints = {
   INTERESTED_PARTY_CONFIG_LOCAL: '/core/config/interested-party-config.json',
   USER_LOGIN_API: '/api/Users/GetUserByUserNameAndPassword',
   SIDEBAR_API: '/api/Home/GetUserMenus/{userId}',
+  USER_REFRESH_TOKEN_API:"/api/Users/RefreshToken",
   Leads: {
     GET_ASSETLOOKUP: '/api/Leads/GetAssetLookup',
     GET_LEADDETAILS: '/api/Leads/GetLeadDetails',

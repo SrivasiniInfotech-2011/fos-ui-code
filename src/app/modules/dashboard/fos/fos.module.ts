@@ -1,9 +1,9 @@
+import { LoanDetailsComponent } from './pages/leadgeneration/loan-details/loan-details.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FosRoutingModule } from './fos-routing.module';
 import { ListingPageComponent } from './pages/listing-page/listing-page.component';
-import { LoanDetailsComponent } from './pages/loan-details/loan-details.component';
 import { ProspectDetailsComponent } from './pages/prospect-details/prospect-details.component';
 import { IndividualDetailsComponent } from './pages/individual-details/individual-details.component';
 import { SharedModule } from '../../../shared/shared.module';
@@ -17,6 +17,15 @@ import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guaranto
 import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
 import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 
+import {MatTableModule} from '@angular/material/table';
+
+import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
+import { BmApprovalMasterComponent } from './pages/bm-approval/bm-approval-master/bm-approval-master.component';
+import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-create/bm-approval-create.component';
+import { DocumentCollectionMasterComponent } from './pages/document-collection/document-collection-master/document-collection-master.component';
+import { DisbursementDetailMasterComponent } from './pages/disbursement/disbursement-detail-master/disbursement-detail-master.component';
+import { DisbursementDetailCreateComponent } from './pages/disbursement/disbursement-detail-create/disbursement-detail-create.component';
+
 @NgModule({
   declarations: [
     ListingPageComponent,
@@ -24,19 +33,27 @@ import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-g
     ProspectDetailsComponent,
     IndividualDetailsComponent,
     ViewloanDetailsComponent,
+    LoanDetailsComponent,
     LeadProspectDetailComponent,
     LeadMasterComponent,
     IndividualComponent,
     Guarantor1Component,
     Guarantor2Component,
     FvrHirerMasterComponent,
-    FvrGuarantorComponent
+    FvrGuarantorComponent,
+    FvrVehicleComponent,
+    BmApprovalMasterComponent,
+    BmApprovalCreateComponent,
+    DocumentCollectionMasterComponent,
+    DisbursementDetailMasterComponent,
+    DisbursementDetailCreateComponent
   ],
   imports: [
     CommonModule,
     FosRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    MatTableModule
   ],
 })
 export class FosModule {}

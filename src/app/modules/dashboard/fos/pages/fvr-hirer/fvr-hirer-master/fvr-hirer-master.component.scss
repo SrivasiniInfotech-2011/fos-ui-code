@@ -1,7 +1,5 @@
 :host {
   width: 100%;
-  background-color: var(--background-color);
-  height: 100%;
 }
 
 
@@ -38,6 +36,11 @@
       border: 1px solid var(--border-color);
       border-radius: 5px;
       padding: 10px;
+      .breadcrumb{
+        li{
+        color: var(--text-color);
+      }
+      }
 
       .fvrhirer-details-form {
           caption {

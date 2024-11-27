@@ -4,14 +4,12 @@ import { IPrimeNgColumnsState } from './commons';
  * Represents a UserAuth information
  */
 export interface IUserAuth {
-  sessionDate: number;
-  sessionExpireDate: number;
+  userId: number;
   accessToken: string;
   loginName: string;
   fullName: string;
-  securityProfile: ISecurityProfile;
-  config?: IUserConfig;
   isAuthenticated: boolean;
+  sessionExpireDate:number
 }
 
 /**
