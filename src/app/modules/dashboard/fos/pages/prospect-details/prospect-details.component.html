@@ -1,14 +1,26 @@
 <div class="content-box pt-2">
   <div class="container">
     <!-- Basic Details Section -->
+    <div class="prospect-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item">
+            <a href="#" class="text-decoration-none d-flex align-items-center"
+              ><mat-icon class="me-2">home</mat-icon>Prospect
+              Master</a
+            >
+          </li>
+        </ol>
+      </nav>
+    </div>
 
     <div class="prospect-details-box my-3" *ngIf="basicDetailForm">
       <form class="prospect-details-form" [formGroup]="basicDetailForm">
         <caption class="d-flex">
-          BasicDetails
+          Basic Details
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Mobile Number<span class="required">*</span></label>
             <input
               type="text"
@@ -26,7 +38,7 @@
               Mobile Number is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Aadhar Number<span class="required">*</span></label>
             <input
               class="form-control mt-2 mb-1"
@@ -44,7 +56,7 @@
               Aadhar Number is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>PAN Number<span class="required">*</span></label>
             <input
               type="text"
@@ -91,7 +103,7 @@
           Prospect Details
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Branch<span class="required">*</span></label>
             <input
               type="text"
@@ -110,7 +122,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Prospect Name<span class="required">*</span></label
             >
@@ -130,7 +142,7 @@
               Prospect Name is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Date of Birth<span class="required">*</span></label
             >
@@ -149,7 +161,7 @@
               Date of Birth is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Mobile Number<span class="required">*</span></label
             >
@@ -169,7 +181,7 @@
               Mobile Number is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Prospect Code</label>
             <input
               type="text"
@@ -178,7 +190,7 @@
               class="form-control mt-2 mb-1"
             />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Prospect Type<span class="required">*</span></label
             >
@@ -204,7 +216,7 @@
               Prospect Type is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Age<span class="required">*</span></label>
             <input
               type="text"
@@ -222,7 +234,7 @@
               Age is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Alternate Mobile</label>
             <input
               type="text"
@@ -231,7 +243,7 @@
               class="form-control mt-2 mb-1"
             />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Prospect Date<span class="required">*</span></label
             >
@@ -251,7 +263,7 @@
               Prospect Date is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Website</label>
             <input
               type="text"
@@ -260,7 +272,7 @@
               class="form-control mt-2 mb-1"
             />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Gender<span class="required">*</span></label>
             <select
               formControlName="gender"
@@ -284,7 +296,7 @@
               Gender is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Email</label>
             <input
               type="email"
@@ -305,7 +317,7 @@
           Communication Address
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Address Line 1<span class="required">*</span></label
             >
@@ -326,7 +338,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Address Line 2</label>
             <input
               type="text"
@@ -335,7 +347,7 @@
               class="form-control mt-2 mb-1"
             />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Landmark<span class="required">*</span></label>
             <input
               type="text"
@@ -354,7 +366,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">City<span class="required">*</span></label>
             <input
               type="text"
@@ -373,7 +385,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">State<span class="required">*</span></label>
             <select
               formControlName="state"
@@ -396,7 +408,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Country<span class="required">*</span></label>
             <select formControlName="country" class="form-select mt-2 mb-1">
               <option value="" disabled>Choose Country</option>
@@ -414,7 +426,7 @@
               Country is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Pin Code<span class="required">*</span></label>
             <input
               type="text"
@@ -448,7 +460,7 @@
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Address Line 1<span class="required">*</span></label
             >
@@ -469,7 +481,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Address Line 2</label>
             <input
               type="text"
@@ -479,7 +491,7 @@
             />
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Landmark<span class="required">*</span></label>
             <input
               type="text"
@@ -498,7 +510,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">City<span class="required">*</span></label>
             <input
               type="text"
@@ -516,7 +528,7 @@
               City is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">State<span class="required">*</span></label>
             <select
               formControlName="state"
@@ -539,7 +551,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Country<span class="required">*</span></label>
             <select formControlName="country" class="form-select mt-2 mb-1">
               <option value="" disabled>Choose Country</option>
@@ -557,7 +569,7 @@
               Country is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Pin Code<span class="required">*</span></label>
             <input
               type="text"
@@ -585,7 +597,7 @@
           Primary KYC Upload
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Aadhar Number<span class="required">*</span></label
             >
@@ -605,7 +617,7 @@
               Aadhar Number is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Pan Number<span class="required">*</span></label
             >
@@ -626,7 +638,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Prospect Image<span class="required">*</span></label
             >
@@ -647,7 +659,7 @@
             <span>{{ prospectImageFilePath }}</span>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >Aadhar Image<span class="required">*</span></label
             >
@@ -669,7 +681,7 @@
             </div>
             <span>{{ aadharImageFilePath }}</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label"
               >PAN Image<span class="required">*</span></label
             >

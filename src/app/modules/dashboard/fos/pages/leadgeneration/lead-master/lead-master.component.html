@@ -14,19 +14,19 @@
           Lead View
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
             <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
               formControlName="leadNumber" />
             <span class="massage-text" *ngIf="(leadMasterForm.get('leadNumber')?.touched || isSearched)&& leadMasterForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
             <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
               formControlName="vehicleNumber" />
             <span class="massage-text" *ngIf="(leadMasterForm.get('vehicleNumber')?.touched || isSearched) && leadMasterForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Status</label>
             <select formControlName="status" class="form-select mt-2">
               <option>--Select--</option>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class="lead-master-box my-3" >
-      <table mat-table [dataSource]="dataSource" class="lead-master-table table table-bordered table-responsive mb-0">
+      <table class="lead-master-table table table-bordered table-responsive mb-0" mat-table [dataSource]="dataSource" >
         <!-- <thead>
           <tr>
             <th scope="col">Lead Number</th>
@@ -97,27 +97,27 @@
         </tbody> -->
 
         <ng-container matColumnDef="leadNumber">
-          <th mat-header-cell *matHeaderCellDef> Lead Number </th>
+          <th mat-header-cell *matHeaderCellDef class="table-header"> Lead Number </th>
           <td mat-cell *matCellDef="let element"> {{element.leadNumber}} </td>
         </ng-container>
 
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <th mat-header-cell *matHeaderCellDef class="table-header"> Date </th>
           <td mat-cell *matCellDef="let element"> {{element.date}} </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <th mat-header-cell *matHeaderCellDef class="table-header"> Status </th>
           <td mat-cell *matCellDef="let element"> {{element.status}} </td>
         </ng-container>
 
         <ng-container matColumnDef="view">
-          <th mat-header-cell *matHeaderCellDef> View </th>
+          <th mat-header-cell *matHeaderCellDef class="table-header"> View </th>
           <td mat-cell *matCellDef="let element"> <mat-icon>search</mat-icon> </td>
         </ng-container>
 
-        <ng-container matColumnDef="modify">
-          <th mat-header-cell *matHeaderCellDef> Modify </th>
+        <ng-container matColumnDef="modify" class="table-header">
+          <th mat-header-cell *matHeaderCellDef class="table-header"> Modify </th>
           <td mat-cell *matCellDef="let element"> <mat-icon>create</mat-icon> </td>
         </ng-container>
 

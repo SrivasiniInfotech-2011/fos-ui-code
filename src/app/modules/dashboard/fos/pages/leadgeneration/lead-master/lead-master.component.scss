@@ -1,3 +1,5 @@
+
+
 :host {
   width: 100%;
 }
@@ -125,11 +127,14 @@
 
 
   }
-  .lead-master-table {
+
+
+ .lead-master-table{
+  border: 1px solid var(--border-color);
     thead {
       tr {
         th {
-          background-color:var( --table-header-background);
+          background-color:var(--table-header-background);
           font-size: 14px;
           font-weight: 600;
           line-height: 20px;
@@ -140,7 +145,7 @@
     tr {
       td{
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 20px;
         color:var(--text-dark)
       }
@@ -154,7 +159,14 @@
       }
     }
   }
-  @media only screen and (max-width: 540px) {
+.table-header{
+  background-color: var(--table-header-background) !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var( --header-text-color);
+}
+  @media only screen and (max-width: 992px) {
     .content-box {
       width: 100%;
       margin-left: 0;
@@ -181,4 +193,3 @@
       }
     }
   }
-

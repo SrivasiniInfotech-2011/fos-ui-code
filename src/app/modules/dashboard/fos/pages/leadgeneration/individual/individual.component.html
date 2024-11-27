@@ -16,14 +16,14 @@
     <div class="individual-details-box my-3">
       <form class="individual-details-form" [formGroup]="individualForm">
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
             <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
               formControlName="leadNumber" />
 
             <span class="massage-text" *ngIf="(individualForm.get('leadNumber')?.touched || isSubmitted) && individualForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
             <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
               formControlName="vehicleNumber" />
@@ -39,19 +39,19 @@
           Individual Details
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Father Name</label>
             <input placeholder="Enter the Father Name " type="text" class="form-control mt-1" formControlName="fatherName" />
 
             <span class="massage-text" *ngIf="(individualDetailsForm.get('fatherName')?.touched || isSubmitted) && individualDetailsForm.get('fatherName')?.hasError('required')">Father Name is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Mother Name</label>
             <input placeholder="Enter the Mother  Name " type="text" class="form-control mt-1" formControlName="motherName" />
 
             <span class="massage-text" *ngIf="(individualDetailsForm.get('motherName')?.touched || isSubmitted) && individualDetailsForm.get('motherName')?.hasError('required')">Mother Name is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Marital Status</label>
             <select class="form-select mt-2" formControlName="maritalStatus">
               <option>--Select--</option>
@@ -63,7 +63,7 @@
             </select>
             <span class="massage-text" *ngIf="(individualDetailsForm.get('maritalStatus')?.touched || isSubmitted) && individualDetailsForm.get('maritalStatus')?.hasError('required')">Marital Status is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Employment</label>
             <select class="form-select mt-2" formControlName="employment">
               <option>--Select--</option>
@@ -77,25 +77,25 @@
             </select>
             <span class="massage-text" *ngIf="(individualDetailsForm.get('employment')?.touched || isSubmitted) && individualDetailsForm.get('employment')?.hasError('required')">Employment is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Net Salary</label>
             <input placeholder="Enter the Amount" type="number" class="form-control mt-1" formControlName="netSalary" />
 
             <span class="massage-text" *ngIf="(individualDetailsForm.get('netSalary')?.touched || isSubmitted) && individualDetailsForm.get('netSalary')?.hasError('required')">Net Salary is required</span>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>No of adult dependents</label>
             <input placeholder="Enter the Count " type="text" class="form-control mt-1" formControlName="noOfAdultDependents" />
             <span class="massage-text" *ngIf="(individualDetailsForm.get('noOfAdultDependents')?.touched || isSubmitted) && individualDetailsForm.get('noOfAdultDependents')?.hasError('required')">No of adult dependents is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>No of Child dependents </label>
             <input placeholder="Enter the Count" type="text" class="form-control mt-1" formControlName="noOfChildDependents" />
             <span class="massage-text" *ngIf="(individualDetailsForm.get('noOfChildDependents')?.touched || isSubmitted) && individualDetailsForm.get('noOfChildDependents')?.hasError('required')">No of child dependents is required</span>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>House Type</label>
             <select class="form-select mt-2" formControlName="houseType">
               <option>--Select--</option>
@@ -105,12 +105,12 @@
             <span class="massage-text" *ngIf="(individualDetailsForm.get('houseType')?.touched || isSubmitted) && individualDetailsForm.get('houseType')?.hasError('required')">House type is required</span>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Floor Number /Flat Number* </label>
             <input placeholder="EX:Old no/new no" type="text" class="form-control mt-1" formControlName="floorFlatNumber" />
             <span class="massage-text" *ngIf="(individualDetailsForm.get('floorFlatNumber')?.touched || isSubmitted) && individualDetailsForm.get('floorFlatNumber')?.hasError('required')">Floor / Flat Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>House Status</label>
             <select class="form-select mt-2" formControlName="houseStatus">
               <option>--Select--</option>
@@ -120,36 +120,36 @@
             </select>
             <span class="massage-text" *ngIf="(individualDetailsForm.get('houseStatus')?.touched || isSubmitted) && individualDetailsForm.get('houseStatus')?.hasError('required')">House Status is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Rental / Lease Amount</label>
             <input placeholder="Enter the Amount" type="text" class="form-control mt-1" formControlName="rentalLeaseAmount" />
             <span class="massage-text" *ngIf="(individualDetailsForm.get('rentalLeaseAmount')?.touched || isSubmitted) && individualDetailsForm.get('rentalLeaseAmount')?.hasError('required')">Amount is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Owned 2 Wheeler</label>
             <input placeholder="Enter the count " type="number" class="form-control mt-1" formControlName="owned2Wheeler" />
 
             <span class="massage-text" *ngIf="(individualDetailsForm.get('owned2Wheeler')?.touched || isSubmitted) && individualDetailsForm.get('owned2Wheeler')?.hasError('required')">Owned 2 Wheeler is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Owned 4 Wheeler</label>
             <input placeholder="Enter the count " type="number" class="form-control mt-1" formControlName="owned4Wheeler" />
 
             <span class="massage-text" *ngIf="(individualDetailsForm.get('owned4Wheeler')?.touched || isSubmitted) && individualDetailsForm.get('owned4Wheeler')?.hasError('required')">Owned 4 Wheeler is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Owned Heavy Vehicles</label>
             <input placeholder="Enter the count " type="number" class="form-control mt-1" formControlName="ownedHeavyVehicle" />
 
             <span class="massage-text" *ngIf="(individualDetailsForm.get('ownedHeavyVehicle')?.touched || isSubmitted) && individualDetailsForm.get('ownedHeavyVehicle')?.hasError('required')">Owned Heavy Vehicles is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Existing Loan in Alive</label>
             <input placeholder="Enter the count " type="number" class="form-control mt-1" formControlName="existingLoans" />
 
             <span class="massage-text" *ngIf="(individualDetailsForm.get('existingLoans')?.touched || isSubmitted) && individualDetailsForm.get('existingLoans')?.hasError('required')">Existing Loan in Alive is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Total Existing Loans Monthly EMI</label>
             <input placeholder="Enter the Amount " type="number" class="form-control mt-1" formControlName="totalExistingLoans" />
 
