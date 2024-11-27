@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
@@ -17,21 +18,42 @@ import {
   ILeadHeader,
   ILeadTranslanderRequest,
 } from '../../../../../../../core/interfaces/app/leads/IFOSLeadsModel';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-lead-master',
   templateUrl: './lead-master.component.html',
   styleUrl: './lead-master.component.scss',
 })
 export class LeadMasterComponent implements OnInit {
-  public totalRecords:number=0;
+  @ViewChild(MatSort) sort: MatSort = <MatSort>{};
+  @ViewChild(MatPaginator) paginator: MatPaginator = <MatPaginator>{};
+
+  public totalRecords: number = 0;
   public loggedInUser: any = {};
   public leadStatuses: IFOSLeadStatus[] = [];
   public leads: ILeadHeader[] = [];
   public searchParametersForm: FormGroup | any = new FormGroup({});
+
+  public isSearched: boolean = false;
+  public showLeadTable: boolean = false;
+  public displayedColumns: string[] = [
+    'leadNumber',
+    'leadDate',
+    'status',
+    'view',
+    'modify',
+  ];
+  public dataSource = new MatTableDataSource<ILeadHeader>();
+
+  filters: { [key: string]: string } = {};
+
   constructor(
     private fb: FormBuilder,
     private leadsService: FOSLeadMasterService,
-    private utilityService: UtilsService,
+    private router: Router,
     private loaderService: LoaderService,
     private toasterService: ToastrService,
     private encryptionService: EncryptionService
@@ -44,10 +66,31 @@ export class LeadMasterComponent implements OnInit {
         const decryptedUserData =
           this.encryptionService.decrypt(encryptedUserData);
         this.loggedInUser = decryptedUserData || '';
+        this.dataSource.paginator = this.paginator;
         this.setSearchParametersForm();
         this.getLeadStatusesForFiltering();
       }
     }
+  }
+
+  // Apply filter for a specific column
+  applyFilter(event: Event, column: string) {
+    const filterValue = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+
+    // Update the filter for the specific column
+    this.filters[column] = filterValue;
+
+    // Combine filters and set the filtered data
+    this.dataSource.filterPredicate = (data: any, filter) => {
+      const filters = JSON.parse(filter);
+      return Object.keys(filters).every((key) =>
+        data[key].toString().toLowerCase().includes(filters[key])
+      );
+    };
+
+    this.dataSource.filter = JSON.stringify(this.filters);
   }
 
   setSearchParametersForm = () => {
@@ -75,6 +118,14 @@ export class LeadMasterComponent implements OnInit {
   }
 
   onSearch() {
+    this.loaderService.showLoader();
+    this.isSearched = true;
+    if (this.searchParametersForm.valid) {
+      this.isSearched = false;
+      this.showLeadTable = true;
+    } else {
+      this.showLeadTable = false;
+    }
     this.leadsService
       .getLeadTranslanderDetails({
         companyId: this.loggedInUser.companyId,
@@ -88,10 +139,29 @@ export class LeadMasterComponent implements OnInit {
       } as ILeadTranslanderRequest)
       .subscribe({
         next: (data: any) => {
-          this.totalRecords =data.message.totalRecords;
+          this.loaderService.hideLoader();
+          this.totalRecords = data.message.totalRecords;
           this.leads = data.message.leads as ILeadHeader[];
+          this.dataSource = new MatTableDataSource(this.leads);
+          this.dataSource.paginator = this.paginator;
         },
-        error: (error: any) => {},
+        error: (error: any) => {
+          this.loaderService.hideLoader();
+          let errorMessages = error.message.split('|');
+          for (const key in errorMessages) {
+            this.toasterService.error(errorMessages[key], 'Error', {
+              timeOut: 2000,
+            });
+          }
+        },
       });
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+  }
+
+  createLead(){
+    this.router.navigate(["viewloan-details"]);
   }
 }

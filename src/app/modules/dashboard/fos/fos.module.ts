@@ -17,7 +17,7 @@ import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guaranto
 import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
 import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
 import { BmApprovalMasterComponent } from './pages/bm-approval/bm-approval-master/bm-approval-master.component';
@@ -25,7 +25,10 @@ import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-creat
 import { DocumentCollectionMasterComponent } from './pages/document-collection/document-collection-master/document-collection-master.component';
 import { DisbursementDetailMasterComponent } from './pages/disbursement/disbursement-detail-master/disbursement-detail-master.component';
 import { DisbursementDetailCreateComponent } from './pages/disbursement/disbursement-detail-create/disbursement-detail-create.component';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     ListingPageComponent,
@@ -46,14 +49,18 @@ import { DisbursementDetailCreateComponent } from './pages/disbursement/disburse
     BmApprovalCreateComponent,
     DocumentCollectionMasterComponent,
     DisbursementDetailMasterComponent,
-    DisbursementDetailCreateComponent
+    DisbursementDetailCreateComponent,
   ],
   imports: [
     CommonModule,
     FosRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatSortModule,
+    MatInputModule,
   ],
 })
 export class FosModule {}

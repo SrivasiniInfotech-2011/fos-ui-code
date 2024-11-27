@@ -37,12 +37,12 @@ const routes: Routes = [
         path: 'viewloan-details',
         component: ViewloanDetailsComponent,
       },
-      // {
-      //   path: 'prospect-master',
-      //   component: ProspectDetailsComponent
-      // },
       {
-        path: 'lead-master',
+        path: 'prospect-master',
+        component: ProspectDetailsComponent
+      },
+      {
+        path: 'lead-generation',
         component: LeadMasterComponent,
       },
       {
