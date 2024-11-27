@@ -9,7 +9,7 @@
       </nav>
   </div>
     <div class="document-master-box my-3">
-      <form class="document-master-form">
+      <form class="document-master-form" [formGroup]="documentMasterForm">
         <caption class="d-flex">
           Document
           Master
@@ -18,7 +18,8 @@
 
           <div class="col-12 col-md-4">
             <label>Category Description</label>
-            <input type="text" class="form-control mt-2" placeholder="Enter Asset Code Description" />
+            <input type="text" class="form-control mt-2" placeholder="Enter Category Description" formControlName="categoryDescription" />
+            <span class="massage-text"  *ngIf="documentMasterForm.get('categoryDescription')?.touched && documentMasterForm.get('categoryDescription')?.hasError('required')"> Category Description is required</span>
           </div>
         </div>
       </form>

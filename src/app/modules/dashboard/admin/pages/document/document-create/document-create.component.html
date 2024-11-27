@@ -13,18 +13,15 @@
       </nav>
     </div>
     <div class="document-master-box my-3">
-      <form class="document-master-form">
-        <caption class="d-flex">
+      <form class="document-master-form" [formGroup]="documentCreateForm">
+        <caption class="d-flex" >
           Document Master
         </caption>
         <div class="row my-3">
           <div class="col-12 col-md-4">
             <label>Category Description</label>
-            <input
-              type="text"
-              class="form-control mt-2"
-              placeholder="Enter Asset Code Description"
-            />
+            <input type="text" class="form-control mt-2" placeholder="Enter Category Description" formControlName="categoryDescription" />
+            <span class="massage-text"  *ngIf="documentCreateForm.get('categoryDescription')?.touched && documentCreateForm.get('categoryDescription')?.hasError('required')"> Category Description is required</span>
           </div>
         </div>
       </form>
@@ -51,9 +48,13 @@
             </td>
             <td>
               <div class="d-flex align-items-center h-100" style="min-height:60px;">
-              <input type="checkbox" style="width:20px; height:20px;" />
-            </div></td>
-            <td>  <div class="d-flex align-items-center h-100" style="min-height:60px;"><input type="checkbox" style="width:20px; height:20px;" /></div></td>
+                <input type="checkbox" style="width:20px; height:20px;" />
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center h-100" style="min-height:60px;"><input type="checkbox"
+                  style="width:20px; height:20px;" /></div>
+            </td>
             <td>
               <select class="form-select mt-2" required>
                 <option>--Select--</option>
@@ -62,22 +63,25 @@
                 <option>PaySlip</option>
               </select>
             </td>
-            <td>  <div class="d-flex align-items-center h-100  justify-content-center" style="min-height:60px;">
-            <td><mat-icon>add_box</mat-icon><mat-icon>delete</mat-icon></div></td>
+            <td>
+              <div class="d-flex align-items-center h-100  justify-content-center" style="min-height:60px;">
+            <td><mat-icon>add_box</mat-icon><mat-icon>delete</mat-icon>
+    </div>
+    </td>
 
-        </tbody>
-      </table>
-      <div class="d-flex align-items-center flex-wrap gap-3 my-4">
-        <button class="option-button d-flex align-items-center px-4">
-          Save
-        </button>
-        <button class="option-button d-flex align-items-center px-4">
-          Clear
-        </button>
-        <button class="option-button d-flex align-items-center px-4">
-          Cancel
-        </button>
-      </div>
+    </tbody>
+    </table>
+    <div class="d-flex align-items-center flex-wrap gap-3 my-4">
+      <button class="option-button d-flex align-items-center px-4">
+        Save
+      </button>
+      <button class="option-button d-flex align-items-center px-4">
+        Clear
+      </button>
+      <button class="option-button d-flex align-items-center px-4">
+        Cancel
+      </button>
     </div>
   </div>
+</div>
 </div>

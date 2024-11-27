@@ -8,31 +8,31 @@
       </nav>
   </div>
     <div class="asset-master-box my-3">
-      <form class="asset-master-form">
+      <form class="asset-master-form" [formGroup]="assetMasterForm" >
         <caption class="d-flex">
-          Asset 
+          Asset
           Master
         </caption>
         <div class="row my-3">
           <div class="col-12 col-md-4">
             <label>Asset Category Type</label>
-            <select formControlName="gender" class="form-select mt-2">
+            <select formControlName="assetCategoryType" class="form-select mt-2">
               <option>--select--</option>
               <option>CLASS</option>
               <option>MAKE</option>
               <option>TYPE</option>
               <option>MODEL</option>
             </select>
-            <span class="massage-text" ngClass>User Group is required</span>
+            <span class="massage-text" *ngIf="(assetMasterForm.get('assetCategoryType')?.touched || isSubmitted) && assetMasterForm.get('assetCategoryType')?.hasError('required')">User Group is required</span>
           </div>
           <div class="col-12 col-md-4">
             <label>Asset Code Description</label>
-            <input type="text" class="form-control mt-2" placeholder="Enter Asset Code Description" />
+            <input type="text" class="form-control mt-2" placeholder="Enter Asset Code Description" formControlName="assetCodeDescription"/>
           </div>
         </div>
       </form>
       <div class="d-flex align-items-center flex-wrap gap-3 my-4">
-        <button class="option-button d-flex align-items-center px-4">
+        <button class="option-button d-flex align-items-center px-4" (click)="search()">
           Search
         </button>
         <button class="option-button d-flex align-items-center px-4">
@@ -44,7 +44,7 @@
       </div>
       <table class="table table-bordered rounded asset-master-table ">
         <thead>
-          <tr> 
+          <tr>
             <th class="col">Category Code</th>
             <th class="col">Category Description</th>
             <th class="col">Category Type</th>
@@ -53,7 +53,7 @@
           </tr>
         </thead>
         <tbody>
-          
+
           <tr>
             <td>C2	</td>
             <td>BMW</td>

@@ -1,214 +1,210 @@
 <div class="content-box pt-2">
-    <div class="container">
-      <div class="entity-create-box my-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb m-0">
-            <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Entity-master</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Entity-create</li>
-          </ol>
-        </nav>
-      </div>
-      <div class="entity-create-box my-3">
-          <form class="entity-create-form">
-            <caption class="d-flex">Entity
-              Master</caption>
-            <div class="row d-flex ">
-              <div class="col-12 col-md-4">
-                <label>Entity Code</label>
-                <input type="number" class="form-control mt-2" placeholder="Enter the User ID" required>
-                  <span class="massage-text" ngClass> Entity Code is
-                    required</span>
-              </div>
-              <div class="col-12 col-md-4">
-                  <label>Entity Name</label>
-                  <input type="text" class="form-control mt-2" placeholder="Enter the User Name"required>
-                    <span class="massage-text" ngClass> Entity Name is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Entity Type*</label>
-                      <select formControlName="gender" class="form-select mt-2">
-                          <option>Broker</option>
-                          <option>customer</option>
-                          <option>Dealer</option>
-                          <option>Debt collector</option>
-                          <option>DMA</option>
-                          <option>DSA</option>
-                          <option>Employee</option>
-                          <option>Field Investigation Agency</option>
-                          <option>Funder</option>
-                          <option>Garage</option>
-                          <option>Insurance Company</option>
-                          <option>Legal Consultants </option>
-                          <option></option>
-                        </select>
-                      <span class="massage-text">Entity Type is required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>GST No</label>
-                  <input type="number" class="form-control mt-2" placeholder="Enter the Password">
-                    <span class="massage-text" ngClass> GST No is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Address 1</label>
-                  <input type="text" class="form-control mt-2" placeholder="Enter the Address 1" required>
-                    <span class="massage-text" ngClass> Address Name is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Address 2</label>
-                  <input type="text" class="form-control mt-2" placeholder="Enter the Address 2"required>
-                    <span class="massage-text" ngClass> Entity Name is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>City</label>
-                  <input type="text" class="form-control mt-2" placeholder="Enter the City"required>
-                    <span class="massage-text" ngClass> City Name is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>State</label>
-                      <select formControlName="State" class="form-select mt-2">
-                          <option>Choose State</option>
-                          <option>Andaman and Nicobar Islands</option>
-                          <option>Andhra Pradesh</option>
-                          <option>Arunachal Pradesh</option>
-                          <option>Assam</option>
-                          <option>Bihar</option>
-                          <option>Chandigarh</option>
-                          <option>Chhattisgarh</option>
-                          <option>Dadra and Nagar Haveli</option>
-                          <option>Daman and Diu</option>
-                          <option>Delhi</option>
-                          <option>Goa </option>
-                          <option>Gujarat</option>
-                          <option>Haryana</option>
-                          <option>Himachal Pradesh</option>
-                          <option>Jammu and Kashmir</option>
-                          <option>Jharkhand</option>
-                          <option>Karnataka</option>
-                        </select>
-                      <span class="massage-text">State is required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Country</label>
-                      <select formControlName="Country" class="form-select mt-2">
-                          <option>Country</option>
-                          <option>India</option>
-                        </select>
-                      <span class="massage-text">Country is required</span>
-                </div>
-
-                <div class="col-12 col-md-4">
-                  <label>Pincode</label>
-                  <input type="number" class="form-control mt-2" placeholder="Enter the Pincode"required>
-                    <span class="massage-text" ngClass> Pincode  is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Telephone No</label>
-                  <input type="number" class="form-control mt-2" placeholder="Enter the Telephone No">
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Moblie</label>
-                  <input type="number" class="form-control mt-2" placeholder="Enter Moblie" required>
-                    <span class="massage-text" ngClass> Moblie No  is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Email ID</label>
-                  <input type="email" class="form-control mt-2" placeholder="Enter the Email" required>
-                    <span class="massage-text" ngClass> Email is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Website</label>
-                  <input type="url" class="form-control mt-2" placeholder="Enter the Website Name" required>
-                    <span class="massage-text" ngClass> Enter the Website Name</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>PanNumber</label>
-                  <input type="number" class="form-control mt-2" placeholder="Enter pan number" required>
-                    <span class="massage-text" ngClass> PanNumber   is
-                      required</span>
-                </div>
-
-
-            </div>
-
-          </form>
-        </div>
-        <div class="entity-create-box my-3">
-          <form class="entity-create-form">
-            <caption class="d-flex">Bank
-              Details</caption>
-            <div class="row d-flex ">
-                <div class="col-12 col-md-4">
-                  <label>Account Type</label>
-                      <select formControlName="account" class="form-select mt-2" required>
-                          <option>--Select--</option>
-                          <option>CC ACCOUNT</option>
-                          <option>SAVING ACCOUNT</option>
-                          <option>CURRENT ACCOUNT</option>
-                          <option>TEST</option>
-                          <option>OTHERS</option>
-                        </select>
-                      <span class="massage-text">Entity Type is required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Account Number</label>
-                  <input type="number" class="form-control mt-2" placeholder="Enter the Account Number" required>
-                    <span class="massage-text" ngClass> Account Number is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>IFSC Code</label>
-                  <input type="text" class="form-control mt-2" placeholder="Enter IFSC Code" required>
-                    <span class="massage-text" ngClass> IFSC Code is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Bank Name</label>
-                  <input type="text" class="form-control mt-2" placeholder="Enter Bank Name"required>
-                    <span class="massage-text" ngClass> Bank Name is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4">
-                  <label>Branch Name</label>
-                  <input type="text" class="form-control mt-2" placeholder="Enter Branch Name"required>
-                    <span class="massage-text" ngClass> Branch Name is
-                      required</span>
-                </div>
-                <div class="col-12 col-md-4 d-flex flex-column gap-1">
-                  <label>Bank Address</label>
-                  <textarea rows="4" class="mt-2"placeholder="Enter Bank Address"></textarea>
-                  <span class="massage-text">Bank Address is required</span>
-                </div>
-                <div class="col-6 d-flex align-items-center mt-3" >
-                  <label class="fs-5">Active</label>
-                  <input type="checkbox" class="ms-2" style="width:25px; height:25px; ">
-                </div>
-                <div class="col-6 d-flex align-items-center justify-content-end" >
-                  <button class="option-button d-flex align-items-center px-4">
-                    Add
-                  </button>
-                </div>
-
-            </div>
-
-          </form>
-          </div>
-        <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 my-4">
-          <button class="option-button d-flex align-items-center px-4">
-            Save
-          </button>
-          <button class="option-button d-flex align-items-center px-4">
-            Back
-          </button>
-        </div>
-
-
+  <div class="container">
+    <div class="entity-create-box my-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Entity-master</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Entity-create</li>
+        </ol>
+      </nav>
     </div>
+    <div class="entity-create-box my-3">
+      <form class="entity-create-form" [formGroup]="entityMasterForm">
+        <caption class="d-flex">Entity
+          Master</caption>
+        <div class="row d-flex ">
+          <div class="col-12 col-md-4">
+            <label>Entity Code</label>
+            <input type="number" class="form-control mt-2" placeholder="Enter the entity code" formControlName="entityCode">
+            <span class="massage-text"
+              *ngIf="(entityMasterForm.get('entityCode')?.touched || isSubmitted) && entityMasterForm.get('entityCode')?.hasError('required')">
+              Entity Code is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Entity Name</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter the entity name" formControlName="entityName">
+            <span class="massage-text"  *ngIf="(entityMasterForm.get('entityName')?.touched || isSubmitted) && entityMasterForm.get('entityName')?.hasError('required')"> Entity Name is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Entity Type*</label>
+            <select class="form-select mt-2" formControlName="entityType">
+              <option>Broker</option>
+              <option>customer</option>
+              <option>Dealer</option>
+              <option>Debt collector</option>
+              <option>DMA</option>
+              <option>DSA</option>
+              <option>Employee</option>
+              <option>Field Investigation Agency</option>
+              <option>Funder</option>
+              <option>Garage</option>
+              <option>Insurance Company</option>
+              <option>Legal Consultants </option>
+              <option></option>
+            </select>
+            <span class="massage-text"  *ngIf="(entityMasterForm.get('entityType')?.touched || isSubmitted) && entityMasterForm.get('entityType')?.hasError('required')">Entity Type is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>GST No</label>
+            <input type="number" class="form-control mt-2" placeholder="Enter the gst number" formControlName="gstNo">
+            <span class="massage-text" *ngIf="(entityMasterForm.get('gstNo')?.touched || isSubmitted) && entityMasterForm.get('gstNo')?.hasError('required')"> GST No is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Address 1</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter the Address 1" formControlName="address1">
+            <span class="massage-text"  *ngIf="(entityMasterForm.get('address1')?.touched || isSubmitted) && entityMasterForm.get('address1')?.hasError('required')"> Address 1 is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Address 2</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter the Address 2" formControlName="address2">
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label>City</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter the City" formControlName="city">
+            <span class="massage-text"  *ngIf="(entityMasterForm.get('city')?.touched || isSubmitted) && entityMasterForm.get('city')?.hasError('required')"> City Name is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>State</label>
+            <select  class="form-select mt-2" formControlName="state">
+              <option>Choose State</option>
+              <option>Andaman and Nicobar Islands</option>
+              <option>Andhra Pradesh</option>
+              <option>Arunachal Pradesh</option>
+              <option>Assam</option>
+              <option>Bihar</option>
+              <option>Chandigarh</option>
+              <option>Chhattisgarh</option>
+              <option>Dadra and Nagar Haveli</option>
+              <option>Daman and Diu</option>
+              <option>Delhi</option>
+              <option>Goa </option>
+              <option>Gujarat</option>
+              <option>Haryana</option>
+              <option>Himachal Pradesh</option>
+              <option>Jammu and Kashmir</option>
+              <option>Jharkhand</option>
+              <option>Karnataka</option>
+            </select>
+            <span class="massage-text"  *ngIf="(entityMasterForm.get('state')?.touched || isSubmitted) && entityMasterForm.get('state')?.hasError('required')">State is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Country</label>
+            <select class="form-select mt-2" formControlName="country">
+              <option>Country</option>
+              <option>India</option>
+            </select>
+            <span class="massage-text"  *ngIf="(entityMasterForm.get('country')?.touched || isSubmitted) && entityMasterForm.get('country')?.hasError('required')">Country is required</span>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label>Pincode</label>
+            <input type="number" class="form-control mt-2" placeholder="Enter the Pincode" formControlName="pincode">
+            <span class="massage-text"  *ngIf="(entityMasterForm.get('pincode')?.touched || isSubmitted) && entityMasterForm.get('pincode')?.hasError('required')"> Pincode is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Telephone No</label>
+            <input type="number" class="form-control mt-2" placeholder="Enter the Telephone No" formControlName="telephoneNumber">
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Mobile</label>
+            <input type="number" class="form-control mt-2" placeholder="Enter Mobile" formControlName="mobileNumber">
+            <span class="massage-text" *ngIf="(entityMasterForm.get('mobileNumber')?.touched || isSubmitted) && entityMasterForm.get('mobileNumber')?.hasError('required')"> Mobile No is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Email ID</label>
+            <input type="email" class="form-control mt-2" placeholder="Enter the Email" formControlName="emailId">
+            <span class="massage-text" *ngIf="(entityMasterForm.get('emailId')?.touched || isSubmitted) && entityMasterForm.get('emailId')?.hasError('required')"> Email is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Website</label>
+            <input type="url" class="form-control mt-2" placeholder="Enter the Website Name" formControlName="website">
+           </div>
+          <div class="col-12 col-md-4">
+            <label>PAN Number</label>
+            <input type="number" class="form-control mt-2" placeholder="Enter pan number" formControlName="panNumber">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="entity-create-box my-3">
+      <form class="entity-create-form" [formGroup]="bankDetailsForm">
+        <caption class="d-flex">Bank
+          Details</caption>
+        <div class="row d-flex ">
+          <div class="col-12 col-md-4">
+            <label>Account Type</label>
+            <select  class="form-select mt-2" formControlName="accountType">
+              <option>--Select--</option>
+              <option>CC ACCOUNT</option>
+              <option>SAVING ACCOUNT</option>
+              <option>CURRENT ACCOUNT</option>
+              <option>TEST</option>
+              <option>OTHERS</option>
+            </select>
+            <span class="massage-text" *ngIf="(bankDetailsForm.get('accountType')?.touched || isSubmitted) && bankDetailsForm.get('accountType')?.hasError('required')">Account Type is required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Account Number</label>
+            <input type="number" class="form-control mt-2" placeholder="Enter the Account Number" formControlName="accountNumber">
+            <span class="massage-text" *ngIf="(bankDetailsForm.get('accountNumber')?.touched || isSubmitted) && bankDetailsForm.get('accountNumber')?.hasError('required')"> Account Number is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>IFSC Code</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter IFSC Code" formControlName="ifscCode">
+            <span class="massage-text" *ngIf="(bankDetailsForm.get('ifscCode')?.touched || isSubmitted) && bankDetailsForm.get('ifscCode')?.hasError('required')"> IFSC Code is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Bank Name</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter Bank Name" formControlName="bankName">
+            <span class="massage-text" *ngIf="(bankDetailsForm.get('bankName')?.touched || isSubmitted) && bankDetailsForm.get('bankName')?.hasError('required')"> Bank Name is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Branch Name</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter Branch Name" formControlName="branchName">
+            <span class="massage-text" *ngIf="(bankDetailsForm.get('branchName')?.touched || isSubmitted) && bankDetailsForm.get('branchName')?.hasError('required')"> Branch Name is
+              required</span>
+          </div>
+          <div class="col-12 col-md-4 d-flex flex-column gap-1">
+            <label>Bank Address</label>
+            <textarea rows="4" class="mt-2" placeholder="Enter Bank Address" formControlName="bankAddress"></textarea>
+            <span class="massage-text" *ngIf="(bankDetailsForm.get('bankAddress')?.touched || isSubmitted) && bankDetailsForm.get('bankAddress')?.hasError('required')" >Bank Address is required</span>
+          </div>
+          <div class="col-6 d-flex align-items-center mt-3">
+            <label class="fs-5">Active</label>
+            <input type="checkbox" class="ms-2" style="width:25px; height:25px; " formControlName="activeStatus">
+          </div>
+          <div class="col-6 d-flex align-items-center justify-content-end">
+            <button class="option-button d-flex align-items-center px-4" (click)="createEntityForm()">
+              Add
+            </button>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+    <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 my-4">
+      <button class="option-button d-flex align-items-center px-4">
+        Save
+      </button>
+      <button class="option-button d-flex align-items-center px-4">
+        Back
+      </button>
+    </div>
+
+
   </div>
+</div>
