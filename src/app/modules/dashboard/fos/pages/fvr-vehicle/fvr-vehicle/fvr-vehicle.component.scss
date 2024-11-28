@@ -99,6 +99,7 @@
               font-weight: 600;
               line-height: 20px;
               color: var( --header-text-color);
+              text-wrap:nowrap;
             }
           }
         }
@@ -107,7 +108,8 @@
             font-size: 14px;
             font-weight: 600;
             line-height: 20px;
-            color:var(--text-dark)
+            color:var(--text-dark);
+            text-wrap:nowrap;
           }
         }
 
@@ -121,10 +123,8 @@
       margin-left: 0;
       width: 100%;
 
-      .fvrhirer-table-box {
-          .serach-box {
-              width: 100%;
-          }
-      }
+      .fvrvehicle-details-box {
+        overflow: auto;
+    }
   }
 }
