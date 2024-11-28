@@ -25,6 +25,7 @@ import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-creat
 import { DocumentCollectionMasterComponent } from './pages/document-collection/document-collection-master/document-collection-master.component';
 import { DisbursementDetailMasterComponent } from './pages/disbursement/disbursement-detail-master/disbursement-detail-master.component';
 import { DisbursementDetailCreateComponent } from './pages/disbursement/disbursement-detail-create/disbursement-detail-create.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DisbursementDetailCreateComponent } from './pages/disbursement/disburse
     FosRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatTabsModule
   ],
 })
 export class FosModule {}

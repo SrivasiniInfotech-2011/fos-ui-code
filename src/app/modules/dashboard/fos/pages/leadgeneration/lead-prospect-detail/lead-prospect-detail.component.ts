@@ -1,19 +1,22 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-lead-prospect-detail',
   templateUrl: './lead-prospect-detail.component.html',
   styleUrl: './lead-prospect-detail.component.scss'
 })
-export class LeadProspectDetailComponent {
+export class LeadProspectDetailComponent implements OnInit {
 
-  public leadForm:FormGroup;
-  public loanDetailsForm:FormGroup;
-  public assetDetailsForm:FormGroup;
-  public isSubmitted:boolean = false;
+  public leadForm: FormGroup;
+  public loanDetailsForm: FormGroup;
+  public assetDetailsForm: FormGroup;
+  public isSubmitted: boolean = false;
+  public selectedTab: any;
 
-  constructor(){
+  constructor(private router: Router) {
     this.leadForm = new FormGroup({
       leadNumber: new FormControl('', [Validators.required]),
       vehicleNumber: new FormControl('', [Validators.required]),
@@ -48,9 +51,36 @@ export class LeadProspectDetailComponent {
     })
   }
 
-  submit(){
+  ngOnInit(): void {
+    if (localStorage.getItem('selectedIndex')) {
+      this.selectedTab = JSON.parse(localStorage.getItem('selectedIndex') || '')
+    }
+  }
+
+  onTabChanged(event: MatTabChangeEvent) {
+    localStorage.setItem('selectedIndex', JSON.stringify(event.index))
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/fos/lead-prospect-detail']);
+        break;
+      case 1:
+        this.router.navigate(['/fos/lead-loan-details']);
+        break;
+      case 2:
+        this.router.navigate(['/fos/lead-individual']);
+        break;
+      case 3:
+        this.router.navigate(['/fos/lead-guarantor-1']);
+        break;
+      case 4:
+        this.router.navigate(['/fos/lead-guarantor-2']);
+        break;
+    }
+  }
+
+  submit() {
     this.isSubmitted = true;
-    if(this.leadForm.valid && this.loanDetailsForm.valid && this.assetDetailsForm.valid){
+    if (this.leadForm.valid && this.loanDetailsForm.valid && this.assetDetailsForm.valid) {
       this.isSubmitted = false;
     }
   }

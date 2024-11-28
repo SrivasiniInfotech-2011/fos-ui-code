@@ -1,6 +1,11 @@
 
 <div class="content-box pt-2">
   <div class="container">
+    <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTab" >
+      <mat-tab label="Prospect Details"></mat-tab>
+      <mat-tab label="Loan Details"> </mat-tab>
+      <mat-tab label="Individual">
+
     <div class="individual-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
@@ -163,5 +168,9 @@
 
       </div>
     </div>
+  </mat-tab>
+  <mat-tab label=" Guarantor 1 "></mat-tab>
+  <mat-tab label=" Guarantor 2"> </mat-tab>
+</mat-tab-group>
   </div>
 </div>

@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guarantor-1',
   templateUrl: './guarantor-1.component.html',
   styleUrl: './guarantor-1.component.scss'
 })
-export class Guarantor1Component {
+export class Guarantor1Component implements OnInit{
 
     public guarantor1Form:FormGroup;
     public guarantor1DetailsForm:FormGroup;
@@ -14,8 +16,9 @@ export class Guarantor1Component {
     public guarantor1PermanentAddressForm:FormGroup;
     public guarantor1KYCForm:FormGroup;
     public isSubmitted:boolean = false;
+    public selectedTab:any;
 
-    constructor(){
+    constructor(private router:Router){
       this.guarantor1Form = new FormGroup({
           leadNumber: new FormControl('', [Validators.required]),
           vehicleNumber: new FormControl('', [Validators.required])
@@ -58,6 +61,33 @@ export class Guarantor1Component {
           aadharImage:new FormControl('', [Validators.required]),
           panImage:new FormControl('', [Validators.required])
       });
+    }
+
+    ngOnInit(): void {
+      if(localStorage.getItem('selectedIndex')){
+        this.selectedTab = JSON.parse(localStorage.getItem('selectedIndex') || '')
+      }
+    }
+
+    onTabChanged(event:MatTabChangeEvent){
+      localStorage.setItem('selectedIndex', JSON.stringify(event.index))
+      switch (event.index) {
+        case 0:
+          this.router.navigate(['/fos/lead-prospect-detail']);
+          break;
+          case 1:
+          this.router.navigate(['/fos/lead-loan-details']);
+          break;
+          case 2:
+          this.router.navigate(['/fos/lead-individual']);
+          break;
+          case 3:
+          this.router.navigate(['/fos/lead-guarantor-1']);
+          break;
+          case 4:
+          this.router.navigate(['/fos/lead-guarantor-2']);
+          break;
+      }
     }
 
     save(){
