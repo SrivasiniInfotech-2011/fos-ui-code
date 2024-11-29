@@ -23,12 +23,13 @@
       border: 1px solid var(--border-color);
       border-radius: 5px;
       padding: 10px;
+      .breadcrumb{
+        li{
+          color:var(--text-color);
+      }
+      }
       .asset-master-form {
-        .breadcrumb{
-          li{
-          color: var(--text-color);
-        }
-        }
+
         caption {
             font-size: 20px;
             color: var(--text-bold-color);
@@ -93,18 +94,18 @@
         thead {
           tr {
             th {
-              background-color: var(--table-header-background);
+              background-color:var(--table-header-background);
               font-size: 14px;
               font-weight: 600;
               line-height: 20px;
-              color: var(--text-color);
+              color: var( --header-text-color);
             }
           }
         }
         tr {
           td{
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 400;
             line-height: 20px;
             color:var(--text-dark);
           }
@@ -123,6 +124,7 @@
         overflow: scroll;
         .asset-master-table {
           thead {
+
             tr {
               th {
                 font-size: 12px;
