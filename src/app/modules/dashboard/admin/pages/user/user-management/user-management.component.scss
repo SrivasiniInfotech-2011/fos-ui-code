@@ -24,7 +24,11 @@
     border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 10px;
-
+    .breadcrumb{
+      li{
+        color:var(--text-color);
+    }
+    }
     .usermanagment-table {
       thead {
         tr {

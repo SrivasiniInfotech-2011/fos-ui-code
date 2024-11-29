@@ -11,6 +11,8 @@
   margin-left: 240px;
   margin-top: 80px;
   background-color: var(--background-color);
+  z-index: 0;
+  position: relative;
   .option-button {
     font-size: 14px;
     font-weight: 400;
@@ -124,12 +126,17 @@
       }
     }
   }
+   .mat-mdc-header-row
+   {
+    background-color: var(--table-header-background);
+    height: unset;
+
+  }
 .table-header{
-  background-color: var(--table-header-background) !important;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var( --header-text-color);
+  color: var(--header-text-color);
 }
   @media only screen and (max-width: 992px) {
     .content-box {

@@ -8,6 +8,8 @@
   margin-left: 240px;
   margin-top: 80px;
   background-color: var(--background-color);
+  z-index: 0;
+  position: relative;
   .option-button {
     font-size: 14px;
     font-weight: 400;
