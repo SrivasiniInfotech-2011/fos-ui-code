@@ -18,7 +18,7 @@
           Document Master
         </caption>
         <div class="row my-3">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Category Description</label>
             <input type="text" class="form-control mt-2" placeholder="Enter Category Description" formControlName="categoryDescription" />
             <span class="massage-text"  *ngIf="documentCreateForm.get('categoryDescription')?.touched && documentCreateForm.get('categoryDescription')?.hasError('required')"> Category Description is required</span>

@@ -13,7 +13,7 @@
         <caption class="d-flex">User
           Management</caption>
         <div class="row d-flex ">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>User ID*</label>
             <input type="number" class="form-control mt-2" placeholder="Enter the User ID" formControlName="userId">
             <span class="massage-text"
@@ -21,7 +21,7 @@
               User ID is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>User Name</label>
             <input type="text" class="form-control mt-2" placeholder="Enter the User Name" formControlName="userName">
             <span class="massage-text"
@@ -29,7 +29,7 @@
               User Name is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Gender*</label>
             <select class="form-select mt-2" formControlName="gender">
               <option>Male</option>
@@ -39,7 +39,7 @@
               *ngIf="(userManagementForm.get('gender')?.touched || isSubmitted) && userManagementForm.get('gender')?.hasError('required')">Gender
               is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Password*</label>
             <input type="password" class="form-control mt-2" placeholder="Enter the Password"
               formControlName="password">
@@ -48,7 +48,7 @@
               Password is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Mobile Number*</label>
             <input type="number" class="form-control mt-2" placeholder="Enter the mobile number"
               formControlName="mobileNumber">
@@ -57,7 +57,7 @@
               Mobile Number* is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Emergency Contact Number*
             </label>
             <input type="number" class="form-control mt-2" placeholder="Enter Emergency Contact Number"
@@ -68,14 +68,14 @@
               is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Emergency Person Name</label>
             <input type="text" class="form-control mt-2" placeholder="Enter Emergency Person Name"
               formControlName="emergencyContactPerson">
             <!-- <span class="massage-text" ngClass>Emergency Person Name is
                     required</span> -->
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Date of Joining*</label>
             <input type="date" class="form-control mt-2" formControlName="joiningDate">
             <span class="massage-text"
@@ -83,7 +83,7 @@
               of Joining is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Designation*</label>
             <select class="form-select mt-2" formControlName="designation">
               <option>ACCOUNTS EXECUTIVE</option>
@@ -112,7 +112,7 @@
               *ngIf="(userManagementForm.get('designation')?.touched || isSubmitted) && userManagementForm.get('designation')?.hasError('required')">Designation
               is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>User Level*</label>
             <select class="form-select mt-2" formControlName="userLevel">
               <option>Manager</option>
@@ -126,18 +126,18 @@
               Level is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Reporting - Next Level*</label>
             <input type="password" class="form-control mt-2" placeholder="--Select--"
               formControlName="reportingNextLevel">
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>User Group</label>
             <select class="form-select mt-2" formControlName="userGroup">
               <option>Admin</option>
             </select>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Email ID*
             </label>
             <input type="email" class="form-control mt-2" placeholder="Enter the Email" formControlName="emailId">
@@ -147,7 +147,7 @@
               is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Date of birth*</label>
             <input type="date" class="form-control mt-2" formControlName="dateOfBirth">
             <span class="massage-text"
@@ -155,7 +155,7 @@
               of birth is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Age</label>
             <input type="text" class="form-control mt-2" placeholder="age" formControlName="age">
           </div>
@@ -168,7 +168,7 @@
         <caption class="d-flex">Personal
           Details</caption>
         <div class="row d-flex ">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Father Name*</label>
             <input type="text" class="form-control mt-2" placeholder="Enter the Father Name"
               formControlName="fatherName">
@@ -177,7 +177,7 @@
               Father Name is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Mother Name</label>
             <input type="text" class="form-control mt-2" placeholder="Enter the Mother Name"
               formControlName="motherName">
@@ -186,7 +186,7 @@
               Mother Name is
               required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Marital Status</label>
             <select class="form-select mt-2" formControlName="maritalStatus">
               <option>Single</option>
@@ -198,12 +198,12 @@
               *ngIf="(userPersonalDetails.get('maritalStatus')?.touched || isSubmitted) && userPersonalDetails.get('maritalStatus')?.hasError('required')">Marital
               Status is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Aadhar Number*</label>
             <input type="password" class="form-control mt-2" placeholder="Enter Aadhar Number"
               formControlName="aadharNumber">
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>PAN Number*</label>
             <input type="number" class="form-control mt-2" placeholder="Enter PAN Number" formControlName="panNumber">
           </div>
