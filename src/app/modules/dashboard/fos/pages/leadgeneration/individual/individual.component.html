@@ -63,7 +63,7 @@
               <option>Single</option>
               <option>Married</option>
               <option>Divorced</option>
-              <option>Seperated</option>
+              <option>Separated</option>
               <option>Widowed</option>
             </select>
             <span class="massage-text" *ngIf="(individualDetailsForm.get('maritalStatus')?.touched || isSubmitted) && individualDetailsForm.get('maritalStatus')?.hasError('required')">Marital Status is required</span>
@@ -84,7 +84,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Net Salary</label>
-            <input placeholder="Enter the Amount" type="number" class="form-control mt-1" formControlName="netSalary" />
+            <input placeholder="Enter Net Salary" type="number" class="form-control mt-1" formControlName="netSalary" />
 
             <span class="massage-text" *ngIf="(individualDetailsForm.get('netSalary')?.touched || isSubmitted) && individualDetailsForm.get('netSalary')?.hasError('required')">Net Salary is required</span>
           </div>
