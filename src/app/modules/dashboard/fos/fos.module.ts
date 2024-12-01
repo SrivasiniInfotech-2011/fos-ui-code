@@ -17,7 +17,7 @@ import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guaranto
 import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
 import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
 import { BmApprovalMasterComponent } from './pages/bm-approval/bm-approval-master/bm-approval-master.component';
@@ -29,6 +29,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     ListingPageComponent,
@@ -49,7 +51,7 @@ import { MatSortModule } from '@angular/material/sort';
     BmApprovalCreateComponent,
     DocumentCollectionMasterComponent,
     DisbursementDetailMasterComponent,
-    DisbursementDetailCreateComponent
+    DisbursementDetailCreateComponent,
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatTabsModule,
     MatPaginatorModule,
-    MatSortModule
+    MatFormFieldModule,
+    MatSortModule,
+    MatInputModule,
   ],
 })
 export class FosModule {}

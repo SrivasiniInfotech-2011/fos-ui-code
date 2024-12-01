@@ -42,6 +42,10 @@ const routes: Routes = [
         component: ProspectDetailsComponent
       },
       {
+        path: 'prospect-master',
+        component: ProspectDetailsComponent
+      },
+      {
         path: 'lead-generation',
         component: LeadMasterComponent,
       },
@@ -60,6 +64,10 @@ const routes: Routes = [
       {
         path: 'lead-individual',
         component: IndividualComponent,
+      },
+      {
+        path: 'lead-guarantor-1',
+        component: Guarantor1Component,
       },
       {
         path: 'lead-guarantor-2',
