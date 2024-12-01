@@ -199,15 +199,18 @@
           <div class="col-12 col-md-3">
             <label>Lead Type</label>
             <select
-            formControlName="leadType"
-            class="form-select mt-2 mb-1"
-            name="leadType"
-          >
-            <option value="" disabled>Choose Lead Type</option>
-            <option *ngFor="let c of leadTypeLookup" [value]="c.lookupValueId">
-              {{ c.lookupValueDescription }}
-            </option>
-          </select>
+              formControlName="leadType"
+              class="form-select mt-2 mb-1"
+              name="leadType"
+            >
+              <option value="" disabled>Choose Lead Type</option>
+              <option
+                *ngFor="let c of leadTypeLookup"
+                [value]="c.lookupValueId"
+              >
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
             <div
               *ngIf="
                 leadGenerationForm.get('leadType')?.touched || submittedForm2
@@ -287,25 +290,6 @@
               >
             </div>
           </div>
-
-                    <div class="col-12 col-lg-3">
-                        <label>Prospect Address</label>
-                        <textarea class="form-control my-2" rows="3" formControlName="prospectAddress"></textarea>
-                        <div *ngIf="prospectDetailsForm2.get('prospectAddress')?.touched || submittedForm2">
-                            <span class="massage-text"
-                                *ngIf="prospectDetailsForm2.get('prospectAddress')?.hasError('required')">Prospect
-                                Address is required</span>
-                        </div>
-                    </div>
-                    <div class="col-auto d-flex align-items-center justify-content-end">
-                        <button class="next-button  d-flex align-items-center px-4 rounded" (click)="generateLead()">
-                            <mat-icon class="d-flex align-items-center" style="font-size: 14px;">add</mat-icon> Generate
-                            Lead</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
           <div class="col-12 col-md-3">
             <label>Prospect Address</label>
             <textarea
