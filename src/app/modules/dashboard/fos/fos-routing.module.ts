@@ -42,7 +42,7 @@ const routes: Routes = [
         component: ProspectDetailsComponent
       },
       {
-        path: 'lead-master',
+        path: 'lead-generation',
         component: LeadMasterComponent,
       },
       {
