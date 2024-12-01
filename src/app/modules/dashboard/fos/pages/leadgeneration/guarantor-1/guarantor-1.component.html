@@ -4,7 +4,9 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon class="me-2">home</mat-icon>Lead Generation</a>
+            <a href="#" class="text-decoration-none d-flex align-items-center"
+              ><mat-icon class="me-2">home</mat-icon>Lead Generation</a
+            >
           </li>
           <li class="breadcrumb-item active" aria-current="page">
             Guarantor-1
@@ -17,17 +19,39 @@
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
-              formControlName="leadNumber" />
+            <input
+              placeholder="Enter Lead Number"
+              type="text"
+              class="form-control mt-1"
+              formControlName="leadNumber"
+            />
 
-            <span class="massage-text" *ngIf="(guarantor1Form.get('leadNumber')?.touched || isSubmitted) && guarantor1Form.get('leadNumber')?.hasError('required')">Lead Number is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1Form.get('leadNumber')?.touched || isSubmitted) &&
+                guarantor1Form.get('leadNumber')?.hasError('required')
+              "
+              >Lead Number is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
-              formControlName="vehicleNumber" />
+            <input
+              placeholder="Enter Vehicle Number"
+              type="text"
+              class="form-control mt-1"
+              formControlName="vehicleNumber"
+            />
 
-            <span class="massage-text" *ngIf="(guarantor1Form.get('vehicleNumber')?.touched || isSubmitted) && guarantor1Form.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1Form.get('vehicleNumber')?.touched || isSubmitted) &&
+                guarantor1Form.get('vehicleNumber')?.hasError('required')
+              "
+              >Vehicle Number is required</span
+            >
           </div>
         </div>
       </form>
@@ -35,198 +59,446 @@
     <div class="gaurantor-details-box my-3">
       <form class="gaurantor-details-form" [formGroup]="guarantor1DetailsForm">
         <caption>
-          Guarantor-1
-          Details
+          Guarantor-1 Details
         </caption>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Guarantor Name</label>
-            <input placeholder="Enter the Name " type="text" class="form-control mt-1" formControlName="guarantorName" />
+            <input
+              placeholder="Enter the Name "
+              type="text"
+              class="form-control mt-1"
+              formControlName="guarantorName"
+            />
 
-            <span class="massage-text" *ngIf="(guarantor1DetailsForm.get('guarantorName')?.touched || isSubmitted) && guarantor1DetailsForm.get('guarantorName')?.hasError('required')">Guarantor Name is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1DetailsForm.get('guarantorName')?.touched ||
+                  isSubmitted) &&
+                guarantor1DetailsForm.get('guarantorName')?.hasError('required')
+              "
+              >Guarantor Name is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>Relationship</label>
             <select class="form-select mt-2" formControlName="relationship">
               <option>--Select--</option>
-              <option>Father</option>
-              <option>Mother</option>
-              <option>Spouse</option>
-              <option>Son</option>
-              <option>Daughter</option>
-              <option>Sister</option>
-              <option>Brother</option>
-              <option>Brother in Law</option>
-
+              <option *ngFor="let c of guarantorRelationshipLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
-            <span class="massage-text" *ngIf="(guarantor1DetailsForm.get('relationship')?.touched || isSubmitted) && guarantor1DetailsForm.get('relationship')?.hasError('required')">Relationship is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1DetailsForm.get('relationship')?.touched ||
+                  isSubmitted) &&
+                guarantor1DetailsForm.get('relationship')?.hasError('required')
+              "
+              >Relationship is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>Gender</label>
             <select class="form-select mt-2" formControlName="gender">
               <option>--Select--</option>
-              <option>Female</option>
-              <option>Male</option>
+              <option *ngFor="let c of genderLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
-            <span class="massage-text" *ngIf="(guarantor1DetailsForm.get('gender')?.touched || isSubmitted) && guarantor1DetailsForm.get('gender')?.hasError('required')">Gender is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1DetailsForm.get('gender')?.touched || isSubmitted) &&
+                guarantor1DetailsForm.get('gender')?.hasError('required')
+              "
+              >Gender is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>Date Of Birth</label>
-            <input type="date" class="form-control mt-1" formControlName="dateOfBirth" />
+            <input
+              type="date"
+              class="form-control mt-1"
+              formControlName="dateOfBirth"
+            />
 
-            <span class="massage-text" *ngIf="(guarantor1DetailsForm.get('dateOfBirth')?.touched || isSubmitted) && guarantor1DetailsForm.get('dateOfBirth')?.hasError('required')">Date Of Birth is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1DetailsForm.get('dateOfBirth')?.touched ||
+                  isSubmitted) &&
+                guarantor1DetailsForm.get('dateOfBirth')?.hasError('required')
+              "
+              >Date Of Birth is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>Mobile Number</label>
-            <input type="number" class="form-control mt-1" placeholder="Enter Mobile Number" formControlName="mobileNumber" />
-            <span class="massage-text" *ngIf="(guarantor1DetailsForm.get('mobileNumber')?.touched || isSubmitted) && guarantor1DetailsForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</span>
+            <input
+              type="number"
+              class="form-control mt-1"
+              placeholder="Enter Mobile Number"
+              formControlName="mobileNumber"
+            />
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1DetailsForm.get('mobileNumber')?.touched ||
+                  isSubmitted) &&
+                guarantor1DetailsForm.get('mobileNumber')?.hasError('required')
+              "
+              >Mobile Number is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>Alternate Mobile Number</label>
-            <input type="number" class="form-control mt-1" placeholder="Enter Alternate Mobile Number" formControlName="alternateMobileNumber" />
-
+            <input
+              type="number"
+              class="form-control mt-1"
+              placeholder="Enter Alternate Mobile Number"
+              formControlName="alternateMobileNumber"
+            />
           </div>
           <div class="col-12 col-md-4">
             <label>Guarantor Amount</label>
-            <input type="number" class="form-control mt-1" placeholder="Guarantor Amount" formControlName="guarantorAmount" />
-            <span class="massage-text" *ngIf="(guarantor1DetailsForm.get('guarantorAmount')?.touched || isSubmitted) && guarantor1DetailsForm.get('guarantorAmount')?.hasError('required')">Guarantor Amount is required</span>
+            <input
+              type="number"
+              class="form-control mt-1"
+              placeholder="Guarantor Amount"
+              formControlName="guarantorAmount"
+            />
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1DetailsForm.get('guarantorAmount')?.touched ||
+                  isSubmitted) &&
+                guarantor1DetailsForm
+                  .get('guarantorAmount')
+                  ?.hasError('required')
+              "
+              >Guarantor Amount is required</span
+            >
           </div>
-
-
         </div>
       </form>
-
     </div>
     <div class="gaurantor-details-box my-3">
-      <form class="gaurantor-details-form" [formGroup]="guarantor1CommunicationAddressForm">
+      <form
+        class="gaurantor-details-form"
+        [formGroup]="guarantor1CommunicationAddressForm"
+      >
         <caption>
           Communication Address
         </caption>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
-            <input placeholder="Address Line 1 " type="text" class="form-control mt-1" formControlName="addressLine1" />
+            <input
+              placeholder="Address Line 1 "
+              type="text"
+              class="form-control mt-1"
+              formControlName="addressLine1"
+            />
           </div>
           <div class="col-12 col-md-4">
-            <input placeholder="Address Line 2 " type="text" class="form-control mt-1" formControlName="addressLine2" />
+            <input
+              placeholder="Address Line 2 "
+              type="text"
+              class="form-control mt-1"
+              formControlName="addressLine2"
+            />
           </div>
           <div class="col-12 col-md-4">
-            <input placeholder="Landmark " type="text" class="form-control mt-1" formControlName="landmark" />
+            <input
+              placeholder="Landmark "
+              type="text"
+              class="form-control mt-1"
+              formControlName="landmark"
+            />
           </div>
           <div class="col-12 col-md-4">
-            <input placeholder="City " type="text" class="form-control mt-1" formControlName="city" />
+            <input
+              placeholder="City "
+              type="text"
+              class="form-control mt-1"
+              formControlName="city"
+            />
           </div>
           <div class="col-12 col-md-4">
             <select class="form-select mt-2" formControlName="state">
-              <option>Choose State</option>
-              <option>Andaman and nicobar island</option>
+              <option value="" disabled>Choose State</option>
+              <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
-            <span class="massage-text" *ngIf="(guarantor1CommunicationAddressForm.get('state')?.touched || isSubmitted) && guarantor1CommunicationAddressForm.get('state')?.hasError('required')">State is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1CommunicationAddressForm.get('state')?.touched ||
+                  isSubmitted) &&
+                guarantor1CommunicationAddressForm
+                  .get('state')
+                  ?.hasError('required')
+              "
+              >State is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <select class="form-select mt-2" formControlName="country">
-              <option>Country</option>
-              <option>India</option>
-              <option>Male</option>
+              <option value="" disabled>Choose Country</option>
+              <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
-            <span class="massage-text" *ngIf="(guarantor1CommunicationAddressForm.get('country')?.touched || isSubmitted) && guarantor1CommunicationAddressForm.get('country')?.hasError('required')">Country is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1CommunicationAddressForm.get('country')?.touched ||
+                  isSubmitted) &&
+                guarantor1CommunicationAddressForm
+                  .get('country')
+                  ?.hasError('required')
+              "
+              >Country is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
+            <input
+              type="number"
+              class="form-control mt-1"
+              placeholder="Pincode"
+              formControlName="pincode"
+            />
 
-            <input type="number" class="form-control mt-1" placeholder="Pincode" formControlName="pincode" />
-
-            <span class="massage-text" *ngIf="(guarantor1CommunicationAddressForm.get('pincode')?.touched || isSubmitted) && guarantor1CommunicationAddressForm.get('pincode')?.hasError('required')">Pincode is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1CommunicationAddressForm.get('pincode')?.touched ||
+                  isSubmitted) &&
+                guarantor1CommunicationAddressForm
+                  .get('pincode')
+                  ?.hasError('required')
+              "
+              >Pincode is required</span
+            >
           </div>
-
         </div>
       </form>
-      <form class="gaurantor-details-form my-3" [formGroup]="guarantor1PermanentAddressForm">
+      <form
+        class="gaurantor-details-form my-3"
+        [formGroup]="guarantor1PermanentAddressForm"
+      >
         <caption>
           Permanent Address
         </caption>
-        <div class="d-flex align-items-center mb-3  Address-text">
-          <input type="checkbox" style="width:20px;height:20px;" class="me-2 p-0 my-0">Enter Permanent Address As Same
+        <div class="d-flex align-items-center mb-3 Address-text">
+          <input
+            type="checkbox"
+            style="width: 20px; height: 20px"
+            class="me-2 p-0 my-0"
+          />Enter Permanent Address As Same
         </div>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
-            <input placeholder="Address Line 1 " type="text" class="form-control mt-1"  formControlName="addressLine1" />
+            <input
+              placeholder="Address Line 1 "
+              type="text"
+              class="form-control mt-1"
+              formControlName="addressLine1"
+            />
           </div>
           <div class="col-12 col-md-4">
-            <input placeholder="Address Line 2 " type="text" class="form-control mt-1"  formControlName="addressLine2" />
+            <input
+              placeholder="Address Line 2 "
+              type="text"
+              class="form-control mt-1"
+              formControlName="addressLine2"
+            />
           </div>
           <div class="col-12 col-md-4">
-            <input placeholder="Landmark " type="text" class="form-control mt-1"  formControlName="landmark" />
+            <input
+              placeholder="Landmark "
+              type="text"
+              class="form-control mt-1"
+              formControlName="landmark"
+            />
           </div>
           <div class="col-12 col-md-4">
-            <input placeholder="City " type="text" class="form-control mt-1" formControlName="city" />
+            <input
+              placeholder="City "
+              type="text"
+              class="form-control mt-1"
+              formControlName="city"
+            />
           </div>
           <div class="col-12 col-md-4">
             <select class="form-select mt-2" formControlName="state">
               <option>Choose State</option>
-              <option>Andaman and nicobar island</option>
+              <option value="" disabled>Choose State</option>
+              <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
-            <span class="massage-text" *ngIf="(guarantor1PermanentAddressForm.get('state')?.touched || isSubmitted) && guarantor1PermanentAddressForm.get('state')?.hasError('required')">State is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1PermanentAddressForm.get('state')?.touched ||
+                  isSubmitted) &&
+                guarantor1PermanentAddressForm
+                  .get('state')
+                  ?.hasError('required')
+              "
+              >State is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <select class="form-select mt-2" formControlName="country">
-              <option>Country</option>
-              <option>India</option>
-              <option>Male</option>
+              <option value="" disabled>Choose Country</option>
+              <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
-            <span class="massage-text" *ngIf="(guarantor1PermanentAddressForm.get('country')?.touched || isSubmitted) && guarantor1PermanentAddressForm.get('country')?.hasError('required')">Country is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1PermanentAddressForm.get('country')?.touched ||
+                  isSubmitted) &&
+                guarantor1PermanentAddressForm
+                  .get('country')
+                  ?.hasError('required')
+              "
+              >Country is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
+            <input
+              type="number"
+              class="form-control mt-1"
+              placeholder="Pincode"
+              formControlName="pincode"
+            />
 
-            <input type="number" class="form-control mt-1" placeholder="Pincode" formControlName="pincode" />
-
-            <span class="massage-text" *ngIf="(guarantor1PermanentAddressForm.get('pincode')?.touched || isSubmitted) && guarantor1PermanentAddressForm.get('pincode')?.hasError('required')">Pincode is required</span>
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1PermanentAddressForm.get('pincode')?.touched ||
+                  isSubmitted) &&
+                guarantor1PermanentAddressForm
+                  .get('pincode')
+                  ?.hasError('required')
+              "
+              >Pincode is required</span
+            >
           </div>
-
         </div>
       </form>
-
     </div>
     <div class="gaurantor-details-box my-3">
       <form class="gaurantor-details-form" [formGroup]="guarantor1KYCForm">
         <caption>
-          Guarantor-1
-          KYC Upload
+          Guarantor-1 KYC Upload
         </caption>
         <div class="row d-flex">
           <div class="col-12 col-md-4">
             <label>Aadhar Number</label>
-            <input placeholder="Enter the Aadhar " type="text" class="form-control mt-1" formControlName="aadharNumber" />
-            <span class="massage-text" *ngIf="(guarantor1KYCForm.get('aadharNumber')?.touched || isSubmitted) && guarantor1KYCForm.get('aadharNumber')?.hasError('required')">Aadhar Number is required</span>
+            <input
+              placeholder="Enter the Aadhar "
+              type="text"
+              class="form-control mt-1"
+              formControlName="aadharNumber"
+            />
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1KYCForm.get('aadharNumber')?.touched ||
+                  isSubmitted) &&
+                guarantor1KYCForm.get('aadharNumber')?.hasError('required')
+              "
+              >Aadhar Number is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>PAN Number</label>
-            <input placeholder="Enter PAN Number " type="text" class="form-control mt-1" formControlName="panNumber" />
-            <span class="massage-text" *ngIf="(guarantor1KYCForm.get('panNumber')?.touched || isSubmitted) && guarantor1KYCForm.get('panNumber')?.hasError('required')">PAN Number is required</span>
+            <input
+              placeholder="Enter PAN Number "
+              type="text"
+              class="form-control mt-1"
+              formControlName="panNumber"
+            />
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1KYCForm.get('panNumber')?.touched || isSubmitted) &&
+                guarantor1KYCForm.get('panNumber')?.hasError('required')
+              "
+              >PAN Number is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>Guarantor Image</label>
-            <input placeholder="Upload Guarantor Image" type="file" class="form-control mt-1" formControlName="guarantorImage" />
-            <span class="massage-text" *ngIf="(guarantor1KYCForm.get('guarantorImage')?.touched || isSubmitted) && guarantor1KYCForm.get('guarantorImage')?.hasError('required')">Guarantor Image is required</span>
+            <input
+              placeholder="Upload Guarantor Image"
+              type="file"
+              class="form-control mt-1"
+              formControlName="guarantorImage"
+            />
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1KYCForm.get('guarantorImage')?.touched ||
+                  isSubmitted) &&
+                guarantor1KYCForm.get('guarantorImage')?.hasError('required')
+              "
+              >Guarantor Image is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>Aadhar</label>
-            <input placeholder="Upload Aadhar Image" type="file" class="form-control mt-1" formControlName="aadharImage" />
-            <span class="massage-text" *ngIf="(guarantor1KYCForm.get('aadharImage')?.touched || isSubmitted) && guarantor1KYCForm.get('aadharImage')?.hasError('required')">Aadhar is required</span>
+            <input
+              placeholder="Upload Aadhar Image"
+              type="file"
+              class="form-control mt-1"
+              formControlName="aadharImage"
+            />
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1KYCForm.get('aadharImage')?.touched ||
+                  isSubmitted) &&
+                guarantor1KYCForm.get('aadharImage')?.hasError('required')
+              "
+              >Aadhar is required</span
+            >
           </div>
           <div class="col-12 col-md-4">
             <label>PAN</label>
-            <input placeholder="Upload PAN Image" type="file" class="form-control mt-1" formControlName="panImage" />
-            <span class="massage-text" *ngIf="(guarantor1KYCForm.get('panImage')?.touched || isSubmitted) && guarantor1KYCForm.get('panImage')?.hasError('required')">PAN is required</span>
+            <input
+              placeholder="Upload PAN Image"
+              type="file"
+              class="form-control mt-1"
+              formControlName="panImage"
+            />
+            <span
+              class="massage-text"
+              *ngIf="
+                (guarantor1KYCForm.get('panImage')?.touched || isSubmitted) &&
+                guarantor1KYCForm.get('panImage')?.hasError('required')
+              "
+              >PAN is required</span
+            >
           </div>
-
-
         </div>
       </form>
     </div>
-    <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 py-4">
-      <button class="option-button d-flex align-items-center" (click)="save()">Save</button>
+    <div
+      class="d-flex align-items-center justify-content-end flex-wrap gap-3 py-4"
+    >
+      <button class="option-button d-flex align-items-center" (click)="save()">
+        Save
+      </button>
       <button class="option-button d-flex align-items-center">Back</button>
       <button class="option-button d-flex align-items-center">Skip</button>
-
     </div>
   </div>
 </div>

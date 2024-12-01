@@ -1,12 +1,8 @@
 import { FOSBaseWrapperService } from '../../shared/fos-basewrapper.service';
 import { UtilsService } from '../../shared/utils.service';
 import {
-  IBranchLocationRequest,
-  ICreateProspectRequest,
   ICustomerProspectData,
-  ICustomerProspectRequest,
-  IFOBranchLocation,
-  IFOSLookup,
+  ICustomerProspectRequest
 } from '../../../../core/interfaces/app/request/IFOSModels';
 import {
   FOSApiEndPoints,
@@ -46,10 +42,76 @@ export class FOSLeadMasterService {
   /**
    * Method to fetch the Prospect Lookup.
    */
-  fetchLeStatuses(): Observable<any> {
+  fetchLeadStatuses(): Observable<any> {
     let endPoint = this.utilsService.buildApiEndpoint(
       environment.prospectsApi,
       FOSApiEndPoints.Leads.GET_LEADSTATUSES
+    );
+    if (endPoint.trim()) {
+      //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
+    }
+    return this.fosBaseWrapper.get(endPoint).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+   /**
+   * Method to fetch the Prospect Lookup.
+   */
+   fetchLineOfBusinesses(  companyId: number,
+    userId: number): Observable<any> {
+    let endPoint = this.utilsService.buildApiEndpoint(
+      environment.prospectsApi,
+      FOSApiEndPoints.Leads.GET_LINEOFBUSINESSES.replace(
+        '{companyId}',
+        String(companyId)
+      ).replace('{userId}', String(userId))
+    );
+    if (endPoint.trim()) {
+      //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
+    }
+    return this.fosBaseWrapper.get(endPoint).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  /**
+   * Method to fetch the Prospect Lookup.
+   */
+  fetchDocumentCategories(  companyId: number,
+    userId: number): Observable<any> {
+    let endPoint = this.utilsService.buildApiEndpoint(
+      environment.prospectsApi,
+      FOSApiEndPoints.Leads.GET_DOCUMENT_CATEGORIES.replace(
+        '{companyId}',
+        String(companyId)
+      ).replace('{userId}', String(userId))
+    );
+    if (endPoint.trim()) {
+      //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
+    }
+    return this.fosBaseWrapper.get(endPoint).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+   /**
+   * Method to fetch the Prospect Lookup.
+   */
+   fetchFieldExecutives(companyId: number,
+    userId: number): Observable<any> {
+    let endPoint = this.utilsService.buildApiEndpoint(
+      environment.prospectsApi,
+      FOSApiEndPoints.Leads.GET_FIELDEXECUTIVES.replace(
+        '{companyId}',
+        String(companyId)
+      ).replace('{userId}', String(userId))
     );
     if (endPoint.trim()) {
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this

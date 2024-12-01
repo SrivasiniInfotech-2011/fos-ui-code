@@ -69,6 +69,7 @@ export class LeadMasterComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.setSearchParametersForm();
         this.getLeadStatusesForFiltering();
+      
       }
     }
   }
@@ -103,7 +104,7 @@ export class LeadMasterComponent implements OnInit {
 
   getLeadStatusesForFiltering() {
     this.loaderService.showLoader();
-    this.leadsService.fetchLeStatuses().subscribe({
+    this.leadsService.fetchLeadStatuses().subscribe({
       next: (data: any) => {
         this.loaderService.hideLoader();
         if (data && data.message) {

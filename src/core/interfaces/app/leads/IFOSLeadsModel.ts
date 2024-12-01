@@ -4,7 +4,7 @@ export interface ILeadProspectDetail {
   prospectId?: number;
   prospectName?: string;
   leadType?: string;
-  leadTypeName: string;
+  leadTypeName?: string;
   prospectAddress?: string;
   mobileNumber?: string;
   vehicleNumber?: string;
@@ -77,6 +77,16 @@ export interface ILeadAssetDetail {
   modelDescription?: string;
 }
 
+export interface ILineOfBusiness {
+ lobId?:number;
+ lobName?:string
+}
+
+export interface IFieldExecutive {
+  fieldExecutiveId?:number;
+  fieldExecutiveName?:string
+ }
+
 export interface ILeadFollowUpDetail {
   followupId?: number;
   activityDescription?: string;
@@ -110,7 +120,7 @@ export interface ILeadGuarantor {
 
 export interface ILeadHeader{
     leadId?:number;
-    propspectId:number;
+    prospectId?:number;
     leadNumber?:string;
     leadDate?:Date;
     leadTypeLookupTypeId?:number;
@@ -167,8 +177,8 @@ export interface ILeadIndividualDetail{
     spouseSalary?:number;
     houseRentalAmount?:number;
     existingLoanCount?:number;
-    exisitngLoanEMI?:number;
-    leadRemarks:string;
+    existingLoanEmi?:number;
+    leadRemarks?:string;
 }
 
 export interface ILeadNonIndividualDetail{
