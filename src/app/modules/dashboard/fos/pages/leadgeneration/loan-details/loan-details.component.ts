@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IFOSLookup } from '../../../../../../../core/interfaces/app/request/IFOSModels';
 import {
@@ -17,6 +16,7 @@ import { LoaderService } from '../../../../../../../data/services/shared/loader.
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../../../../../../shared/components/modal/modal-component';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-loan-details',
@@ -45,6 +45,7 @@ export class LoanDetailsComponent implements OnInit {
   private loggedInUser: any = {};
   public fieldExecutives: IFieldExecutive[] = [];
   public lineOfBusinesses: any[] = [];
+  public selectedTab: any;
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -64,6 +65,28 @@ export class LoanDetailsComponent implements OnInit {
       }
     }
   }
+
+  onTabChanged(event: MatTabChangeEvent) {
+    localStorage.setItem('selectedIndex', JSON.stringify(event.index));
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/fos/lead-prospect-detail']);
+        break;
+      case 1:
+        this.router.navigate(['/fos/lead-loan-details']);
+        break;
+      case 2:
+        this.router.navigate(['/fos/lead-individual']);
+        break;
+      case 3:
+        this.router.navigate(['/fos/lead-guarantor-1']);
+        break;
+      case 4:
+        this.router.navigate(['/fos/lead-guarantor-2']);
+        break;
+    }
+  }
+
   ngOnInit(): void {
     this.SetupLoanDetailsScreen();
     this.setLookups();

@@ -34,6 +34,7 @@ export class IndividualComponent implements OnInit {
   public houseStatusLookup: IFOSLookup[] = [];
   private leadHeader: ILeadHeader = {};
   private loggedInUser: any = {};
+  public selectedTab: any;
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -51,6 +52,26 @@ export class IndividualComponent implements OnInit {
           this.encryptionService.decrypt(encryptedUserData);
         this.loggedInUser = decryptedUserData || '';
       }
+    }
+  }
+  onTabChanged(event: MatTabChangeEvent) {
+    localStorage.setItem('selectedIndex', JSON.stringify(event.index));
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/fos/lead-prospect-detail']);
+        break;
+      case 1:
+        this.router.navigate(['/fos/lead-loan-details']);
+        break;
+      case 2:
+        this.router.navigate(['/fos/lead-individual']);
+        break;
+      case 3:
+        this.router.navigate(['/fos/lead-guarantor-1']);
+        break;
+      case 4:
+        this.router.navigate(['/fos/lead-guarantor-2']);
+        break;
     }
   }
 
@@ -86,7 +107,7 @@ export class IndividualComponent implements OnInit {
       existingLoans: new FormControl('', [Validators.required]),
       totalExistingLoans: new FormControl('', [Validators.required]),
     });
-   }
+  }
 
   setLookups() {
     let lookup = JSON.parse(

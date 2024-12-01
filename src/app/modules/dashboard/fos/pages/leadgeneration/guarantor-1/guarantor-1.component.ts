@@ -20,27 +20,59 @@ import {
   ILeadHeader,
 } from '../../../../../../../core/interfaces/app/leads/IFOSLeadsModel';
 import { ModalComponent } from '../../../../../../shared/components/modal/modal-component';
-import { STRING_TYPE } from '@angular/compiler';
 @Component({
   selector: 'app-guarantor-1',
   templateUrl: './guarantor-1.component.html',
   styleUrl: './guarantor-1.component.scss',
 })
-export class Guarantor1Component implements OnInit{
+export class Guarantor1Component implements OnInit {
+  public guarantor1Form: FormGroup | any = new FormGroup({});
+  public guarantor1DetailsForm: FormGroup | any = new FormGroup({});
+  public guarantor1CommunicationAddressForm: FormGroup | any = new FormGroup(
+    {}
+  );
+  public guarantor1PermanentAddressForm: FormGroup | any = new FormGroup({});
+  public guarantor1KYCForm: FormGroup | any = new FormGroup({});
+  public isSubmitted: boolean = false;
+  public selectedTab: any;
+  private genderLookup: IFOSLookup[] = [];
+  private stateLookup: IFOSLookup[] = [];
+  private countryLookup: IFOSLookup[] = [];
+  private guarantorRelationshipLookup: IFOSLookup[] = [];
+  private guarantorTypeLookup: IFOSLookup[] = [];
+  private leadHeader: ILeadHeader = {};
+  private loggedInUser: any = {};
+  constructor(
+    private utilityService: UtilsService,
+    private leadService: FOSLeadMasterService,
+    private encryptionService: EncryptionService,
+    private router: Router,
+    private loaderService: LoaderService,
+    private prospectService: FOSProspectService,
+    private toasterService: ToastrService,
+    public dialog: MatDialog
+  ) {
+    if (localStorage.getItem('userDetails')) {
+      const encryptedUserData = localStorage.getItem('userDetails');
+      if (encryptedUserData) {
+        // Decrypt data
+        const decryptedUserData =
+          this.encryptionService.decrypt(encryptedUserData);
+        this.loggedInUser = decryptedUserData || '';
+      }
+    }
+  }
 
-    public guarantor1Form:FormGroup;
-    public guarantor1DetailsForm:FormGroup;
-    public guarantor1CommunicationAddressForm:FormGroup;
-    public guarantor1PermanentAddressForm:FormGroup;
-    public guarantor1KYCForm:FormGroup;
-    public isSubmitted:boolean = false;
-    public selectedTab:any;
-
-    constructor(private router:Router){
-      this.guarantor1Form = new FormGroup({
-          leadNumber: new FormControl('', [Validators.required]),
-          vehicleNumber: new FormControl('', [Validators.required])
-      });
+  ngOnInit(): void {
+    if (localStorage.getItem('selectedIndex')) {
+      this.selectedTab = JSON.parse(
+        localStorage.getItem('selectedIndex') || ''
+      );
+    }
+    this.guarantor1Form = new FormGroup({
+      leadNumber: new FormControl('', [Validators.required]),
+      vehicleNumber: new FormControl('', [Validators.required]),
+    });
 
     this.guarantor1DetailsForm = new FormGroup({
       guarantorName: new FormControl('', [Validators.required]),
@@ -51,7 +83,6 @@ export class Guarantor1Component implements OnInit{
       alternateMobileNumber: new FormControl(''),
       guarantorAmount: new FormControl('', [Validators.required]),
     });
-
     this.guarantor1CommunicationAddressForm = new FormGroup({
       addressLine1: new FormControl(''),
       addressLine2: new FormControl(''),
@@ -72,48 +103,6 @@ export class Guarantor1Component implements OnInit{
       pincode: new FormControl('', [Validators.required]),
     });
 
-      this.guarantor1KYCForm = new FormGroup({
-          aadharNumber:new FormControl('', [Validators.required]),
-          panNumber:new FormControl('', [Validators.required]),
-          guarantorImage:new FormControl('', [Validators.required]),
-          aadharImage:new FormControl('', [Validators.required]),
-          panImage:new FormControl('', [Validators.required])
-      });
-    }
-
-    ngOnInit(): void {
-      if(localStorage.getItem('selectedIndex')){
-        this.selectedTab = JSON.parse(localStorage.getItem('selectedIndex') || '')
-      }
-    }
-
-    onTabChanged(event:MatTabChangeEvent){
-      localStorage.setItem('selectedIndex', JSON.stringify(event.index))
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail']);
-          break;
-          case 1:
-          this.router.navigate(['/fos/lead-loan-details']);
-          break;
-          case 2:
-          this.router.navigate(['/fos/lead-individual']);
-          break;
-          case 3:
-          this.router.navigate(['/fos/lead-guarantor-1']);
-          break;
-          case 4:
-          this.router.navigate(['/fos/lead-guarantor-2']);
-          break;
-      }
-    }
-
-    save(){
-      this.isSubmitted = true;
-      if(this.guarantor1Form.valid && this.guarantor1DetailsForm.valid && this.guarantor1CommunicationAddressForm.valid && this.guarantor1PermanentAddressForm.valid && this.guarantor1KYCForm.valid){
-        this.isSubmitted = false;
-      }
-    }
     this.guarantor1KYCForm = new FormGroup({
       aadharNumber: new FormControl('', [Validators.required]),
       panNumber: new FormControl('', [Validators.required]),
@@ -121,19 +110,27 @@ export class Guarantor1Component implements OnInit{
       aadharImage: new FormControl('', [Validators.required]),
       panImage: new FormControl('', [Validators.required]),
     });
-    this.setLookups();
-    this.getStates();
-    this.getProspectLookup();
   }
 
-  setLookups() {
-    let lookup = JSON.parse(
-      localStorage.getItem('leadGenerationLookups')!
-    ) as IFOSLookup[];
-    this.guarantorRelationshipLookup = lookup.filter(
-      (s) => s.lookupTypeId == 18
-    );
-    this.guarantorTypeLookup = lookup.filter((s) => s.lookupTypeId == 17);
+  onTabChanged(event: MatTabChangeEvent) {
+    localStorage.setItem('selectedIndex', JSON.stringify(event.index));
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/fos/lead-prospect-detail']);
+        break;
+      case 1:
+        this.router.navigate(['/fos/lead-loan-details']);
+        break;
+      case 2:
+        this.router.navigate(['/fos/lead-individual']);
+        break;
+      case 3:
+        this.router.navigate(['/fos/lead-guarantor-1']);
+        break;
+      case 4:
+        this.router.navigate(['/fos/lead-guarantor-2']);
+        break;
+    }
   }
 
   getStates() {
@@ -152,6 +149,7 @@ export class Guarantor1Component implements OnInit{
       },
     });
   }
+  
   getProspectLookup() {
     this.loaderService.showLoader();
     this.prospectService.fetchProspectLookup().subscribe({
@@ -176,6 +174,13 @@ export class Guarantor1Component implements OnInit{
     this.countryLookup = lookItems.filter(
       (s: IFOSLookup) => s.lookupTypeId == 22
     );
+    let lookup = JSON.parse(
+      localStorage.getItem('leadGenerationLookups')!
+    ) as IFOSLookup[];
+    this.guarantorRelationshipLookup = lookup.filter(
+      (s) => s.lookupTypeId == 18
+    );
+    this.guarantorTypeLookup = lookup.filter((s) => s.lookupTypeId == 17);
   }
 
   save() {
@@ -198,8 +203,9 @@ export class Guarantor1Component implements OnInit{
         guarantorName: this.guarantor1DetailsForm.value.guarantorName,
         guaranterDateOfBirth: this.guarantor1DetailsForm.value.dateOfBirth,
         mobileNumber: String(this.guarantor1DetailsForm.value.mobileNumber),
-        alternateMobileNumber:
-         String(this.guarantor1DetailsForm.value.alternateMobileNumber),
+        alternateMobileNumber: String(
+          this.guarantor1DetailsForm.value.alternateMobileNumber
+        ),
         email: '',
         website: '',
         aadharNumber: this.guarantor1KYCForm.aadharNumber,
@@ -218,7 +224,9 @@ export class Guarantor1Component implements OnInit{
           city: this.guarantor1CommunicationAddressForm.value.city,
           stateId: this.guarantor1CommunicationAddressForm.value.state,
           countryId: this.guarantor1CommunicationAddressForm.value.country,
-          pincode: String(this.guarantor1CommunicationAddressForm.value.pincode),
+          pincode: String(
+            this.guarantor1CommunicationAddressForm.value.pincode
+          ),
         } as IAddress,
         permanentAddress: {
           addressLine1: this.guarantor1PermanentAddressForm.value.addressLine1,
