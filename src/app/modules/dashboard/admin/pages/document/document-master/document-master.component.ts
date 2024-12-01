@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-document-master',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class DocumentMasterComponent {
 
+  public documentMasterForm:FormGroup;
+
+  constructor(){
+    this.documentMasterForm = new FormGroup({
+      categoryDescription:new FormControl('', [Validators.required]),
+    });
+  }
 }

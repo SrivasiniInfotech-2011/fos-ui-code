@@ -42,6 +42,10 @@ const routes: Routes = [
         component: ProspectDetailsComponent
       },
       {
+        path: 'prospect-master',
+        component: ProspectDetailsComponent
+      },
+      {
         path: 'lead-generation',
         component: LeadMasterComponent,
       },

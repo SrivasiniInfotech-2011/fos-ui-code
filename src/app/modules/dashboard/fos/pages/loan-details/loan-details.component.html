@@ -28,7 +28,7 @@
       <form class="loan-details-form" [formGroup]="loanDetailsForm">
         <caption class="d-flex">Loan Details</caption>
         <div class="row d-flex ">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
             <input type="number" class="form-control my-2" formControlName="leadNumber">
             <div *ngIf="loanDetailsForm.get('leadNumber')?.touched || isSubmitted">
@@ -36,7 +36,7 @@
                 required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Line Of Business</label>
             <input type="text" class="form-control my-2" formControlName="lineOfBusiness">
             <div *ngIf="loanDetailsForm.get('lineOfBusiness')?.touched || isSubmitted">
@@ -44,7 +44,7 @@
                 Business is required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Tenure Type</label>
             <input type="text" class="form-control my-2" formControlName="tenureType">
             <div *ngIf="loanDetailsForm.get('tenureType')?.touched || isSubmitted">
@@ -52,7 +52,7 @@
                 required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Leave Period</label>
             <input type="text" class="form-control my-2" formControlName="leavePeriod">
             <div *ngIf="loanDetailsForm.get('leavePeriod')?.touched || isSubmitted">
@@ -60,7 +60,7 @@
                 is required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Finance Amount</label>
             <input type="number" class="form-control my-2" formControlName="financeAmount">
             <div *ngIf="loanDetailsForm.get('financeAmount')?.touched || isSubmitted">
@@ -68,7 +68,7 @@
                 Amount is required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Rate</label>
             <input type="number" class="form-control my-2" formControlName="rate">
             <div *ngIf="loanDetailsForm.get('rate')?.touched || isSubmitted">
@@ -76,7 +76,7 @@
                 required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Tenure</label>
             <input type="text" class="form-control my-2" formControlName="tenure">
             <div *ngIf="loanDetailsForm.get('tenure')?.touched || isSubmitted">
@@ -84,7 +84,7 @@
                 required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Repayment Frequency</label>
             <input type="text" class="form-control my-2" formControlName="repaymentFrequency">
             <div *ngIf="loanDetailsForm.get('repaymentFrequency')?.touched || isSubmitted">
@@ -93,7 +93,7 @@
                 required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Document Category</label>
             <input type="text" class="form-control my-2" formControlName="documentCategory">
             <div *ngIf="loanDetailsForm.get('documentCategory')?.touched || isSubmitted">
@@ -110,7 +110,7 @@
       <form class="loan-details-form" [formGroup]="assetsDetailsForm">
         <caption class="d-flex">Asset Details</caption>
         <div class="row d-flex ">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Asset Class</label>
             <input type="text" class="form-control my-2" formControlName="assetClass">
             <div *ngIf="assetsDetailsForm.get('assetClass')?.touched || isSubmitted">
@@ -118,7 +118,7 @@
                 is required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Asset Model</label>
             <input type="text" class="form-control my-2" formControlName="assetModel">
             <div *ngIf="assetsDetailsForm.get('assetModel')?.touched || isSubmitted">
@@ -126,7 +126,7 @@
                 is required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Chassis Number</label>
             <input type="text" class="form-control my-2" formControlName="chassisNumber">
             <div *ngIf="assetsDetailsForm.get('chassisNumber')?.touched || isSubmitted">
@@ -134,7 +134,7 @@
                 Number is required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Model</label>
             <input type="text" class="form-control my-2" formControlName="model">
             <div *ngIf="assetsDetailsForm.get('model')?.touched || isSubmitted">
@@ -142,7 +142,7 @@
                 required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Fuel Type</label>
             <input type="text" class="form-control my-2" formControlName="fuelType">
             <div *ngIf="assetsDetailsForm.get('fuelType')?.touched || isSubmitted">
@@ -150,7 +150,7 @@
                 required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Asset Name</label>
             <input type="text" class="form-control my-2" formControlName="assetName">
             <div *ngIf="assetsDetailsForm.get('assetName')?.touched || isSubmitted">
@@ -158,7 +158,7 @@
                 required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
             <input type="text" class="form-control my-2" formControlName="vehicleNumber">
             <div *ngIf="assetsDetailsForm.get('vehicleNumber')?.touched || isSubmitted">
@@ -166,7 +166,7 @@
                 Number is required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Serial Number</label>
             <input type="text" class="form-control my-2" formControlName="serialNumber">
             <div *ngIf="assetsDetailsForm.get('serialNumber')?.touched || isSubmitted">
@@ -174,7 +174,7 @@
                 Number is required</span>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Vehicle Type</label>
             <input type="text" class="form-control my-2" formControlName="vehicleType">
             <div *ngIf="assetsDetailsForm.get('vehicleType')?.touched || isSubmitted">

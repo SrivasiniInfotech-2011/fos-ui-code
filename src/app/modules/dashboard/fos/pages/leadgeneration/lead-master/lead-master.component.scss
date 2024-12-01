@@ -1,3 +1,5 @@
+
+
 :host {
   width: 100%;
 }
@@ -9,6 +11,8 @@
   margin-left: 240px;
   margin-top: 80px;
   background-color: var(--background-color);
+  z-index: 0;
+  position: relative;
   .option-button {
     font-size: 14px;
     font-weight: 400;
@@ -24,42 +28,7 @@
     border-radius: 5px;
     padding: 20px;
 
-    // .button-box {
-    //   border: 1px solid #cfd9e8;
-    //   border-radius: 5px;
-    //   padding: 10px;
 
-    //   .option-button {
-    //     font-size: 14px;
-    //     font-weight: 400;
-    //     line-height: 22px;
-    //     color: #fff;
-    //     background: linear-gradient(45deg, #173966, #1a4575);
-    //     border: unset;
-    //     padding: 5px 10px;
-    //   }
-    // }
-
-    // .serach-box {
-    //   background: #fff;
-
-    //   .form-control {
-    //     background: transparent;
-
-    //     &:focus {
-    //       border: unset;
-    //       box-shadow: unset;
-    //     }
-    //   }
-
-    //   .input-group-text {
-    //     background: #fff;
-    //     font-size: 14px;
-    //     line-height: 22px;
-    //     font-weight: 500;
-    //     color: #173662;
-    //   }
-    // }
     .breadcrumb{
       li{
       color: var(--text-color);
@@ -125,11 +94,14 @@
 
 
   }
-  .lead-master-table {
+
+
+ .lead-master-table{
+  border: 1px solid var(--border-color);
     thead {
       tr {
         th {
-          background-color:var( --table-header-background);
+          background-color:var(--table-header-background);
           font-size: 14px;
           font-weight: 600;
           line-height: 20px;
@@ -140,7 +112,7 @@
     tr {
       td{
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 20px;
         color:var(--text-dark)
       }
@@ -154,8 +126,19 @@
       }
     }
   }
-  
-  @media only screen and (max-width: 540px) {
+   .mat-mdc-header-row
+   {
+    background-color: var(--table-header-background);
+    height: unset;
+
+  }
+.table-header{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--header-text-color);
+}
+  @media only screen and (max-width: 992px) {
     .content-box {
       width: 100%;
       margin-left: 0;
@@ -182,4 +165,3 @@
       }
     }
   }
-

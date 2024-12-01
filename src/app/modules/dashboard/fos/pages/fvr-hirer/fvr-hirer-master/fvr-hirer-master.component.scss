@@ -11,7 +11,7 @@
   background-color: var(--background-color);
   margin-top: 80px;
 
-  // height: 100vh;
+
   .tab-box {
       font-size: 14px;
       font-weight: 400;
@@ -88,12 +88,19 @@
               border: unset;
               padding: 5px 10px;
           }
+          textarea{
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 400;
+            color: #173662;
+        }
 
       }
   }
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 992px) {
   .content-box {
       margin-left: 0;
       width: 100%;

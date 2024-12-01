@@ -1,84 +1,64 @@
 <div class="content-box pt-2">
   <div class="container">
     <!-- Basic Details Section -->
+    <div class="prospect-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item">
+            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon
+                class="me-2">home</mat-icon>Prospect
+              Master</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
 
     <div class="prospect-details-box my-3" *ngIf="basicDetailForm">
       <form class="prospect-details-form" [formGroup]="basicDetailForm">
         <caption class="d-flex">
-          BasicDetails
+          Basic Details
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Mobile Number<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Enter Mobile Number"
-              formControlName="mobileNumber"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="Enter Mobile Number" formControlName="mobileNumber"
+              class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 basicDetailForm.controls.mobileNumber.touched &&
                 basicDetailForm.controls.mobileNumber.errors?.required
-              "
-            >
+              ">
               Mobile Number is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Aadhar Number<span class="required">*</span></label>
-            <input
-              class="form-control mt-2 mb-1"
-              type="text"
-              placeholder="Enter Aadhar Number"
-              formControlName="aadharNumber"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input class="form-control mt-2 mb-1" type="text" placeholder="Enter Aadhar Number"
+              formControlName="aadharNumber" />
+            <div class="massage-text" *ngIf="
                 basicDetailForm.controls.aadharNumber.touched &&
                 basicDetailForm.controls.aadharNumber.errors?.required
-              "
-            >
+              ">
               Aadhar Number is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>PAN Number<span class="required">*</span></label>
-            <input
-              type="text"
-              class="form-control mt-2 mb-1"
-              placeholder="Enter Pan Number"
-              formControlName="panNumber"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" class="form-control mt-2 mb-1" placeholder="Enter Pan Number"
+              formControlName="panNumber" />
+            <div class="massage-text" *ngIf="
                 basicDetailForm.controls.panNumber.touched &&
                 basicDetailForm.controls.panNumber.errors?.required
-              "
-            >
+              ">
               PAN Number is required
             </div>
           </div>
-          <div
-            class="note"
-            *ngIf="basicDetailForm.errors?.['aadharOrPanRequired'] && basicDetailForm.touched"
-          >
-            <span
-              >*Any two fields required with Mobile Number as mandatory</span
-            >
+          <div class="note" *ngIf="basicDetailForm.errors?.['aadharOrPanRequired'] && basicDetailForm.touched">
+            <span>*Any two fields required with Mobile Number as mandatory</span>
           </div>
         </div>
         <div class="col-auto pt-2 d-flex justify-content-end">
-          <button
-            class="next-button d-flex align-items-center px-4 rounded"
-            (click)="getCustomerProspect()"
-          >
-            <mat-icon class="d-flex align-items-center" style="font-size: 14px"
-              >arrow_forward</mat-icon
-            >Go
+          <button class="next-button d-flex align-items-center px-4 rounded" (click)="getCustomerProspect()">
+            <mat-icon class="d-flex align-items-center" style="font-size: 14px">arrow_forward</mat-icon>Go
           </button>
         </div>
       </form>
@@ -91,312 +71,180 @@
           Prospect Details
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Branch<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Enter Branch"
-              formControlName="branch"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="Enter Branch" formControlName="branch" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.branch.touched &&
                 prospectDetailForm.controls.branch.errors?.required
-              "
-            >
+              ">
               Branch is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Prospect Name<span class="required">*</span></label
-            >
-            <input
-              type="text"
-              placeholder="Enter the name"
-              formControlName="prospectName"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Prospect Name<span class="required">*</span></label>
+            <input type="text" placeholder="Enter the name" formControlName="prospectName"
+              class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.prospectName.touched &&
                 prospectDetailForm.controls.prospectName.errors?.required
-              "
-            >
+              ">
               Prospect Name is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Date of Birth<span class="required">*</span></label
-            >
-            <input
-              type="date"
-              formControlName="dob"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Date of Birth<span class="required">*</span></label>
+            <input type="date" formControlName="dob" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.dob.touched &&
                 prospectDetailForm.controls.dob.errors?.required
-              "
-            >
+              ">
               Date of Birth is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Mobile Number<span class="required">*</span></label
-            >
-            <input
-              type="text"
-              placeholder="Enter Mobile Number"
-              formControlName="mobileNumber"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Mobile Number<span class="required">*</span></label>
+            <input type="text" placeholder="Enter Mobile Number" formControlName="mobileNumber"
+              class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.mobileNumber.touched &&
                 prospectDetailForm.controls.mobileNumber.errors?.required
-              "
-            >
+              ">
               Mobile Number is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Prospect Code</label>
-            <input
-              type="text"
-              placeholder="Enter Prospect Code"
-              formControlName="prospectCode"
-              class="form-control mt-2 mb-1"
-            />
+            <input type="text" placeholder="Enter Prospect Code" formControlName="prospectCode"
+              class="form-control mt-2 mb-1" />
           </div>
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Prospect Type<span class="required">*</span></label
-            >
-            <select
-              formControlName="prospectType"
-              class="form-select mt-2 mb-1"
-              name="prospectType"
-            >
-              <option
-                *ngFor="let c of prospectTypeLookup"
-                [ngValue]="c.lookupValueId"
-              >
+          <div class="col-12 col-lg-4">
+            <label class="label">Prospect Type<span class="required">*</span></label>
+            <select formControlName="prospectType" class="form-select mt-2 mb-1" name="prospectType">
+              <option *ngFor="let c of prospectTypeLookup" [ngValue]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
             </select>
-            <div
-              class="massage-text"
-              *ngIf="
+            <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.prospectType.touched &&
                 prospectDetailForm.controls.prospectType.errors?.required
-              "
-            >
+              ">
               Prospect Type is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Age<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Enter the Age"
-              formControlName="age"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="Enter the Age" formControlName="age" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.age.touched &&
                 prospectDetailForm.controls.age.errors?.required
-              "
-            >
+              ">
               Age is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Alternate Mobile</label>
-            <input
-              type="text"
-              placeholder="Alternate Mobile"
-              formControlName="alternateMobileNumber"
-              class="form-control mt-2 mb-1"
-            />
+            <input type="text" placeholder="Alternate Mobile" formControlName="alternateMobileNumber"
+              class="form-control mt-2 mb-1" />
           </div>
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Prospect Date<span class="required">*</span></label
-            >
-            <input
-              type="date"
-              value="2024-11-11"
-              formControlName="prospectDate"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Prospect Date<span class="required">*</span></label>
+            <input type="date" value="2024-11-11" formControlName="prospectDate" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.prospectDate.touched &&
                 prospectDetailForm.controls.prospectDate.errors?.required
-              "
-            >
+              ">
               Prospect Date is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Website</label>
-            <input
-              type="text"
-              placeholder="Website Name"
-              formControlName="website"
-              class="form-control mt-2 mb-1"
-            />
+            <input type="text" placeholder="Website Name" formControlName="website" class="form-control mt-2 mb-1" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Gender<span class="required">*</span></label>
-            <select
-              formControlName="gender"
-              class="form-select mt-2 mb-1"
-              name="gender"
-            >
-              <option
-                *ngFor="let c of genderLookup"
-                [ngValue]="c.lookupValueId"
-              >
+            <select formControlName="gender" class="form-select mt-2 mb-1" name="gender">
+              <option *ngFor="let c of genderLookup" [ngValue]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
             </select>
-            <div
-              class="massage-text"
-              *ngIf="
+            <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.gender.touched &&
                 prospectDetailForm.controls.gender.errors?.required
-              "
-            >
+              ">
               Gender is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Email</label>
-            <input
-              type="email"
-              placeholder="Enter the Email"
-              formControlName="email"
-              class="form-control mt-2 mb-1"
-            />
+            <input type="email" placeholder="Enter the Email" formControlName="email" class="form-control mt-2 mb-1" />
           </div>
         </div>
       </form>
     </div>
     <div class="prospect-details-box my-3" *ngIf="communicationAddressForm">
-      <form
-        [formGroup]="communicationAddressForm"
-        class="prospect-details-form"
-      >
+      <form [formGroup]="communicationAddressForm" class="prospect-details-form">
         <caption class="d-flex">
           Communication Address
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Address Line 1<span class="required">*</span></label
-            >
-            <input
-              type="text"
-              placeholder="Address Line 1"
-              formControlName="addressLine1"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Address Line 1<span class="required">*</span></label>
+            <input type="text" placeholder="Address Line 1" formControlName="addressLine1"
+              class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 communicationAddressForm.get('addressLine1').errors?.required &&
                 communicationAddressForm.get('addressLine1').touched
-              "
-            >
+              ">
               Address Line 1 is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Address Line 2</label>
-            <input
-              type="text"
-              placeholder="Address Line 2"
-              formControlName="addressLine2"
-              class="form-control mt-2 mb-1"
-            />
+            <input type="text" placeholder="Address Line 2" formControlName="addressLine2"
+              class="form-control mt-2 mb-1" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Landmark<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Landmark"
-              formControlName="landmark"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="Landmark" formControlName="landmark" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 communicationAddressForm.get('landmark').errors?.required &&
                 communicationAddressForm.get('landmark').touched
-              "
-            >
+              ">
               Landmark is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">City<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="City"
-              formControlName="city"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="City" formControlName="city" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 communicationAddressForm.get('city').errors?.required &&
                 communicationAddressForm.get('city').touched
-              "
-            >
+              ">
               City is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">State<span class="required">*</span></label>
-            <select
-              formControlName="state"
-              class="form-select mt-2 mb-1"
-              name="state"
-            >
+            <select formControlName="state" class="form-select mt-2 mb-1" name="state">
               <option value="" disabled>Choose State</option>
               <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
             </select>
-            <div
-              class="massage-text"
-              *ngIf="
+            <div class="massage-text" *ngIf="
                 communicationAddressForm.get('state').errors?.required &&
                 communicationAddressForm.get('state').touched
-              "
-            >
+              ">
               State is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Country<span class="required">*</span></label>
             <select formControlName="country" class="form-select mt-2 mb-1">
               <option value="" disabled>Choose Country</option>
@@ -404,31 +252,20 @@
                 {{ c.lookupValueDescription }}
               </option>
             </select>
-            <div
-              class="massage-text"
-              *ngIf="
+            <div class="massage-text" *ngIf="
                 communicationAddressForm.get('country').errors?.required &&
                 communicationAddressForm.get('country').touched
-              "
-            >
+              ">
               Country is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Pin Code<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Pin Code"
-              formControlName="pincode"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="Pin Code" formControlName="pincode" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 communicationAddressForm.get('pincode').errors?.required &&
                 communicationAddressForm.get('pincode').touched
-              "
-            >
+              ">
               Pincode is required
             </div>
           </div>
@@ -437,109 +274,69 @@
       <form [formGroup]="permanantAddressForm" class="prospect-details-form">
         <div class="row d-flex py-4">
           <div class="col-12 d-flex align-items-center">
-            <input
-              type="checkbox"
-              style="width: 25px; height: 25px"
-              class="me-2"
-            />
+            <input type="checkbox" style="width: 25px; height: 25px" class="me-2" />
             <caption class="pb-0">
               Enter Permanent Address As Same
             </caption>
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Address Line 1<span class="required">*</span></label
-            >
-            <input
-              type="text"
-              placeholder="Address Line 1"
-              formControlName="addressLine1"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Address Line 1<span class="required">*</span></label>
+            <input type="text" placeholder="Address Line 1" formControlName="addressLine1"
+              class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 permanantAddressForm.get('addressLine1').errors?.required &&
                 permanantAddressForm.get('addressLine1').touched
-              "
-            >
+              ">
               Address Line 1 is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Address Line 2</label>
-            <input
-              type="text"
-              placeholder="Address Line 2"
-              formControlName="addressLine2"
-              class="form-control mt-2 mb-1"
-            />
+            <input type="text" placeholder="Address Line 2" formControlName="addressLine2"
+              class="form-control mt-2 mb-1" />
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Landmark<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Landmark"
-              formControlName="landmark"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="Landmark" formControlName="landmark" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 permanantAddressForm.get('landmark').errors?.required &&
                 permanantAddressForm.get('landmark').touched
-              "
-            >
+              ">
               Landmark is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">City<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="City"
-              formControlName="city"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="City" formControlName="city" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 permanantAddressForm.get('city').errors?.required &&
                 permanantAddressForm.get('city').touched
-              "
-            >
+              ">
               City is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">State<span class="required">*</span></label>
-            <select
-              formControlName="state"
-              class="form-select mt-2 mb-1"
-              name="state"
-            >
+            <select formControlName="state" class="form-select mt-2 mb-1" name="state">
               <option value="" disabled>Choose State</option>
               <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
             </select>
-            <div
-              class="massage-text"
-              *ngIf="
+            <div class="massage-text" *ngIf="
                 permanantAddressForm.get('state').errors?.required &&
                 permanantAddressForm.get('state').touched
-              "
-            >
+              ">
               State is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Country<span class="required">*</span></label>
             <select formControlName="country" class="form-select mt-2 mb-1">
               <option value="" disabled>Choose Country</option>
@@ -547,31 +344,20 @@
                 {{ c.lookupValueDescription }}
               </option>
             </select>
-            <div
-              class="massage-text"
-              *ngIf="
+            <div class="massage-text" *ngIf="
                 permanantAddressForm.get('country').errors?.required &&
                 permanantAddressForm.get('country').touched
-              "
-            >
+              ">
               Country is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label class="label">Pin Code<span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="Pin Code"
-              formControlName="pincode"
-              class="form-control mt-2 mb-1"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="text" placeholder="Pin Code" formControlName="pincode" class="form-control mt-2 mb-1" />
+            <div class="massage-text" *ngIf="
                 permanantAddressForm.get('pincode').errors?.required &&
                 permanantAddressForm.get('pincode').touched
-              "
-            >
+              ">
               Pincode is required
             </div>
           </div>
@@ -585,108 +371,62 @@
           Primary KYC Upload
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Aadhar Number<span class="required">*</span></label
-            >
-            <input
-              type="text"
-              placeholder="Aadhar Number"
-              class="form-control mt-2 mb-1"
-              formControlName="aadharNumber"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Aadhar Number<span class="required">*</span></label>
+            <input type="text" placeholder="Aadhar Number" class="form-control mt-2 mb-1"
+              formControlName="aadharNumber" />
+            <div class="massage-text" *ngIf="
                 kycDetailForm.controls.aadharNumber.touched &&
                 kycDetailForm.controls.aadharNumber.errors?.required
-              "
-            >
+              ">
               Aadhar Number is required
             </div>
           </div>
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Pan Number<span class="required">*</span></label
-            >
-            <input
-              type="text"
-              placeholder="Pan Number"
-              class="form-control mt-2 mb-1"
-              formControlName="panNumber"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Pan Number<span class="required">*</span></label>
+            <input type="text" placeholder="Pan Number" class="form-control mt-2 mb-1" formControlName="panNumber" />
+            <div class="massage-text" *ngIf="
                 kycDetailForm.controls.panNumber.touched &&
                 kycDetailForm.controls.panNumber.errors?.required
-              "
-            >
+              ">
               PAN Number is required
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Prospect Image<span class="required">*</span></label
-            >
-            <input
-              type="file"
-              class="form-control mt-2 mb-1"
-              formControlName="prospectImage"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+          <div class="col-12 col-lg-4">
+            <label class="label">Prospect Image<span class="required">*</span></label>
+            <input type="file" class="form-control mt-2 mb-1" formControlName="prospectImage" />
+            <div class="massage-text" *ngIf="
                 kycDetailForm.controls.prospectImage.touched &&
                 kycDetailForm.controls.prospectImage.errors?.required
-              "
-            >
+              ">
               Prospect Image is required
             </div>
             <span>{{ prospectImageFilePath }}</span>
           </div>
 
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >Aadhar Image<span class="required">*</span></label
-            >
+          <div class="col-12 col-lg-4">
+            <label class="label">Aadhar Image<span class="required">*</span></label>
 
-            <input
-              type="file"
-              placeholder="Select Aadhar Image"
-              class="form-control mt-2 mb-1"
-              formControlName="aadharImage"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="file" placeholder="Select Aadhar Image" class="form-control mt-2 mb-1"
+              formControlName="aadharImage" />
+            <div class="massage-text" *ngIf="
                 kycDetailForm.controls.aadharImage.touched &&
                 kycDetailForm.controls.aadharImage.errors?.required
-              "
-            >
+              ">
               Aadhar Image is required
             </div>
             <span>{{ aadharImageFilePath }}</span>
           </div>
-          <div class="col-12 col-md-4">
-            <label class="label"
-              >PAN Image<span class="required">*</span></label
-            >
+          <div class="col-12 col-lg-4">
+            <label class="label">PAN Image<span class="required">*</span></label>
 
-            <input
-              type="file"
-              placeholder="Select PAN Number Imapge"
-              class="form-control mt-2 mb-1"
-              formControlName="panImage"
-            />
-            <div
-              class="massage-text"
-              *ngIf="
+            <input type="file" placeholder="Select PAN Number Imapge" class="form-control mt-2 mb-1"
+              formControlName="panImage" />
+            <div class="massage-text" *ngIf="
                 kycDetailForm.controls.panImage.touched &&
                 kycDetailForm.controls.panImage.errors?.required
-              "
-            >
+              ">
               PAN Number Imapge is required
             </div>
             <span>{{ panNumberImageFilePath }}</span>
@@ -695,10 +435,7 @@
       </form>
     </div>
     <div class="d-flex w-100 justify-content-end mb-3">
-      <button
-        class="submit-button d-flex align-items-center mt-4 px-4 rounded"
-        (click)="saveCustomerProspect()"
-      >
+      <button class="submit-button d-flex align-items-center mt-4 px-4 rounded" (click)="saveCustomerProspect()">
         Submit
       </button>
     </div>

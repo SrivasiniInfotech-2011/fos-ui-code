@@ -25,9 +25,11 @@ import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-creat
 import { DocumentCollectionMasterComponent } from './pages/document-collection/document-collection-master/document-collection-master.component';
 import { DisbursementDetailMasterComponent } from './pages/disbursement/disbursement-detail-master/disbursement-detail-master.component';
 import { DisbursementDetailCreateComponent } from './pages/disbursement/disbursement-detail-create/disbursement-detail-create.component';
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { MatInputModule } from '@angular/material/input';
     SharedModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatTabsModule,
     MatPaginatorModule,
     MatFormFieldModule,
     MatSortModule,

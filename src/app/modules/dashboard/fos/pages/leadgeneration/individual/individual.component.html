@@ -1,5 +1,10 @@
 <div class="content-box pt-2">
   <div class="container">
+    <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTab" >
+      <mat-tab label="Prospect Details"></mat-tab>
+      <mat-tab label="Loan Details"> </mat-tab>
+      <mat-tab label="Individual">
+
     <div class="individual-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
@@ -17,7 +22,7 @@
     <div class="individual-details-box my-3">
       <form class="individual-details-form" [formGroup]="individualForm">
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
             <input
               placeholder="Enter Lead Number"
@@ -35,7 +40,7 @@
               >Lead Number is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
             <input
               placeholder="Enter Vehicle Number"
@@ -62,7 +67,7 @@
           Individual Details
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Father Name</label>
             <input
               placeholder="Enter the Father Name "
@@ -81,7 +86,7 @@
               >Father Name is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Mother Name</label>
             <input
               placeholder="Enter the Mother  Name "
@@ -100,7 +105,7 @@
               >Mother Name is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Marital Status</label>
             <select class="form-select mt-2" formControlName="maritalStatus">
               <option value="" disabled>--Select--</option>
@@ -121,7 +126,7 @@
               >Marital Status is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Employment</label>
             <select class="form-select mt-2" formControlName="employment">
               <option value="" disabled>--Select--</option>
@@ -142,7 +147,7 @@
               >Employment is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Net Salary</label>
             <input
               placeholder="Enter the Amount"
@@ -162,7 +167,7 @@
             >
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>No of adult dependents</label>
             <input
               placeholder="Enter the Count "
@@ -182,7 +187,7 @@
               >No of adult dependents is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>No of Child dependents </label>
             <input
               placeholder="Enter the Count"
@@ -203,7 +208,7 @@
             >
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>House Type</label>
             <select class="form-select mt-2" formControlName="houseType">
               <option
@@ -224,7 +229,7 @@
             >
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Floor Number /Flat Number* </label>
             <input
               placeholder="EX:Old no/new no"
@@ -244,7 +249,7 @@
               >Floor / Flat Number is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>House Status</label>
             <select class="form-select mt-2" formControlName="houseStatus">
               <option value="" disabled>--Select--</option>
@@ -265,7 +270,7 @@
               >House Status is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Rental / Lease Amount</label>
             <input
               placeholder="Enter the Amount"
@@ -285,7 +290,7 @@
               >Amount is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Owned 2 Wheeler</label>
             <input
               placeholder="Enter the count "
@@ -304,7 +309,7 @@
               >Owned 2 Wheeler is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Owned 4 Wheeler</label>
             <input
               placeholder="Enter the count "
@@ -323,7 +328,7 @@
               >Owned 4 Wheeler is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Owned Heavy Vehicles</label>
             <input
               placeholder="Enter the count "
@@ -344,7 +349,7 @@
               >Owned Heavy Vehicles is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Existing Loan in Alive</label>
             <input
               placeholder="Enter the count "
@@ -363,7 +368,7 @@
               >Existing Loan in Alive is required</span
             >
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Total Existing Loans Monthly EMI</label>
             <input
               placeholder="Enter the Amount "
@@ -398,5 +403,9 @@
         </button>
       </div>
     </div>
+  </mat-tab>
+  <mat-tab label=" Guarantor 1 "></mat-tab>
+  <mat-tab label=" Guarantor 2"> </mat-tab>
+</mat-tab-group>
   </div>
 </div>

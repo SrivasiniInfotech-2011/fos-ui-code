@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { IFOSLookup } from '../../../../../../../core/interfaces/app/request/IFOSModels';
 import {
   IFieldExecutive,
@@ -85,8 +86,7 @@ export class IndividualComponent implements OnInit {
       existingLoans: new FormControl('', [Validators.required]),
       totalExistingLoans: new FormControl('', [Validators.required]),
     });
-    this.setLookups();
-  }
+   }
 
   setLookups() {
     let lookup = JSON.parse(

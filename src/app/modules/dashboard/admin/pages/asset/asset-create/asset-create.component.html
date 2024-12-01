@@ -9,50 +9,42 @@
       </nav>
     </div>
     <div class="asset-create-box my-3">
-      <form class="asset-create-form">
+      <form class="asset-create-form" [formGroup]="assetCreateForm">
         <caption class="d-flex">
-            Asset 
-            Master
+          Asset
+          Master
         </caption>
         <div class="row my-3">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Asset Category Type</label>
-            <select formControlName="gender" class="form-select mt-2">
+            <select formControlName="assetCategoryType" class="form-select mt-2">
               <option>--select--</option>
               <option>CLASS</option>
               <option>MAKE</option>
               <option>TYPE</option>
               <option>MODEL</option>
             </select>
-            <span class="massage-text" ngClass>Asset Category Type is required</span>
+            <span class="massage-text" *ngIf="(assetCreateForm.get('assetCategoryType')?.touched || isSubmitted) && assetCreateForm.get('assetCategoryType')?.hasError('required')">Asset Category Type is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Asset Category Description </label>
-            <input
-              type="text"
-              class="form-control mt-2"
-              placeholder="Enter Asset Code Description"
-            />
-            <span class="massage-text" ngClass>Asset Category Description is required</span>
+            <input type="text" class="form-control mt-2" placeholder="Enter Asset Category Description" formControlName="assetCategoryDescription" />
+            <span class="massage-text" *ngIf="(assetCreateForm.get('assetCategoryDescription')?.touched || isSubmitted) && assetCreateForm.get('assetCategoryDescription')?.hasError('required')">Asset Category Description is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Asset Code </label>
-            <input
-              type="number"
-              class="form-control mt-2"
-              placeholder="Enter Asset Code Description"
-            />
+            <input type="number" class="form-control mt-2" placeholder="Enter Asset Code Description" formControlName="assetCode" />
           </div>
         </div>
       </form>
       <div class="d-flex align-items-center flex-wrap gap-3 my-4">
-        <button class="option-button d-flex align-items-center px-4">
+        <button class="option-button d-flex align-items-center px-4" (click)="save()">
           Save
         </button>
         <button class="option-button d-flex align-items-center px-4">
           Cancel
         </button>
-    
+
       </div>
     </div>
   </div>

@@ -13,6 +13,7 @@ import { FOSRequestInterceptor } from '../../../core/interceptors/fos-request-in
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { LoanDetailsComponent } from './fos/pages/loan-details/loan-details.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { LoanDetailsComponent } from './fos/pages/loan-details/loan-details.comp
     ReactiveFormsModule,
     FosModule,
     AdminModule,
-    SharedModule
+    SharedModule,
+    MatTabsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: FOSRequestInterceptor, multi: true }]
 })

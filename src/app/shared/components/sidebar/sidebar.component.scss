@@ -67,9 +67,9 @@
         border: 1px solid var(--border-color);
         cursor: pointer;
     }
-   
+
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
     .sidebar-box{
         display: none;
     }

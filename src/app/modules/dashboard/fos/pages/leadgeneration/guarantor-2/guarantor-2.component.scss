@@ -9,6 +9,8 @@
   margin-left: 240px;
   margin-top: 80px;
   background-color: var(--background-color);
+  z-index: 0;
+  position: relative;
   .option-button {
     font-size: 14px;
     font-weight: 400;
@@ -116,7 +118,7 @@
     //   }
     // }
   }
-  @media only screen and (max-width: 540px) {
+  @media only screen and (max-width: 992px) {
     .content-box {
       width: 100%;
       margin-left: 0;

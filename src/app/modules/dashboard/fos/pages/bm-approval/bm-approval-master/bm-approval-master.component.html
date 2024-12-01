@@ -14,14 +14,14 @@
       <form class="bmaproval-details-form" [formGroup]="bmApprovalMasterForm">
 
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
             <input placeholder="Enter Lead Number" type="number" class="form-control my-2"
               formControlName="leadNumber" />
 
             <span class="massage-text"  *ngIf="(bmApprovalMasterForm.get('leadNumber')?.touched || isSubmitted) && bmApprovalMasterForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
             <input placeholder="Enter Vehicle Number" type="number" class="form-control my-2"
               formControlName="vehicleNumber" />

@@ -1,5 +1,11 @@
 <div class="content-box pt-2">
   <div class="container">
+    <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTab" >
+      <mat-tab label="Prospect Details"></mat-tab>
+      <mat-tab label="Loan Details"> </mat-tab>
+      <mat-tab label="Individual"> </mat-tab>
+      <mat-tab label=" Guarantor 1 "></mat-tab>
+      <mat-tab label=" Guarantor 2">
     <div class="gaurantor-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
@@ -15,14 +21,14 @@
     <div class="gaurantor-details-box my-3">
       <form class="gaurantor-details-form" [formGroup]="guarantor2Form">
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
             <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
               formControlName="leadNumber" />
 
             <span class="massage-text" *ngIf="(guarantor2Form.get('leadNumber')?.touched || isSubmitted) && guarantor2Form.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
             <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
               formControlName="vehicleNumber" />
@@ -39,14 +45,14 @@
           Details
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Guarantor Name</label>
             <input placeholder="Enter the Name " type="text" class="form-control mt-1"
               formControlName="guarantorName" />
 
             <span class="massage-text" *ngIf="(guarantor2DetailsForm.get('guarantorName')?.touched || isSubmitted) && guarantor2DetailsForm.get('guarantorName')?.hasError('required')">Guarantor Name is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Relationship</label>
             <select class="form-select mt-2" formControlName="relationship">
               <option>--Select--</option>
@@ -61,7 +67,7 @@
       </select>
             <span class="massage-text" *ngIf="(guarantor2DetailsForm.get('relationship')?.touched || isSubmitted) && guarantor2DetailsForm.get('relationship')?.hasError('required')">Relationship is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Gender</label>
             <select class="form-select mt-2" formControlName="gender">
               <option>--Select--</option>
@@ -70,25 +76,25 @@
             </select>
             <span class="massage-text" *ngIf="(guarantor2DetailsForm.get('gender')?.touched || isSubmitted) && guarantor2DetailsForm.get('gender')?.hasError('required')">Gender is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Date Of Birth</label>
             <input type="date" class="form-control mt-1" formControlName="dateOfBirth" />
 
             <span class="massage-text" *ngIf="(guarantor2DetailsForm.get('dateOfBirth')?.touched || isSubmitted) && guarantor2DetailsForm.get('dateOfBirth')?.hasError('required')">Date Of Birth is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Mobile Number</label>
             <input type="number" class="form-control mt-1" placeholder="Enter Mobile Number"
               formControlName="mobileNumber" />
             <span class="massage-text" *ngIf="(guarantor2DetailsForm.get('mobileNumber')?.touched || isSubmitted) && guarantor2DetailsForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Alternate Mobile Number</label>
             <input type="number" class="form-control mt-1" placeholder="Enter Mobile Number"
               formControlName="alternateMobileNumber" />
 
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Guarantor Amount</label>
             <input type="number" class="form-control mt-1" placeholder="Guarantor Amount"
               formControlName="guarantorAmount" />
@@ -104,27 +110,27 @@
           Communication Address
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <input placeholder="Address Line 1 " type="text" class="form-control mt-1" formControlName="addressLine1" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <input placeholder="Address Line 2 " type="text" class="form-control mt-1"
               formControlName="addressLine2" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <input placeholder="Landmark " type="text" class="form-control mt-1" formControlName="landmark" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <input placeholder="City " type="text" class="form-control mt-1" formControlName="city" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <select class="form-select mt-2" formControlName="state">
               <option>Choose State</option>
               <option>Andaman and nicobar island</option>
             </select>
             <span class="massage-text" *ngIf="(guarantor2CommunicationAddressForm.get('state')?.touched || isSubmitted) && guarantor2CommunicationAddressForm.get('state')?.hasError('required')">State is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <select class="form-select mt-2" formControlName="country">
               <option>Country</option>
               <option>India</option>
@@ -132,7 +138,7 @@
             </select>
             <span class="massage-text" *ngIf="(guarantor2CommunicationAddressForm.get('country')?.touched || isSubmitted) && guarantor2CommunicationAddressForm.get('country')?.hasError('required')">Country is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
 
             <input type="number" class="form-control mt-1" placeholder="Pincode" formControlName="pincode" />
 
@@ -149,26 +155,26 @@
           <input type="checkbox" style="width:20px;height:20px;" class="me-2 p-0 my-0">Enter Permanent Address As Same
         </div>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <input placeholder="Address Line 1 " type="text" class="form-control mt-1" formControlName="addressLine1" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <input placeholder="Address Line 2 " type="text" class="form-control mt-1" formControlName="addressLine2" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <input placeholder="Landmark " type="text" class="form-control mt-1" formControlName="landmark" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <input placeholder="City " type="text" class="form-control mt-1" formControlName="city" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <select class="form-select mt-2" formControlName="state">
               <option>Choose State</option>
               <option>Andaman and nicobar island</option>
             </select>
             <span class="massage-text" *ngIf="(guarantor2PermanentAddressForm.get('state')?.touched || isSubmitted) && guarantor2PermanentAddressForm.get('state')?.hasError('required')">State is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <select class="form-select mt-2" formControlName="country">
               <option>Country</option>
               <option>India</option>
@@ -176,7 +182,7 @@
             </select>
             <span class="massage-text" *ngIf="(guarantor2PermanentAddressForm.get('country')?.touched || isSubmitted) && guarantor2PermanentAddressForm.get('country')?.hasError('required')">Country is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
 
             <input type="number" class="form-control mt-1" placeholder="Pincode" formControlName="pincode" />
 
@@ -194,29 +200,29 @@
           KYC Upload
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Aadhar Number</label>
-            <input placeholder="Enter the Aadhar " type="text" class="form-control mt-1"
+            <input placeholder="Enter Aadhar Number" type="text" class="form-control mt-1"
               formControlName="aadharNumber" />
             <span class="massage-text" *ngIf="(guarantor2KYCForm.get('aadharNumber')?.touched || isSubmitted) && guarantor2KYCForm.get('aadharNumber')?.hasError('required')">Aadhar Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>PAN Number</label>
             <input placeholder="Enter PAN Number " type="text" class="form-control mt-1" formControlName="panNumber" />
             <span class="massage-text" *ngIf="(guarantor2KYCForm.get('panNumber')?.touched || isSubmitted) && guarantor2KYCForm.get('panNumber')?.hasError('required')">PAN Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Guarantor Image</label>
             <input placeholder="Address Line 2 " type="file" class="form-control mt-1"
               formControlName="guarantorImage" />
             <span class="massage-text" *ngIf="(guarantor2KYCForm.get('guarantorImage')?.touched || isSubmitted) && guarantor2KYCForm.get('guarantorImage')?.hasError('required')">Guarantor Image is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Aadhar</label>
             <input placeholder="Address Line 2 " type="file" class="form-control mt-1" formControlName="aadharImage" />
             <span class="massage-text" *ngIf="(guarantor2KYCForm.get('aadharImage')?.touched || isSubmitted) && guarantor2KYCForm.get('aadharImage')?.hasError('required')">Aadhar is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>PAN</label>
             <input placeholder="Address Line 2 " type="file" class="form-control mt-1" formControlName="panImage" />
             <span class="massage-text" *ngIf="(guarantor2KYCForm.get('panImage')?.touched || isSubmitted) && guarantor2KYCForm.get('panImage')?.hasError('required')">PAN is required</span>
@@ -230,5 +236,7 @@
       <button class="option-button d-flex align-items-center">Skip</button>
 
     </div>
+  </mat-tab>
+</mat-tab-group>
   </div>
 </div>

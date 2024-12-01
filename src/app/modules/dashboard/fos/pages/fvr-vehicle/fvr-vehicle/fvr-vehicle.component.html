@@ -17,14 +17,14 @@
           Vehicle
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
             <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
               formControlName="leadNumber" />
 
             <span class="massage-text" *ngIf="(fvrVehicleLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrVehicleLeadForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
             <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
               formControlName="vehicleNumber" />
