@@ -53,7 +53,51 @@ export class IndividualComponent implements OnInit {
         this.loggedInUser = decryptedUserData || '';
       }
     }
+
+    this.individualDetailsForm = new FormGroup({
+      fatherName: new FormControl('', [Validators.required]),
+      motherName: new FormControl('', [Validators.required]),
+      maritalStatus: new FormControl('', [Validators.required]),
+      employment: new FormControl('', [Validators.required]),
+      netSalary: new FormControl('', [Validators.required]),
+      noOfAdultDependents: new FormControl('', [Validators.required]),
+      spouseName:new FormControl(''),
+      spouseEmployment:new FormControl(''),
+      spouseMonthlySalary:new FormControl(''),
+      noOfChildDependents: new FormControl(''),
+      houseType: new FormControl('', [Validators.required]),
+      floorFlatNumber: new FormControl('', [Validators.required]),
+      houseStatus: new FormControl('', [Validators.required]),
+      rentalLeaseAmount: new FormControl('', [Validators.required]),
+      owned2Wheeler: new FormControl('', [Validators.required]),
+      owned4Wheeler: new FormControl('', [Validators.required]),
+      ownedHeavyVehicle: new FormControl('', [Validators.required]),
+      existingLoans: new FormControl('', [Validators.required]),
+      totalExistingLoans: new FormControl('', [Validators.required]),
+    });
   }
+
+  ngOnInit(): void {
+      if (localStorage.getItem('selectedIndex')) {
+      this.selectedTab = JSON.parse(localStorage.getItem('selectedIndex') || '')
+    }
+
+    this.leadHeader = JSON.parse(
+      localStorage.getItem('leadHeader')!
+    ) as ILeadHeader;
+    this.individualForm = new FormGroup({
+      leadNumber: new FormControl(this.leadHeader.leadNumber, [
+        Validators.required,
+      ]),
+      vehicleNumber: new FormControl(
+        this.leadHeader.vehicleRegistrationNumber?.toUpperCase(),
+        [Validators.required]
+      ),
+    });
+
+
+  }
+
   onTabChanged(event: MatTabChangeEvent) {
     localStorage.setItem('selectedIndex', JSON.stringify(event.index));
     switch (event.index) {
@@ -73,40 +117,6 @@ export class IndividualComponent implements OnInit {
         this.router.navigate(['/fos/lead-guarantor-2']);
         break;
     }
-  }
-
-  ngOnInit(): void {
-    this.leadHeader = JSON.parse(
-      localStorage.getItem('leadHeader')!
-    ) as ILeadHeader;
-    this.individualForm = new FormGroup({
-      leadNumber: new FormControl(this.leadHeader.leadNumber, [
-        Validators.required,
-      ]),
-      vehicleNumber: new FormControl(
-        this.leadHeader.vehicleRegistrationNumber?.toUpperCase(),
-        [Validators.required]
-      ),
-    });
-
-    this.individualDetailsForm = new FormGroup({
-      fatherName: new FormControl('', [Validators.required]),
-      motherName: new FormControl('', [Validators.required]),
-      maritalStatus: new FormControl('', [Validators.required]),
-      employment: new FormControl('', [Validators.required]),
-      netSalary: new FormControl('', [Validators.required]),
-      noOfAdultDependents: new FormControl('', [Validators.required]),
-      noOfChildDependents: new FormControl('', [Validators.required]),
-      houseType: new FormControl('', [Validators.required]),
-      floorFlatNumber: new FormControl('', [Validators.required]),
-      houseStatus: new FormControl('', [Validators.required]),
-      rentalLeaseAmount: new FormControl('', [Validators.required]),
-      owned2Wheeler: new FormControl('', [Validators.required]),
-      owned4Wheeler: new FormControl('', [Validators.required]),
-      ownedHeavyVehicle: new FormControl('', [Validators.required]),
-      existingLoans: new FormControl('', [Validators.required]),
-      totalExistingLoans: new FormControl('', [Validators.required]),
-    });
   }
 
   setLookups() {

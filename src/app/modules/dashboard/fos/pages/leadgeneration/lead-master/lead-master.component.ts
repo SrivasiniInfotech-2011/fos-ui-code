@@ -69,7 +69,7 @@ export class LeadMasterComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.setSearchParametersForm();
         this.getLeadStatusesForFiltering();
-      
+
       }
     }
   }
@@ -163,6 +163,7 @@ export class LeadMasterComponent implements OnInit {
   }
 
   createLead(){
-    this.router.navigate(["viewloan-details"]);
+    localStorage.setItem('selectedIndex', JSON.stringify(0));
+    this.router.navigate(["fos/lead-prospect-detail"]);
   }
 }

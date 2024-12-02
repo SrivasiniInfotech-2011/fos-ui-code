@@ -66,6 +66,20 @@ export class LoanDetailsComponent implements OnInit {
     }
   }
 
+
+  ngOnInit(): void {
+    if (localStorage.getItem('selectedIndex')) {
+      this.selectedTab = JSON.parse(localStorage.getItem('selectedIndex') || '')
+    }
+    this.SetupLoanDetailsScreen();
+    this.setLookups();
+    this.setLineOfBusinesses();
+    this.setFieldExecutives();
+    this.setDocumentCategories();
+
+  }
+
+
   onTabChanged(event: MatTabChangeEvent) {
     localStorage.setItem('selectedIndex', JSON.stringify(event.index));
     switch (event.index) {
@@ -85,14 +99,6 @@ export class LoanDetailsComponent implements OnInit {
         this.router.navigate(['/fos/lead-guarantor-2']);
         break;
     }
-  }
-
-  ngOnInit(): void {
-    this.SetupLoanDetailsScreen();
-    this.setLookups();
-    this.setLineOfBusinesses();
-    this.setFieldExecutives();
-    this.setDocumentCategories();
   }
 
   setLineOfBusinesses() {
@@ -188,16 +194,16 @@ export class LoanDetailsComponent implements OnInit {
       rate: new FormControl('', [Validators.required]),
       repaymentFrequency: new FormControl('', [Validators.required]),
       leavePeriod: new FormControl('', [Validators.required]),
-      fieldExecutive: new FormControl('1', []),
-      documentCategory: new FormControl('1', []),
+      fieldExecutive: new FormControl('', [Validators.required]),
+      documentCategory: new FormControl('', [Validators.required]),
     });
 
     this.assetDetailsForm = new FormGroup({
-      assetClass: new FormControl('', []),
-      assetName: new FormControl('', []),
+      assetClass: new FormControl('', [Validators.required]),
+      assetName: new FormControl('', [Validators.required]),
       assetType: new FormControl('', [Validators.required]),
-      assetModel: new FormControl('', []),
-      vehicleNumber: new FormControl('', [Validators.required]),
+      assetModel: new FormControl('', [Validators.required]),
+      vehicleNumber: new FormControl(''),
       engineNumber: new FormControl('', [Validators.required]),
       chassisNumber: new FormControl('', [Validators.required]),
       serialNumber: new FormControl('', [Validators.required]),

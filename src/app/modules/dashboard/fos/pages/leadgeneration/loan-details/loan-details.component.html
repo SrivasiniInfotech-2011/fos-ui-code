@@ -106,8 +106,8 @@
               </div>
               <div class="col-12 col-lg-4">
                 <label>Leave Period</label>
-                <input placeholder="Enter the Leave Period" type="text" class="form-control mt-1"
-                  formControlName="leavePeriod" />
+                <input placeholder="Enter the Leave Period" type="number" class="form-control mt-1"
+                 formControlName="leavePeriod" />
 
                 <span class="massage-text"
                   *ngIf="(loanDetailsForm.get('leavePeriod')?.touched || isSubmitted) && loanDetailsForm.get('leavePeriod')?.hasError('required') ">Leave

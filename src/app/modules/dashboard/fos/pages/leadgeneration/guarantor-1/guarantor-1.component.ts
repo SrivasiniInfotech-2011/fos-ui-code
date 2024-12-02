@@ -88,9 +88,9 @@ export class Guarantor1Component implements OnInit {
       addressLine2: new FormControl(''),
       landmark: new FormControl(''),
       city: new FormControl(''),
-      state: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-      pincode: new FormControl('', [Validators.required]),
+      state: new FormControl(''),
+      country: new FormControl(''),
+      pincode: new FormControl(''),
     });
 
     this.guarantor1PermanentAddressForm = new FormGroup({
@@ -98,9 +98,9 @@ export class Guarantor1Component implements OnInit {
       addressLine2: new FormControl(''),
       landmark: new FormControl(''),
       city: new FormControl(''),
-      state: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-      pincode: new FormControl('', [Validators.required]),
+      state: new FormControl(''),
+      country: new FormControl(''),
+      pincode: new FormControl(''),
     });
 
     this.guarantor1KYCForm = new FormGroup({
@@ -149,7 +149,7 @@ export class Guarantor1Component implements OnInit {
       },
     });
   }
-  
+
   getProspectLookup() {
     this.loaderService.showLoader();
     this.prospectService.fetchProspectLookup().subscribe({

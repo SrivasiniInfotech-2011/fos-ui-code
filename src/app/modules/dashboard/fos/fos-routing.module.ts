@@ -29,18 +29,6 @@ const routes: Routes = [
         path: 'individual-details',
         component: IndividualDetailsComponent,
       },
-      // {
-      //   path: 'loan-master',
-      //   component: LoanDetailsComponent
-      // },
-      {
-        path: 'viewloan-details',
-        component: ViewloanDetailsComponent,
-      },
-      {
-        path: 'prospect-master',
-        component: ProspectDetailsComponent
-      },
       {
         path: 'prospect-master',
         component: ProspectDetailsComponent

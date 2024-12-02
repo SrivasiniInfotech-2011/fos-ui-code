@@ -102,7 +102,7 @@
                 <label>Alternate Mobile Number</label>
                 <input type="number" class="form-control mt-1" placeholder="Enter Alternate Mobile Number"
                   formControlName="alternateMobileNumber" />
-                </div>
+              </div>
               <div class="col-12 col-lg-4">
                 <label>Guarantor Amount</label>
                 <input type="number" class="form-control mt-1" placeholder="Guarantor Amount"
@@ -139,9 +139,6 @@
                   <option>Choose State</option>
                   <option>Andaman and nicobar island</option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(guarantor1CommunicationAddressForm.get('state')?.touched || isSubmitted) && guarantor1CommunicationAddressForm.get('state')?.hasError('required')">State
-                  is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <select class="form-select mt-2" formControlName="country">
@@ -149,15 +146,9 @@
                   <option>India</option>
                   <option>Male</option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(guarantor1CommunicationAddressForm.get('country')?.touched || isSubmitted) && guarantor1CommunicationAddressForm.get('country')?.hasError('required')">Country
-                  is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <input type="number" class="form-control mt-1" placeholder="Pincode" formControlName="pincode" />
-                <span class="massage-text"
-                  *ngIf="(guarantor1CommunicationAddressForm.get('pincode')?.touched || isSubmitted) && guarantor1CommunicationAddressForm.get('pincode')?.hasError('required')">Pincode
-                  is required</span>
               </div>
             </div>
           </form>
@@ -189,9 +180,6 @@
                   <option>Choose State</option>
                   <option>Andaman and nicobar island</option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(guarantor1PermanentAddressForm.get('state')?.touched || isSubmitted) && guarantor1PermanentAddressForm.get('state')?.hasError('required')">State
-                  is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <select class="form-select mt-2" formControlName="country">
@@ -199,19 +187,10 @@
                   <option>India</option>
                   <option>Male</option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(guarantor1PermanentAddressForm.get('country')?.touched || isSubmitted) && guarantor1PermanentAddressForm.get('country')?.hasError('required')">Country
-                  is required</span>
               </div>
               <div class="col-12 col-lg-4">
-
                 <input type="number" class="form-control mt-1" placeholder="Pincode" formControlName="pincode" />
-
-                <span class="massage-text"
-                  *ngIf="(guarantor1PermanentAddressForm.get('pincode')?.touched || isSubmitted) && guarantor1PermanentAddressForm.get('pincode')?.hasError('required')">Pincode
-                  is required</span>
               </div>
-
             </div>
           </form>
 

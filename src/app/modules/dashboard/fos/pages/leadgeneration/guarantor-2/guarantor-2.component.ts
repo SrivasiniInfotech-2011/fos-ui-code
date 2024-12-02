@@ -39,9 +39,9 @@ export class Guarantor2Component implements OnInit {
       addressLine2: new FormControl(''),
       landmark: new FormControl(''),
       city: new FormControl(''),
-      state: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-      pincode: new FormControl('', [Validators.required])
+      state: new FormControl(''),
+      country: new FormControl(''),
+      pincode: new FormControl('')
     });
 
     this.guarantor2PermanentAddressForm = new FormGroup({
@@ -49,9 +49,9 @@ export class Guarantor2Component implements OnInit {
       addressLine2: new FormControl(''),
       landmark: new FormControl(''),
       city: new FormControl(''),
-      state: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-      pincode: new FormControl('', [Validators.required])
+      state: new FormControl(''),
+      country: new FormControl(''),
+      pincode: new FormControl('')
     });
 
     this.guarantor2KYCForm = new FormGroup({

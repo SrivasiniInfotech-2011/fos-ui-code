@@ -18,7 +18,7 @@ const routes: Routes = [
         path: 'fos',
         loadChildren: () =>
           import('././fos/fos.module').then((m) => m.FosModule),
-        // canActivate: [AuthGuard],
+      //  canActivate: [AuthGuard],
       },
 
       {
@@ -29,7 +29,7 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        // canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
       },
       {
         path: '',
