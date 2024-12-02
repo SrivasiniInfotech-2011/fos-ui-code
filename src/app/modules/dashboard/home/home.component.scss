@@ -1,6 +1,10 @@
+:host{
+  width: 100%;
+}
+
 .content-box {
-    width: calc(100% - 130px);
-    margin-left: 130px;
+    width: calc(100% - 240px);
+    margin-left: 240px;
     margin-top: 80px;
     height: 100%;
     .dashboard-box{

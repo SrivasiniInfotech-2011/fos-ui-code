@@ -1,5 +1,3 @@
-
-
 :host {
   width: 100%;
 }
@@ -13,6 +11,7 @@
   background-color: var(--background-color);
   z-index: 0;
   position: relative;
+
   .option-button {
     font-size: 14px;
     font-weight: 400;
@@ -23,145 +22,204 @@
     padding: 5px 10px;
   }
 }
-  .lead-master-box {
-    border: 1px solid #cfd9e8;
-    border-radius: 5px;
-    padding: 20px;
+
+.lead-master-box {
+  border: 1px solid #cfd9e8;
+  border-radius: 5px;
+  padding: 20px;
 
 
-    .breadcrumb{
-      li{
+  .breadcrumb {
+    li {
       color: var(--text-color);
     }
+  }
+
+  .lead-master-form {
+    caption {
+      font-size: 20px;
+      color: var(--text-bold-color);
+      padding-top: 0;
+      line-height: 28px;
+      font-weight: 600;
     }
-    .lead-master-form {
-      caption {
-          font-size: 20px;
-          color: var(--text-bold-color);
-          padding-top: 0;
-          line-height: 28px;
-          font-weight: 600;
+
+    label,
+    input {
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 400;
+      color: var(--text-color);
+
+      &:focus {
+        box-shadow: unset;
+      }
+    }
+
+    input {
+      border: 1px solid var(--input-border);
+      background-color: var(--input-background);
+      border-radius: 5px;
+    }
+
+    select {
+      border: 1px solid var(--input-border);
+      background-color: var(--input-background);
+      border-radius: 5px;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 400;
+      color: var(--text-dark);
+
+      option {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 400;
       }
 
-      label,
-      input {
-          font-size: 14px;
-          line-height: 18px;
-          font-weight: 400;
-          color:var(--text-color);
-
-          &:focus {
-              box-shadow: unset;
-          }
+      &:focus {
+        box-shadow: unset;
       }
-
-      input {
-          border: 1px solid var(--input-border);
-          background-color:var(--input-background);
-          border-radius: 5px;
-      }
-
-      select {
-          border: 1px solid var(--input-border);
-          background-color:var(--input-background);
-          border-radius: 5px;
-          font-size: 14px;
-          line-height: 18px;
-          font-weight: 400;
-          color:var(--text-dark);
-
-          option {
-              font-size: 14px;
-              line-height: 18px;
-              font-weight: 400;
-          }
-
-          &:focus {
-              box-shadow: unset;
-          }
-      }
+    }
 
 
-      .massage-text {
-          color: #f7811e;
-          font-size: 12px;
-          line-height: 18px;
-          font-weight: 400;
-          margin-bottom: 15px;
-          display: inline-bVCBNlock;
-      }
+    .massage-text {
+      color: #f7811e;
+      font-size: 12px;
+      line-height: 18px;
+      font-weight: 400;
+      margin-bottom: 15px;
+      display: inline-bVCBNlock;
+    }
 
 
 
   }
 
 
- .lead-master-table{
-  border: 1px solid var(--border-color);
+  .lead-master-table {
+    border: 1px solid var(--border-color);
+
     thead {
       tr {
         th {
-          background-color:var(--table-header-background);
+          background-color: var(--table-header-background);
           font-size: 14px;
           font-weight: 600;
           line-height: 20px;
-          color: var( --header-text-color);
+          color: var(--header-text-color);
         }
       }
     }
+
     tr {
-      td{
+      td {
         font-size: 14px;
         font-weight: 400;
         line-height: 20px;
-        color:var(--text-dark)
+        color: var(--text-dark)
       }
     }
 
   }
 
-    .pagination {
-      .page-link {
-        color: #f7811e;
-      }
+  .pagination {
+    .page-link {
+      color: #f7811e;
     }
   }
-   .mat-mdc-header-row
-   {
-    background-color: var(--table-header-background);
-    height: unset;
+}
 
-  }
-.table-header{
+.mat-mdc-header-row {
+  background-color: var(--table-header-background);
+  height: unset;
+
+}
+::ng-deep .mat-mdc-form-field-infix{
+  padding: 0 !important;
+  min-height: unset !important;
+  height: unset !important;
+  // background-color: red !important;
+}
+::ng-deep .mat-mdc-text-field-wrapper{
+  background-color: transparent !important;
+}
+// ::ng-deep .mat-form-field {
+//   .mat-mdc-input-element {
+//       color: red;
+//   }    .mat-mdc-form-field-label {
+//       color: red;
+//   }    .mat-mdc-form-field-underline {
+//       background-color: #fff;
+//   }
+//   .mat-mdc-form-field-ripple {
+//       background-color: green;
+//   }
+//   .mat-mdc-form-field-required-marker {
+//       color: slategray;
+//   }
+// }
+::ng-deep .mat-mdc-input-element::placeholder{
+  color: #fff !important;
+}
+::ng-deep .mat-mdc-input-element{
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 22px !important;
+  color: #fff !important;
+}
+::ng-deep .mat-sort-header-arrow {
+  color: #fff !important;
+}
+.option {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 12px;
+
+  // .search-item-box {
+  //   height: 40px;
+  //   display: flex;
+  //   align-items: center;
+  //   overflow: hidden;
+  //   padding-top: 20px;
+  // }
+}
+
+.table-header {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   color: var(--header-text-color);
 }
-  @media only screen and (max-width: 992px) {
-    .content-box {
-      width: 100%;
-      margin-left: 0;
-      margin-top: 80px;
-      .lead-master-box{
-        overflow: scroll;
-        .entity-master-table {
-          thead {
-            tr {
-              th {
-                font-size: 12px;
-                line-height: 18px;
-              }
-            }
-          }
-          thead {
-            td{
+
+@media only screen and (max-width: 992px) {
+  .content-box {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 80px;
+
+    .lead-master-box {
+      overflow: scroll;
+
+      .entity-master-table {
+        thead {
+          tr {
+            th {
               font-size: 12px;
               line-height: 18px;
             }
           }
-
         }
+
+        thead {
+          td {
+            font-size: 12px;
+            line-height: 18px;
+          }
+        }
+
       }
     }
   }
+}
