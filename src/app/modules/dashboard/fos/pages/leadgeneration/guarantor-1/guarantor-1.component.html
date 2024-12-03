@@ -4,7 +4,7 @@
       <mat-tab label="Prospect Details"></mat-tab>
       <mat-tab label="Loan Details"> </mat-tab>
       <mat-tab label="Individual"> </mat-tab>
-      <mat-tab label=" Guarantor 1 ">
+      <mat-tab label="Guarantor 1 ">
         <div class="gaurantor-details-box">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
@@ -22,7 +22,7 @@
           <form class="gaurantor-details-form" [formGroup]="guarantor1Form">
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Lead Number</label>
+                <label>Lead Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
                   formControlName="leadNumber" />
                 <span class="massage-text"
@@ -30,7 +30,7 @@
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Vehicle Number</label>
+                <label>Vehicle Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
                   formControlName="vehicleNumber" />
                 <span class="massage-text"
@@ -48,7 +48,7 @@
             </caption>
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Guarantor Name</label>
+                <label>Guarantor Name<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Name " type="text" class="form-control mt-1"
                   formControlName="guarantorName" />
                 <span class="massage-text"
@@ -56,7 +56,7 @@
                   Name is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Relationship</label>
+                <label>Relationship<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="relationship">
                   <option>--Select--</option>
                   <option>Father</option>
@@ -73,7 +73,7 @@
                   is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Gender</label>
+                <label>Gender<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="gender">
                   <option>--Select--</option>
                   <option>Female</option>
@@ -84,14 +84,14 @@
                   is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Date Of Birth</label>
+                <label>Date Of Birth<span class="text-danger">*</span></label>
                 <input type="date" class="form-control mt-1" formControlName="dateOfBirth" />
                 <span class="massage-text"
                   *ngIf="(guarantor1DetailsForm.get('dateOfBirth')?.touched || isSubmitted) && guarantor1DetailsForm.get('dateOfBirth')?.hasError('required')">Date
                   Of Birth is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Mobile Number</label>
+                <label>Mobile Number<span class="text-danger">*</span></label>
                 <input type="number" class="form-control mt-1" placeholder="Enter Mobile Number"
                   formControlName="mobileNumber" />
                 <span class="massage-text"
@@ -104,7 +104,7 @@
                   formControlName="alternateMobileNumber" />
               </div>
               <div class="col-12 col-lg-4">
-                <label>Guarantor Amount</label>
+                <label>Guarantor Amount<span class="text-danger">*</span></label>
                 <input type="number" class="form-control mt-1" placeholder="Guarantor Amount"
                   formControlName="guarantorAmount" />
                 <span class="massage-text"
@@ -203,15 +203,15 @@
             </caption>
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Aadhar Number</label>
-                <input placeholder="Enter the Aadhar " type="text" class="form-control mt-1"
+                <label>Aadhar Number<span class="text-danger">*</span></label>
+                <input placeholder="Enter the Aadhar " type="number" class="form-control mt-1"
                   formControlName="aadharNumber" />
                 <span class="massage-text"
                   *ngIf="(guarantor1KYCForm.get('aadharNumber')?.touched || isSubmitted) && guarantor1KYCForm.get('aadharNumber')?.hasError('required')">Aadhar
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>PAN Number</label>
+                <label>PAN Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter PAN Number " type="text" class="form-control mt-1"
                   formControlName="panNumber" />
                 <span class="massage-text"
@@ -219,7 +219,7 @@
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Guarantor Image</label>
+                <label>Guarantor Image<span class="text-danger">*</span></label>
                 <input placeholder="Upload Guarantor Image" type="file" class="form-control mt-1"
                   formControlName="guarantorImage" />
                 <span class="massage-text"
@@ -227,7 +227,7 @@
                   Image is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Aadhar</label>
+                <label>Aadhar<span class="text-danger">*</span></label>
                 <input placeholder="Upload Aadhar Image" type="file" class="form-control mt-1"
                   formControlName="aadharImage" />
                 <span class="massage-text"
@@ -235,15 +235,13 @@
                   is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>PAN</label>
+                <label>PAN<span class="text-danger">*</span></label>
                 <input placeholder="Upload PAN Image" type="file" class="form-control mt-1"
                   formControlName="panImage" />
                 <span class="massage-text"
                   *ngIf="(guarantor1KYCForm.get('panImage')?.touched || isSubmitted) && guarantor1KYCForm.get('panImage')?.hasError('required')">PAN
                   is required</span>
               </div>
-
-
             </div>
           </form>
         </div>
@@ -251,10 +249,9 @@
           <button class="option-button d-flex align-items-center" (click)="save()">Save</button>
           <button class="option-button d-flex align-items-center">Back</button>
           <button class="option-button d-flex align-items-center">Skip</button>
-
-        </div>
+      </div>
       </mat-tab>
-      <mat-tab label=" Guarantor 2"> </mat-tab>
+      <mat-tab label="Guarantor 2"> </mat-tab>
     </mat-tab-group>
   </div>
 </div>

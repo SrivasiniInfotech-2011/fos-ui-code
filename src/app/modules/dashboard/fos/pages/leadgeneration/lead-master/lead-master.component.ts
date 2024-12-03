@@ -57,7 +57,15 @@ export class LeadMasterComponent implements OnInit {
     private loaderService: LoaderService,
     private toasterService: ToastrService,
     private encryptionService: EncryptionService
-  ) {}
+  ) {
+
+    this.searchParametersForm = new FormGroup({
+      leadNumber: new FormControl(''),
+      vehicleNumber: new FormControl(''),
+      status: new FormControl(''),
+    });
+
+  }
   ngOnInit(): void {
     if (localStorage.getItem('userDetails')) {
       const encryptedUserData = localStorage.getItem('userDetails');
@@ -161,9 +169,15 @@ export class LeadMasterComponent implements OnInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
+  createLead() {
+    this.router.navigate(["fos/lead-prospect-detail"], { state: { 'value': 0 } });
+  }
 
-  createLead(){
-    localStorage.setItem('selectedIndex', JSON.stringify(0));
-    this.router.navigate(["fos/lead-prospect-detail"]);
+  viewLead(leadId: any) {
+    this.router.navigate(["fos/lead-prospect-detail"],  { queryParams: { 'view': leadId } });
+  }
+
+  modifyLead(leadId: any) {
+    this.router.navigate(["fos/lead-prospect-detail"], { queryParams: { 'modify': leadId} });
   }
 }

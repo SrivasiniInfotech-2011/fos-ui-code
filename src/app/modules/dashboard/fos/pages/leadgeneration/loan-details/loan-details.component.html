@@ -18,7 +18,7 @@
           <form class="loan-details-form" [formGroup]="leadForm">
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Lead Number</label>
+                <label>Lead Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
                   formControlName="leadNumber" />
 
@@ -27,7 +27,7 @@
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Vehicle Number</label>
+                <label>Vehicle Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
                   formControlName="vehicleNumber" />
 
@@ -46,7 +46,7 @@
               Details</caption>
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Line Of Business</label>
+                <label>Line Of Business<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="lineOfBusiness">
                   <option>--Select--</option>
                   <option>Hyponthication</option>
@@ -56,7 +56,7 @@
                   Of Business is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Finance Amount</label>
+                <label>Finance Amount<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Finance Amount" type="number" class="form-control mt-1"
                   formControlName="financeAmount" />
 
@@ -65,7 +65,7 @@
                   Amount is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Tenure</label>
+                <label>Tenure<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Tenure" type="number" class="form-control mt-1"
                   formControlName="tenure" />
 
@@ -74,7 +74,7 @@
                   is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Tenure Type</label>
+                <label>Tenure Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="tenureType">
                   <option>--Select--</option>
                   <option>Month</option>
@@ -84,7 +84,7 @@
                   Type is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Rate</label>
+                <label>Rate<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Rate " type="number" class="form-control mt-1" formControlName="rate" />
 
                 <span class="massage-text"
@@ -92,7 +92,7 @@
                   is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Repayment Frequency</label>
+                <label>Repayment Frequency<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="repaymentFrequency">
                   <option>--Select--</option>
                   <option>Monthly</option>
@@ -105,7 +105,7 @@
                   Frequency is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Leave Period</label>
+                <label>Leave Period<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Leave Period" type="number" class="form-control mt-1"
                  formControlName="leavePeriod" />
 
@@ -114,7 +114,7 @@
                   Period is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Field Executive</label>
+                <label>Field Executive<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="fieldExecutive">
                   <option>--Select--</option>
                 </select>
@@ -123,7 +123,7 @@
                   Executive is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Document Category</label>
+                <label>Document Category<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="documentCategory">
                   <option>--Select--</option>
                 </select>
@@ -142,7 +142,7 @@
               Details</caption>
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Asset Class</label>
+                <label>Asset Class<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetClass">
                   <option>--Select--</option>
                   <option>Private</option>
@@ -154,7 +154,7 @@
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Asset Name</label>
+                <label>Asset Name<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetName">
                   <option>--Select--</option>
                   <option>Ashok Laylend</option>
@@ -164,7 +164,7 @@
                   Name is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Asset Type</label>
+                <label>Asset Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetType">
                   <option>--Select--</option>
                   <option>Car</option>
@@ -175,7 +175,7 @@
                   Type is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Asset Model</label>
+                <label>Asset Model<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetModel">
                   <option>--Select--</option>
                   <option>Swift</option>
@@ -187,7 +187,7 @@
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Vehicle Number</label>
+                <label>Vehicle Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Vehicle Number " type="number" class="form-control mt-1"
                   formControlName="vehicleNumber" />
 
@@ -196,7 +196,7 @@
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Engine Number</label>
+                <label>Engine Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Engine Number " type="number" class="form-control mt-1"
                   formControlName="engineNumber" />
 
@@ -205,7 +205,7 @@
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Chassis Number</label>
+                <label>Chassis Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Chassis Number " type="number" class="form-control mt-1"
                   formControlName="chassisNumber" />
 
@@ -214,7 +214,7 @@
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Serial Number</label>
+                <label>Serial Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Serial Number " type="number" class="form-control mt-1"
                   formControlName="serialNumber" />
 
@@ -224,7 +224,7 @@
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Ownership</label>
+                <label>Ownership<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="ownership">
                   <option>--Select--</option>
                   <option>First</option>
@@ -237,7 +237,7 @@
                   is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Model</label>
+                <label>Model<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Model " type="text" class="form-control mt-1" formControlName="model" />
 
                 <span class="massage-text"
@@ -245,7 +245,7 @@
                   is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Vehicle Type</label>
+                <label>Vehicle Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="vehicleType">
                   <option>--Select--</option>
                   <option>Own</option>
@@ -255,7 +255,7 @@
                   Type is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Tax Type</label>
+                <label>Tax Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="taxType">
                   <option>--Select--</option>
                   <option>Life Time</option>
@@ -265,7 +265,7 @@
                   Type is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Fuel Type*</label>
+                <label>Fuel Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="fuelType">
                   <option>--Select--</option>
                   <option>Gas</option>

@@ -13,10 +13,10 @@
           </nav>
         </div>
         <div class="lead-prospect-details-box my-3">
-          <form class="lead-prospect-details-form" [formGroup]="prospectDetailsForm1">
+          <form class="lead-prospect-details-form" [formGroup]="prospectDetailsForm1" >
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Mobile Number</label>
+                <label>Mobile Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Mobile Number" type="number" class="form-control mt-1"
                   formControlName="mobileNumber" />
                 <span class="massage-text"
@@ -24,7 +24,7 @@
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Aadhar Number</label>
+                <label>Aadhar Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Aadhar Number" type="number" class="form-control mt-1"
                   formControlName="aadharNumber" />
                 <span class="massage-text"
@@ -32,7 +32,7 @@
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>PAN Number</label>
+                <label>PAN Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter PAN Number" type="number" class="form-control mt-1"
                   formControlName="panNumber" />
                 <span class="massage-text"
@@ -48,10 +48,10 @@
           </div>
         </div>
         <div class="lead-prospect-details-box my-3">
-          <form class="lead-prospect-details-form" [formGroup]="prospectDetailsForm2">
+          <form class="lead-prospect-details-form" [formGroup]="prospectDetailsForm2" >
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Branch</label>
+                <label>Branch<span class="text-danger">*</span></label>
                 <input placeholder="Enter The Branch" type="text" class="form-control mt-1"
                   formControlName="branch" />
                 <span class="massage-text"
@@ -78,7 +78,7 @@
                   formControlName="prospectName" />
               </div>
               <div class="col-12 col-lg-4">
-                <label>Vehicle Number</label>
+                <label>Vehicle Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter The Vehicle Number" type="text" class="form-control mt-1"
                   formControlName="vehicleNumber" />
                 <span class="massage-text"
@@ -106,8 +106,8 @@
       </mat-tab>
       <mat-tab label="Loan Details"> </mat-tab>
       <mat-tab label="Individual"> </mat-tab>
-      <mat-tab label=" Guarantor 1 "></mat-tab>
-      <mat-tab label=" Guarantor 2"> </mat-tab>
+      <mat-tab label="Guarantor 1 "></mat-tab>
+      <mat-tab label="Guarantor 2"> </mat-tab>
     </mat-tab-group>
   </div>
 </div>

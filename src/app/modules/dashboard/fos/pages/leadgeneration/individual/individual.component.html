@@ -22,17 +22,16 @@
           <form class="individual-details-form" [formGroup]="individualForm">
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Lead Number</label>
+                <label>Lead Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Lead Number" type="text" class="form-control mt-1"
                   formControlName="leadNumber" />
-
                 <span class="massage-text" *ngIf="
                 (individualForm.get('leadNumber')?.touched || isSubmitted) &&
                 individualForm.get('leadNumber')?.hasError('required')
               ">Lead Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Vehicle Number</label>
+                <label>Vehicle Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-1"
                   formControlName="vehicleNumber" />
 
@@ -51,7 +50,7 @@
             </caption>
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
-                <label>Father Name</label>
+                <label>Father Name<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Father Name " type="text" class="form-control mt-1"
                   formControlName="fatherName" />
 
@@ -62,7 +61,7 @@
               ">Father Name is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Mother Name</label>
+                <label>Mother Name<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Mother  Name " type="text" class="form-control mt-1"
                   formControlName="motherName" />
 
@@ -73,7 +72,7 @@
               ">Mother Name is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Marital Status</label>
+                <label>Marital Status<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="maritalStatus">
                   <option value="" disabled>--Select--</option>
                   <option *ngFor="let c of maritalStatusLookup" [value]="c.lookupValueId">
@@ -87,7 +86,7 @@
               ">Marital Status is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Employment</label>
+                <label>Employment<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="employment">
                   <option value="" disabled>--Select--</option>
                   <option *ngFor="let c of employmentLookup" [value]="c.lookupValueId">
@@ -101,7 +100,7 @@
               ">Employment is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Net Salary</label>
+                <label>Net Salary<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Amount" type="number" class="form-control mt-1"
                   formControlName="netSalary" />
 
@@ -113,7 +112,7 @@
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>No of adult dependents</label>
+                <label>No of adult dependents<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Count " type="text" class="form-control mt-1"
                   formControlName="noOfAdultDependents" />
                 <span class="massage-text" *ngIf="
@@ -133,7 +132,7 @@
 
               <div class="col-12 col-lg-4">
                 <label>Spouse Employment</label>
-                <select class="form-select"formControlName="spouseEmployment">
+                <select class="form-select mt-2" formControlName="spouseEmployment">
                   <option value="" disabled>--Select--</option>
                 </select>
               </div>
@@ -151,7 +150,7 @@
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>House Type</label>
+                <label>House Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="houseType">
                   <option *ngFor="let c of houseTypeLookup" [value]="c.lookupValueId">
                     {{ c.lookupValueDescription }}
@@ -165,7 +164,7 @@
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Floor Number /Flat Number* </label>
+                <label>Floor Number /Flat Number<span class="text-danger">*</span></label>
                 <input placeholder="EX:Old no/new no" type="text" class="form-control mt-1"
                   formControlName="floorFlatNumber" />
                 <span class="massage-text" *ngIf="
@@ -177,7 +176,7 @@
               ">Floor / Flat Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>House Status</label>
+                <label>House Status<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="houseStatus">
                   <option value="" disabled>--Select--</option>
                   <option *ngFor="let c of houseStatusLookup" [value]="c.lookupValueId">
@@ -191,7 +190,7 @@
               ">House Status is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Rental / Lease Amount</label>
+                <label>Rental / Lease Amount<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Amount" type="text" class="form-control mt-1"
                   formControlName="rentalLeaseAmount" />
                 <span class="massage-text" *ngIf="
@@ -203,7 +202,7 @@
               ">Amount is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Owned 2 Wheeler</label>
+                <label>Owned 2 Wheeler<span class="text-danger">*</span></label>
                 <input placeholder="Enter the count " type="number" class="form-control mt-1"
                   formControlName="owned2Wheeler" />
 
@@ -214,7 +213,7 @@
               ">Owned 2 Wheeler is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Owned 4 Wheeler</label>
+                <label>Owned 4 Wheeler<span class="text-danger">*</span></label>
                 <input placeholder="Enter the count " type="number" class="form-control mt-1"
                   formControlName="owned4Wheeler" />
 
@@ -225,7 +224,7 @@
               ">Owned 4 Wheeler is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Owned Heavy Vehicles</label>
+                <label>Owned Heavy Vehicles<span class="text-danger">*</span></label>
                 <input placeholder="Enter the count " type="number" class="form-control mt-1"
                   formControlName="ownedHeavyVehicle" />
 
@@ -238,7 +237,7 @@
               ">Owned Heavy Vehicles is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Existing Loan in Alive</label>
+                <label>Existing Loan in Alive<span class="text-danger">*</span></label>
                 <input placeholder="Enter the count " type="number" class="form-control mt-1"
                   formControlName="existingLoans" />
 
@@ -249,7 +248,7 @@
               ">Existing Loan in Alive is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label>Total Existing Loans Monthly EMI</label>
+                <label>Total Existing Loans Monthly EMI<span class="text-danger">*</span></label>
                 <input placeholder="Enter the Amount " type="number" class="form-control mt-1"
                   formControlName="totalExistingLoans" />
 
@@ -271,8 +270,8 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label=" Guarantor 1 "></mat-tab>
-      <mat-tab label=" Guarantor 2"> </mat-tab>
+      <mat-tab label="Guarantor 1 "></mat-tab>
+      <mat-tab label="Guarantor 2"> </mat-tab>
     </mat-tab-group>
   </div>
 </div>

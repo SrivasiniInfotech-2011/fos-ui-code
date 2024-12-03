@@ -1,6 +1,6 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
@@ -14,8 +14,9 @@ export class LeadProspectDetailComponent implements OnInit {
   public prospectDetailsForm2: FormGroup;
   public isSubmitted: boolean = false;
   public selectedTab: any;
+  public readOnly:boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route:ActivatedRoute) {
     this.prospectDetailsForm1 = new FormGroup({
       mobileNumber: new FormControl('', [Validators.required]),
       aadharNumber: new FormControl('', [Validators.required]),
@@ -25,7 +26,7 @@ export class LeadProspectDetailComponent implements OnInit {
     this.prospectDetailsForm2 = new FormGroup({
       branch: new FormControl('', [Validators.required]),
       leadNumber: new FormControl(''),
-      leadDate:  new FormControl(''),
+      leadDate: new FormControl(''),
       leadType: new FormControl(''),
       prospectName: new FormControl(''),
       vehicleNumber: new FormControl('', [Validators.required]),
@@ -33,31 +34,41 @@ export class LeadProspectDetailComponent implements OnInit {
       prospectType: new FormControl('')
     });
 
-   }
+  }
 
   ngOnInit(): void {
-    if (localStorage.getItem('selectedIndex')) {
-      this.selectedTab = JSON.parse(localStorage.getItem('selectedIndex') || '')
-    }
+    let tabValue = window.history.state?.value;
+    this.selectedTab = tabValue;
+
+    this.route.queryParams.subscribe((params:Params) => {
+      if(params['view']){
+       this.prospectDetailsForm1.disable();
+       this.prospectDetailsForm2.disable();
+      }
+      else{
+        this.prospectDetailsForm1.enable();
+       this.prospectDetailsForm2.enable();
+      }
+    })
   }
 
   onTabChanged(event: MatTabChangeEvent) {
-    localStorage.setItem('selectedIndex', JSON.stringify(event.index))
     switch (event.index) {
       case 0:
-        this.router.navigate(['/fos/lead-prospect-detail']);
+        this.router.navigate(['/fos/lead-prospect-detail'], { state: { 'value': event.index } }
+        );
         break;
       case 1:
-        this.router.navigate(['/fos/lead-loan-details']);
+        this.router.navigate(['/fos/lead-loan-details'], { state: { 'value': event.index } });
         break;
       case 2:
-        this.router.navigate(['/fos/lead-individual']);
+        this.router.navigate(['/fos/lead-individual'], { state: { 'value': event.index } });
         break;
       case 3:
-        this.router.navigate(['/fos/lead-guarantor-1']);
+        this.router.navigate(['/fos/lead-guarantor-1'], { state: { 'value': event.index } });
         break;
       case 4:
-        this.router.navigate(['/fos/lead-guarantor-2']);
+        this.router.navigate(['/fos/lead-guarantor-2'], { state: { 'value': event.index } });
         break;
     }
   }

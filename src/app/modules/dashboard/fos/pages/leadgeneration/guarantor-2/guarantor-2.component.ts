@@ -64,28 +64,26 @@ export class Guarantor2Component implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('selectedIndex')){
-      this.selectedTab = JSON.parse(localStorage.getItem('selectedIndex') || '')
-    }
+    let tabValue = window.history.state?.value;
+    this.selectedTab = tabValue;
   }
 
   onTabChanged(event:MatTabChangeEvent){
-    localStorage.setItem('selectedIndex', JSON.stringify(event.index))
     switch (event.index) {
       case 0:
-        this.router.navigate(['/fos/lead-prospect-detail']);
+        this.router.navigate(['/fos/lead-prospect-detail'], { state: { 'value': event.index }});
         break;
         case 1:
-        this.router.navigate(['/fos/lead-loan-details']);
+        this.router.navigate(['/fos/lead-loan-details'], { state: { 'value': event.index }});
         break;
         case 2:
-        this.router.navigate(['/fos/lead-individual']);
+        this.router.navigate(['/fos/lead-individual'], { state: { 'value': event.index }});
         break;
         case 3:
-        this.router.navigate(['/fos/lead-guarantor-1']);
+        this.router.navigate(['/fos/lead-guarantor-1'], { state: { 'value': event.index }});
         break;
         case 4:
-        this.router.navigate(['/fos/lead-guarantor-2']);
+        this.router.navigate(['/fos/lead-guarantor-2'], { state: { 'value': event.index }});
         break;
     }
   }

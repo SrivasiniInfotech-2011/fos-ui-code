@@ -64,13 +64,47 @@ export class LoanDetailsComponent implements OnInit {
         this.loggedInUser = decryptedUserData || '';
       }
     }
+
+    this.leadForm = new FormGroup({
+      leadNumber: new FormControl('', [Validators.required]),
+      vehicleNumber: new FormControl('', [Validators.required]),
+    });
+
+    this.loanDetailsForm = new FormGroup({
+      lineOfBusiness: new FormControl('', [Validators.required]),
+      financeAmount: new FormControl('', [Validators.required]),
+      tenure: new FormControl('', [Validators.required]),
+      tenureType: new FormControl('', [Validators.required]),
+      rate: new FormControl('', [Validators.required]),
+      repaymentFrequency: new FormControl('', [Validators.required]),
+      leavePeriod: new FormControl('', [Validators.required]),
+      fieldExecutive: new FormControl('', [Validators.required]),
+      documentCategory: new FormControl('', [Validators.required]),
+    });
+
+
+    this.assetDetailsForm = new FormGroup({
+      assetClass: new FormControl('', [Validators.required]),
+      assetName: new FormControl('', [Validators.required]),
+      assetType: new FormControl('', [Validators.required]),
+      assetModel: new FormControl('', [Validators.required]),
+      vehicleNumber: new FormControl(''),
+      engineNumber: new FormControl('', [Validators.required]),
+      chassisNumber: new FormControl('', [Validators.required]),
+      serialNumber: new FormControl('', [Validators.required]),
+      ownership: new FormControl('', [Validators.required]),
+      model: new FormControl('', [Validators.required]),
+      vehicleType: new FormControl('', [Validators.required]),
+      taxType: new FormControl('', [Validators.required]),
+      fuelType: new FormControl('', [Validators.required]),
+    });
   }
 
 
   ngOnInit(): void {
-    if (localStorage.getItem('selectedIndex')) {
-      this.selectedTab = JSON.parse(localStorage.getItem('selectedIndex') || '')
-    }
+    let tabValue = window.history.state?.value;
+    this.selectedTab = tabValue;
+
     this.SetupLoanDetailsScreen();
     this.setLookups();
     this.setLineOfBusinesses();
@@ -81,22 +115,21 @@ export class LoanDetailsComponent implements OnInit {
 
 
   onTabChanged(event: MatTabChangeEvent) {
-    localStorage.setItem('selectedIndex', JSON.stringify(event.index));
     switch (event.index) {
       case 0:
-        this.router.navigate(['/fos/lead-prospect-detail']);
+        this.router.navigate(['/fos/lead-prospect-detail'], { state: { 'value': event.index } });
         break;
       case 1:
-        this.router.navigate(['/fos/lead-loan-details']);
+        this.router.navigate(['/fos/lead-loan-details'], { state: { 'value': event.index } });
         break;
       case 2:
-        this.router.navigate(['/fos/lead-individual']);
+        this.router.navigate(['/fos/lead-individual'], { state: { 'value': event.index } });
         break;
       case 3:
-        this.router.navigate(['/fos/lead-guarantor-1']);
+        this.router.navigate(['/fos/lead-guarantor-1'], { state: { 'value': event.index } });
         break;
       case 4:
-        this.router.navigate(['/fos/lead-guarantor-2']);
+        this.router.navigate(['/fos/lead-guarantor-2'], { state: { 'value': event.index } });
         break;
     }
   }
@@ -111,7 +144,7 @@ export class LoanDetailsComponent implements OnInit {
         next: (data: any) => {
           this.lineOfBusinesses = data.message;
         },
-        error: (error: any) => {},
+        error: (error: any) => { },
       });
   }
 
@@ -127,7 +160,7 @@ export class LoanDetailsComponent implements OnInit {
           this.loaderService.hideLoader();
           this.fieldExecutives = data.message as IFieldExecutive[];
         },
-        error: (error: any) => {this.loaderService.hideLoader();},
+        error: (error: any) => { this.loaderService.hideLoader(); },
       });
   }
 
@@ -143,7 +176,7 @@ export class LoanDetailsComponent implements OnInit {
           this.loaderService.hideLoader();
           this.documentCategoryLookup = data.message;
         },
-        error: (error: any) => {this.loaderService.hideLoader();},
+        error: (error: any) => { this.loaderService.hideLoader(); },
       });
   }
 
@@ -168,7 +201,7 @@ export class LoanDetailsComponent implements OnInit {
             (s) => s.lookupTypeDescription == 'TYPE'
           );
         },
-        error: (error: any) => {this.loaderService.hideLoader();},
+        error: (error: any) => { this.loaderService.hideLoader(); },
       });
   }
 
@@ -176,57 +209,59 @@ export class LoanDetailsComponent implements OnInit {
     this.leadHeader = JSON.parse(
       localStorage.getItem('leadHeader')!
     ) as ILeadHeader;
-    this.leadForm = new FormGroup({
-      leadNumber: new FormControl(this.leadHeader.leadNumber, [
-        Validators.required,
-      ]),
-      vehicleNumber: new FormControl(
-        this.leadHeader.vehicleRegistrationNumber?.toUpperCase(),
-        [Validators.required]
-      ),
-    });
+    // this.leadForm = new FormGroup({
+    //   leadNumber: new FormControl(this.leadHeader.leadNumber, [
+    //     Validators.required,
+    //   ]),
+    //   vehicleNumber: new FormControl(
+    //     this.leadHeader.vehicleRegistrationNumber?.toUpperCase(),
+    //     [Validators.required]
+    //   ),
+    // });
 
-    this.loanDetailsForm = new FormGroup({
-      lineOfBusiness: new FormControl('', [Validators.required]),
-      financeAmount: new FormControl('', [Validators.required]),
-      tenure: new FormControl('', [Validators.required]),
-      tenureType: new FormControl('', [Validators.required]),
-      rate: new FormControl('', [Validators.required]),
-      repaymentFrequency: new FormControl('', [Validators.required]),
-      leavePeriod: new FormControl('', [Validators.required]),
-      fieldExecutive: new FormControl('', [Validators.required]),
-      documentCategory: new FormControl('', [Validators.required]),
-    });
+    // this.loanDetailsForm = new FormGroup({
+    //   lineOfBusiness: new FormControl('', [Validators.required]),
+    //   financeAmount: new FormControl('', [Validators.required]),
+    //   tenure: new FormControl('', [Validators.required]),
+    //   tenureType: new FormControl('', [Validators.required]),
+    //   rate: new FormControl('', [Validators.required]),
+    //   repaymentFrequency: new FormControl('', [Validators.required]),
+    //   leavePeriod: new FormControl('', [Validators.required]),
+    //   fieldExecutive: new FormControl('', [Validators.required]),
+    //   documentCategory: new FormControl('', [Validators.required]),
+    // });
 
-    this.assetDetailsForm = new FormGroup({
-      assetClass: new FormControl('', [Validators.required]),
-      assetName: new FormControl('', [Validators.required]),
-      assetType: new FormControl('', [Validators.required]),
-      assetModel: new FormControl('', [Validators.required]),
-      vehicleNumber: new FormControl(''),
-      engineNumber: new FormControl('', [Validators.required]),
-      chassisNumber: new FormControl('', [Validators.required]),
-      serialNumber: new FormControl('', [Validators.required]),
-      ownership: new FormControl('', [Validators.required]),
-      model: new FormControl('', [Validators.required]),
-      vehicleType: new FormControl('', [Validators.required]),
-      taxType: new FormControl('', [Validators.required]),
-      fuelType: new FormControl('', [Validators.required]),
-    });
+    // this.assetDetailsForm = new FormGroup({
+    //   assetClass: new FormControl('', [Validators.required]),
+    //   assetName: new FormControl('', [Validators.required]),
+    //   assetType: new FormControl('', [Validators.required]),
+    //   assetModel: new FormControl('', [Validators.required]),
+    //   vehicleNumber: new FormControl(''),
+    //   engineNumber: new FormControl('', [Validators.required]),
+    //   chassisNumber: new FormControl('', [Validators.required]),
+    //   serialNumber: new FormControl('', [Validators.required]),
+    //   ownership: new FormControl('', [Validators.required]),
+    //   model: new FormControl('', [Validators.required]),
+    //   vehicleType: new FormControl('', [Validators.required]),
+    //   taxType: new FormControl('', [Validators.required]),
+    //   fuelType: new FormControl('', [Validators.required]),
+    // });
   }
 
   setLookups() {
     let lookup = JSON.parse(
       localStorage.getItem('leadGenerationLookups')!
     ) as IFOSLookup[];
-    this.leadTypeLookup = lookup.filter((s) => s.lookupTypeId == 4);
-    this.repaymentFrequenceyLookup = lookup.filter((s) => s.lookupTypeId == 5);
-    this.ownershipLookup = lookup.filter((s) => s.lookupTypeId == 6);
-    this.fuelTypeLookup = lookup.filter((s) => s.lookupTypeId == 7);
-    this.vehicleTypeLookup = lookup.filter((s) => s.lookupTypeId == 8);
-    this.taxTypeLookup = lookup.filter((s) => s.lookupTypeId == 9);
-    this.tenureTypeLookup = lookup.filter((s) => s.lookupTypeId == 31);
-    this.setupAssetLookups();
+    if (lookup) {
+      this.leadTypeLookup = lookup.filter((s) => s.lookupTypeId == 4);
+      this.repaymentFrequenceyLookup = lookup.filter((s) => s.lookupTypeId == 5);
+      this.ownershipLookup = lookup.filter((s) => s.lookupTypeId == 6);
+      this.fuelTypeLookup = lookup.filter((s) => s.lookupTypeId == 7);
+      this.vehicleTypeLookup = lookup.filter((s) => s.lookupTypeId == 8);
+      this.taxTypeLookup = lookup.filter((s) => s.lookupTypeId == 9);
+      this.tenureTypeLookup = lookup.filter((s) => s.lookupTypeId == 31);
+      this.setupAssetLookups();
+    }
   }
 
   submit() {
