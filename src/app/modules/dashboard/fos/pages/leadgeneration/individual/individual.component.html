@@ -9,7 +9,7 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
               <li class="breadcrumb-item">
-                <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon
+                <a routerLink="/fos/lead-generation" class="text-decoration-none d-flex align-items-center"><mat-icon
                     class="me-2">home</mat-icon>Lead Generation</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
@@ -263,8 +263,8 @@
             </div>
           </form>
           <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
-            <button class="option-button d-flex align-items-center">Back</button>
-            <button class="option-button d-flex align-items-center" (click)="submit()">
+            <button class="option-button d-flex align-items-center" (click)="back()">Back</button>
+            <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" (click)="submit()">
               Submit
             </button>
           </div>

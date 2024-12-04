@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -12,7 +13,7 @@ export class UserCreateComponent {
     public userPersonalDetails:FormGroup;
     public isSubmitted:boolean = false;
 
-    constructor(){
+    constructor(private location:Location){
       this.userManagementForm = new FormGroup({
         userId:new FormControl('',[Validators.required]),
         userName:new FormControl('',[Validators.required]),
@@ -38,6 +39,10 @@ export class UserCreateComponent {
         aadharNumber:new FormControl(''),
         panNumber:new FormControl('')
       });
+    }
+
+    back(){
+      this.location.back();
     }
 
     save(){

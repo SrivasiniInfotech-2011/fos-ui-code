@@ -11,7 +11,7 @@ import {
 import { UtilsService } from '../../../../../../../data/services/shared/utils.service';
 import { FOSLeadMasterService } from '../../../../../../../data/services/feature/leadMaster/leadmaster.service';
 import { EncryptionService } from '../../../../../../../data/services/shared/encryption.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LoaderService } from '../../../../../../../data/services/shared/loader.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
@@ -46,6 +46,9 @@ export class LoanDetailsComponent implements OnInit {
   public fieldExecutives: IFieldExecutive[] = [];
   public lineOfBusinesses: any[] = [];
   public selectedTab: any;
+  public action:any;
+  public buttonDisabled:boolean=false;
+
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -53,7 +56,8 @@ export class LoanDetailsComponent implements OnInit {
     private router: Router,
     private loaderService: LoaderService,
     private toasterService: ToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route:ActivatedRoute
   ) {
     if (localStorage.getItem('userDetails')) {
       const encryptedUserData = localStorage.getItem('userDetails');
@@ -105,6 +109,23 @@ export class LoanDetailsComponent implements OnInit {
     let tabValue = window.history.state?.value;
     this.selectedTab = tabValue;
 
+
+    this.route.queryParams.subscribe((params: Params) => {
+      this.action = params
+      if (params['view']) {
+        this.leadForm.disable();
+        this.loanDetailsForm.disable();
+        this.assetDetailsForm.disable();
+        this.buttonDisabled = true;
+      }
+      else {
+        this.leadForm.enable();
+        this.loanDetailsForm.enable();
+        this.assetDetailsForm.enable();
+        this.buttonDisabled = false;
+      }
+    });
+
     this.SetupLoanDetailsScreen();
     this.setLookups();
     this.setLineOfBusinesses();
@@ -115,23 +136,64 @@ export class LoanDetailsComponent implements OnInit {
 
 
   onTabChanged(event: MatTabChangeEvent) {
-    switch (event.index) {
-      case 0:
-        this.router.navigate(['/fos/lead-prospect-detail'], { state: { 'value': event.index } });
-        break;
-      case 1:
-        this.router.navigate(['/fos/lead-loan-details'], { state: { 'value': event.index } });
-        break;
-      case 2:
-        this.router.navigate(['/fos/lead-individual'], { state: { 'value': event.index } });
-        break;
-      case 3:
-        this.router.navigate(['/fos/lead-guarantor-1'], { state: { 'value': event.index } });
-        break;
-      case 4:
-        this.router.navigate(['/fos/lead-guarantor-2'], { state: { 'value': event.index } });
-        break;
+    if (this.action['view']) {
+      switch (event.index) {
+        case 0:
+          this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          break;
+        case 1:
+          this.router.navigate(['/fos/lead-loan-details'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          break;
+        case 2:
+          this.router.navigate(['/fos/lead-individual'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          break;
+        case 3:
+          this.router.navigate(['/fos/lead-guarantor-1'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          break;
+        case 4:
+          this.router.navigate(['/fos/lead-guarantor-2'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          break;
+      }
     }
+    else if (this.action['modify']) {
+      switch (event.index) {
+        case 0:
+          this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          break;
+        case 1:
+          this.router.navigate(['/fos/lead-loan-details'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          break;
+        case 2:
+          this.router.navigate(['/fos/lead-individual'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          break;
+        case 3:
+          this.router.navigate(['/fos/lead-guarantor-1'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          break;
+        case 4:
+          this.router.navigate(['/fos/lead-guarantor-2'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          break;
+      }
+    }
+    else {
+      switch (event.index) {
+        case 0:
+          this.router.navigate(['/fos/lead-prospect-detail'], { state: { 'value': event.index } });
+          break;
+        case 1:
+          this.router.navigate(['/fos/lead-loan-details'], { state: { 'value': event.index } });
+          break;
+        case 2:
+          this.router.navigate(['/fos/lead-individual'], { state: { 'value': event.index } });
+          break;
+        case 3:
+          this.router.navigate(['/fos/lead-guarantor-1'], { state: { 'value': event.index } });
+          break;
+        case 4:
+          this.router.navigate(['/fos/lead-guarantor-2'], { state: { 'value': event.index } });
+          break;
+      }
+    }
+
   }
 
   setLineOfBusinesses() {

@@ -3,7 +3,7 @@
     <div class="user-create-box my-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item"><a href="#" class="text-decoration-none">User Management</a></li>
+          <li class="breadcrumb-item"><a  [routerLink]="['/admin/user-management']" class="text-decoration-none">User Management</a></li>
           <li class="breadcrumb-item active" aria-current="page">User Create</li>
         </ol>
       </nav>
@@ -14,7 +14,7 @@
           Management</caption>
         <div class="row d-flex ">
           <div class="col-12 col-lg-4">
-            <label>User ID*</label>
+            <label>User ID<span class="text-danger">*</span></label>
             <input type="number" class="form-control mt-2" placeholder="Enter The User ID" formControlName="userId">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('userId')?.touched || isSubmitted) && userManagementForm.get('userId')?.hasError('required')">
@@ -22,7 +22,7 @@
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>User Name</label>
+            <label>User Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter The User Name" formControlName="userName">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('userName')?.touched || isSubmitted) && userManagementForm.get('userName')?.hasError('required')">
@@ -30,7 +30,7 @@
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Gender*</label>
+            <label>Gender<span class="text-danger">*</span></label>
             <select class="form-select mt-2" formControlName="gender">
               <option>Male</option>
               <option>Female</option>
@@ -40,7 +40,7 @@
               is required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Password*</label>
+            <label>Password<span class="text-danger">*</span></label>
             <input type="password" class="form-control mt-2" placeholder="Enter The Password"
               formControlName="password">
             <span class="massage-text"
@@ -49,22 +49,22 @@
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Mobile Number*</label>
+            <label>Mobile Number<span class="text-danger">*</span></label>
             <input type="number" class="form-control mt-2" placeholder="Enter The Mobile Number"
               formControlName="mobileNumber">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('mobileNumber')?.touched || isSubmitted) && userManagementForm.get('mobileNumber')?.hasError('required')">
-              Mobile Number* is
+              Mobile Number is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Emergency Contact Number*
+            <label>Emergency Contact Number<span class="text-danger">*</span>
             </label>
             <input type="number" class="form-control mt-2" placeholder="Enter Emergency Contact Number"
               formControlName="emergencyContactNumber">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('emergencyContactNumber')?.touched || isSubmitted) && userManagementForm.get('emergencyContactNumber')?.hasError('required')">
-              Emergency Contact Number*
+              Emergency Contact Number
               is
               required</span>
           </div>
@@ -76,7 +76,7 @@
                     required</span> -->
           </div>
           <div class="col-12 col-lg-4">
-            <label>Date of Joining*</label>
+            <label>Date of Joining<span class="text-danger">*</span></label>
             <input type="date" class="form-control mt-2" formControlName="joiningDate">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('joiningDate')?.touched || isSubmitted) && userManagementForm.get('joiningDate')?.hasError('required')">Date
@@ -84,7 +84,7 @@
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Designation*</label>
+            <label>Designation<span class="text-danger">*</span></label>
             <select class="form-select mt-2" formControlName="designation">
               <option>ACCOUNTS EXECUTIVE</option>
               <option>ACCOUNTS MANAGER</option>
@@ -113,7 +113,7 @@
               is required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>User Level*</label>
+            <label>User Level<span class="text-danger">*</span></label>
             <select class="form-select mt-2" formControlName="userLevel">
               <option>Manager</option>
               <option>Officer level</option>
@@ -127,7 +127,7 @@
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Reporting - Next Level*</label>
+            <label>Reporting - Next Level<span class="text-danger">*</span></label>
             <input type="password" class="form-control mt-2" placeholder="--Select--"
               formControlName="reportingNextLevel">
           </div>
@@ -138,7 +138,7 @@
             </select>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Email ID*
+            <label>Email ID<span class="text-danger">*</span>
             </label>
             <input type="email" class="form-control mt-2" placeholder="Enter The Email" formControlName="emailId">
             <span class="massage-text"
@@ -148,7 +148,7 @@
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Date of birth*</label>
+            <label>Date of birth<span class="text-danger">*</span></label>
             <input type="date" class="form-control mt-2" formControlName="dateOfBirth">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('dateOfBirth')?.touched || isSubmitted) && userManagementForm.get('dateOfBirth')?.hasError('required')">Date
@@ -169,7 +169,7 @@
           Details</caption>
         <div class="row d-flex ">
           <div class="col-12 col-lg-4">
-            <label>Father Name*</label>
+            <label>Father Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter The Father Name"
               formControlName="fatherName">
             <span class="massage-text"
@@ -178,7 +178,7 @@
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Mother Name</label>
+            <label>Mother Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter The Mother Name"
               formControlName="motherName">
             <span class="massage-text"
@@ -187,7 +187,7 @@
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Marital Status</label>
+            <label>Marital Status<span class="text-danger">*</span></label>
             <select class="form-select mt-2" formControlName="maritalStatus">
               <option>Single</option>
               <option>Married</option>
@@ -199,12 +199,12 @@
               Status is required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Aadhar Number*</label>
+            <label>Aadhar Number</label>
             <input type="password" class="form-control mt-2" placeholder="Enter Aadhar Number"
               formControlName="aadharNumber">
           </div>
           <div class="col-12 col-lg-4">
-            <label>PAN Number*</label>
+            <label>PAN Number</label>
             <input type="number" class="form-control mt-2" placeholder="Enter PAN Number" formControlName="panNumber">
           </div>
 
@@ -214,12 +214,13 @@
     </div>
     <div class="row mb-4">
       <div class="col-12 d-flex flex-column gap-1">
+        <label>User Photo</label>
         <mat-icon class="addimage-icon">add_a_photo</mat-icon>
         <input type="file" class="file-input">
       </div>
       <div class="button-box col-12 d-flex flex-row justify-content-end gap-1 flex-wrap">
         <button class="save-button col-12 col-lg-1 px-4" (click)="save()">Save</button>
-        <button class="back-button px-4 col-12 col-lg-1">Back</button>
+        <button class="back-button px-4 col-12 col-lg-1" (click)="back()">Back</button>
       </div>
     </div>
   </div>

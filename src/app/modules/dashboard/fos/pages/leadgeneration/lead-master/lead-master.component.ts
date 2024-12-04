@@ -35,7 +35,7 @@ export class LeadMasterComponent implements OnInit {
   public loggedInUser: any = {};
   public leadStatuses: IFOSLeadStatus[] = [];
   public leads: ILeadHeader[] = [];
-  public searchParametersForm: FormGroup | any = new FormGroup({});
+  public searchParametersForm: FormGroup;
 
   public isSearched: boolean = false;
   public showLeadTable: boolean = false;
@@ -169,15 +169,20 @@ export class LeadMasterComponent implements OnInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
+
+  clearForm() {
+    this.searchParametersForm.reset();
+  }
+
   createLead() {
     this.router.navigate(["fos/lead-prospect-detail"], { state: { 'value': 0 } });
   }
 
   viewLead(leadId: any) {
-    this.router.navigate(["fos/lead-prospect-detail"],  { queryParams: { 'view': leadId } });
+    this.router.navigate(["fos/lead-prospect-detail"], { queryParams: { 'view': leadId }, state: { 'value': 0 } });
   }
 
   modifyLead(leadId: any) {
-    this.router.navigate(["fos/lead-prospect-detail"], { queryParams: { 'modify': leadId} });
+    this.router.navigate(["fos/lead-prospect-detail"], { queryParams: { 'modify': leadId }, state: { 'value': 0 } });
   }
 }

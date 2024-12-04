@@ -4,7 +4,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
-            <mat-icon class="me-2">home</mat-icon>Lead-master
+            <mat-icon class="me-2">home</mat-icon>Lead Master
           </li>
         </ol>
       </nav>
@@ -16,7 +16,7 @@
         </caption>
         <div class="row d-flex">
           <div class="col-12 col-lg-4">
-            <label>Lead Number<span class="text-danger">*</span></label>
+            <label>Lead Number</label>
             <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
               formControlName="leadNumber" />
           </div>
@@ -41,7 +41,7 @@
           Search
         </button>
         <button class="option-button d-flex align-items-center" (click)="createLead()">Create</button>
-        <button class="option-button d-flex align-items-center">Clear</button>
+        <button class="option-button d-flex align-items-center" (click)="clearForm()">Clear</button>
       </div>
     </div>
     <div class="lead-master-box my-3">

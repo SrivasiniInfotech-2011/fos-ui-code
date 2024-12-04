@@ -3,12 +3,12 @@
     <div class="user-managment-box mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page"><mat-icon class="me-2">home</mat-icon>user-managment</li>
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page"><mat-icon class="me-2">home</mat-icon>User Management</li>
         </ol>
       </nav>
     </div>
     <div class="d-flex align-items-center flex-wrap gap-3">
-      <button class="option-button d-flex align-items-center">Create</button>
+      <button class="option-button d-flex align-items-center" [routerLink]="['/admin/user-create']">Create</button>
       <button class="option-button d-flex align-items-center">Show All</button>
     </div>
     <div class="user-managment-box my-3">

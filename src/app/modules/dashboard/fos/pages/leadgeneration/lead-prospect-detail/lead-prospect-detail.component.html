@@ -5,7 +5,7 @@
         <div class="lead-prospect-details-box">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
-              <li class="breadcrumb-item d-flex align-items-center"><a href="#"
+              <li class="breadcrumb-item d-flex align-items-center"><a routerLink="/fos/lead-generation"
                   class="text-decoration-none d-flex align-items-center"><mat-icon class="me-2">home</mat-icon>Lead
                   Generation</a></li>
               <li class="breadcrumb-item active" aria-current="page">Prospect Details</li>
@@ -13,14 +13,14 @@
           </nav>
         </div>
         <div class="lead-prospect-details-box my-3">
-          <form class="lead-prospect-details-form" [formGroup]="prospectDetailsForm1" >
+          <form class="lead-prospect-details-form" [formGroup]="prospectDetailsForm1">
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
                 <label>Mobile Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Mobile Number" type="number" class="form-control mt-1"
                   formControlName="mobileNumber" />
                 <span class="massage-text"
-                  *ngIf="(prospectDetailsForm1.get('mobileNumber')?.touched || isSubmitted)&& prospectDetailsForm1.get('mobileNumber')?.hasError('required')">Mobile
+                  *ngIf="(prospectDetailsForm1.get('mobileNumber')?.touched  || saveDetails)&& prospectDetailsForm1.get('mobileNumber')?.hasError('required')">Mobile
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
@@ -28,7 +28,7 @@
                 <input placeholder="Enter Aadhar Number" type="number" class="form-control mt-1"
                   formControlName="aadharNumber" />
                 <span class="massage-text"
-                  *ngIf="(prospectDetailsForm1.get('aadharNumber')?.touched || isSubmitted)&& prospectDetailsForm1.get('aadharNumber')?.hasError('required')">Aadhar
+                  *ngIf="(prospectDetailsForm1.get('aadharNumber')?.touched || saveDetails)&& prospectDetailsForm1.get('aadharNumber')?.hasError('required')">Aadhar
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
@@ -36,26 +36,26 @@
                 <input placeholder="Enter PAN Number" type="number" class="form-control mt-1"
                   formControlName="panNumber" />
                 <span class="massage-text"
-                  *ngIf="(prospectDetailsForm1.get('panNumber')?.touched || isSubmitted)&& prospectDetailsForm1.get('panNumber')?.hasError('required')">PAN
+                  *ngIf="(prospectDetailsForm1.get('panNumber')?.touched  || saveDetails)&& prospectDetailsForm1.get('panNumber')?.hasError('required')">PAN
                   Number is required</span>
               </div>
             </div>
           </form>
           <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
-            <button class="option-button d-flex align-items-center">
+            <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" (click)="go()">
               Go
             </button>
           </div>
         </div>
         <div class="lead-prospect-details-box my-3">
-          <form class="lead-prospect-details-form" [formGroup]="prospectDetailsForm2" >
+          <form class="lead-prospect-details-form" [formGroup]="prospectDetailsForm2">
             <div class="row d-flex">
               <div class="col-12 col-lg-4">
                 <label>Branch<span class="text-danger">*</span></label>
-                <input placeholder="Enter The Branch" type="text" class="form-control mt-1"
-                  formControlName="branch" />
+                <input placeholder="Enter The Branch" type="text" class="form-control mt-1" formControlName="branch" />
                 <span class="massage-text"
-                  *ngIf="(prospectDetailsForm2.get('branch')?.touched || isSubmitted)&& prospectDetailsForm2.get('branch')?.hasError('required')">Branch is required</span>
+                  *ngIf="(prospectDetailsForm2.get('branch')?.touched || isSubmitted)&& prospectDetailsForm2.get('branch')?.hasError('required')">Branch
+                  is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Lead Number</label>
@@ -82,11 +82,12 @@
                 <input placeholder="Enter The Vehicle Number" type="text" class="form-control mt-1"
                   formControlName="vehicleNumber" />
                 <span class="massage-text"
-                  *ngIf="(prospectDetailsForm2.get('vehicleNumber')?.touched || isSubmitted)&& prospectDetailsForm2.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
+                  *ngIf="(prospectDetailsForm2.get('vehicleNumber')?.touched || isSubmitted)&& prospectDetailsForm2.get('vehicleNumber')?.hasError('required')">Vehicle
+                  Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Prospect Address</label>
-                <textarea rows="4" placeholder="Enter The Prospect Address"  class="form-control mt-1"
+                <textarea rows="4" placeholder="Enter The Prospect Address" class="form-control mt-1"
                   formControlName="prospectAddress"></textarea>
               </div>
               <div class="col-12 col-lg-4">
@@ -97,7 +98,7 @@
             </div>
           </form>
           <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
-            <button class="option-button d-flex align-items-center">
+            <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" (click)="submit()">
               Generate Lead
             </button>
           </div>
