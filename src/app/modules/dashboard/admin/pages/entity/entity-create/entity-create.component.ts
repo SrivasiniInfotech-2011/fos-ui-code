@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -12,7 +13,7 @@ export class EntityCreateComponent {
     public bankDetailsForm:FormGroup;
     public isSubmitted:boolean = false;
 
-    constructor(){
+    constructor(private location:Location){
       this.entityMasterForm = new FormGroup({
         entityCode:new FormControl('', [Validators.required]),
         entityName:new FormControl('', [Validators.required]),
@@ -42,11 +43,15 @@ export class EntityCreateComponent {
       });
     }
 
-    createEntityForm(){
+    save(){
       this.isSubmitted = true;
       if(this.entityMasterForm.valid && this.bankDetailsForm.valid){
         this.isSubmitted = false;
       }
+    }
+
+    back(){
+      this.location.back()
     }
 
 }
