@@ -17,13 +17,13 @@
         <div class="row d-flex">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
-              formControlName="leadNumber" />
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-1"
+              formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
-              formControlName="vehicleNumber" />
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-1"
+              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Status</label>

@@ -4,50 +4,34 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none d-flex align-items-center"
-              ><mat-icon class="me-2">home</mat-icon>Document Collection
-              </a
-            >
+            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon
+                class="me-2">home</mat-icon>Document Collection
+            </a>
           </li>
         </ol>
       </nav>
     </div>
     <div class="document-details-box my-3">
-      <form class="document-details-form">
+      <form class="document-details-form" [formGroup]="documentCollectionForm">
         <caption class="d-flex">
           Document
           Collection
         </caption>
         <div class="row d-flex">
-          <div class="col-12 col-lg-4
-          .">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input
-              placeholder="Enter Lead Number"
-              type="number"
-              class="form-control mt-1"
-              formControlName="leadnumber"
-            />
-
-            <span class="massage-text">Lead Number is required</span>
-          </div>
+            <input placeholder="Enter Lead Number" type="text" class="form-control my-2"
+              formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()" />
+            </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input
-              placeholder="Enter Vehicle Number"
-              type="number"
-              class="form-control mt-1"
-              formControlName="vehicleNumber"
-            />
-
-            <span class="massage-text">Vehicle Number is required</span>
-          </div>
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control my-2"
+              formControlName="vehicleNumber" maxlength="10" oninput="this.value = this.value.toUpperCase()"/>
+            </div>
         </div>
       </form>
-      <div
-        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
-      >
-        <button class="option-button d-flex align-items-center">Go</button>
+      <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
+        <button class="option-button d-flex align-items-center" (click)="go()">Go</button>
       </div>
     </div>
 

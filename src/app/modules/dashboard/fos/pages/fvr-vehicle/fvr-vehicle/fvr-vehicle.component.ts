@@ -14,6 +14,7 @@ export class FvrVehicleComponent {
 
   public fvrVehicleLeadForm:FormGroup;
   public isSubmitted:boolean = false;
+  public showTable:boolean = false;
   public displayedColumns: string[] = ['leadNo', 'date', 'status', 'view']
   public dataSource = new MatTableDataSource<any>()
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -23,8 +24,8 @@ export class FvrVehicleComponent {
 
   constructor(){
     this.fvrVehicleLeadForm = new FormGroup({
-      leadNumber:new FormControl('', [Validators.required]),
-      vehicleNumber:new FormControl('', [Validators.required])
+      leadNumber:new FormControl(''),
+      vehicleNumber:new FormControl('')
     });
     let obj: any[] =
     [
@@ -69,10 +70,7 @@ ngAfterViewInit(): void {
 
 
   search(){
-    this.isSubmitted = true;
-    if(this.fvrVehicleLeadForm.valid){
-      this.isSubmitted = false;
-    }
+   this.showTable = true;
   }
 
   clear(){

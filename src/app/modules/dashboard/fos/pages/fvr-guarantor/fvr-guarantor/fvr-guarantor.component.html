@@ -18,24 +18,23 @@
         </caption>
         <div class="row d-flex">
           <div class="col-12 col-lg-4">
-            <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="number" class="form-control my-2"
-              formControlName="leadNumber" />
-
-            <span class="massage-text"  *ngIf="(fvrGuarantorLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrGuarantorLeadForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
+            <label>Lead Number<span class="text-danger">*</span></label>
+            <input placeholder="Enter Lead Number" type="text" class="form-control my-2"
+              formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()"/>
+            <span class="massage-text"
+              *ngIf="(fvrGuarantorLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrGuarantorLeadForm.get('leadNumber')?.hasError('required')">Lead
+              Number is required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="number" class="form-control my-2"
-              formControlName="vehicleNumber" />
-
-            <span class="massage-text"  *ngIf="(fvrGuarantorLeadForm.get('vehicleNumber')?.touched || isSubmitted) && fvrGuarantorLeadForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control my-2"
+              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()"/>
           </div>
         </div>
       </form>
       <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
-        <button class="option-button d-flex align-items-center">Go</button>
-        <button class="option-button d-flex align-items-center">Clear</button>
+        <button class="option-button d-flex align-items-center" (click)="go()">Go</button>
+        <button class="option-button d-flex align-items-center" (click)="clear()">Clear</button>
       </div>
     </div>
     <div class="fvrgaurantor-details-box my-3">
@@ -46,48 +45,39 @@
         <div class="row d-flex">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Lead Number " type="number" class="form-control my-2" formControlName="leadNumber" />
-
-            <span class="massage-text" *ngIf="(fvrGuarantorLeadDetailsForm.get('leadNumber')?.touched || isSubmitted) && fvrGuarantorLeadDetailsForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
+            <input placeholder="Lead Number" type="text" class="form-control my-2" formControlName="leadNumber" readonly />
           </div>
+
           <div class="col-12 col-lg-4">
             <label>Lead Date</label>
             <input placeholder="
-              Lead Date" type="date" class="form-control my-2" formControlName="leadDate" />
-
-            <span class="massage-text" *ngIf="(fvrGuarantorLeadDetailsForm.get('leadDate')?.touched || isSubmitted) && fvrGuarantorLeadDetailsForm.get('leadDate')?.hasError('required')">Lead Date is required</span>
+              Lead Date" type="date" class="form-control my-2" formControlName="leadDate" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Branch</label>
-            <input placeholder="Branch" type="text" class="form-control my-2" formControlName="branch" />
-
-            <span class="massage-text" *ngIf="(fvrGuarantorLeadDetailsForm.get('branch')?.touched || isSubmitted) && fvrGuarantorLeadDetailsForm.get('branch')?.hasError('required')">Branch is required</span>
+            <input placeholder="Branch" type="text" class="form-control my-2" formControlName="branch" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Prospect Name</label>
-            <input placeholder="Prospect Name" type="text" class="form-control my-2" formControlName="prospectName" />
-
-            <span class="massage-text" *ngIf="(fvrGuarantorLeadDetailsForm.get('prospectName')?.touched || isSubmitted) && fvrGuarantorLeadDetailsForm.get('prospectName')?.hasError('required')">Prospect Name is required</span>
+            <input placeholder="Prospect Name" type="text" class="form-control my-2" formControlName="prospectName" readonly />
           </div>
+
           <div class="col-12 col-lg-4">
             <label>Mobile Number </label>
-            <input placeholder=" Mobile Number" type="number" class="form-control my-2" formControlName="mobileNumber" />
-            <span class="massage-text" *ngIf="(fvrGuarantorLeadDetailsForm.get('mobileNumber')?.touched || isSubmitted) && fvrGuarantorLeadDetailsForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</span>
+            <input placeholder=" Mobile Number" type="number" class="form-control my-2" formControlName="mobileNumber" readonly/>
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Vehicle Number </label>
-            <input placeholder="Vehicle Number" type="number" class="form-control my-2" formControlName="vehicleNumber" />
-            <span class="massage-text" *ngIf="(fvrGuarantorLeadDetailsForm.get('vehicleNumber')?.touched || isSubmitted) && fvrGuarantorLeadDetailsForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
+            <input placeholder="Vehicle Number" type="text" class="form-control my-2" formControlName="vehicleNumber" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Prospect Address </label>
-            <textarea class="w-100" rows="4" my-2 formControlName="prospectAddress"></textarea>
+            <textarea class="w-100" rows="4" my-2 formControlName="prospectAddress" readonly></textarea>
           </div>
-          <span class="massage-text" *ngIf="(fvrGuarantorLeadDetailsForm.get('prospectAddress')?.touched || isSubmitted) && fvrGuarantorLeadDetailsForm.get('prospectAddress')?.hasError('required')">Prospect Address is required</span>
         </div>
       </form>
 

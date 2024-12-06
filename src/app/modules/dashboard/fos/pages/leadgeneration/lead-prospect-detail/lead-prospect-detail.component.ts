@@ -21,9 +21,9 @@ export class LeadProspectDetailComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.prospectDetailsForm1 = new FormGroup({
-      mobileNumber: new FormControl('', [Validators.required]),
-      aadharNumber: new FormControl('', [Validators.required]),
-      panNumber: new FormControl('', [Validators.required]),
+      mobileNumber: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')]),
+      aadharNumber: new FormControl('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}\s[0-9]{4}\s[0-9]{4}$')]),
+      panNumber: new FormControl('', [Validators.required, Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$')]),
     });
 
     this.prospectDetailsForm2 = new FormGroup({

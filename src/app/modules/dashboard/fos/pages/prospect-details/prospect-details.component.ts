@@ -65,9 +65,9 @@ export class ProspectDetailsComponent implements OnInit {
   setBasicDetailsForm = () => {
     this.basicDetailForm = this.fb.group(
       {
-        mobileNumber: this.fb.control('', [Validators.required]),
-        aadharNumber: this.fb.control('', [Validators.required]),
-        panNumber: this.fb.control('', [Validators.required]),
+        mobileNumber: this.fb.control('', [Validators.required, Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')]),
+        aadharNumber: this.fb.control('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}\s[0-9]{4}\s[0-9]{4}$')]),
+        panNumber: this.fb.control('', [Validators.required, Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$')]),
       },
       { validators: this.aadharOrPanRequired }
     );

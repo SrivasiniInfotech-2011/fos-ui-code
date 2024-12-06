@@ -24,7 +24,7 @@
               <div class="col-12 col-lg-4">
                 <label>Lead Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Lead Number" type="text" class="form-control mt-1"
-                  formControlName="leadNumber" />
+                  formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()"/>
                 <span class="massage-text" *ngIf="
                 (individualForm.get('leadNumber')?.touched || isSubmitted) &&
                 individualForm.get('leadNumber')?.hasError('required')
@@ -33,7 +33,7 @@
               <div class="col-12 col-lg-4">
                 <label>Vehicle Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-1"
-                  formControlName="vehicleNumber" />
+                  formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()"/>
 
                 <span class="massage-text" *ngIf="
                 (individualForm.get('vehicleNumber')?.touched || isSubmitted) &&

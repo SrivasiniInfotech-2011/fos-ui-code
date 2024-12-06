@@ -5,7 +5,7 @@
         <div class="lead-prospect-details-box">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
-              <li class="breadcrumb-item d-flex align-items-center"><a routerLink="/fos/lead-generation"
+              <li class="breadcrumb-item d-flex align-items-center"><a [routerLink]="['/fos/lead-generation']"
                   class="text-decoration-none d-flex align-items-center"><mat-icon class="me-2">home</mat-icon>Lead
                   Generation</a></li>
               <li class="breadcrumb-item active" aria-current="page">Prospect Details</li>
@@ -18,7 +18,7 @@
               <div class="col-12 col-lg-4">
                 <label>Mobile Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Mobile Number" type="number" class="form-control mt-1"
-                  formControlName="mobileNumber" />
+                  formControlName="mobileNumber"  oninput="this.value = this.value.slice(0,10)"  />
                 <span class="massage-text"
                   *ngIf="(prospectDetailsForm1.get('mobileNumber')?.touched  || saveDetails)&& prospectDetailsForm1.get('mobileNumber')?.hasError('required')">Mobile
                   Number is required</span>
@@ -26,17 +26,20 @@
               <div class="col-12 col-lg-4">
                 <label>Aadhar Number<span class="text-danger">*</span></label>
                 <input placeholder="Enter Aadhar Number" type="number" class="form-control mt-1"
-                  formControlName="aadharNumber" />
+                  formControlName="aadharNumber"  oninput="this.value = this.value.slice(0,12)" />
                 <span class="massage-text"
                   *ngIf="(prospectDetailsForm1.get('aadharNumber')?.touched || saveDetails)&& prospectDetailsForm1.get('aadharNumber')?.hasError('required')">Aadhar
                   Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>PAN Number<span class="text-danger">*</span></label>
-                <input placeholder="Enter PAN Number" type="number" class="form-control mt-1"
-                  formControlName="panNumber" />
+                <input placeholder="Enter PAN Number" type="text" class="form-control mt-1"
+                  formControlName="panNumber"  oninput="this.value = this.value.slice(0,10)" />
                 <span class="massage-text"
                   *ngIf="(prospectDetailsForm1.get('panNumber')?.touched  || saveDetails)&& prospectDetailsForm1.get('panNumber')?.hasError('required')">PAN
+                  Number is required</span>
+                  <span class="massage-text"
+                  *ngIf="prospectDetailsForm1.get('panNumber')?.hasError('pattern')">PAN
                   Number is required</span>
               </div>
             </div>
@@ -59,7 +62,7 @@
               </div>
               <div class="col-12 col-lg-4">
                 <label>Lead Number</label>
-                <input placeholder="Enter The Lead Number" type="number" class="form-control mt-1"
+                <input placeholder="Enter The Lead Number" type="text" class="form-control mt-1"
                   formControlName="leadNumber" />
               </div>
               <div class="col-12 col-lg-4">

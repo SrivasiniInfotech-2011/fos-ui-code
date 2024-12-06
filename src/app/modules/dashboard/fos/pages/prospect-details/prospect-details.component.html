@@ -21,35 +21,44 @@
         <div class="row d-flex">
           <div class="col-12 col-lg-4">
             <label>Mobile Number<span class="required">*</span></label>
-            <input type="text" placeholder="Enter Mobile Number" formControlName="mobileNumber"
-              class="form-control mt-2 mb-1" />
+            <input type="number" placeholder="Enter Mobile Number" formControlName="mobileNumber"
+              class="form-control mt-2 mb-1" oninput="this.value = this.value.slice(0,10)"/>
             <div class="massage-text" *ngIf="
                 basicDetailForm.controls.mobileNumber.touched &&
                 basicDetailForm.controls.mobileNumber.errors?.required
               ">
               Mobile Number is required
             </div>
+            <div class="massage-text" *ngIf="basicDetailForm.controls.mobileNumber.errors?.pattern">
+              Please enter a valid 10-digit mobile number
+            </div>
           </div>
           <div class="col-12 col-lg-4">
             <label>Aadhar Number<span class="required">*</span></label>
-            <input class="form-control mt-2 mb-1" type="text" placeholder="Enter Aadhar Number"
-              formControlName="aadharNumber" />
+            <input class="form-control mt-2 mb-1" oninput="this.value = this.value.slice(0,12)" type="number" placeholder="Enter Aadhar Number"
+              formControlName="aadharNumber"  />
             <div class="massage-text" *ngIf="
                 basicDetailForm.controls.aadharNumber.touched &&
                 basicDetailForm.controls.aadharNumber.errors?.required
               ">
               Aadhar Number is required
             </div>
+            <div class="massage-text" *ngIf="basicDetailForm.controls.aadharNumber.errors?.pattern">
+              Please enter a valid 12 digit aadhar number
+            </div>
           </div>
           <div class="col-12 col-lg-4">
             <label>PAN Number<span class="required">*</span></label>
-            <input type="text" class="form-control mt-2 mb-1" placeholder="Enter Pan Number"
-              formControlName="panNumber" />
+            <input type="text"  class="form-control mt-2 mb-1" placeholder="Enter Pan Number"
+              formControlName="panNumber" oninput="this.value = this.value.toUpperCase().slice(0,10)" />
             <div class="massage-text" *ngIf="
                 basicDetailForm.controls.panNumber.touched &&
                 basicDetailForm.controls.panNumber.errors?.required
               ">
               PAN Number is required
+            </div>
+            <div class="massage-text" *ngIf="basicDetailForm.controls.panNumber.errors?.pattern">
+              Please enter a valid PAN number(eg:ABCDE1234F)
             </div>
           </div>
           <div class="note" *ngIf="basicDetailForm.errors?.['aadharOrPanRequired'] && basicDetailForm.touched">

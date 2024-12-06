@@ -16,17 +16,28 @@ export class FvrGuarantorComponent {
     constructor(){
       this.fvrGuarantorLeadForm = new FormGroup({
         leadNumber:new FormControl('', [Validators.required]),
-        vehicleNumber:new FormControl('', [Validators.required])
+        vehicleNumber:new FormControl('')
       });
 
       this.fvrGuarantorLeadDetailsForm = new FormGroup({
-        leadNumber : new FormControl('', [Validators.required]),
-        leadDate : new FormControl('', [Validators.required]),
-        branch : new FormControl('', [Validators.required]),
-        prospectName : new FormControl('', [Validators.required]),
-        mobileNumber : new FormControl('', [Validators.required]),
-        vehicleNumber : new FormControl('', [Validators.required]),
-        prospectAddress : new FormControl('', [Validators.required]),
+        leadNumber : new FormControl(''),
+        leadDate : new FormControl(''),
+        branch : new FormControl(''),
+        prospectName : new FormControl(''),
+        mobileNumber : new FormControl(''),
+        vehicleNumber : new FormControl(''),
+        prospectAddress : new FormControl(''),
       });
+    }
+
+    go(){
+      this.isSubmitted = true;
+      if(this.fvrGuarantorLeadForm.valid){
+        this.isSubmitted = false;
+      }
+    }
+
+    clear(){
+      this.fvrGuarantorLeadForm.reset()
     }
 }

@@ -16,23 +16,21 @@
         <div class="row d-flex">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="number" class="form-control my-2"
-              formControlName="leadNumber" />
-
+            <input placeholder="Enter Lead Number" type="text" class="form-control my-2"
+              formControlName="leadNumber"oninput="this.value = this.value.toUpperCase()" />
             <span class="massage-text"  *ngIf="(bmApprovalMasterForm.get('leadNumber')?.touched || isSubmitted) && bmApprovalMasterForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
+            <span class="massage-text" *ngIf="bmApprovalMasterForm.get('leadNumber')?.hasError('pattern')">Lead Number should contain only letters and numbers</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="number" class="form-control my-2"
-              formControlName="vehicleNumber" />
-
-            <span class="massage-text"  *ngIf="(bmApprovalMasterForm.get('vehicleNumber')?.touched || isSubmitted) && bmApprovalMasterForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control my-2"
+              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()"/>
           </div>
         </div>
       </form>
       <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
         <button class="option-button d-flex align-items-center" (click)="search()">Search</button>
-        <button class="option-button d-flex align-items-center">Create</button>
+        <button class="option-button d-flex align-items-center" [routerLink]="['/BM-approvecreate']">Create</button>
       </div>
     </div>
 

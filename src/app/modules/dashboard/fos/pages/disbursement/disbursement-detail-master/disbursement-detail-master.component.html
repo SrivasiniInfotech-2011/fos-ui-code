@@ -4,48 +4,35 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none d-flex align-items-center"
-              ><mat-icon class="me-2">home</mat-icon>Disbursement
-              Details</a
-            >
+            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon
+                class="me-2">home</mat-icon>Disbursement
+              Details</a>
           </li>
         </ol>
       </nav>
     </div>
     <div class="disbursement-details-box my-3">
-      <form class="disbursement-details-form">
-
+      <form class="disbursement-details-form" [formGroup]="disbursementMasterForm">
         <div class="row d-flex">
-          <div class="col-12 col-lg-4
-          .">
+          <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input
-              placeholder="Enter Lead Number"
-              type="number"
-              class="form-control mt-1"
-              formControlName="leadnumber"
-            />
-
-            <span class="massage-text">Lead Number is required</span>
-          </div>
+            <input placeholder="Enter Lead Number" type="text" class="form-control my-2"
+              formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()" />
+              <span class="massage-text" *ngIf="(disbursementMasterForm.get('leadNumber')?.touched || isSubmitted) && disbursementMasterForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
+              <span class="massage-text" *ngIf="disbursementMasterForm.get('leadNumber')?.hasError('pattern')">Lead Number should contain only letters and numbers</span>
+            </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input
-              placeholder="Enter Vehicle Number"
-              type="number"
-              class="form-control mt-1"
-              formControlName="vehicleNumber"
-            />
-
-            <span class="massage-text">Vehicle Number is required</span>
-          </div>
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control my-2"
+              formControlName="vehicleNumber" maxlength="10" oninput="this.value = this.value.toUpperCase()"/>
+            <span class="massage-text" *ngIf="(disbursementMasterForm.get('vehicleNumber')?.touched || isSubmitted) && disbursementMasterForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
+            <span class="massage-text" *ngIf="disbursementMasterForm.get('vehicleNumber')?.hasError('pattern')">Please enter a valid vehicle number (e.g. AB12CD7890)</span>
+            </div>
         </div>
       </form>
-      <div
-        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
-      >
-        <button class="option-button d-flex align-items-center">Search</button>
-        <button class="option-button d-flex align-items-center">Create</button>
+      <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
+        <button class="option-button d-flex align-items-center" (click)="search()">Search</button>
+        <button class="option-button d-flex align-items-center" [routerLink]="['/disbursement-create']">Create</button>
       </div>
     </div>
 

@@ -24,14 +24,14 @@
           <div class="col-12 col-lg-4">
             <label>Lead Number<span class="text-danger">*</span></label>
             <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
-              formControlName="leadNumber" />
+              formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()"/>
 
             <span class="massage-text" *ngIf="(guarantor2Form.get('leadNumber')?.touched || isSubmitted) && guarantor2Form.get('leadNumber')?.hasError('required')">Lead Number is required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number<span class="text-danger">*</span></label>
             <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
-              formControlName="vehicleNumber" />
+              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()"/>
 
             <span class="massage-text" *ngIf="(guarantor2Form.get('vehicleNumber')?.touched || isSubmitted) && guarantor2Form.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
           </div>
