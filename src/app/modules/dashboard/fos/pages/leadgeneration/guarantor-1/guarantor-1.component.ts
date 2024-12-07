@@ -85,14 +85,6 @@ export class Guarantor1Component implements OnInit {
       vehicleNumber: new FormControl('', [Validators.required]),
     });
 
-    if (this.leadHeader) {
-      this.guarantor1Form
-        .get('leadNumber')!
-        .setValue(this.leadHeader.leadNumber!);
-      this.guarantor1Form
-        .get('vehicleNumber')!
-        .setValue(this.leadHeader.vehicleRegistrationNumber!);
-    }
     this.guarantor1DetailsForm = new FormGroup({
       guarantorName: new FormControl('', [Validators.required]),
       relationship: new FormControl('', [Validators.required]),
@@ -125,15 +117,16 @@ export class Guarantor1Component implements OnInit {
     this.guarantor1KYCForm = new FormGroup({
       aadharNumber: new FormControl('', [Validators.required]),
       panNumber: new FormControl('', [Validators.required]),
-      guarantorImage: new FormControl('', [Validators.required]),
-      aadharImage: new FormControl('', [Validators.required]),
-      panImage: new FormControl('', [Validators.required]),
+      guarantorImage: new FormControl(null),
+      aadharImage: new FormControl(null),
+      panImage: new FormControl(null),
     });
     this.getStates();
     this.getProspectLookup();
     this.sleep(1200);
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.action = params;
       if (params['view'] == 'true') {
         this.guarantor1Form.disable();
         this.guarantor1DetailsForm.disable();
@@ -152,7 +145,23 @@ export class Guarantor1Component implements OnInit {
         localStorage.getItem('leadDetails')!
       ) as ILead;
 
-      if (leadDetails && leadDetails.leadProspectDetail) {
+      if (leadDetails && leadDetails.header)
+        this.leadHeader = leadDetails.header;
+
+      if (this.leadHeader) {
+        this.guarantor1Form
+          .get('leadNumber')!
+          .setValue(this.leadHeader.leadNumber!);
+        this.guarantor1Form
+          .get('vehicleNumber')!
+          .setValue(this.leadHeader.vehicleRegistrationNumber!);
+      }
+
+      if (
+        leadDetails &&
+        leadDetails.leadProspectDetail &&
+        leadDetails.guarantors
+      ) {
         this.leadId = leadDetails.header?.leadId!;
         this.setGuarantorDetails(
           leadDetails.lobId,
@@ -165,6 +174,40 @@ export class Guarantor1Component implements OnInit {
 
   sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  onAadharImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0]; // Get the file object
+      console.log('File selected:', file);
+
+      // Update the FormControl with the file object
+      this.guarantor1KYCForm.patchValue({ aadharImage: file});
+    }
+  }
+
+  onPanImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0]; // Get the file object
+      console.log('File selected:', file);
+
+      // Update the FormControl with the file object
+      this.guarantor1KYCForm.patchValue({ panImage: file});
+    }
+  }
+
+  onGuarantorImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0]; // Get the file object
+      console.log('File selected:', file);
+      this.guarantor1KYCForm.patchValue({ guarantorImage: file});
+    }
   }
 
   private setGuarantorDetails(

@@ -4,7 +4,7 @@
       (selectedTabChange)="onTabChanged($event)"
       [selectedIndex]="selectedTab"
     >
-      <mat-tab label="Prospect Details"[disabled]="true" ></mat-tab>
+      <mat-tab label="Prospect Details" [disabled]="true"></mat-tab>
       <mat-tab label="Loan Details"> </mat-tab>
       <mat-tab label="Individual"> </mat-tab>
       <mat-tab label="Guarantor 1 ">
@@ -12,8 +12,11 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
               <li class="breadcrumb-item">
-                <a routerLink="/fos/lead-generation" class="text-decoration-none d-flex align-items-center"><mat-icon
-                    class="me-2">home</mat-icon>Lead Generation</a>
+                <a
+                  routerLink="/fos/lead-generation"
+                  class="text-decoration-none d-flex align-items-center"
+                  ><mat-icon class="me-2">home</mat-icon>Lead Generation</a
+                >
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 Guarantor 1
@@ -197,6 +200,7 @@
                   class="form-control mt-1"
                   placeholder="Guarantor Amount"
                   formControlName="guarantorAmount"
+                  [min]="0"
                 />
                 <span
                   class="massage-text"
@@ -483,7 +487,8 @@
                   placeholder="Upload Guarantor Image"
                   type="file"
                   class="form-control mt-1"
-                  formControlName="guarantorImage"
+                  #guarantorImage
+                  (change)="onGuarantorImageChange($event)"
                 />
                 <span
                   class="massage-text"
@@ -503,7 +508,8 @@
                   placeholder="Upload Aadhar Image"
                   type="file"
                   class="form-control mt-1"
-                  formControlName="aadharImage"
+                  #aadharImage
+                  (change)="onAadharImageChange($event)"
                 />
                 <span
                   class="massage-text"
@@ -521,7 +527,8 @@
                   placeholder="Upload PAN Image"
                   type="file"
                   class="form-control mt-1"
-                  formControlName="panImage"
+                  #panImage
+                  (change)="onPanImageChange($event)"
                 />
                 <span
                   class="massage-text"
@@ -536,11 +543,29 @@
             </div>
           </form>
         </div>
-        <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 py-4">
-          <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" (click)="save()">Save</button>
-          <button class="option-button d-flex align-items-center" (click)="back()">Back</button>
-          <button class="option-button d-flex align-items-center" (click)="skip()">Skip</button>
-      </div>
+        <div
+          class="d-flex align-items-center justify-content-end flex-wrap gap-3 py-4"
+        >
+          <button
+            class="option-button d-flex align-items-center"
+            [disabled]="buttonDisabled"
+            (click)="save()"
+          >
+            Save
+          </button>
+          <button
+            class="option-button d-flex align-items-center"
+            (click)="back()"
+          >
+            Back
+          </button>
+          <button
+            class="option-button d-flex align-items-center"
+            (click)="skip()"
+          >
+            Skip
+          </button>
+        </div>
       </mat-tab>
       <mat-tab label="Guarantor 2"> </mat-tab>
     </mat-tab-group>

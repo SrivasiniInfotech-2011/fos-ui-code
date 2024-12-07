@@ -44,7 +44,8 @@ export class IndividualDetailsComponent {
     private activatedRoute: ActivatedRoute,
     private loaderService: LoaderService,
     private toasterService: ToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private location:Location
   ) {
     if (localStorage.getItem('userDetails')) {
       const encryptedUserData = localStorage.getItem('userDetails');
@@ -90,9 +91,11 @@ export class IndividualDetailsComponent {
       ) as ILead;
 
       if (leadDetails && leadDetails.individualDetail) {
-        this.leadId = leadDetails.header?.leadId;
-        if(leadDetails.header)
+       
+        if(leadDetails && leadDetails.header){
           this.leadHeader=this.leadHeader;
+          this.leadId = leadDetails.header?.leadId;
+        }
         this.setLeadIndividualDetails(leadDetails.individualDetail);
       }
     });

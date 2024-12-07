@@ -30,8 +30,8 @@ import { IFOSLookup } from '../../../../../../../core/interfaces/app/request/IFO
   styleUrl: './lead-master.component.scss',
 })
 export class LeadMasterComponent implements OnInit {
-  @ViewChild(MatSort) sort: MatSort = <MatSort>{};
-  @ViewChild(MatPaginator) paginator: MatPaginator = <MatPaginator>{};
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   public totalRecords: number = 0;
   public loggedInUser: any = {};
@@ -44,11 +44,11 @@ export class LeadMasterComponent implements OnInit {
   public displayedColumns: string[] = [
     'leadNumber',
     'leadDate',
-    'status',
+    'leadCurrentStatusDescription',
     'view',
     'modify',
   ];
-  public dataSource = new MatTableDataSource<ILeadHeader>();
+  public dataSource = new MatTableDataSource<ILeadHeader>([]);
 
   filters: { [key: string]: string } = {};
 
@@ -75,6 +75,7 @@ export class LeadMasterComponent implements OnInit {
           this.encryptionService.decrypt(encryptedUserData);
         this.loggedInUser = decryptedUserData || '';
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         this.fetchLeadGenerationLookup();
         this.setSearchParametersForm();
         this.getLeadStatusesForFiltering();
@@ -213,7 +214,7 @@ export class LeadMasterComponent implements OnInit {
         let lead = response.message as ILead;
         localStorage.setItem('leadDetails', JSON.stringify(lead));
         this.router.navigate(['fos/lead-prospect-detail'], {
-          queryParams: { view: true, value: 1  },
+          queryParams: { view: true, value: 1 },
         });
       },
       error: (error: any) => {

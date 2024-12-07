@@ -22,8 +22,9 @@
             <label>Lead Number</label>
             <input
               placeholder="Enter Lead Number"
-              type="number"
+              type="text"
               class="form-control mt-1"
+              name="leadNumber"
               formControlName="leadNumber"
               oninput="this.value = this.value.toUpperCase()"
             />
@@ -35,13 +36,18 @@
               type="text"
               class="form-control mt-1"
               formControlName="vehicleNumber"
+              name="vehicleNumber"
               oninput="this.value = this.value.toUpperCase()"
             />
           </div>
           <div class="col-12 col-lg-4">
             <label>Status</label>
-            <select formControlName="status" class="form-select mt-2">
-              <option>--Select--</option>
+            <select
+              formControlName="status"
+              class="form-select mt-2"
+              name="status"
+            >
+              <option value="" disabled>--Select--</option>
               <option *ngFor="let c of leadStatuses" [value]="c.statusId">
                 {{ c.statusDescription }}
               </option>
@@ -80,18 +86,14 @@
       >
         <ng-container matColumnDef="leadNumber">
           <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header>Lead Number</th> -->
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            mat-sort-header
-            class="table-header"
-          >
+          <th mat-header-cell *matHeaderCellDef class="table-header" mat-sort-header>
             <div class="option">
               Lead Number
               <div class="search-item-box">
                 <mat-form-field class="m-0 p-0">
                   <input
                     matInput
+                    name="leadNumberFilter"
                     (keyup)="applyFilter($event, 'leadNumber')"
                     placeholder="Filter Lead Number"
                   />
@@ -103,18 +105,14 @@
         </ng-container>
 
         <ng-container matColumnDef="leadDate">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            mat-sort-header
-            class="table-header"
-          >
+          <th mat-header-cell *matHeaderCellDef class="table-header" mat-sort-header>
             <div class="option">
               Date
               <div class="search-item-box">
                 <mat-form-field>
                   <input
                     matInput
+                    name="leadDateFilter"
                     (keyup)="applyFilter($event, 'leadDate')"
                     placeholder="Filter Date"
                   />
@@ -127,20 +125,16 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="status">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            mat-sort-header
-            class="table-header"
-          >
+        <ng-container matColumnDef="leadCurrentStatusDescription">
+          <th mat-header-cell *matHeaderCellDef class="table-header" mat-sort-header>
             <div class="option">
               Status
               <div class="search-item-box">
                 <mat-form-field>
                   <input
                     matInput
-                    (keyup)="applyFilter($event, 'status')"
+                    name="statusFilter"
+                    (keyup)="applyFilter($event, 'leadCurrentStatusDescription')"
                     placeholder="Filter Status"
                   />
                 </mat-form-field>

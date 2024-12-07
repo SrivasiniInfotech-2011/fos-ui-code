@@ -25,6 +25,7 @@ import { LoaderService } from '../../../../../../../data/services/shared/loader.
 import { ToastrService } from 'ngx-toastr';
 import { ModalComponent } from '../../../../../../shared/components/modal/modal-component';
 import { MatDialog } from '@angular/material/dialog';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-lead-prospect-detail',
@@ -44,6 +45,7 @@ export class LeadProspectDetailComponent implements OnInit {
   public leadProspectDetail: ILeadProspectDetail = {};
   public today: string = '';
   public leadTypeLookup: IFOSLookup[] = [];
+  private leadId: number = 0;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -65,11 +67,19 @@ export class LeadProspectDetailComponent implements OnInit {
     }
 
     this.today = new Date().toISOString().split('T')[0];
+    // this.prospectSearchForm = new FormGroup(
+    //   {
+    //     mobileNumber: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')]),
+    //     aadharNumber: new FormControl('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}\s[0-9]{4}\s[0-9]{4}$')]),
+    //     panNumber: new FormControl('', [Validators.required, Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$')]),
+    //   },
+    //   { validators: this.aadharOrPanRequired }
+    // );
     this.prospectSearchForm = new FormGroup(
       {
-        mobileNumber: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')]),
-        aadharNumber: new FormControl('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}\s[0-9]{4}\s[0-9]{4}$')]),
-        panNumber: new FormControl('', [Validators.required, Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$')]),
+        mobileNumber: new FormControl('', [Validators.required]),
+        aadharNumber: new FormControl('', [Validators.required]),
+        panNumber: new FormControl('', [Validators.required]),
       },
       { validators: this.aadharOrPanRequired }
     );
@@ -93,10 +103,14 @@ export class LeadProspectDetailComponent implements OnInit {
       localStorage.getItem('leadGenerationLookups')!
     ) as IFOSLookup[];
     this.leadTypeLookup = lookup.filter((s) => s.lookupTypeId == 4);
-
+    this.leadGenerationForm
+      .get('leadDate')!
+      .setValue(
+        this.utilityService.transformDate(String(new Date()), 'YYYY-MM-DD')
+      );
     this.route.queryParams.subscribe((params: Params) => {
       this.action = params;
-      if (params['view']) {
+      if (params['view'] == 'true') {
         this.prospectSearchForm.disable();
         this.leadGenerationForm.disable();
         this.buttonDisabled = true;
@@ -105,7 +119,29 @@ export class LeadProspectDetailComponent implements OnInit {
         this.leadGenerationForm.enable();
         this.buttonDisabled = false;
       }
+      let leadDetails = JSON.parse(
+        localStorage.getItem('leadDetails')!
+      ) as ILead;
+
+      if (leadDetails) {
+        this.leadId = leadDetails.header?.leadId!;
+        if (leadDetails && leadDetails.header) {
+          this.leadGenerationForm
+            .get('leadNumber')!
+            .setValue(leadDetails.header.leadNumber);
+          this.leadGenerationForm
+            .get('leadDate')!
+            .setValue(
+              this.utilityService.transformDate(
+                String(leadDetails.header.leadDate),
+                'YYYY-MM-DD'
+              )
+            );
+        }
+        this.setLeadGenerationDetails(leadDetails.leadProspectDetail!);
+      }
     });
+    this.loaderService.hideLoader();
   }
 
   aadharOrPanRequired(control: AbstractControl): ValidationErrors | null {
@@ -220,12 +256,6 @@ export class LeadProspectDetailComponent implements OnInit {
 
   setLeadGenerationDetails(data?: ILeadProspectDetail) {
     this.leadGenerationForm.get('branch')!.setValue(data!.locationName);
-    this.leadGenerationForm.get('leadNumber')!.setValue('');
-    this.leadGenerationForm
-      .get('leadDate')!
-      .setValue(
-        this.utilityService.transformDate(String(new Date()), 'YYYY-MM-DD')
-      );
     this.leadGenerationForm.get('leadType')!.setValue(data!.leadType);
     this.leadGenerationForm.get('prospectName')!.setValue(data!.prospectName);
     this.leadGenerationForm.get('vehicleNumber')!.setValue(data!.vehicleNumber);
@@ -292,6 +322,7 @@ export class LeadProspectDetailComponent implements OnInit {
     this.isSubmitted = true;
     if (this.leadGenerationForm.valid) {
       this.isSubmitted = false;
+      this.loaderService.showLoader();
       let leadGenerationHeader = {
         prospectId: this.leadProspectDetail.prospectId!,
         leadNumber: this.leadGenerationForm.value.leadNumber,
@@ -307,6 +338,7 @@ export class LeadProspectDetailComponent implements OnInit {
         )
         .subscribe({
           next: (data: any) => {
+            this.loaderService.showLoader();
             let lead = data.message as ILeadHeader;
             this.openLeadGenerationDialog(
               this.leadProspectDetail.prospectName!,
@@ -315,7 +347,15 @@ export class LeadProspectDetailComponent implements OnInit {
             );
             localStorage.setItem('leadHeader', JSON.stringify(lead));
           },
-          error: (error: any) => {},
+          error: (error: any) => {
+            this.loaderService.hideLoader();
+            let errorMessages = error.message.split('|');
+            for (const key in errorMessages) {
+              this.toasterService.error(errorMessages[key], 'Error', {
+                timeOut: 2000,
+              });
+            }
+          },
         });
     }
   }

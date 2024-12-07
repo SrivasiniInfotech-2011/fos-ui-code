@@ -81,7 +81,7 @@ export class LoanDetailsComponent implements OnInit {
     this.sleep(1200);
     this.route.queryParams.subscribe((params: Params) => {
       this.action = params;
-      if (params['view']) {
+      if (params['view'] =="true") {
         this.leadForm.disable();
         this.loanDetailsForm.disable();
         this.assetDetailsForm.disable();
@@ -384,12 +384,12 @@ export class LoanDetailsComponent implements OnInit {
     }
     this.loanDetailsForm = new FormGroup({
       lineOfBusiness: new FormControl('', [Validators.required]),
-      financeAmount: new FormControl('', [Validators.required]),
-      tenure: new FormControl('', [Validators.required]),
+      financeAmount: new FormControl('0', [Validators.required]),
+      tenure: new FormControl('0', [Validators.required]),
       tenureType: new FormControl('', [Validators.required]),
-      rate: new FormControl('', [Validators.required]),
+      rate: new FormControl('0', [Validators.required]),
       repaymentFrequency: new FormControl('', [Validators.required]),
-      leavePeriod: new FormControl('', [Validators.required]),
+      leavePeriod: new FormControl('0', [Validators.required]),
       fieldExecutive: new FormControl('', [Validators.required]),
       documentCategory: new FormControl('', [Validators.required]),
     });

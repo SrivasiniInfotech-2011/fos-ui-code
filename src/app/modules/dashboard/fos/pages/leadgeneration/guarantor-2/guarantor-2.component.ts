@@ -141,7 +141,7 @@ export class Guarantor2Component implements OnInit {
 
     this.route.queryParams.subscribe((params: Params) => {
       this.action = params;
-      if (params['view']) {
+      if (params['view'] =="true")  {
         this.guarantor2Form.disable();
         this.guarantor2DetailsForm.disable();
         this.guarantor2CommunicationAddressForm.disable();
@@ -159,6 +159,20 @@ export class Guarantor2Component implements OnInit {
       let leadDetails = JSON.parse(
         localStorage.getItem('leadDetails')!
       ) as ILead;
+
+      if (leadDetails && leadDetails.header)
+        this.leadHeader = leadDetails.header;
+
+      if (this.leadHeader) {
+        this.guarantor2Form
+          .get('leadNumber')!
+          .setValue(this.leadHeader.leadNumber!);
+        this.guarantor2Form
+          .get('vehicleNumber')!
+          .setValue(this.leadHeader.vehicleRegistrationNumber!);
+      }
+
+
       this.leadId = leadDetails.header?.leadId!;
       this.setGuarantorDetails(
         leadDetails.lobId,

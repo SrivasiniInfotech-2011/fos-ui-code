@@ -172,6 +172,7 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="netSalary"
+                  [min]="0"
                 />
 
                 <span
@@ -196,6 +197,7 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="noOfAdultDependents"
+                  [min]="0"
                 />
                 <span
                   class="massage-text"
@@ -244,6 +246,7 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="spouseMonthlySalary"
+                  [min]="0"
                 />
               </div>
 
@@ -254,12 +257,14 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="noOfChildDependents"
+                  [min]="0"
                 />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>House Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="houseType">
+                  <option value="" disabled>-- Select --</option>
                   <option
                     *ngFor="let c of houseTypeLookup"
                     [value]="c.lookupValueId"
@@ -356,6 +361,7 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="owned2Wheeler"
+                  [min]="0"
                 />
                 <span
                   class="massage-text"
@@ -376,6 +382,7 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="owned4Wheeler"
+                  [min]="0"
                 />
 
                 <span
@@ -399,6 +406,7 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="ownedHeavyVehicle"
+                  [min]="0"
                 />
 
                 <span
@@ -424,6 +432,7 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="existingLoans"
+                  [min]="0"
                 />
 
                 <span
@@ -449,6 +458,7 @@
                   type="number"
                   class="form-control mt-1"
                   formControlName="totalExistingLoans"
+                  [min]="0"
                 />
 
                 <span

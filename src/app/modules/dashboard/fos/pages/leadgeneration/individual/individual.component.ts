@@ -47,7 +47,7 @@ export class IndividualComponent implements OnInit {
     private loaderService: LoaderService,
     private toasterService: ToastrService,
     public dialog: MatDialog,
-    private location: Location,
+    // private location: Location,
     private route: ActivatedRoute
   ) {
     if (localStorage.getItem('userDetails')) {
@@ -108,13 +108,16 @@ export class IndividualComponent implements OnInit {
       ownedHeavyVehicle: new FormControl('', [Validators.required]),
       existingLoans: new FormControl('', [Validators.required]),
       totalExistingLoans: new FormControl('', [Validators.required]),
+      spouseName: new FormControl('', [Validators.required]),
+      spouseEmployment: new FormControl('', [Validators.required]),
+      spouseMonthlySalary: new FormControl('', [Validators.required]),
     });
 
     this.setLookups();
 
     this.route.queryParams.subscribe((params: Params) => {
       this.action = params;
-      if (params['view']) {
+      if (params['view'] =="true") {
         this.individualForm.disable();
         this.individualDetailsForm.disable();
         this.buttonDisabled = true;

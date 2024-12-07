@@ -123,6 +123,7 @@
               type="number"
               class="form-control mt-1"
               formControlName="netSalary"
+              [min]="0"
             />
             <div
               *ngIf="
@@ -144,6 +145,7 @@
               type="number"
               class="form-control mt-1"
               formControlName="noOfAdultDependents"
+              [min]="0"
             />
             <div
               *ngIf="
@@ -168,6 +170,7 @@
               type="number"
               class="form-control mt-1"
               formControlName="noOfChildDependents"
+              [min]="0"
             />
             <div
               *ngIf="
@@ -258,6 +261,7 @@
               type="number"
               class="form-control mt-1"
               formControlName="rentalLeaseAmount"
+              [min]="0"
             />
             <div
               *ngIf="
@@ -354,6 +358,7 @@
               type="number"
               class="form-control mt-1"
               formControlName="existingLoan"
+              [min]="0"
             />
             <div
               *ngIf="
@@ -378,6 +383,7 @@
               type="number"
               class="form-control mt-1"
               formControlName="totalExistingLoans"
+              [min]="0"
             />
             <div
               *ngIf="
