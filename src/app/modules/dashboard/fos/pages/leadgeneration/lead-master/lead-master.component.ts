@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FOSLeadMasterService } from '../../../../../../../data/services/feature/leadMaster/leadmaster.service';
 import {
   IFOSLeadStatus,
+  ILead,
   ILeadHeader,
   ILeadTranslanderRequest,
 } from '../../../../../../../core/interfaces/app/leads/IFOSLeadsModel';
@@ -22,6 +23,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { IFOSLookup } from '../../../../../../../core/interfaces/app/request/IFOSModels';
 @Component({
   selector: 'app-lead-master',
   templateUrl: './lead-master.component.html',
@@ -58,13 +60,11 @@ export class LeadMasterComponent implements OnInit {
     private toasterService: ToastrService,
     private encryptionService: EncryptionService
   ) {
-
     this.searchParametersForm = new FormGroup({
       leadNumber: new FormControl(''),
       vehicleNumber: new FormControl(''),
       status: new FormControl(''),
     });
-
   }
   ngOnInit(): void {
     if (localStorage.getItem('userDetails')) {
@@ -75,9 +75,10 @@ export class LeadMasterComponent implements OnInit {
           this.encryptionService.decrypt(encryptedUserData);
         this.loggedInUser = decryptedUserData || '';
         this.dataSource.paginator = this.paginator;
+        this.fetchLeadGenerationLookup();
         this.setSearchParametersForm();
         this.getLeadStatusesForFiltering();
-
+        this.onSearch();
       }
     }
   }
@@ -153,6 +154,7 @@ export class LeadMasterComponent implements OnInit {
           this.leads = data.message.leads as ILeadHeader[];
           this.dataSource = new MatTableDataSource(this.leads);
           this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         },
         error: (error: any) => {
           this.loaderService.hideLoader();
@@ -166,23 +168,95 @@ export class LeadMasterComponent implements OnInit {
       });
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-  }
-
   clearForm() {
     this.searchParametersForm.reset();
   }
 
   createLead() {
-    this.router.navigate(["fos/lead-prospect-detail"], { state: { 'value': 0 } });
+    localStorage.removeItem('leadDetails');
+    this.router.navigate(['fos/lead-prospect-detail'], { state: { value: 0 } });
+  }
+
+  fetchLeadGenerationLookup() {
+    this.loaderService.showLoader();
+    localStorage.removeItem('leadDetails');
+    this.leadsService
+      .fetchLeadGenerationLookup(
+        this.loggedInUser.companyId,
+        this.loggedInUser.userId
+      )
+      .subscribe({
+        next: (data: any) => {
+          this.loaderService.hideLoader();
+          let lookupData = data.message as IFOSLookup[];
+
+          localStorage.setItem(
+            'leadGenerationLookups',
+            JSON.stringify(lookupData)
+          );
+        },
+        error: (error: any) => {
+          this.loaderService.hideLoader();
+          let errorMessages = error.message.split('|');
+          for (const key in errorMessages) {
+            this.toasterService.error(errorMessages[key], 'Error', {
+              timeOut: 2000,
+            });
+          }
+        },
+      });
   }
 
   viewLead(leadId: any) {
-    this.router.navigate(["fos/lead-prospect-detail"], { queryParams: { 'view': leadId }, state: { 'value': 0 } });
+    this.getLeadDetails(leadId).subscribe({
+      next: (response: any) => {
+        let lead = response.message as ILead;
+        localStorage.setItem('leadDetails', JSON.stringify(lead));
+        this.router.navigate(['fos/lead-prospect-detail'], {
+          queryParams: { view: true, value: 1  },
+        });
+      },
+      error: (error: any) => {
+        this.loaderService.hideLoader();
+        let errorMessages = error.message.split('|');
+        for (const key in errorMessages) {
+          this.toasterService.error(errorMessages[key], 'Error', {
+            timeOut: 2000,
+          });
+        }
+      },
+    });
   }
 
   modifyLead(leadId: any) {
-    this.router.navigate(["fos/lead-prospect-detail"], { queryParams: { 'modify': leadId }, state: { 'value': 0 } });
+    this.getLeadDetails(leadId).subscribe({
+      next: (response: any) => {
+        let lead = response.message as ILead;
+        localStorage.setItem('leadDetails', JSON.stringify(lead));
+        this.router.navigate(['fos/lead-loan-details'], {
+          queryParams: { view: false, value: 2 },
+        });
+      },
+      error: (error: any) => {
+        this.loaderService.hideLoader();
+        let errorMessages = error.message.split('|');
+        for (const key in errorMessages) {
+          this.toasterService.error(errorMessages[key], 'Error', {
+            timeOut: 2000,
+          });
+        }
+      },
+    });
+  }
+
+  getLeadDetails(leadId: number) {
+    this.loaderService.showLoader();
+    return this.leadsService.fetchLeadDetails(
+      this.loggedInUser.companyId,
+      this.loggedInUser.userId,
+      leadId,
+      '',
+      ''
+    );
   }
 }

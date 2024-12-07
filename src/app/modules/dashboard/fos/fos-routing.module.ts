@@ -54,10 +54,6 @@ const routes: Routes = [
         component: IndividualComponent,
       },
       {
-        path: 'lead-guarantor-1',
-        component: Guarantor1Component,
-      },
-      {
         path: 'lead-guarantor-2',
         component: Guarantor2Component,
       },

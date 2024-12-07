@@ -98,7 +98,6 @@
           <div class="col-auto pt-2">
             <button
               class="next-button d-flex align-items-center mt-4 px-4 rounded"
-              (click)="searchProspect()"
             >
               <mat-icon
                 class="d-flex align-items-center"
@@ -198,19 +197,7 @@
           </div>
           <div class="col-12 col-md-3">
             <label>Lead Type</label>
-            <select
-              formControlName="leadType"
-              class="form-select mt-2 mb-1"
-              name="leadType"
-            >
-              <option value="" disabled>Choose Lead Type</option>
-              <option
-                *ngFor="let c of leadTypeLookup"
-                [value]="c.lookupValueId"
-              >
-                {{ c.lookupValueDescription }}
-              </option>
-            </select>
+           
             <div
               *ngIf="
                 leadGenerationForm.get('leadType')?.touched || submittedForm2
@@ -315,10 +302,7 @@
             </div>
           </div>
           <div class="col-auto d-flex align-items-center justify-content-end">
-            <button
-              class="next-button d-flex align-items-center px-4 rounded"
-              (click)="generateLead()"
-            >
+            <button class="next-button d-flex align-items-center px-4 rounded">
               <mat-icon
                 class="d-flex align-items-center"
                 style="font-size: 14px"

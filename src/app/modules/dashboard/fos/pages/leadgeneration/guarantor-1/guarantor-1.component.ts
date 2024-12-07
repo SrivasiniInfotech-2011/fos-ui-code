@@ -36,21 +36,24 @@ export class Guarantor1Component implements OnInit {
   public guarantor1KYCForm: FormGroup | any = new FormGroup({});
   public isSubmitted: boolean = false;
   public selectedTab: any;
-  private genderLookup: IFOSLookup[] = [];
-  private stateLookup: IFOSLookup[] = [];
-  private countryLookup: IFOSLookup[] = [];
-  private guarantorRelationshipLookup: IFOSLookup[] = [];
-  private guarantorTypeLookup: IFOSLookup[] = [];
+  public genderLookup: IFOSLookup[] = [];
+  public stateLookup: IFOSLookup[] = [];
+  public countryLookup: IFOSLookup[] = [];
+  public guarantorRelationshipLookup: IFOSLookup[] = [];
+  public guarantorTypeLookup: IFOSLookup[] = [];
   private leadHeader: ILeadHeader = {};
   private loggedInUser: any = {};
-  public action: any
+  public action: any;
   public buttonDisabled: boolean = false;
+  private mode: string = '';
+  private leadId: number = 0;
 
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
     private encryptionService: EncryptionService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private loaderService: LoaderService,
     private prospectService: FOSProspectService,
     private toasterService: ToastrService,
@@ -67,13 +70,29 @@ export class Guarantor1Component implements OnInit {
         this.loggedInUser = decryptedUserData || '';
       }
     }
+  }
 
+  ngOnInit(): void {
+    let tabValue = window.history.state?.value;
+    this.selectedTab = tabValue;
+
+    this.leadHeader = JSON.parse(
+      localStorage.getItem('leadHeader')!
+    ) as ILeadHeader;
 
     this.guarantor1Form = new FormGroup({
       leadNumber: new FormControl('', [Validators.required]),
       vehicleNumber: new FormControl('', [Validators.required]),
     });
 
+    if (this.leadHeader) {
+      this.guarantor1Form
+        .get('leadNumber')!
+        .setValue(this.leadHeader.leadNumber!);
+      this.guarantor1Form
+        .get('vehicleNumber')!
+        .setValue(this.leadHeader.vehicleRegistrationNumber!);
+    }
     this.guarantor1DetailsForm = new FormGroup({
       guarantorName: new FormControl('', [Validators.required]),
       relationship: new FormControl('', [Validators.required]),
@@ -83,7 +102,6 @@ export class Guarantor1Component implements OnInit {
       alternateMobileNumber: new FormControl(''),
       guarantorAmount: new FormControl('', [Validators.required]),
     });
-
     this.guarantor1CommunicationAddressForm = new FormGroup({
       addressLine1: new FormControl(''),
       addressLine2: new FormControl(''),
@@ -111,94 +129,252 @@ export class Guarantor1Component implements OnInit {
       aadharImage: new FormControl('', [Validators.required]),
       panImage: new FormControl('', [Validators.required]),
     });
-  }
+    this.getStates();
+    this.getProspectLookup();
+    this.sleep(1200);
 
-  ngOnInit(): void {
-    let tabValue = window.history.state?.value;
-    this.selectedTab = tabValue;
-
-    this.route.queryParams.subscribe((params: Params) => {
-      this.action = params
-      if (params['view']) {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      if (params['view'] == 'true') {
         this.guarantor1Form.disable();
         this.guarantor1DetailsForm.disable();
         this.guarantor1CommunicationAddressForm.disable();
         this.guarantor1PermanentAddressForm.disable();
-        this.guarantor1KYCForm.disable();
         this.buttonDisabled = true;
-      }
-      else {
+      } else {
         this.guarantor1Form.enable();
         this.guarantor1DetailsForm.enable();
         this.guarantor1CommunicationAddressForm.enable();
         this.guarantor1PermanentAddressForm.enable();
-        this.guarantor1KYCForm.enable();
         this.buttonDisabled = false;
       }
-    });
 
+      let leadDetails = JSON.parse(
+        localStorage.getItem('leadDetails')!
+      ) as ILead;
+
+      if (leadDetails && leadDetails.leadProspectDetail) {
+        this.leadId = leadDetails.header?.leadId!;
+        this.setGuarantorDetails(
+          leadDetails.lobId,
+          leadDetails.header!,
+          leadDetails.guarantors![0]!
+        );
+      }
+    });
+  }
+
+  sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  private setGuarantorDetails(
+    lobId: number,
+    header: ILeadHeader,
+    guarantor: ILeadGuarantor
+  ) {
+    this.leadHeader = header;
+    this.guarantor1Form
+      .get('leadNumber')!
+      .setValue(this.leadHeader.leadNumber!);
+    this.guarantor1Form
+      .get('vehicleNumber')!
+      .setValue(this.leadHeader.vehicleRegistrationNumber!);
+    this.guarantor1DetailsForm
+      .get('guarantorName')!
+      .setValue(guarantor!.guarantorName);
+
+    this.guarantor1DetailsForm
+      .get('relationship')!
+      .setValue(guarantor!.guarantorRelationshipLookupValueId);
+
+    this.guarantor1DetailsForm.get('gender')!.setValue(guarantor!.genderId);
+
+    this.guarantor1DetailsForm
+      .get('dateOfBirth')!
+      .setValue(guarantor!.guaranterDateOfBirth);
+
+    this.guarantor1DetailsForm
+      .get('mobileNumber')!
+      .setValue(guarantor!.mobileNumber);
+
+    this.guarantor1DetailsForm
+      .get('alternateMobileNumber')!
+      .setValue(guarantor!.alternateMobileNumber);
+
+    this.guarantor1DetailsForm
+      .get('guarantorAmount')!
+      .setValue(guarantor!.guarantorAmount);
+
+    this.guarantor1CommunicationAddressForm
+      .get('addressLine1')!
+      .setValue(guarantor!.communicationAddress?.addressLine1);
+
+    this.guarantor1CommunicationAddressForm
+      .get('addressLine2')!
+      .setValue(guarantor!.communicationAddress?.addressLine2);
+
+    this.guarantor1CommunicationAddressForm
+      .get('landmark')!
+      .setValue(guarantor!.communicationAddress?.landmark);
+
+    this.guarantor1CommunicationAddressForm
+      .get('city')!
+      .setValue(guarantor!.communicationAddress?.city);
+
+    this.guarantor1CommunicationAddressForm
+      .get('state')!
+      .setValue(guarantor!.communicationAddress?.stateId);
+
+    this.guarantor1CommunicationAddressForm
+      .get('country')!
+      .setValue(guarantor!.communicationAddress?.countryId);
+
+    this.guarantor1CommunicationAddressForm
+      .get('pincode')!
+      .setValue(guarantor!.communicationAddress?.pincode);
+
+    this.guarantor1PermanentAddressForm
+      .get('addressLine1')!
+      .setValue(guarantor!.permanentAddress?.addressLine1);
+
+    this.guarantor1PermanentAddressForm
+      .get('addressLine2')!
+      .setValue(guarantor!.permanentAddress?.addressLine2);
+
+    this.guarantor1PermanentAddressForm
+      .get('landmark')!
+      .setValue(guarantor!.permanentAddress?.landmark);
+
+    this.guarantor1PermanentAddressForm
+      .get('city')!
+      .setValue(guarantor!.permanentAddress?.city);
+
+    this.guarantor1PermanentAddressForm
+      .get('state')!
+      .setValue(guarantor!.permanentAddress?.stateId);
+
+    this.guarantor1PermanentAddressForm
+      .get('country')!
+      .setValue(guarantor!.permanentAddress?.countryId);
+
+    this.guarantor1PermanentAddressForm
+      .get('pincode')!
+      .setValue(guarantor!.permanentAddress?.pincode);
+
+    this.guarantor1KYCForm
+      .get('aadharNumber')!
+      .setValue(guarantor!.permanentAddress?.addressLine1);
+
+    this.guarantor1KYCForm.get('panNumber')!.setValue(guarantor.panNumber);
+
+    this.guarantor1KYCForm
+      .get('guarantorImage')!
+      .setValue(guarantor.guarantorImagePath);
+
+    this.guarantor1KYCForm
+      .get('aadharImage')!
+      .setValue(guarantor.aadharImagePath);
+
+    this.guarantor1KYCForm.get('panImage')!.setValue(guarantor.panImagePath);
   }
 
   onTabChanged(event: MatTabChangeEvent) {
     if (this.action['view']) {
       switch (event.index) {
         case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-prospect-detail'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
         case 1:
-          this.router.navigate(['/fos/lead-loan-details'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-loan-details'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
         case 2:
-          this.router.navigate(['/fos/lead-individual'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-individual'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
         case 4:
-          this.router.navigate(['/fos/lead-guarantor-2'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-2'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
       }
-    }
-    else if (this.action['modify']) {
+    } else if (this.action['modify']) {
       switch (event.index) {
         case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-prospect-detail'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
         case 1:
-          this.router.navigate(['/fos/lead-loan-details'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-loan-details'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
         case 2:
-          this.router.navigate(['/fos/lead-individual'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-individual'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
         case 4:
-          this.router.navigate(['/fos/lead-guarantor-2'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-2'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
       }
-    }
-    else {
+    } else {
       switch (event.index) {
         case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-prospect-detail'], {
+            state: { value: event.index },
+          });
           break;
         case 1:
-          this.router.navigate(['/fos/lead-loan-details'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-loan-details'], {
+            state: { value: event.index },
+          });
           break;
         case 2:
-          this.router.navigate(['/fos/lead-individual'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-individual'], {
+            state: { value: event.index },
+          });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            state: { value: event.index },
+          });
           break;
         case 4:
-          this.router.navigate(['/fos/lead-guarantor-2'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-2'], {
+            state: { value: event.index },
+          });
           break;
       }
     }
   }
-
 
   getStates() {
     this.loaderService.showLoader();
@@ -224,7 +400,7 @@ export class Guarantor1Component implements OnInit {
         this.loaderService.hideLoader();
         if (data && data.message) {
           let lookItems = data.message as IFOSLookup[];
-          this.SetLookups(lookItems);
+          this.setLookups(lookItems);
         }
       },
       error: (error: any) => {
@@ -234,7 +410,7 @@ export class Guarantor1Component implements OnInit {
     });
   }
 
-  private SetLookups(lookItems: IFOSLookup[]) {
+  private setLookups(lookItems: IFOSLookup[]) {
     this.genderLookup = lookItems.filter(
       (s: IFOSLookup) => s.lookupTypeId == 2
     );
@@ -251,18 +427,22 @@ export class Guarantor1Component implements OnInit {
   }
 
   back() {
-    this.location.back()
+    this.location.back();
   }
 
   skip() {
     if (this.action['view']) {
-      this.router.navigate(['/fos/lead-guarantor-2'], { queryParams: { 'view': this.action['view'] }, state: { 'value': 4 } });
-    }
-    else if (this.action['modify']) {
-      this.router.navigate(['/fos/lead-guarantor-2'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': 4 } });
-    }
-    else {
-      this.router.navigate(['/fos/lead-guarantor-2'], { state: { 'value': 4 } });
+      this.router.navigate(['/fos/lead-guarantor-2'], {
+        queryParams: { view: this.action['view'] },
+        state: { value: 4 },
+      });
+    } else if (this.action['modify']) {
+      this.router.navigate(['/fos/lead-guarantor-2'], {
+        queryParams: { modify: this.action['modify'] },
+        state: { value: 4 },
+      });
+    } else {
+      this.router.navigate(['/fos/lead-guarantor-2'], { state: { value: 4 } });
     }
   }
 
@@ -291,11 +471,11 @@ export class Guarantor1Component implements OnInit {
         ),
         email: '',
         website: '',
-        aadharNumber: this.guarantor1KYCForm.aadharNumber,
-        aadharImagePath: this.guarantor1KYCForm.aadharImage,
-        panNumber: this.guarantor1KYCForm.panNumber,
-        panImagePath: this.guarantor1KYCForm.panImage,
-        guarantorImagePath: this.guarantor1KYCForm.guarantorImage,
+        aadharNumber: this.guarantor1KYCForm.value.aadharNumber,
+        aadharImagePath: this.guarantor1KYCForm.value.aadharImage,
+        panNumber: this.guarantor1KYCForm.value.panNumber,
+        panImagePath: this.guarantor1KYCForm.value.panImage,
+        guarantorImagePath: this.guarantor1KYCForm.value.guarantorImage,
         prospectId: this.leadHeader.prospectId,
         prospectCode: '',
         communicationAddress: {
@@ -335,11 +515,15 @@ export class Guarantor1Component implements OnInit {
       this.leadService.addLeadGuarantors(lead).subscribe({
         next: (data: any) => {
           this.loaderService.hideLoader();
-          this.dialog.open(ModalComponent, {
+          var dialogRef = this.dialog.open(ModalComponent, {
             data: {
               title: 'LEAD GENERATION',
               message: `The Lead ${this.leadHeader.leadNumber} has been updated with the GuarantorDetails successfully.`,
             },
+          });
+
+          dialogRef.afterClosed().subscribe((result) => {
+            this.onTabChanged({ index: 4 } as MatTabChangeEvent);
           });
         },
         error: (error: any) => {

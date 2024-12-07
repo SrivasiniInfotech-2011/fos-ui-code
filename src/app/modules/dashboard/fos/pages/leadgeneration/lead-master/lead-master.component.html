@@ -3,7 +3,10 @@
     <div class="lead-master-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+          <li
+            class="breadcrumb-item active d-flex align-items-center"
+            aria-current="page"
+          >
             <mat-icon class="me-2">home</mat-icon>Lead Master
           </li>
         </ol>
@@ -17,13 +20,23 @@
         <div class="row d-flex">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="text" class="form-control mt-1"
-              formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()" />
+            <input
+              placeholder="Enter Lead Number"
+              type="number"
+              class="form-control mt-1"
+              formControlName="leadNumber"
+              oninput="this.value = this.value.toUpperCase()"
+            />
           </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-1"
-              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()" />
+            <input
+              placeholder="Enter Vehicle Number"
+              type="text"
+              class="form-control mt-1"
+              formControlName="vehicleNumber"
+              oninput="this.value = this.value.toUpperCase()"
+            />
           </div>
           <div class="col-12 col-lg-4">
             <label>Status</label>
@@ -37,24 +50,51 @@
         </div>
       </form>
       <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
-        <button class="option-button d-flex align-items-center" (click)="onSearch()">
+        <button
+          class="option-button d-flex align-items-center"
+          (click)="onSearch()"
+        >
           Search
         </button>
-        <button class="option-button d-flex align-items-center" (click)="createLead()">Create</button>
-        <button class="option-button d-flex align-items-center" (click)="clearForm()">Clear</button>
+        <button
+          class="option-button d-flex align-items-center"
+          (click)="createLead()"
+        >
+          Create
+        </button>
+        <button
+          class="option-button d-flex align-items-center"
+          (click)="clearForm()"
+        >
+          Clear
+        </button>
       </div>
     </div>
     <div class="lead-master-box my-3">
-      <table mat-table matSort matSortStart="desc" [dataSource]="dataSource"
-        class="lead-master-table table table-bordered table-responsive mb-0">
+      <table
+        mat-table
+        matSort
+        matSortStart="desc"
+        [dataSource]="dataSource"
+        class="lead-master-table table table-bordered table-responsive mb-0"
+      >
         <ng-container matColumnDef="leadNumber">
           <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header>Lead Number</th> -->
-          <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="table-header"
+          >
             <div class="option">
               Lead Number
               <div class="search-item-box">
                 <mat-form-field class="m-0 p-0">
-                  <input matInput (keyup)="applyFilter($event, 'leadNumber')" placeholder="Filter Lead Number" />
+                  <input
+                    matInput
+                    (keyup)="applyFilter($event, 'leadNumber')"
+                    placeholder="Filter Lead Number"
+                  />
                 </mat-form-field>
               </div>
             </div>
@@ -63,12 +103,21 @@
         </ng-container>
 
         <ng-container matColumnDef="leadDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="table-header"
+          >
             <div class="option">
               Date
               <div class="search-item-box">
                 <mat-form-field>
-                  <input matInput (keyup)="applyFilter($event, 'leadDate')" placeholder="Filter Date" />
+                  <input
+                    matInput
+                    (keyup)="applyFilter($event, 'leadDate')"
+                    placeholder="Filter Date"
+                  />
                 </mat-form-field>
               </div>
             </div>
@@ -79,11 +128,21 @@
         </ng-container>
 
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">
-            <div class="option"> Status
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="table-header"
+          >
+            <div class="option">
+              Status
               <div class="search-item-box">
                 <mat-form-field>
-                  <input matInput (keyup)="applyFilter($event, 'status')" placeholder="Filter Status" />
+                  <input
+                    matInput
+                    (keyup)="applyFilter($event, 'status')"
+                    placeholder="Filter Status"
+                  />
                 </mat-form-field>
               </div>
             </div>
@@ -94,16 +153,22 @@
         </ng-container>
 
         <ng-container matColumnDef="view">
-          <th mat-header-cell *matHeaderCellDef class=" table-header"><span style="min-height:68px;"
-              class="d-flex align-items-flexstart">View</span></th>
+          <th mat-header-cell *matHeaderCellDef class="table-header">
+            <span style="min-height: 68px" class="d-flex align-items-flexstart"
+              >View</span
+            >
+          </th>
           <td mat-cell *matCellDef="let element">
             <mat-icon (click)="viewLead(element.leadId)">search</mat-icon>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="modify">
-          <th mat-header-cell *matHeaderCellDef class=" table-header"><span style="min-height:68px;"
-              class="d-flex align-items-flexstart">Modify</span></th>
+          <th mat-header-cell *matHeaderCellDef class="table-header">
+            <span style="min-height: 68px" class="d-flex align-items-flexstart"
+              >Modify</span
+            >
+          </th>
           <td mat-cell *matCellDef="let element">
             <mat-icon (click)="modifyLead(element.leadId)">create</mat-icon>
           </td>
@@ -112,7 +177,10 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
     </div>
   </div>
 </div>

@@ -86,7 +86,7 @@ export class FOSLeadMasterService {
     userId: number): Observable<any> {
     let endPoint = this.utilsService.buildApiEndpoint(
       environment.prospectsApi,
-      FOSApiEndPoints.Leads.GET_DOCUMENT_CATEGORIES.replace(
+      FOSApiEndPoints.GET_DOCUMENT_CATEGORIES.replace(
         '{companyId}',
         String(companyId)
       ).replace('{userId}', String(userId))

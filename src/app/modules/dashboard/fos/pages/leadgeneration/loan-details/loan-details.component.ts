@@ -17,7 +17,6 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../../../../../../shared/components/modal/modal-component';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-
 @Component({
   selector: 'app-loan-details',
   templateUrl: './loan-details.component.html',
@@ -30,7 +29,7 @@ export class LoanDetailsComponent implements OnInit {
   public isSubmitted: boolean = false;
   public leadTypeLookup: IFOSLookup[] = [];
   public tenureTypeLookup: IFOSLookup[] = [];
-  public repaymentFrequenceyLookup: IFOSLookup[] = [];
+  public repaymentFrequencyLookup: IFOSLookup[] = [];
   public fieldExecutiveLookup: IFOSLookup[] = [];
   public documentCategoryLookup: any[] = [];
   public assetClassLookup: IFOSLookup[] = [];
@@ -46,9 +45,10 @@ export class LoanDetailsComponent implements OnInit {
   public fieldExecutives: IFieldExecutive[] = [];
   public lineOfBusinesses: any[] = [];
   public selectedTab: any;
-  public action:any;
-  public buttonDisabled:boolean=false;
-
+  private mode: string = '';
+  private leadId: number = 0;
+  public buttonDisabled: boolean = false;
+  public action: any = {};
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -57,7 +57,7 @@ export class LoanDetailsComponent implements OnInit {
     private loaderService: LoaderService,
     private toasterService: ToastrService,
     public dialog: MatDialog,
-    private route:ActivatedRoute
+    private route: ActivatedRoute
   ) {
     if (localStorage.getItem('userDetails')) {
       const encryptedUserData = localStorage.getItem('userDetails');
@@ -68,132 +68,226 @@ export class LoanDetailsComponent implements OnInit {
         this.loggedInUser = decryptedUserData || '';
       }
     }
-
-    this.leadForm = new FormGroup({
-      leadNumber: new FormControl('', [Validators.required]),
-      vehicleNumber: new FormControl('', [Validators.required]),
-    });
-
-    this.loanDetailsForm = new FormGroup({
-      lineOfBusiness: new FormControl('', [Validators.required]),
-      financeAmount: new FormControl('', [Validators.required]),
-      tenure: new FormControl('', [Validators.required]),
-      tenureType: new FormControl('', [Validators.required]),
-      rate: new FormControl('', [Validators.required]),
-      repaymentFrequency: new FormControl('', [Validators.required]),
-      leavePeriod: new FormControl('', [Validators.required]),
-      fieldExecutive: new FormControl('', [Validators.required]),
-      documentCategory: new FormControl('', [Validators.required]),
-    });
-
-
-    this.assetDetailsForm = new FormGroup({
-      assetClass: new FormControl('', [Validators.required]),
-      assetName: new FormControl('', [Validators.required]),
-      assetType: new FormControl('', [Validators.required]),
-      assetModel: new FormControl('', [Validators.required]),
-      vehicleNumber: new FormControl(''),
-      engineNumber: new FormControl('', [Validators.required]),
-      chassisNumber: new FormControl('', [Validators.required]),
-      serialNumber: new FormControl('', [Validators.required]),
-      ownership: new FormControl('', [Validators.required]),
-      model: new FormControl('', [Validators.required]),
-      vehicleType: new FormControl('', [Validators.required]),
-      taxType: new FormControl('', [Validators.required]),
-      fuelType: new FormControl('', [Validators.required]),
-    });
   }
-
 
   ngOnInit(): void {
     let tabValue = window.history.state?.value;
     this.selectedTab = tabValue;
-
-
-    this.route.queryParams.subscribe((params: Params) => {
-      this.action = params
-      if (params['view']) {
-        this.leadForm.disable();
-        this.loanDetailsForm.disable();
-        this.assetDetailsForm.disable();
-        this.buttonDisabled = true;
-      }
-      else {
-        this.leadForm.enable();
-        this.loanDetailsForm.enable();
-        this.assetDetailsForm.enable();
-        this.buttonDisabled = false;
-      }
-    });
-
     this.SetupLoanDetailsScreen();
     this.setLookups();
     this.setLineOfBusinesses();
     this.setFieldExecutives();
     this.setDocumentCategories();
+    this.sleep(1200);
+    this.route.queryParams.subscribe((params: Params) => {
+      this.action = params;
+      if (params['view']) {
+        this.leadForm.disable();
+        this.loanDetailsForm.disable();
+        this.assetDetailsForm.disable();
+        this.buttonDisabled = true;
+      } else {
+        this.leadForm.enable();
+        this.loanDetailsForm.enable();
+        this.assetDetailsForm.enable();
+        this.buttonDisabled = false;
+      }
 
+      let leadDetails = JSON.parse(
+        localStorage.getItem('leadDetails')!
+      ) as ILead;
+
+      if (leadDetails) {
+        this.leadId = leadDetails.header?.leadId!;
+        this.setLeadLoanDetails(
+          leadDetails.lobId,
+          leadDetails.header!,
+          leadDetails.asset!
+        );
+      }
+    });
   }
 
+  sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  setLeadLoanDetails(
+    lobId: number,
+    leadHeader: ILeadHeader,
+    asset: ILeadAssetDetail
+  ) {
+    if (leadHeader) {
+      this.leadHeader = leadHeader;
+      this.leadForm.get('leadNumber')!.setValue(leadHeader.leadNumber!);
+      this.leadForm
+        .get('vehicleNumber')!
+        .setValue(leadHeader.vehicleRegistrationNumber!);
+    }
+    if (asset) {
+      this.loanDetailsForm.get('lineOfBusiness')!.setValue(lobId);
+
+      this.loanDetailsForm
+        .get('financeAmount')!
+        .setValue(leadHeader.financeAmount!);
+
+      this.loanDetailsForm.get('tenure')!.setValue(leadHeader.tenure!);
+
+      this.loanDetailsForm
+        .get('tenureType')!
+        .setValue(leadHeader.tenureLookupValueId!);
+
+      this.loanDetailsForm.get('rate')!.setValue(leadHeader.rate!);
+
+      this.loanDetailsForm
+        .get('repaymentFrequency')!
+        .setValue(leadHeader.repaymentFrequencyLookupValueId!);
+
+      this.loanDetailsForm
+        .get('leavePeriod')!
+        .setValue(leadHeader.leavePeriod!);
+
+      this.loanDetailsForm
+        .get('fieldExecutive')!
+        .setValue(leadHeader.fieldExecutiveId!);
+
+      this.loanDetailsForm
+        .get('documentCategory')!
+        .setValue(leadHeader.documentCategoryId!);
+
+      this.assetDetailsForm.get('assetClass')!.setValue(asset.assetClassId!);
+
+      this.assetDetailsForm.get('assetName')!.setValue(asset.assetMakeId!);
+
+      this.assetDetailsForm.get('assetType')!.setValue(asset.assetTypeId!);
+
+      this.assetDetailsForm.get('assetModel')!.setValue(asset.assetModelId!);
+
+      this.assetDetailsForm
+        .get('vehicleNumber')!
+        .setValue(asset.vehicleNumber!);
+
+      this.assetDetailsForm.get('engineNumber')!.setValue(asset.engineNumber!);
+
+      this.assetDetailsForm.get('chassisNumber')!.setValue(asset.chasisNumber!);
+
+      this.assetDetailsForm.get('serialNumber')!.setValue(asset.serialNumber!);
+
+      this.assetDetailsForm
+        .get('ownership')!
+        .setValue(asset.ownershipLookupValueId!);
+
+      this.assetDetailsForm.get('model')!.setValue(asset.model!);
+
+      this.assetDetailsForm
+        .get('vehicleType')!
+        .setValue(asset.vehicleTypeLookupValueId!);
+
+      this.assetDetailsForm
+        .get('taxType')!
+        .setValue(asset.taxTypeLookupValueId!);
+      this.assetDetailsForm
+        .get('fuelType')!
+        .setValue(asset.fuelTypeLookupValueId!);
+    }
+  }
 
   onTabChanged(event: MatTabChangeEvent) {
     if (this.action['view']) {
       switch (event.index) {
         case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-prospect-detail'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
         case 1:
-          this.router.navigate(['/fos/lead-loan-details'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-loan-details'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
         case 2:
-          this.router.navigate(['/fos/lead-individual'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-individual'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
         case 4:
-          this.router.navigate(['/fos/lead-guarantor-2'], { queryParams: { 'view': this.action['view'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-2'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
           break;
       }
-    }
-    else if (this.action['modify']) {
+    } else if (this.action['modify']) {
       switch (event.index) {
         case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-prospect-detail'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
         case 1:
-          this.router.navigate(['/fos/lead-loan-details'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-loan-details'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
         case 2:
-          this.router.navigate(['/fos/lead-individual'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-individual'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
         case 4:
-          this.router.navigate(['/fos/lead-guarantor-2'], { queryParams: { 'modify': this.action['modify'] }, state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-2'], {
+            queryParams: { modify: this.action['modify'] },
+            state: { value: event.index },
+          });
           break;
       }
-    }
-    else {
+    } else {
       switch (event.index) {
         case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-prospect-detail'], {
+            state: { value: event.index },
+          });
           break;
         case 1:
-          this.router.navigate(['/fos/lead-loan-details'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-loan-details'], {
+            state: { value: event.index },
+          });
           break;
         case 2:
-          this.router.navigate(['/fos/lead-individual'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-individual'], {
+            state: { value: event.index },
+          });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            state: { value: event.index },
+          });
           break;
         case 4:
-          this.router.navigate(['/fos/lead-guarantor-2'], { state: { 'value': event.index } });
+          this.router.navigate(['/fos/lead-guarantor-2'], {
+            state: { value: event.index },
+          });
           break;
       }
     }
-
   }
 
   setLineOfBusinesses() {
@@ -206,7 +300,7 @@ export class LoanDetailsComponent implements OnInit {
         next: (data: any) => {
           this.lineOfBusinesses = data.message;
         },
-        error: (error: any) => { },
+        error: (error: any) => {},
       });
   }
 
@@ -222,7 +316,9 @@ export class LoanDetailsComponent implements OnInit {
           this.loaderService.hideLoader();
           this.fieldExecutives = data.message as IFieldExecutive[];
         },
-        error: (error: any) => { this.loaderService.hideLoader(); },
+        error: (error: any) => {
+          this.loaderService.hideLoader();
+        },
       });
   }
 
@@ -238,7 +334,9 @@ export class LoanDetailsComponent implements OnInit {
           this.loaderService.hideLoader();
           this.documentCategoryLookup = data.message;
         },
-        error: (error: any) => { this.loaderService.hideLoader(); },
+        error: (error: any) => {
+          this.loaderService.hideLoader();
+        },
       });
   }
 
@@ -263,7 +361,9 @@ export class LoanDetailsComponent implements OnInit {
             (s) => s.lookupTypeDescription == 'TYPE'
           );
         },
-        error: (error: any) => { this.loaderService.hideLoader(); },
+        error: (error: any) => {
+          this.loaderService.hideLoader();
+        },
       });
   }
 
@@ -271,43 +371,44 @@ export class LoanDetailsComponent implements OnInit {
     this.leadHeader = JSON.parse(
       localStorage.getItem('leadHeader')!
     ) as ILeadHeader;
-    // this.leadForm = new FormGroup({
-    //   leadNumber: new FormControl(this.leadHeader.leadNumber, [
-    //     Validators.required,
-    //   ]),
-    //   vehicleNumber: new FormControl(
-    //     this.leadHeader.vehicleRegistrationNumber?.toUpperCase(),
-    //     [Validators.required]
-    //   ),
-    // });
+    this.leadForm = new FormGroup({
+      leadNumber: new FormControl('', [Validators.required]),
+      vehicleNumber: new FormControl('', [Validators.required]),
+    });
 
-    // this.loanDetailsForm = new FormGroup({
-    //   lineOfBusiness: new FormControl('', [Validators.required]),
-    //   financeAmount: new FormControl('', [Validators.required]),
-    //   tenure: new FormControl('', [Validators.required]),
-    //   tenureType: new FormControl('', [Validators.required]),
-    //   rate: new FormControl('', [Validators.required]),
-    //   repaymentFrequency: new FormControl('', [Validators.required]),
-    //   leavePeriod: new FormControl('', [Validators.required]),
-    //   fieldExecutive: new FormControl('', [Validators.required]),
-    //   documentCategory: new FormControl('', [Validators.required]),
-    // });
+    if (this.leadHeader) {
+      this.leadForm.get('leadNumber')!.setValue(this.leadHeader.leadNumber!);
+      this.leadForm
+        .get('vehicleNumber')!
+        .setValue(this.leadHeader.vehicleRegistrationNumber!);
+    }
+    this.loanDetailsForm = new FormGroup({
+      lineOfBusiness: new FormControl('', [Validators.required]),
+      financeAmount: new FormControl('', [Validators.required]),
+      tenure: new FormControl('', [Validators.required]),
+      tenureType: new FormControl('', [Validators.required]),
+      rate: new FormControl('', [Validators.required]),
+      repaymentFrequency: new FormControl('', [Validators.required]),
+      leavePeriod: new FormControl('', [Validators.required]),
+      fieldExecutive: new FormControl('', [Validators.required]),
+      documentCategory: new FormControl('', [Validators.required]),
+    });
 
-    // this.assetDetailsForm = new FormGroup({
-    //   assetClass: new FormControl('', [Validators.required]),
-    //   assetName: new FormControl('', [Validators.required]),
-    //   assetType: new FormControl('', [Validators.required]),
-    //   assetModel: new FormControl('', [Validators.required]),
-    //   vehicleNumber: new FormControl(''),
-    //   engineNumber: new FormControl('', [Validators.required]),
-    //   chassisNumber: new FormControl('', [Validators.required]),
-    //   serialNumber: new FormControl('', [Validators.required]),
-    //   ownership: new FormControl('', [Validators.required]),
-    //   model: new FormControl('', [Validators.required]),
-    //   vehicleType: new FormControl('', [Validators.required]),
-    //   taxType: new FormControl('', [Validators.required]),
-    //   fuelType: new FormControl('', [Validators.required]),
-    // });
+    this.assetDetailsForm = new FormGroup({
+      assetClass: new FormControl('', [Validators.required]),
+      assetName: new FormControl('', [Validators.required]),
+      assetType: new FormControl('', [Validators.required]),
+      assetModel: new FormControl('', [Validators.required]),
+      vehicleNumber: new FormControl(''),
+      engineNumber: new FormControl('', [Validators.required]),
+      chassisNumber: new FormControl('', [Validators.required]),
+      serialNumber: new FormControl('', [Validators.required]),
+      ownership: new FormControl('', [Validators.required]),
+      model: new FormControl('', [Validators.required]),
+      vehicleType: new FormControl('', [Validators.required]),
+      taxType: new FormControl('', [Validators.required]),
+      fuelType: new FormControl('', [Validators.required]),
+    });
   }
 
   setLookups() {
@@ -316,7 +417,7 @@ export class LoanDetailsComponent implements OnInit {
     ) as IFOSLookup[];
     if (lookup) {
       this.leadTypeLookup = lookup.filter((s) => s.lookupTypeId == 4);
-      this.repaymentFrequenceyLookup = lookup.filter((s) => s.lookupTypeId == 5);
+      this.repaymentFrequencyLookup = lookup.filter((s) => s.lookupTypeId == 5);
       this.ownershipLookup = lookup.filter((s) => s.lookupTypeId == 6);
       this.fuelTypeLookup = lookup.filter((s) => s.lookupTypeId == 7);
       this.vehicleTypeLookup = lookup.filter((s) => s.lookupTypeId == 8);
@@ -365,6 +466,7 @@ export class LoanDetailsComponent implements OnInit {
         serialNumber: this.assetDetailsForm.value.serialNumber,
         taxTypeLookupValueId: this.assetDetailsForm.value.taxType,
         vehicleNumber: this.assetDetailsForm.value.vehicleNumber,
+        vehicleTypeLookupValueId: this.assetDetailsForm.value.vehicleType,
       } as ILeadAssetDetail;
 
       let lead = {
@@ -379,11 +481,15 @@ export class LoanDetailsComponent implements OnInit {
       this.leadService.addLeadLoanDetails(lead).subscribe({
         next: (data: any) => {
           this.loaderService.hideLoader();
-          this.dialog.open(ModalComponent, {
+          var dialogRef = this.dialog.open(ModalComponent, {
             data: {
               title: 'LEAD GENERATION',
               message: `The Lead ${this.leadHeader.leadNumber} has been updated with the Loan Details successfully.`,
             },
+          });
+
+          dialogRef.afterClosed().subscribe((result) => {
+            this.onTabChanged({ index: 2 } as MatTabChangeEvent);
           });
         },
         error: (error: any) => {

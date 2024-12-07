@@ -30,7 +30,7 @@
         <div class="row d-flex ">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input type="number" class="form-control my-2" formControlName="leadNumber">
+            <input type="text" class="form-control my-2" formControlName="leadNumber">
             <div *ngIf="loanDetailsForm.get('leadNumber')?.touched || isSubmitted">
               <span class="massage-text" *ngIf="loanDetailsForm.get('leadNumber')?.hasError('required')">Lead Number is
                 required</span>
@@ -54,7 +54,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Leave Period</label>
-            <input type="text" class="form-control my-2" formControlName="leavePeriod">
+            <input type="number" maxlength="1" class="form-control my-2" formControlName="leavePeriod">
             <div *ngIf="loanDetailsForm.get('leavePeriod')?.touched || isSubmitted">
               <span class="massage-text" *ngIf="loanDetailsForm.get('leavePeriod')?.hasError('required')">Leave Period
                 is required</span>
@@ -62,7 +62,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Finance Amount</label>
-            <input type="number" class="form-control my-2" formControlName="financeAmount">
+            <input type="number" [maxLength]="10" class="form-control my-2" formControlName="financeAmount">
             <div *ngIf="loanDetailsForm.get('financeAmount')?.touched || isSubmitted">
               <span class="massage-text" *ngIf="loanDetailsForm.get('financeAmount')?.hasError('required')">Finance
                 Amount is required</span>
@@ -70,7 +70,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Rate</label>
-            <input type="number" class="form-control my-2" formControlName="rate">
+            <input type="number" maxlength="3" class="form-control my-2" formControlName="rate">
             <div *ngIf="loanDetailsForm.get('rate')?.touched || isSubmitted">
               <span class="massage-text" *ngIf="loanDetailsForm.get('rate')?.hasError('required')">Rate is
                 required</span>
@@ -78,7 +78,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Tenure</label>
-            <input type="text" class="form-control my-2" formControlName="tenure">
+            <input type="number" [maxlength]="2" class="form-control my-2" formControlName="tenure">
             <div *ngIf="loanDetailsForm.get('tenure')?.touched || isSubmitted">
               <span class="massage-text" *ngIf="loanDetailsForm.get('tenure')?.hasError('required')">Tenure is
                 required</span>
