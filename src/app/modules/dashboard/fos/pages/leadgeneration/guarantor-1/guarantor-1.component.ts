@@ -54,7 +54,7 @@ export class Guarantor1Component implements OnInit {
   public guarantorFileContent: string = '';
   public panFileContent: string = '';
   private allowedExtensions: string[] = ['png', 'jpg', 'jpeg'];
-
+  public isViewOrEditMode?: boolean;
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -140,12 +140,14 @@ export class Guarantor1Component implements OnInit {
         this.guarantor1CommunicationAddressForm.disable();
         this.guarantor1PermanentAddressForm.disable();
         this.buttonDisabled = true;
+        this.isViewOrEditMode = true;
       } else {
         this.guarantor1Form.enable();
         this.guarantor1DetailsForm.enable();
         this.guarantor1CommunicationAddressForm.enable();
         this.guarantor1PermanentAddressForm.enable();
         this.buttonDisabled = false;
+        this.isViewOrEditMode = true;
       }
 
       let leadDetails = JSON.parse(
@@ -294,7 +296,12 @@ export class Guarantor1Component implements OnInit {
 
     this.guarantor1DetailsForm
       .get('dateOfBirth')!
-      .setValue(guarantor!.guaranterDateOfBirth);
+      .setValue(
+        this.utilityService.transformDate(
+          String(guarantor!.guaranterDateOfBirth),
+          'YYYY-MM-DD'
+        )
+      );
 
     this.guarantor1DetailsForm
       .get('mobileNumber')!
@@ -379,6 +386,10 @@ export class Guarantor1Component implements OnInit {
       .setValue(guarantor.aadharImagePath);
 
     this.guarantor1KYCForm.get('panImage')!.setValue(guarantor.panImagePath);
+
+    this.aadharFileName = guarantor.aadharImagePath!;
+    this.panFileName = guarantor.panImagePath!;
+    this.guarantorFileName = guarantor.guarantorImagePath!;
   }
 
   onTabChanged(event: MatTabChangeEvent) {
@@ -576,12 +587,12 @@ export class Guarantor1Component implements OnInit {
         website: '',
         aadharNumber: this.guarantor1KYCForm.value.aadharNumber,
         aadharImagePath: this.aadharFileName,
-        aadharImageContent:this.aadharFileContent,
+        aadharImageContent: this.aadharFileContent,
         panNumber: this.guarantor1KYCForm.value.panNumber,
         panImagePath: this.panFileName,
-        panImageContent:this.panFileContent,
+        panImageContent: this.panFileContent,
         guarantorImagePath: this.guarantorFileName,
-        guarantorImageContent:this.guarantorFileContent,
+        guarantorImageContent: this.guarantorFileContent,
         prospectId: this.leadHeader.prospectId,
         prospectCode: '',
         communicationAddress: {
