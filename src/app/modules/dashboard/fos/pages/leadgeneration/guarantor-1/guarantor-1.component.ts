@@ -47,12 +47,12 @@ export class Guarantor1Component implements OnInit {
   public buttonDisabled: boolean = false;
   private mode: string = '';
   private leadId: number = 0;
-  private aadharFileName: string = '';
-  private guarantorFileName: string = '';
-  private panFileName: string = '';
-  private aadharFileContent: string = '';
-  private guarantorFileContent: string = '';
-  private panFileContent: string = '';
+  public aadharFileName: string = '';
+  public guarantorFileName: string = '';
+  public panFileName: string = '';
+  public aadharFileContent: string = '';
+  public guarantorFileContent: string = '';
+  public panFileContent: string = '';
   private allowedExtensions: string[] = ['png', 'jpg', 'jpeg'];
 
   constructor(

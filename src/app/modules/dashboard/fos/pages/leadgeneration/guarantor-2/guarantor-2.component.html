@@ -438,6 +438,7 @@
                   "
                   >Guarantor Image is required</span
                 >
+                <a type="blank" href="{{ guarantorFileName }}" *ngIf="guarantorFileName">Guarantor Image Link</a>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Aadhar<span class="text-danger">*</span></label>
@@ -457,6 +458,7 @@
                   "
                   >Aadhar is required</span
                 >
+                <a type="blank" href="{{ aadharFileName }}" *ngIf="aadharFileName">Aadhar Image Link</a>
               </div>
               <div class="col-12 col-lg-4">
                 <label>PAN<span class="text-danger">*</span></label>
@@ -477,6 +479,7 @@
                   >PAN is required</span
                 >
               </div>
+              <a type="blank" href="{{ panFileName }}" *ngIf="panFileName">PAN Image Link</a>
             </div>
           </form>
         </div>
