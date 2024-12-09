@@ -47,6 +47,13 @@ export class Guarantor1Component implements OnInit {
   public buttonDisabled: boolean = false;
   private mode: string = '';
   private leadId: number = 0;
+  private aadharFileName: string = '';
+  private guarantorFileName: string = '';
+  private panFileName: string = '';
+  private aadharFileContent: string = '';
+  private guarantorFileContent: string = '';
+  private panFileContent: string = '';
+  private allowedExtensions: string[] = ['png', 'jpg', 'jpeg'];
 
   constructor(
     private utilityService: UtilsService,
@@ -180,11 +187,28 @@ export class Guarantor1Component implements OnInit {
     const input = event.target as HTMLInputElement;
 
     if (input?.files?.length) {
-      const file = input.files[0]; // Get the file object
-      console.log('File selected:', file);
+      const file = input.files[0];
 
-      // Update the FormControl with the file object
-      this.guarantor1KYCForm.patchValue({ aadharImage: file});
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.aadharFileName = '';
+        this.aadharFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.aadharFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.aadharFileName = file.name;
+
+      reader.readAsDataURL(file);
     }
   }
 
@@ -192,11 +216,28 @@ export class Guarantor1Component implements OnInit {
     const input = event.target as HTMLInputElement;
 
     if (input?.files?.length) {
-      const file = input.files[0]; // Get the file object
-      console.log('File selected:', file);
+      const file = input.files[0];
 
-      // Update the FormControl with the file object
-      this.guarantor1KYCForm.patchValue({ panImage: file});
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.panFileName = '';
+        this.panFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.panFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.panFileName = file.name;
+
+      reader.readAsDataURL(file);
     }
   }
 
@@ -204,9 +245,28 @@ export class Guarantor1Component implements OnInit {
     const input = event.target as HTMLInputElement;
 
     if (input?.files?.length) {
-      const file = input.files[0]; // Get the file object
-      console.log('File selected:', file);
-      this.guarantor1KYCForm.patchValue({ guarantorImage: file});
+      const file = input.files[0];
+
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.guarantorFileName = '';
+        this.guarantorFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.guarantorFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.guarantorFileName = file.name;
+
+      reader.readAsDataURL(file);
     }
   }
 
@@ -515,10 +575,13 @@ export class Guarantor1Component implements OnInit {
         email: '',
         website: '',
         aadharNumber: this.guarantor1KYCForm.value.aadharNumber,
-        aadharImagePath: this.guarantor1KYCForm.value.aadharImage,
+        aadharImagePath: this.aadharFileName,
+        aadharImageContent:this.aadharFileContent,
         panNumber: this.guarantor1KYCForm.value.panNumber,
-        panImagePath: this.guarantor1KYCForm.value.panImage,
-        guarantorImagePath: this.guarantor1KYCForm.value.guarantorImage,
+        panImagePath: this.panFileName,
+        panImageContent:this.panFileContent,
+        guarantorImagePath: this.guarantorFileName,
+        guarantorImageContent:this.guarantorFileContent,
         prospectId: this.leadHeader.prospectId,
         prospectCode: '',
         communicationAddress: {

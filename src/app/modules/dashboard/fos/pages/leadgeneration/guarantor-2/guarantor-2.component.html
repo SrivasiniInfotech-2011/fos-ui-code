@@ -266,15 +266,24 @@
               </div>
               <div class="col-12 col-lg-4">
                 <select class="form-select mt-2" formControlName="state">
-                  <option>Choose State</option>
-                  <option>Andaman and nicobar island</option>
+                  <option value="" disabled>Choose State</option>
+                  <option
+                    *ngFor="let c of stateLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
               </div>
               <div class="col-12 col-lg-4">
                 <select class="form-select mt-2" formControlName="country">
-                  <option>Country</option>
-                  <option>India</option>
-                  <option>Male</option>
+                  <option value="" disabled>Choose Country</option>
+                  <option
+                    *ngFor="let c of countryLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
               </div>
               <div class="col-12 col-lg-4">
@@ -336,15 +345,24 @@
               </div>
               <div class="col-12 col-lg-4">
                 <select class="form-select mt-2" formControlName="state">
-                  <option>Choose State</option>
-                  <option>Andaman and nicobar island</option>
+                  <option value="" disabled>Choose State</option>
+                  <option
+                    *ngFor="let c of stateLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
               </div>
               <div class="col-12 col-lg-4">
                 <select class="form-select mt-2" formControlName="country">
-                  <option>Country</option>
-                  <option>India</option>
-                  <option>Male</option>
+                  <option value="" disabled>Choose Country</option>
+                  <option
+                    *ngFor="let c of countryLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
               </div>
               <div class="col-12 col-lg-4">
@@ -407,6 +425,7 @@
                   type="file"
                   class="form-control mt-1"
                   formControlName="guarantorImage"
+                  (change)="onGuarantorImageChange($event)"
                 />
                 <span
                   class="massage-text"
@@ -427,6 +446,7 @@
                   type="file"
                   class="form-control mt-1"
                   formControlName="aadharImage"
+                  (change)="onAadharImageChange($event)"
                 />
                 <span
                   class="massage-text"
@@ -445,6 +465,7 @@
                   type="file"
                   class="form-control mt-1"
                   formControlName="panImage"
+                  (change)="onPanImageChange($event)"
                 />
                 <span
                   class="massage-text"

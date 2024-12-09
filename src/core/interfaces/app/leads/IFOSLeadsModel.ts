@@ -109,9 +109,12 @@ export interface ILeadGuarantor {
   website?: string;
   aadharNumber?: string;
   aadharImagePath?: string;
+  aadharImageContent?: string;
   panNumber?: string;
   panImagePath?: string;
+  panImageContent?: string;
   guarantorImagePath?: string;
+  guarantorImageContent?: string;
   prospectId?: number;
   prospectCode?: string;
   communicationAddress?: IAddress;

@@ -46,6 +46,13 @@ export class Guarantor2Component implements OnInit {
   private leadId: number = 0;
   public action: any = {};
   public buttonDisabled:boolean=false;
+  private aadharFileName: string = '';
+  private guarantorFileName: string = '';
+  private panFileName: string = '';
+  private aadharFileContent: string = '';
+  private guarantorFileContent: string = '';
+  private panFileContent: string = '';
+  private allowedExtensions: string[] = ['png', 'jpg', 'jpeg'];
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -185,6 +192,93 @@ export class Guarantor2Component implements OnInit {
 
   sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  onAadharImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0];
+
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.aadharFileName = '';
+        this.aadharFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.aadharFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.aadharFileName = file.name;
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onPanImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0];
+
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.panFileName = '';
+        this.panFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.panFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.panFileName = file.name;
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onGuarantorImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0];
+
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.guarantorFileName = '';
+        this.guarantorFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.guarantorFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.guarantorFileName = file.name;
+
+      reader.readAsDataURL(file);
+    }
   }
 
   private setGuarantorDetails(
@@ -488,10 +582,13 @@ export class Guarantor2Component implements OnInit {
         email: '',
         website: '',
         aadharNumber: this.guarantor2KYCForm.value.aadharNumber,
-        aadharImagePath: this.guarantor2KYCForm.value.aadharImage,
+        aadharImagePath: this.aadharFileName,
+        aadharImageContent:this.aadharFileContent,
         panNumber: this.guarantor2KYCForm.value.panNumber,
-        panImagePath: this.guarantor2KYCForm.value.panImage,
-        guarantorImagePath: this.guarantor2KYCForm.value.guarantorImage,
+        panImagePath: this.panFileName,
+        panImageContent:this.panFileContent,
+        guarantorImagePath: this.guarantorFileName,
+        guarantorImageContent:this.guarantorFileContent,
         prospectId: this.leadHeader.prospectId,
         prospectCode: '',
         communicationAddress: {
