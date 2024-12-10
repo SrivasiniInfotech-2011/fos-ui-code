@@ -31,10 +31,10 @@
                 <label>Mobile Number<span class="text-danger">*</span></label>
                 <input
                   placeholder="Enter Mobile Number"
-                  type="text"
+                  type="tel"
                   class="form-control mt-1"
                   formControlName="mobileNumber"
-                  oninput="this.value = this.value.slice(0,10)"
+                 maxlength="10"
                 />
                 <span
                   class="massage-text"
@@ -50,7 +50,7 @@
                 <label>Aadhar Number<span class="text-danger">*</span></label>
                 <input
                   placeholder="Enter Aadhar Number"
-                  type="text"
+                  type="number"
                   class="form-control mt-1"
                   formControlName="aadharNumber"
                   oninput="this.value = this.value.slice(0,12)"
@@ -72,7 +72,7 @@
                   type="text"
                   class="form-control mt-1"
                   formControlName="panNumber"
-                  oninput="this.value = this.value.slice(0,10)"
+                  maxlength="10"
                 />
                 <span
                   class="massage-text"
