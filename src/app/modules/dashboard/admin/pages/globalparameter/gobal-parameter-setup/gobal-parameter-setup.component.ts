@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -10,7 +11,7 @@ export class GobalParameterSetupComponent {
 
   public globalParameterForm:FormGroup;
 
-  constructor(){
+  constructor(private location:Location){
     this.globalParameterForm = new FormGroup({
       dateFormat: new FormControl(''),
       currencyName: new FormControl(''),
@@ -23,5 +24,9 @@ export class GobalParameterSetupComponent {
       forcePasswordChange: new FormControl(''),
       initialPasswordChange: new FormControl(''),
     });
+  }
+
+  back(){
+    this.location.back();
   }
 }

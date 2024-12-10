@@ -54,6 +54,7 @@ export class DocumentMasterComponent {
   }
 
   clear(){
-    this.documentMasterForm.reset()
+    this.documentMasterForm.reset();
+    this.showTable = false;
   }
 }

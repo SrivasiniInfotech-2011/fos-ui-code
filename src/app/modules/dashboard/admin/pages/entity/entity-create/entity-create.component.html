@@ -15,11 +15,11 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Entity Code<span class="text-danger">*</span></label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Entity Code" formControlName="entityCode">
-            <span class="massage-text"
+            <input type="text" class="form-control mt-2" placeholder="Enter The Entity Code" formControlName="entityCode" [readOnly]="true">
+            <!-- <span class="massage-text"
               *ngIf="(entityMasterForm.get('entityCode')?.touched || isSubmitted) && entityMasterForm.get('entityCode')?.hasError('required')">
               Entity Code is
-              required</span>
+              required</span> -->
           </div>
           <div class="col-12 col-lg-4">
             <label>Entity Name<span class="text-danger">*</span></label>
@@ -104,17 +104,17 @@
 
           <div class="col-12 col-lg-4">
             <label>Pincode<span class="text-danger">*</span></label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Pincode" formControlName="pincode">
+            <input type="tel" class="form-control mt-2" placeholder="Enter The Pincode" formControlName="pincode" maxlength="6">
             <span class="massage-text"  *ngIf="(entityMasterForm.get('pincode')?.touched || isSubmitted) && entityMasterForm.get('pincode')?.hasError('required')"> Pincode is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Telephone No</label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Telephone Number" formControlName="telephoneNumber">
+            <input type="tel" class="form-control mt-2" placeholder="Enter The Telephone Number" formControlName="telephoneNumber">
           </div>
           <div class="col-12 col-lg-4">
             <label>Mobile<span class="text-danger">*</span></label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Mobile Number" formControlName="mobileNumber">
+            <input type="tel" class="form-control mt-2" placeholder="Enter The Mobile Number" formControlName="mobileNumber" maxlength="10">
             <span class="massage-text" *ngIf="(entityMasterForm.get('mobileNumber')?.touched || isSubmitted) && entityMasterForm.get('mobileNumber')?.hasError('required')"> Mobile No is
               required</span>
           </div>
@@ -187,7 +187,7 @@
             <input type="checkbox" class="ms-2" style="width:25px; height:25px; " formControlName="activeStatus">
           </div>
           <div class="col-6 d-flex align-items-center justify-content-end">
-            <button class="option-button d-flex align-items-center px-4" >
+            <button class="option-button d-flex align-items-center px-4">
               Add
             </button>
           </div>

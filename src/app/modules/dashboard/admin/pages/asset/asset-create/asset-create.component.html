@@ -16,7 +16,7 @@
         </caption>
         <div class="row my-3 gy-2">
           <div class="col-12 col-lg-4">
-            <label>Asset Category Type</label>
+            <label>Asset Category Type<span class="text-danger">*</span></label>
             <select formControlName="assetCategoryType" class="form-select mt-2">
               <option>--select--</option>
               <option>CLASS</option>
@@ -27,13 +27,13 @@
             <span class="massage-text" *ngIf="(assetCreateForm.get('assetCategoryType')?.touched || isSubmitted) && assetCreateForm.get('assetCategoryType')?.hasError('required')">Asset Category Type is required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Asset Category Description </label>
+            <label>Asset Category Description<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter Asset Category Description" formControlName="assetCategoryDescription" />
             <span class="massage-text" *ngIf="(assetCreateForm.get('assetCategoryDescription')?.touched || isSubmitted) && assetCreateForm.get('assetCategoryDescription')?.hasError('required')">Asset Category Description is required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Asset Code </label>
-            <input type="number" class="form-control mt-2" placeholder="Enter Asset Code Description" formControlName="assetCode" />
+            <input type="text" class="form-control mt-2" placeholder="Enter Asset Code" formControlName="assetCode" />
           </div>
         </div>
       </form>

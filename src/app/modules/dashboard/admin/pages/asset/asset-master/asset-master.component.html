@@ -24,7 +24,7 @@
               <option>TYPE</option>
               <option>MODEL</option>
             </select>
-            <span class="massage-text" *ngIf="(assetMasterForm.get('assetCategoryType')?.touched || isSubmitted) && assetMasterForm.get('assetCategoryType')?.hasError('required')">Asset Category Type is required</span>
+            <!-- <span class="massage-text" *ngIf="(assetMasterForm.get('assetCategoryType')?.touched || isSubmitted) && assetMasterForm.get('assetCategoryType')?.hasError('required')">Asset Category Type is required</span> -->
           </div>
           <div class="col-12 col-lg-4">
             <label>Asset Code Description</label>
@@ -92,7 +92,7 @@
           </tr>
         </tbody>
       </table> -->
-      <div class="lead-master-box my-3">
+      <div class="lead-master-box my-3" *ngIf="showTable">
         <table mat-table matSort matSortStart="desc" [dataSource]="dataSource"
           class="lead-master-table table table-bordered table-responsive mb-0">
           <ng-container matColumnDef="categoryCode">
