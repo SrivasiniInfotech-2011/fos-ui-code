@@ -26,7 +26,7 @@
 .lead-master-box {
   border: 1px solid #cfd9e8;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
 
 
   .breadcrumb {
@@ -163,6 +163,7 @@
 ::ng-deep .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align{
   display: none !important;
 }
+
 .option {
   display: flex;
   align-items: flex-start;
@@ -186,7 +187,7 @@
     margin-top: 80px;
 
     .lead-master-box {
-      overflow: scroll;
+      overflow-x: scroll;
 
       .entity-master-table {
         thead {
@@ -207,6 +208,11 @@
         }
 
       }
+
     }
+
+  }
+  ::ng-deep .mat-mdc-table {
+    table-layout: fixed !important;
   }
 }

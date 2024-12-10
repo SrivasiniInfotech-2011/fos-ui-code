@@ -1,6 +1,6 @@
 <div class="content-box pt-2">
   <div class="container">
-    <div class="entity-create-box my-3">
+    <div class="entity-create-box mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item"><a [routerLink]="['/admin/asset-master']" class="text-decoration-none">Entity Master</a></li>
@@ -12,7 +12,7 @@
       <form class="entity-create-form" [formGroup]="entityMasterForm">
         <caption class="d-flex">Entity
           Master</caption>
-        <div class="row d-flex ">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Entity Code<span class="text-danger">*</span></label>
             <input type="number" class="form-control mt-2" placeholder="Enter The Entity Code" formControlName="entityCode">
@@ -140,7 +140,7 @@
       <form class="entity-create-form" [formGroup]="bankDetailsForm">
         <caption class="d-flex">Bank
           Details</caption>
-        <div class="row d-flex ">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Account Type<span class="text-danger">*</span></label>
             <select  class="form-select mt-2" formControlName="accountType">
@@ -177,7 +177,7 @@
             <span class="massage-text" *ngIf="(bankDetailsForm.get('branchName')?.touched || isSubmitted) && bankDetailsForm.get('branchName')?.hasError('required')"> Branch Name is
               required</span>
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>Bank Address<span class="text-danger">*</span></label>
             <textarea rows="4" class="mt-2" placeholder="Enter Bank Address" formControlName="bankAddress"></textarea>
             <span class="massage-text" *ngIf="(bankDetailsForm.get('bankAddress')?.touched || isSubmitted) && bankDetailsForm.get('bankAddress')?.hasError('required')" >Bank Address is required</span>

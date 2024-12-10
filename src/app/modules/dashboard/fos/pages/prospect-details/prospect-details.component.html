@@ -18,14 +18,14 @@
         <caption class="d-flex">
           Basic Details
         </caption>
-        <div class="row d-flex">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Mobile Number<span class="required">*</span></label>
             <input
               type="text"
               placeholder="Enter Mobile Number"
               formControlName="mobileNumber"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
               oninput="this.value = this.value.slice(0,10)"
             />
             <div
@@ -47,7 +47,7 @@
           <div class="col-12 col-lg-4">
             <label>Aadhar Number<span class="required">*</span></label>
             <input
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
               oninput="this.value = this.value.slice(0,12)"
               type="text"
               placeholder="Enter Aadhar Number"
@@ -73,7 +73,7 @@
             <label>PAN Number<span class="required">*</span></label>
             <input
               type="text"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
               placeholder="Enter Pan Number"
               formControlName="panNumber"
               oninput="this.value = this.value.toUpperCase().slice(0,10)"
@@ -122,14 +122,14 @@
         <caption class="d-flex">
           Prospect Details
         </caption>
-        <div class="row d-flex">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label class="label">Branch<span class="required">*</span></label>
             <input
               type="text"
               placeholder="Enter Branch"
               formControlName="branch"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -150,7 +150,7 @@
               type="text"
               placeholder="Enter the name"
               formControlName="prospectName"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -169,7 +169,7 @@
             <input
               type="date"
               formControlName="dob"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -189,7 +189,7 @@
               type="text"
               placeholder="Enter Mobile Number"
               formControlName="mobileNumber"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -207,7 +207,7 @@
               type="text"
               placeholder="Enter Prospect Code"
               formControlName="prospectCode"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
           </div>
           <div class="col-12 col-lg-4">
@@ -216,7 +216,7 @@
             >
             <select
               formControlName="prospectType"
-              class="form-select mt-2 mb-1"
+              class="form-select mt-2 "
               name="prospectType"
             >
               <option
@@ -242,7 +242,7 @@
               type="text"
               placeholder="Enter the Age"
               formControlName="age"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
             <div
               class="massage-text"
@@ -260,7 +260,7 @@
               type="text"
               placeholder="Alternate Mobile"
               formControlName="alternateMobileNumber"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
           </div>
           <div class="col-12 col-lg-4">
@@ -271,7 +271,7 @@
               type="date"
               value="2024-11-11"
               formControlName="prospectDate"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -289,14 +289,14 @@
               type="text"
               placeholder="Website Name"
               formControlName="website"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
           </div>
           <div class="col-12 col-lg-4">
             <label class="label">Gender<span class="required">*</span></label>
             <select
               formControlName="gender"
-              class="form-select mt-2 mb-1"
+              class="form-select mt-2"
               name="gender"
             >
               <option
@@ -322,7 +322,7 @@
               type="email"
               placeholder="Enter the Email"
               formControlName="email"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
           </div>
         </div>
@@ -336,7 +336,7 @@
         <caption class="d-flex">
           Communication Address
         </caption>
-        <div class="row d-flex">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label class="label"
               >Address Line 1<span class="required">*</span></label
@@ -345,7 +345,7 @@
               type="text"
               placeholder="Address Line 1"
               formControlName="addressLine1"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
             <div
               class="massage-text"
@@ -364,7 +364,7 @@
               type="text"
               placeholder="Address Line 2"
               formControlName="addressLine2"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
           </div>
           <div class="col-12 col-lg-4">
@@ -373,7 +373,7 @@
               type="text"
               placeholder="Landmark"
               formControlName="landmark"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -392,7 +392,7 @@
               type="text"
               placeholder="City"
               formControlName="city"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
             <div
               class="massage-text"
@@ -409,7 +409,7 @@
             <label class="label">State<span class="required">*</span></label>
             <select
               formControlName="state"
-              class="form-select mt-2 mb-1"
+              class="form-select mt-2 "
               name="state"
             >
               <option value="" disabled>Choose State</option>
@@ -430,7 +430,7 @@
 
           <div class="col-12 col-lg-4">
             <label class="label">Country<span class="required">*</span></label>
-            <select formControlName="country" class="form-select mt-2 mb-1">
+            <select formControlName="country" class="form-select mt-2 ">
               <option value="" disabled>Choose Country</option>
               <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
@@ -452,7 +452,7 @@
               type="text"
               placeholder="Pin Code"
               formControlName="pincode"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
             <div
               class="massage-text"
@@ -467,7 +467,7 @@
         </div>
       </form>
       <form [formGroup]="permanantAddressForm" class="prospect-details-form">
-        <div class="row d-flex py-4">
+        <div class="row d-flex py-4 ">
           <div class="col-12 d-flex align-items-center">
             <input
               type="checkbox"
@@ -479,7 +479,7 @@
             </caption>
           </div>
         </div>
-        <div class="row d-flex">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label class="label"
               >Address Line 1<span class="required">*</span></label
@@ -488,7 +488,7 @@
               type="text"
               placeholder="Address Line 1"
               formControlName="addressLine1"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2 "
             />
             <div
               class="massage-text"
@@ -507,7 +507,7 @@
               type="text"
               placeholder="Address Line 2"
               formControlName="addressLine2"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
           </div>
 
@@ -517,7 +517,7 @@
               type="text"
               placeholder="Landmark"
               formControlName="landmark"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -536,7 +536,7 @@
               type="text"
               placeholder="City"
               formControlName="city"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -552,7 +552,7 @@
             <label class="label">State<span class="required">*</span></label>
             <select
               formControlName="state"
-              class="form-select mt-2 mb-1"
+              class="form-select mt-2"
               name="state"
             >
               <option value="" disabled>Choose State</option>
@@ -573,7 +573,7 @@
 
           <div class="col-12 col-lg-4">
             <label class="label">Country<span class="required">*</span></label>
-            <select formControlName="country" class="form-select mt-2 mb-1">
+            <select formControlName="country" class="form-select mt-2 ">
               <option value="" disabled>Choose Country</option>
               <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
@@ -595,7 +595,7 @@
               type="text"
               placeholder="Pin Code"
               formControlName="pincode"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -616,7 +616,7 @@
         <caption class="d-flex">
           Primary KYC Upload
         </caption>
-        <div class="row d-flex">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label class="label"
               >Aadhar Number<span class="required">*</span></label
@@ -624,7 +624,7 @@
             <input
               type="text"
               placeholder="Aadhar Number"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
               formControlName="aadharNumber"
             />
             <div
@@ -644,7 +644,7 @@
             <input
               type="text"
               placeholder="Pan Number"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
               formControlName="panNumber"
             />
             <div
@@ -664,7 +664,7 @@
             >
             <input
               type="file"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
               formControlName="prospectImage"
             />
             <div
@@ -687,7 +687,7 @@
             <input
               type="file"
               placeholder="Select Aadhar Image"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
               formControlName="aadharImage"
             />
             <div
@@ -709,7 +709,7 @@
             <input
               type="file"
               placeholder="Select PAN Number Imapge"
-              class="form-control mt-2 mb-1"
+              class="form-control mt-2"
               formControlName="panImage"
             />
             <div

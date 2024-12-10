@@ -21,7 +21,7 @@
         </div>
         <div class="loan-details-box my-3">
           <form class="loan-details-form" [formGroup]="leadForm">
-            <div class="row d-flex">
+            <div class="row d-flex gy-2">
               <div class="col-12 col-lg-4">
                 <label>Lead Number<span class="text-danger">*</span></label>
                 <input
@@ -69,14 +69,14 @@
             <caption>
               Loan Details
             </caption>
-            <div class="row d-flex">
+            <div class="row d-flex gy-2">
               <div class="col-12 col-lg-4">
                 <label
                   >Line Of Business<span class="text-danger">*</span></label
                 >
                 <select
                   formControlName="lineOfBusiness"
-                  class="form-select mt-2 mb-1"
+                  class="form-select mt-2"
                   name="leadType"
                 >
                   <option value="" disabled>Choose Line of Business</option>
@@ -287,7 +287,7 @@
             <caption>
               Asset Details
             </caption>
-            <div class="row d-flex">
+            <div class="row d-flex gy-2">
               <div class="col-12 col-lg-4">
                 <label>Asset Class<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetClass">

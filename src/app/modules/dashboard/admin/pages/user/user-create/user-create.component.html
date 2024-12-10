@@ -1,9 +1,10 @@
 <div class="content-box pt-2">
   <div class="container">
-    <div class="user-create-box my-3">
+    <div class="user-create-box mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item"><a  [routerLink]="['/admin/user-management']" class="text-decoration-none">User Management</a></li>
+          <li class="breadcrumb-item d-flex align-items-center"><mat-icon
+            class="me-2">home</mat-icon><a  [routerLink]="['/admin/user-management']" class="text-decoration-none">User Management</a></li>
           <li class="breadcrumb-item active" aria-current="page">User Create</li>
         </ol>
       </nav>
@@ -12,7 +13,7 @@
       <form class="user-create-form" [formGroup]="userManagementForm">
         <caption class="d-flex">User
           Management</caption>
-        <div class="row d-flex ">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>User ID<span class="text-danger">*</span></label>
             <input type="number" class="form-control mt-2" placeholder="Enter The User ID" formControlName="userId">
@@ -163,11 +164,11 @@
 
       </form>
     </div>
-    <div class="user-create-box my-3">
+    <div class="user-create-box my-2">
       <form class="user-create-form" [formGroup]="userPersonalDetails">
         <caption class="d-flex">Personal
           Details</caption>
-        <div class="row d-flex ">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Father Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter The Father Name"
@@ -212,8 +213,8 @@
 
       </form>
     </div>
-    <div class="row mb-4">
-      <div class="col-12 d-flex flex-column gap-1">
+    <div class="row mb-4 gy-2">
+      <div class="col-12 d-flex flex-column">
         <label>User Photo</label>
         <mat-icon class="addimage-icon">add_a_photo</mat-icon>
         <input type="file" class="file-input">
