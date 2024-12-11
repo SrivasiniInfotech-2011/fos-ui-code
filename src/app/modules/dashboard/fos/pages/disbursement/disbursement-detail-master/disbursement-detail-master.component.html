@@ -3,10 +3,12 @@
     <div class="disbursement-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon
-                class="me-2">home</mat-icon>Disbursement
-              Details</a>
+          <li class="breadcrumb-item d-flex align-items-center">
+            <mat-icon
+                class="me-2">home</mat-icon>
+            <a href="#" class="text-decoration-none d-flex align-items-center"></a>
+            Disbursement
+              Details
           </li>
         </ol>
       </nav>
@@ -16,14 +18,14 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="text" class="form-control my-2"
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2"
               formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()" />
               <span class="massage-text" *ngIf="(disbursementMasterForm.get('leadNumber')?.touched || isSubmitted) && disbursementMasterForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
               <span class="massage-text" *ngIf="disbursementMasterForm.get('leadNumber')?.hasError('pattern')">Lead Number should contain only letters and numbers</span>
             </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="text" class="form-control my-2"
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
               formControlName="vehicleNumber" maxlength="10" oninput="this.value = this.value.toUpperCase()"/>
             <span class="massage-text" *ngIf="(disbursementMasterForm.get('vehicleNumber')?.touched || isSubmitted) && disbursementMasterForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
             <span class="massage-text" *ngIf="disbursementMasterForm.get('vehicleNumber')?.hasError('pattern')">Please enter a valid vehicle number (e.g. AB12CD7890)</span>

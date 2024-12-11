@@ -3,10 +3,10 @@
     <div class="fvrgaurantor-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon class="me-2">home</mat-icon>FVR
-              Guarantor</a>
+          <li class="breadcrumb-item d-flex align-items-center">
+            <mat-icon class="me-2">home</mat-icon> <a href="#" class="text-decoration-none d-flex align-items-center"></a>
           </li>
+          FVR Guarantor
         </ol>
       </nav>
     </div>
@@ -19,7 +19,7 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number<span class="text-danger">*</span></label>
-            <input placeholder="Enter Lead Number" type="text" class="form-control my-2"
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2"
               formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()"/>
             <span class="massage-text"
               *ngIf="(fvrGuarantorLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrGuarantorLeadForm.get('leadNumber')?.hasError('required')">Lead
@@ -27,7 +27,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="text" class="form-control my-2"
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
               formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()"/>
           </div>
         </div>
@@ -45,38 +45,38 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Lead Number" type="text" class="form-control my-2" formControlName="leadNumber" readonly />
+            <input placeholder="Lead Number" type="text" class="form-control mt-2" formControlName="leadNumber" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Lead Date</label>
             <input placeholder="
-              Lead Date" type="date" class="form-control my-2" formControlName="leadDate" readonly />
+              Lead Date" type="date" class="form-control mt-2" formControlName="leadDate" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Branch</label>
-            <input placeholder="Branch" type="text" class="form-control my-2" formControlName="branch" readonly />
+            <input placeholder="Branch" type="text" class="form-control mt-2" formControlName="branch" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Prospect Name</label>
-            <input placeholder="Prospect Name" type="text" class="form-control my-2" formControlName="prospectName" readonly />
+            <input placeholder="Prospect Name" type="text" class="form-control mt-2" formControlName="prospectName" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Mobile Number </label>
-            <input placeholder=" Mobile Number" type="number" class="form-control my-2" formControlName="mobileNumber" readonly/>
+            <input placeholder=" Mobile Number" type="number" class="form-control mt-2" formControlName="mobileNumber" readonly/>
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Vehicle Number </label>
-            <input placeholder="Vehicle Number" type="text" class="form-control my-2" formControlName="vehicleNumber" readonly />
+            <input placeholder="Vehicle Number" type="text" class="form-control mt-2" formControlName="vehicleNumber" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Prospect Address </label>
-            <textarea class="w-100" rows="4" my-2 formControlName="prospectAddress" readonly></textarea>
+            <textarea class="w-100" rows="4" mt-2 formControlName="prospectAddress" readonly></textarea>
           </div>
         </div>
       </form>

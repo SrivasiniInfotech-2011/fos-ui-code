@@ -3,10 +3,12 @@
     <div class="document-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon
-                class="me-2">home</mat-icon>Document Collection
+          <li class="breadcrumb-item  d-flex align-items-center">
+            <mat-icon
+                class="me-2">home</mat-icon>
+            <a href="#" class="text-decoration-none d-flex align-items-center">
             </a>
+            Document Collection
           </li>
         </ol>
       </nav>
@@ -20,12 +22,12 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="text" class="form-control my-2"
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2"
               formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()" />
             </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="text" class="form-control my-2"
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
               formControlName="vehicleNumber" maxlength="10" oninput="this.value = this.value.toUpperCase()"/>
             </div>
         </div>

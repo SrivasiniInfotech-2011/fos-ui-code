@@ -16,14 +16,14 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="text" class="form-control my-2"
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2"
               formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()"/>
               <span class="massage-text" *ngIf="(bmApprovalForm.get('leadNumber')?.touched || isSubmitted) && bmApprovalForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
               <span class="massage-text" *ngIf="bmApprovalForm.get('leadNumber')?.hasError('pattern')">Lead Number should contain only letters and numbers</span>
             </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="text" class="form-control my-2"
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
               formControlName="vehicleNumber" maxlength="10" oninput="this.value = this.value.toUpperCase()"/>
             <span class="massage-text" *ngIf="(bmApprovalForm.get('vehicleNumber')?.touched || isSubmitted) && bmApprovalForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
             <span class="massage-text" *ngIf="bmApprovalForm.get('vehicleNumber')?.hasError('pattern')">Please enter a valid vehicle number (e.g. AB12CD7890)</span>
