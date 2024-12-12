@@ -13,7 +13,11 @@
         border: 1px solid var(--border-color);
         border-radius: 5px;
         padding: 10px;
-
+        .breadcrumb{
+          li{
+          color: var(--text-color);
+        }
+        }
         .user-create-form {
             caption {
                 font-size: 20px;
@@ -39,6 +43,7 @@
                 border: 1px solid var(--input-border);
                 background-color:var(--input-background);
                 border-radius: 5px;
+                color: var(--text-dark);
             }
 
             select {
