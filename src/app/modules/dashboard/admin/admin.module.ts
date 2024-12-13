@@ -14,7 +14,13 @@ import { EntityCreateComponent } from './pages/entity/entity-create/entity-creat
 import { GobalParameterSetupComponent } from './pages/globalparameter/gobal-parameter-setup/gobal-parameter-setup.component';
 import { DocumentMasterComponent } from './pages/document/document-master/document-master.component';
 import { DocumentCreateComponent } from './pages/document/document-create/document-create.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent, EntityCreateComponent, GobalParameterSetupComponent, DocumentMasterComponent, DocumentCreateComponent],
@@ -22,7 +28,14 @@ import { DocumentCreateComponent } from './pages/document/document-create/docume
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule
   ]
 })
 export class AdminModule { }

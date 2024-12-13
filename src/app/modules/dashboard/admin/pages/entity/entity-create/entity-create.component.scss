@@ -5,8 +5,8 @@
 
 
 .content-box {
-    width: calc(100% - 240px);
-    margin-left: 240px;
+    width: calc(100% - 300px);
+    margin-left: 300px;
     margin-top: 80px;
     .option-button {
       font-size: 14px;
@@ -76,6 +76,13 @@
                     box-shadow: unset;
                 }
             }
+            textarea{
+              border-radius: 5px;
+              font-size: 14px;
+              line-height: 18px;
+              font-weight: 400;
+              color: #173662;
+          }
 
 
             .massage-text {

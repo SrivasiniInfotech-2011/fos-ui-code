@@ -1,10 +1,10 @@
 <div class="content-box pt-2">
   <div class="container">
-    <div class="company-master-box my-3">
+    <div class="company-master-box mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page"> <mat-icon
-              class="me-2">home</mat-icon>Company-master</li>
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page"  [routerLink]="['/admin/company-master']"> <mat-icon
+              class="me-2">home</mat-icon>Company Master</li>
         </ol>
       </nav>
     </div>
@@ -13,46 +13,46 @@
         <caption class="d-flex">
           Company Master
         </caption>
-        <div class="row d-flex">
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>Company Code</label>
-            <input type="text" class="form-control mt-2" formControlName="companyCode" placeholder="Enter The Company Code" />
-            <span class="massage-text" *ngIf="companyMasterForm.get('companyCode')?.touched && companyMasterForm.get('companyCode')?.hasError('required')" > Company Code is required</span>
+            <input type="text" class="form-control mt-2" formControlName="companyCode" placeholder="Enter The Company Code"  [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="companyMasterForm.get('companyCode')?.touched && companyMasterForm.get('companyCode')?.hasError('required')" > Company Code is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>Company Name</label>
-            <input type="text" class="form-control mt-2" formControlName="companyName" placeholder="Enter The Company Name" />
-            <span class="massage-text"  *ngIf="companyMasterForm.get('companyName')?.touched && companyMasterForm.get('companyName')?.hasError('required')" >Company Name is required</span>
+            <input type="text" class="form-control mt-2" formControlName="companyName" placeholder="Enter The Company Name" [readOnly]="true" />
+            <!-- <span class="massage-text"  *ngIf="companyMasterForm.get('companyName')?.touched && companyMasterForm.get('companyName')?.hasError('required')" >Company Name is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>Constitutional Status</label>
-            <input type="text" class="form-control mt-2" formControlName="constitutionalStatus" placeholder="Enter The Constitutional Status"/>
-            <span class="massage-text"  *ngIf="companyMasterForm.get('constitutionalStatus')?.touched && companyMasterForm.get('constitutionalStatus')?.hasError('required')">Constitutional Status is required</span>
+            <input type="text" class="form-control mt-2" formControlName="constitutionalStatus" placeholder="Enter The Constitutional Status" [readOnly]="true"/>
+            <!-- <span class="massage-text"  *ngIf="companyMasterForm.get('constitutionalStatus')?.touched && companyMasterForm.get('constitutionalStatus')?.hasError('required')">Constitutional Status is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>City</label>
-            <input type="text" class="form-control mt-2" formControlName="city" placeholder="Enter City"/>
-            <span class="massage-text" *ngIf="companyMasterForm.get('city')?.touched && companyMasterForm.get('city')?.hasError('required')">City is required</span>
+            <input type="text" class="form-control mt-2" formControlName="city" placeholder="Enter City" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="companyMasterForm.get('city')?.touched && companyMasterForm.get('city')?.hasError('required')">City is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>State</label>
-            <input type="text" class="form-control mt-2" formControlName="state" placeholder="Enter State" />
-            <span class="massage-text" *ngIf="companyMasterForm.get('state')?.touched && companyMasterForm.get('state')?.hasError('required')">State is required</span>
+            <input type="text" class="form-control mt-2" formControlName="state" placeholder="Enter State" [readOnly]="true" />
+            <!-- <span class="massage-text" *ngIf="companyMasterForm.get('state')?.touched && companyMasterForm.get('state')?.hasError('required')">State is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>Country</label>
-            <input type="text" class="form-control mt-2"  formControlName="country"  placeholder="Enter Country"/>
-            <span class="massage-text" *ngIf="companyMasterForm.get('country')?.touched && companyMasterForm.get('country')?.hasError('required')">Country is required</span>
+            <input type="text" class="form-control mt-2"  formControlName="country"  placeholder="Enter Country" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="companyMasterForm.get('country')?.touched && companyMasterForm.get('country')?.hasError('required')">Country is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>PIN Code/ZIP Code</label>
-            <input type="number" class="form-control mt-2" formControlName="pincode"  placeholder="Enter PIN Code/ZIP Code"/>
-            <span class="massage-text" *ngIf="companyMasterForm.get('pincode')?.touched && companyMasterForm.get('pincode')?.hasError('required')">PIN Code/ZIP Code is required</span>
+            <input type="number" class="form-control mt-2" formControlName="pincode"  placeholder="Enter PIN Code/ZIP Code" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="companyMasterForm.get('pincode')?.touched && companyMasterForm.get('pincode')?.hasError('required')">PIN Code/ZIP Code is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>Company Address</label>
-            <textarea rows="4" formControlName="companyAddress"  placeholder="Enter Company Address"></textarea>
-            <span class="massage-text"  *ngIf="companyMasterForm.get('companyAddress')?.touched && companyMasterForm.get('companyAddress')?.hasError('required')">Company Address is required</span>
+            <textarea rows="4" formControlName="companyAddress"  placeholder="Enter Company Address" [readOnly]="true" class="mt-2"></textarea>
+            <!-- <span class="massage-text"  *ngIf="companyMasterForm.get('companyAddress')?.touched && companyMasterForm.get('companyAddress')?.hasError('required')">Company Address is required</span> -->
           </div>
         </div>
       </form>
@@ -63,43 +63,43 @@
           Corporate
           Details
         </caption>
-        <div class="row d-flex">
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>CEO/Head Name
             </label>
-            <input type="text" class="form-control mt-2" formControlName="ceoName"  placeholder="Enter CEO/Head Name" />
-            <span class="massage-text" *ngIf="corporateDetailsForm.get('ceoName')?.touched && corporateDetailsForm.get('ceoName')?.hasError('required')"> CEO/Head Name
-              is required</span>
+            <input type="text" class="form-control mt-2" formControlName="ceoName"  placeholder="Enter CEO/Head Name" [readOnly]="true" />
+            <!-- <span class="massage-text" *ngIf="corporateDetailsForm.get('ceoName')?.touched && corporateDetailsForm.get('ceoName')?.hasError('required')"> CEO/Head Name
+              is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column ">
             <label>Mobile Number</label>
-            <input type="number" class="form-control mt-2" formControlName="mobileNumber"  placeholder="Enter Mobile Number"/>
-            <span class="massage-text" *ngIf="corporateDetailsForm.get('mobileNumber')?.touched && corporateDetailsForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</span>
+            <input type="number" class="form-control mt-2" formControlName="mobileNumber"  placeholder="Enter Mobile Number" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="corporateDetailsForm.get('mobileNumber')?.touched && corporateDetailsForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column">
             <label>Telephone Number</label>
-            <input type="number" class="form-control mt-2" formControlName="telephoneNumber"  placeholder="Enter Telephone Number"/>
-            <span class="massage-text" *ngIf="corporateDetailsForm.get('telephoneNumber')?.touched && corporateDetailsForm.get('telephoneNumber')?.hasError('required')">Telephone Number is required</span>
+            <input type="number" class="form-control mt-2" formControlName="telephoneNumber"  placeholder="Enter Telephone Number" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="corporateDetailsForm.get('telephoneNumber')?.touched && corporateDetailsForm.get('telephoneNumber')?.hasError('required')">Telephone Number is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column ">
             <label>Email Id</label>
-            <input type="email" class="form-control mt-2" formControlName="email" placeholder="Enter Email Id"/>
-            <span class="massage-text" *ngIf="corporateDetailsForm.get('email')?.touched && corporateDetailsForm.get('email')?.hasError('required')">Email is required</span>
+            <input type="email" class="form-control mt-2" formControlName="email" placeholder="Enter Email Id" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="corporateDetailsForm.get('email')?.touched && corporateDetailsForm.get('email')?.hasError('required')">Email is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>Website</label>
-            <input type="url" class="form-control mt-2" formControlName="website" placeholder="Enter Website" />
-            <span class="massage-text" *ngIf="corporateDetailsForm.get('website')?.touched && corporateDetailsForm.get('website')?.hasError('required')">Website is required</span>
+            <input type="url" class="form-control mt-2" formControlName="website" placeholder="Enter Website" [readOnly]="true" />
+            <!-- <span class="massage-text" *ngIf="corporateDetailsForm.get('website')?.touched && corporateDetailsForm.get('website')?.hasError('required')">Website is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column ">
             <label>System Admin User Code</label>
-            <input type="text" class="form-control mt-2" formControlName="systemAdminCode" placeholder="Enter System Admin User Code"/>
-            <span class="massage-text" *ngIf="corporateDetailsForm.get('systemAdminCode')?.touched && corporateDetailsForm.get('systemAdminCode')?.hasError('required')">System Admin User Code is required</span>
+            <input type="text" class="form-control mt-2" formControlName="systemAdminCode" placeholder="Enter System Admin User Code" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="corporateDetailsForm.get('systemAdminCode')?.touched && corporateDetailsForm.get('systemAdminCode')?.hasError('required')">System Admin User Code is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column ">
             <label>System Admin User Password</label>
-            <input type="text" class="form-control mt-2" formControlName="systemAdminPassword" placeholder="Enter System Admin User Password"/>
-            <span class="massage-text" *ngIf="corporateDetailsForm.get('systemAdminPassword')?.touched && corporateDetailsForm.get('systemAdminPassword')?.hasError('required')">System Admin User Password is required</span>
+            <input type="text" class="form-control mt-2" formControlName="systemAdminPassword" placeholder="Enter System Admin User Password" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="corporateDetailsForm.get('systemAdminPassword')?.touched && corporateDetailsForm.get('systemAdminPassword')?.hasError('required')">System Admin User Password is required</span> -->
           </div>
 
         </div>
@@ -111,75 +111,75 @@
           Other
           Details
         </caption>
-        <div class="row d-flex">
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4 d-flex flex-column ">
             <label>Communication Address
             </label>
-            <input type="text" class="form-control mt-2" formControlName="communicationAddress" placeholder="Enter Communication Address"/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('communicationAddress')?.touched && otherDetailsForm.get('communicationAddress')?.hasError('required')"> Communication Address
-              is required</span>
+            <input type="text" class="form-control mt-2" formControlName="communicationAddress" placeholder="Enter Communication Address" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('communicationAddress')?.touched && otherDetailsForm.get('communicationAddress')?.hasError('required')"> Communication Address
+              is required</span> -->
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12 col-lg-4 d-flex flex-column">
             <label>Address 1</label>
-            <input type="text" class="form-control mt-2" formControlName="address1" placeholder="Enter Address 1"/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('address1')?.touched && otherDetailsForm.get('address1')?.hasError('required')">Address 1 is required</span>
+            <input type="text" class="form-control mt-2" formControlName="address1" placeholder="Enter Address 1" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('address1')?.touched && otherDetailsForm.get('address1')?.hasError('required')">Address 1 is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column">
             <label>City</label>
-            <input type="text" class="form-control mt-2" formControlName="city" placeholder="Enter City"/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('city')?.touched && otherDetailsForm.get('city')?.hasError('required')">City is required</span>
+            <input type="text" class="form-control mt-2" formControlName="city" placeholder="Enter City" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('city')?.touched && otherDetailsForm.get('city')?.hasError('required')">City is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>State</label>
-            <input type="text" class="form-control mt-2" formControlName="state" placeholder="Enter State"/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('state')?.touched && otherDetailsForm.get('state')?.hasError('required')">State is required</span>
+            <input type="text" class="form-control mt-2" formControlName="state" placeholder="Enter State" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('state')?.touched && otherDetailsForm.get('state')?.hasError('required')">State is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>Country</label>
-            <input type="text" class="form-control mt-2" formControlName="country" placeholder="Enter Country"/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('country')?.touched && otherDetailsForm.get('country')?.hasError('required')">Country is required</span>
+            <input type="text" class="form-control mt-2" formControlName="country" placeholder="Enter Country" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('country')?.touched && otherDetailsForm.get('country')?.hasError('required')">Country is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column">
             <label>PIN Code/ZIP Code</label>
-            <input type="number" class="form-control mt-2" formControlName="pincode" placeholder="Enter PIN Code/ZIP Code" />
-            <span class="massage-text" *ngIf="otherDetailsForm.get('pincode')?.touched && otherDetailsForm.get('pincode')?.hasError('required')">PIN Code/ZIP Code is required</span>
+            <input type="number" class="form-control mt-2" formControlName="pincode" placeholder="Enter PIN Code/ZIP Code" [readOnly]="true" />
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('pincode')?.touched && otherDetailsForm.get('pincode')?.hasError('required')">PIN Code/ZIP Code is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>Date of Incorporation/Company Start date</label>
-            <input type="date" class="form-control mt-2" formControlName="companyStartDate" placeholder="Enter Date of Incorporation / Company Start Date "/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('companyStartDate')?.touched && otherDetailsForm.get('companyStartDate')?.hasError('required')"> Date of Incorporation / Company Start date is required</span>
+            <input type="date" class="form-control mt-2" formControlName="companyStartDate" placeholder="Enter Date of Incorporation / Company Start Date " [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('companyStartDate')?.touched && otherDetailsForm.get('companyStartDate')?.hasError('required')"> Date of Incorporation / Company Start date is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column">
             <label>Registration Number/License Number</label>
-            <input type="text" class="form-control mt-2" formControlName="licenseNumber" placeholder="Enter Registration Number / License Number" />
-            <span class="massage-text" *ngIf="otherDetailsForm.get('licenseNumber')?.touched && otherDetailsForm.get('licenseNumber')?.hasError('required')">Registration Number / License Number is required</span>
+            <input type="text" class="form-control mt-2" formControlName="licenseNumber" placeholder="Enter Registration Number / License Number" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('licenseNumber')?.touched && otherDetailsForm.get('licenseNumber')?.hasError('required')">Registration Number / License Number is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>Validity of Registration Number/License Number</label>
-            <input type="text" class="form-control mt-2" formControlName="validityOfLicenseNumber" placeholder="Enter Validity of Registration Number / License Number "/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('validityOfLicenseNumber')?.touched && otherDetailsForm.get('validityOfLicenseNumber')?.hasError('required')" >Validity of Registration Number/License Number is required</span>
+            <input type="text" class="form-control mt-2" formControlName="validityOfLicenseNumber" placeholder="Enter Validity of Registration Number / License Number " [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('validityOfLicenseNumber')?.touched && otherDetailsForm.get('validityOfLicenseNumber')?.hasError('required')" >Validity of Registration Number/License Number is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>Income Tax Number/PAN</label>
-            <input type="text" class="form-control mt-2" formControlName="incomeTaxNumber" placeholder="Enter Income Tax Number / PAN"/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('incomeTaxNumber')?.touched && otherDetailsForm.get('incomeTaxNumber')?.hasError('required')">Income Tax Number/PAN is required</span>
+            <input type="text" class="form-control mt-2" formControlName="incomeTaxNumber" placeholder="Enter Income Tax Number / PAN" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('incomeTaxNumber')?.touched && otherDetailsForm.get('incomeTaxNumber')?.hasError('required')">Income Tax Number/PAN is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column ">
             <label>Accounting Currency</label>
-            <input type="text" class="form-control mt-2" placeholder="Enter Accounting Currency"/>
-            <span class="massage-text" *ngIf="otherDetailsForm.get('accountingCurrency')?.touched && otherDetailsForm.get('accountingCurrency')?.hasError('required')"> Accounting Currency is required</span>
+            <input type="text" class="form-control mt-2" formControlName="accountingCurrency" placeholder="Enter Accounting Currency" [readOnly]="true"/>
+            <!-- <span class="massage-text" *ngIf="otherDetailsForm.get('accountingCurrency')?.touched && otherDetailsForm.get('accountingCurrency')?.hasError('required')"> Accounting Currency is required</span> -->
           </div>
-          <div class="col-12  col-lg-4 d-flex flex-column gap-1">
+          <div class="col-12  col-lg-4 d-flex flex-column">
             <label>Remarks</label>
-            <input type="text" class="form-control mt-2" formControlName="remarks" placeholder="Enter Remarks" />
-            <span class="massage-text"  *ngIf="otherDetailsForm.get('remarks')?.touched && otherDetailsForm.get('remarks')?.hasError('required')"> Remarks is required</span>
+            <input type="text" class="form-control mt-2" formControlName="remarks" placeholder="Enter Remarks" [readOnly]="true"/>
+            <!-- <span class="massage-text"  *ngIf="otherDetailsForm.get('remarks')?.touched && otherDetailsForm.get('remarks')?.hasError('required')"> Remarks is required</span> -->
           </div>
         </div>
       </form>
     </div>
     <div class="row mb-3">
       <div class="col-12 col-md-12 d-flex justify-content-end">
-        <button class="back-button px-4">Back</button>
+        <button class="back-button px-4" (click)="back()">Back</button>
       </div>
     </div>
   </div>

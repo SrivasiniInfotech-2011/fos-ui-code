@@ -1,10 +1,11 @@
 <div class="content-box pt-2">
   <div class="container">
-    <div class="entity-create-box my-3">
+    <div class="entity-create-box mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Entity-master</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Entity-create</li>
+          <li class="breadcrumb-item d-flex align-items-center"><mat-icon
+            class="me-2">home</mat-icon><a [routerLink]="['/admin/asset-master']" class="text-decoration-none">Entity Master</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Entity Create</li>
         </ol>
       </nav>
     </div>
@@ -12,23 +13,23 @@
       <form class="entity-create-form" [formGroup]="entityMasterForm">
         <caption class="d-flex">Entity
           Master</caption>
-        <div class="row d-flex ">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
-            <label>Entity Code</label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Entity Code" formControlName="entityCode">
-            <span class="massage-text"
+            <label>Entity Code<span class="text-danger">*</span></label>
+            <input type="text" class="form-control mt-2" placeholder="Enter The Entity Code" formControlName="entityCode" [readOnly]="true">
+            <!-- <span class="massage-text"
               *ngIf="(entityMasterForm.get('entityCode')?.touched || isSubmitted) && entityMasterForm.get('entityCode')?.hasError('required')">
               Entity Code is
-              required</span>
+              required</span> -->
           </div>
           <div class="col-12 col-lg-4">
-            <label>Entity Name</label>
+            <label>Entity Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter The Entity Name" formControlName="entityName">
             <span class="massage-text"  *ngIf="(entityMasterForm.get('entityName')?.touched || isSubmitted) && entityMasterForm.get('entityName')?.hasError('required')"> Entity Name is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Entity Type*</label>
+            <label>Entity Type<span class="text-danger">*</span></label>
             <select class="form-select mt-2" formControlName="entityType">
               <option>Broker</option>
               <option>customer</option>
@@ -47,13 +48,13 @@
             <span class="massage-text"  *ngIf="(entityMasterForm.get('entityType')?.touched || isSubmitted) && entityMasterForm.get('entityType')?.hasError('required')">Entity Type is required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>GST No</label>
+            <label>GST No<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter The GST Number" formControlName="gstNo">
             <span class="massage-text" *ngIf="(entityMasterForm.get('gstNo')?.touched || isSubmitted) && entityMasterForm.get('gstNo')?.hasError('required')"> GST No is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Address 1</label>
+            <label>Address 1<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter The Address 1" formControlName="address1">
             <span class="massage-text"  *ngIf="(entityMasterForm.get('address1')?.touched || isSubmitted) && entityMasterForm.get('address1')?.hasError('required')"> Address 1 is
               required</span>
@@ -64,13 +65,13 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label>City</label>
+            <label>City<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter The City" formControlName="city">
             <span class="massage-text"  *ngIf="(entityMasterForm.get('city')?.touched || isSubmitted) && entityMasterForm.get('city')?.hasError('required')"> City Name is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>State</label>
+            <label>State<span class="text-danger">*</span></label>
             <select  class="form-select mt-2" formControlName="state">
               <option>Choose State</option>
               <option>Andaman and Nicobar Islands</option>
@@ -94,7 +95,7 @@
             <span class="massage-text"  *ngIf="(entityMasterForm.get('state')?.touched || isSubmitted) && entityMasterForm.get('state')?.hasError('required')">State is required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Country</label>
+            <label>Country<span class="text-danger">*</span></label>
             <select class="form-select mt-2" formControlName="country">
               <option>Country</option>
               <option>India</option>
@@ -103,23 +104,23 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label>Pincode</label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Pincode" formControlName="pincode">
+            <label>Pincode<span class="text-danger">*</span></label>
+            <input type="tel" class="form-control mt-2" placeholder="Enter The Pincode" formControlName="pincode" maxlength="6">
             <span class="massage-text"  *ngIf="(entityMasterForm.get('pincode')?.touched || isSubmitted) && entityMasterForm.get('pincode')?.hasError('required')"> Pincode is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Telephone No</label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Telephone Number" formControlName="telephoneNumber">
+            <input type="tel" class="form-control mt-2" placeholder="Enter The Telephone Number" formControlName="telephoneNumber">
           </div>
           <div class="col-12 col-lg-4">
-            <label>Mobile</label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Mobile Number" formControlName="mobileNumber">
+            <label>Mobile<span class="text-danger">*</span></label>
+            <input type="tel" class="form-control mt-2" placeholder="Enter The Mobile Number" formControlName="mobileNumber" maxlength="10">
             <span class="massage-text" *ngIf="(entityMasterForm.get('mobileNumber')?.touched || isSubmitted) && entityMasterForm.get('mobileNumber')?.hasError('required')"> Mobile No is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Email ID</label>
+            <label>Email ID<span class="text-danger">*</span></label>
             <input type="email" class="form-control mt-2" placeholder="Enter the Email" formControlName="emailId">
             <span class="massage-text" *ngIf="(entityMasterForm.get('emailId')?.touched || isSubmitted) && entityMasterForm.get('emailId')?.hasError('required')"> Email is
               required</span>
@@ -140,9 +141,9 @@
       <form class="entity-create-form" [formGroup]="bankDetailsForm">
         <caption class="d-flex">Bank
           Details</caption>
-        <div class="row d-flex ">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
-            <label>Account Type</label>
+            <label>Account Type<span class="text-danger">*</span></label>
             <select  class="form-select mt-2" formControlName="accountType">
               <option>--Select--</option>
               <option>CC ACCOUNT</option>
@@ -154,31 +155,31 @@
             <span class="massage-text" *ngIf="(bankDetailsForm.get('accountType')?.touched || isSubmitted) && bankDetailsForm.get('accountType')?.hasError('required')">Account Type is required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Account Number</label>
+            <label>Account Number<span class="text-danger">*</span></label>
             <input type="number" class="form-control mt-2" placeholder="Enter the Account Number" formControlName="accountNumber">
             <span class="massage-text" *ngIf="(bankDetailsForm.get('accountNumber')?.touched || isSubmitted) && bankDetailsForm.get('accountNumber')?.hasError('required')"> Account Number is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>IFSC Code</label>
+            <label>IFSC Code<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter IFSC Code" formControlName="ifscCode">
             <span class="massage-text" *ngIf="(bankDetailsForm.get('ifscCode')?.touched || isSubmitted) && bankDetailsForm.get('ifscCode')?.hasError('required')"> IFSC Code is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Bank Name</label>
+            <label>Bank Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter Bank Name" formControlName="bankName">
             <span class="massage-text" *ngIf="(bankDetailsForm.get('bankName')?.touched || isSubmitted) && bankDetailsForm.get('bankName')?.hasError('required')"> Bank Name is
               required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Branch Name</label>
+            <label>Branch Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter Branch Name" formControlName="branchName">
             <span class="massage-text" *ngIf="(bankDetailsForm.get('branchName')?.touched || isSubmitted) && bankDetailsForm.get('branchName')?.hasError('required')"> Branch Name is
               required</span>
           </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1">
-            <label>Bank Address</label>
+          <div class="col-12 col-lg-4 d-flex flex-column">
+            <label>Bank Address<span class="text-danger">*</span></label>
             <textarea rows="4" class="mt-2" placeholder="Enter Bank Address" formControlName="bankAddress"></textarea>
             <span class="massage-text" *ngIf="(bankDetailsForm.get('bankAddress')?.touched || isSubmitted) && bankDetailsForm.get('bankAddress')?.hasError('required')" >Bank Address is required</span>
           </div>
@@ -187,7 +188,7 @@
             <input type="checkbox" class="ms-2" style="width:25px; height:25px; " formControlName="activeStatus">
           </div>
           <div class="col-6 d-flex align-items-center justify-content-end">
-            <button class="option-button d-flex align-items-center px-4" (click)="createEntityForm()">
+            <button class="option-button d-flex align-items-center px-4">
               Add
             </button>
           </div>
@@ -197,10 +198,10 @@
       </form>
     </div>
     <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 my-4">
-      <button class="option-button d-flex align-items-center px-4">
+      <button class="option-button d-flex align-items-center px-4" (click)="save()">
         Save
       </button>
-      <button class="option-button d-flex align-items-center px-4">
+      <button class="option-button d-flex align-items-center px-4" (click)="back()">
         Back
       </button>
     </div>

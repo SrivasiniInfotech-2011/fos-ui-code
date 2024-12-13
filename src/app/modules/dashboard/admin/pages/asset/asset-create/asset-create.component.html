@@ -1,10 +1,10 @@
 <div class="content-box pt-2">
   <div class="container">
-    <div class="asset-create-box my-3">
+    <div class="asset-create-box mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Asset-master</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Asset-create</li>
+          <li class="breadcrumb-item"><a class="text-decoration-none" [routerLink]="['/admin/asset-master']">Asset Master</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Asset Create</li>
         </ol>
       </nav>
     </div>
@@ -14,9 +14,9 @@
           Asset
           Master
         </caption>
-        <div class="row my-3">
+        <div class="row my-3 gy-2">
           <div class="col-12 col-lg-4">
-            <label>Asset Category Type</label>
+            <label>Asset Category Type<span class="text-danger">*</span></label>
             <select formControlName="assetCategoryType" class="form-select mt-2">
               <option>--select--</option>
               <option>CLASS</option>
@@ -27,13 +27,13 @@
             <span class="massage-text" *ngIf="(assetCreateForm.get('assetCategoryType')?.touched || isSubmitted) && assetCreateForm.get('assetCategoryType')?.hasError('required')">Asset Category Type is required</span>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Asset Category Description </label>
+            <label>Asset Category Description<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter Asset Category Description" formControlName="assetCategoryDescription" />
             <span class="massage-text" *ngIf="(assetCreateForm.get('assetCategoryDescription')?.touched || isSubmitted) && assetCreateForm.get('assetCategoryDescription')?.hasError('required')">Asset Category Description is required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Asset Code </label>
-            <input type="number" class="form-control mt-2" placeholder="Enter Asset Code Description" formControlName="assetCode" />
+            <input type="text" class="form-control mt-2" placeholder="Enter Asset Code" formControlName="assetCode" />
           </div>
         </div>
       </form>
@@ -41,7 +41,7 @@
         <button class="option-button d-flex align-items-center px-4" (click)="save()">
           Save
         </button>
-        <button class="option-button d-flex align-items-center px-4">
+        <button class="option-button d-flex align-items-center px-4" (click)="cancel()">
           Cancel
         </button>
 

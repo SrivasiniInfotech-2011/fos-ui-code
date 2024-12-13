@@ -5,8 +5,8 @@
 
 
 .content-box {
-    width: calc(100% - 240px);
-    margin-left: 240px;
+    width: calc(100% - 300px);
+    margin-left: 300px;
     height: 100%;
     background-color: var(--background-color);
     margin-top: 80px;
@@ -69,7 +69,15 @@
                 border-radius: 5px;
                 color: var(--text-dark);
             }
-
+            select{
+            border: 1px solid var(--input-border);
+            background-color:var(--input-background);
+              border-radius: 5px;
+              font-size: 14px;
+              line-height: 18px;
+              font-weight: 400;
+              color: var(--text-dark);
+            }
             .massage-text {
                 color: #f7811e;
                 font-size: 12px;

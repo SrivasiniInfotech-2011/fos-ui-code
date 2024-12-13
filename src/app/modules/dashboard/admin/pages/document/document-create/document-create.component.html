@@ -3,11 +3,11 @@
     <div class="document-master-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none">Document-master</a>
+          <li class="breadcrumb-item d-flex align-items-center">
+            <mat-icon class="me-2">home</mat-icon><a [routerLink]="['/admin/document-master']" class="text-decoration-none">Document Master</a>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">
-            Document-create
+          <li class="breadcrumb-item active" aria-current="page" >
+            Document Create
           </li>
         </ol>
       </nav>
@@ -17,71 +17,129 @@
         <caption class="d-flex" >
           Document Master
         </caption>
-        <div class="row my-3">
+        <div class="row my-3 gy-2">
           <div class="col-12 col-lg-4">
-            <label>Category Description</label>
+            <label>Category Description<span class="text-danger">*</span></label>
             <input type="text" class="form-control mt-2" placeholder="Enter Category Description" formControlName="categoryDescription" />
-            <span class="massage-text"  *ngIf="documentCreateForm.get('categoryDescription')?.touched && documentCreateForm.get('categoryDescription')?.hasError('required')"> Category Description is required</span>
+            <span class="massage-text"  *ngIf="(documentCreateForm.get('categoryDescription')?.touched || isSubmitted  ) && documentCreateForm.get('categoryDescription')?.hasError('required')"> Category Description is required</span>
           </div>
         </div>
       </form>
 
-      <table class="table table-bordered rounded document-master-table">
-        <thead>
-          <tr>
-            <th class="col">Document Type</th>
-            <th class="col">Identity Number</th>
-            <th class="col">Mandatory</th>
-            <th class="col">Last Program</th>
-            <th class="col text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <select class="form-select mt-2" required>
-                <option>--Select--</option>
-                <option>Bank Statments</option>
-                <option>Driving License</option>
-                <option>PaySlip</option>
-              </select>
-            </td>
-            <td>
-              <div class="d-flex align-items-center h-100" style="min-height:60px;">
-                <input type="checkbox" style="width:20px; height:20px;" />
-              </div>
-            </td>
-            <td>
-              <div class="d-flex align-items-center h-100" style="min-height:60px;"><input type="checkbox"
-                  style="width:20px; height:20px;" /></div>
-            </td>
-            <td>
-              <select class="form-select mt-2" required>
-                <option>--Select--</option>
-                <option>Bank Statments</option>
-                <option>Driving License</option>
-                <option>PaySlip</option>
-              </select>
-            </td>
-            <td>
-              <div class="d-flex align-items-center h-100  justify-content-center" style="min-height:60px;">
-            <td><mat-icon>add_box</mat-icon><mat-icon>delete</mat-icon>
-    </div>
-    </td>
+     <div class="lead-master-box my-3">
+      <table mat-table class="lead-master-table table table-bordered table-responsive mb-0" [dataSource]="dataSource">
+        <ng-container matColumnDef="documentType">
+          <th mat-header-cell *matHeaderCellDef class=" table-header"><span style="min-height:68px;"
+              class="d-flex align-items-flexstart">Document Type</span></th>
+          <td mat-cell *matCellDef="let element">
+            <select class="form-select mt-2">
+              <option>--Select--</option>
+              <option>Bank Statements</option>
+              <option>Driving License</option>
+              <option>PaySlip</option>
+            </select>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="identityNumber">
+          <th mat-header-cell *matHeaderCellDef class=" table-header"><span style="min-height:68px;"
+              class="d-flex align-items-flexstart">Identity Number</span></th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center h-100" style="min-height:60px;">
+              <input type="checkbox" style="width:20px; height:20px;" />
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="mandatory">
+          <th mat-header-cell *matHeaderCellDef class=" table-header"><span style="min-height:68px;"
+              class="d-flex align-items-flexstart">Mandatory</span></th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center h-100" style="min-height:60px;">
+              <input type="checkbox" style="width:20px; height:20px;" />
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="lastProgram">
+          <th mat-header-cell *matHeaderCellDef class=" table-header"><span style="min-height:68px;"
+              class="d-flex align-items-flexstart">Last Program</span></th>
+          <td mat-cell *matCellDef="let element">
+            <select class="form-select mt-2">
+              <option>--Select--</option>
+              <option>BM Approval</option>
+              <option>Disbursement</option>
+              <option>Post Disbursement</option>
+            </select>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class=" table-header"><span style="min-height:68px;"
+              class="d-flex align-items-flexstart">Action</span></th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center h-100  justify-content-center" style="min-height:60px;">
+            <mat-icon>add_box</mat-icon><mat-icon>delete</mat-icon>
+            </div>
+          </td>
+        </ng-container>
 
-    </tbody>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+     </div>
     <div class="d-flex align-items-center flex-wrap gap-3 my-4">
-      <button class="option-button d-flex align-items-center px-4">
+      <button class="option-button d-flex align-items-center px-4" (click)="save()">
         Save
       </button>
-      <button class="option-button d-flex align-items-center px-4">
+      <button class="option-button d-flex align-items-center px-4" (click)="clear()">
         Clear
       </button>
-      <button class="option-button d-flex align-items-center px-4">
+      <button class="option-button d-flex align-items-center px-4" (click)="cancel()">
         Cancel
       </button>
     </div>
   </div>
 </div>
 </div>
+
+<!-- <table>
+  <thead>
+    <tr>
+      <th class="col">Document Type</th>
+      <th class="col">Identity Number</th>
+      <th class="col">Mandatory</th>
+      <th class="col">Last Program</th>
+      <th class="col text-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <select class="form-select mt-2" required>
+          <option>--Select--</option>
+          <option>Bank Statements</option>
+          <option>Driving License</option>
+          <option>PaySlip</option>
+        </select>
+      </td>
+      <td>
+        <div class="d-flex align-items-center h-100" style="min-height:60px;">
+          <input type="checkbox" style="width:20px; height:20px;" />
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center h-100" style="min-height:60px;"><input type="checkbox"
+            style="width:20px; height:20px;" /></div>
+      </td>
+      <td>
+        <select class="form-select mt-2">
+          <option>--Select--</option>
+          <option>BM Approval</option>
+          <option>Disbursement</option>
+          <option>Post Disbursement</option>
+        </select>
+      </td>
+      <td>
+        <div class="d-flex align-items-center h-100  justify-content-center" style="min-height:60px;">
+      <td><mat-icon>add_box</mat-icon><mat-icon>delete</mat-icon>
+</div>
+</td>
+</tbody>
+</table> -->

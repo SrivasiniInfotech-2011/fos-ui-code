@@ -1,288 +1,564 @@
 <div class="content-box pt-2">
   <div class="container">
-    <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTab" >
-      <mat-tab label="Prospect Details"></mat-tab>
+    <mat-tab-group
+      (selectedTabChange)="onTabChanged($event)"
+      [selectedIndex]="1"
+    >
+      <mat-tab label="Prospect Details" [disabled]="!buttonDisabled"></mat-tab>
       <mat-tab label="Loan Details">
         <div class="loan-details-box">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
-              <li class="breadcrumb-item d-flex align-items-center"><a href="#"
+              <li class="breadcrumb-item d-flex align-items-center"><a routerLink="/fos/lead-generation"
                   class="text-decoration-none d-flex align-items-center"><mat-icon class="me-2">home</mat-icon>Lead
                   Generation</a></li>
 
-              <li class="breadcrumb-item active" aria-current="page">Loan Details</li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Loan Details
+              </li>
             </ol>
           </nav>
         </div>
         <div class="loan-details-box my-3">
           <form class="loan-details-form" [formGroup]="leadForm">
-            <div class="row d-flex">
+            <div class="row d-flex gy-2">
               <div class="col-12 col-lg-4">
-                <label>Lead Number</label>
-                <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
-                  formControlName="leadNumber" />
-
-                <span class="massage-text"
-                  *ngIf="(leadForm.get('leadNumber')?.touched || isSubmitted) && leadForm.get('leadNumber')?.hasError('required')">Lead
-                  Number is required</span>
+                <label>Lead Number<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter Lead Number"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="leadNumber"
+                  [readOnly]="true"
+                  oninput="this.value = this.value.toUpperCase()"
+                />
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (leadForm.get('leadNumber')?.touched || isSubmitted) &&
+                    leadForm.get('leadNumber')?.hasError('required')
+                  "
+                  >Lead Number is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Vehicle Number</label>
-                <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
-                  formControlName="vehicleNumber" />
+                <label>Vehicle Number<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter Vehicle Number"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="vehicleNumber"
+                  [readOnly]="true"
+                  oninput="this.value = this.value.toUpperCase()"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(leadForm.get('vehicleNumber')?.touched || isSubmitted) && leadForm.get('vehicleNumber')?.hasError('required')">Vehicle
-                  Number is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (leadForm.get('vehicleNumber')?.touched || isSubmitted) &&
+                    leadForm.get('vehicleNumber')?.hasError('required')
+                  "
+                  >Vehicle Number is required</span
+                >
               </div>
-
             </div>
           </form>
-
         </div>
         <div class="loan-details-box my-3">
           <form class="loan-details-form" [formGroup]="loanDetailsForm">
-            <caption>Loan
-              Details</caption>
-            <div class="row d-flex">
+            <caption>
+              Loan Details
+            </caption>
+            <div class="row d-flex gy-2">
               <div class="col-12 col-lg-4">
-                <label>Line Of Business</label>
-                <select class="form-select mt-2" formControlName="lineOfBusiness">
-                  <option>--Select--</option>
-                  <option>Hyponthication</option>
+                <label
+                  >Line Of Business<span class="text-danger">*</span></label
+                >
+                <select
+                  formControlName="lineOfBusiness"
+                  class="form-select mt-2"
+                  name="leadType"
+                >
+                  <option value="" disabled>Choose Line of Business</option>
+                  <option
+                    *ngFor="let c of lineOfBusinesses"
+                    [value]="c.lineOfBusinessId"
+                  >
+                    {{ c.lineOfBusinessName }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('lineOfBusiness')?.touched || isSubmitted) && loanDetailsForm.get('lineOfBusiness')?.hasError('required') ">Line
-                  Of Business is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('lineOfBusiness')?.touched ||
+                      isSubmitted) &&
+                    loanDetailsForm.get('lineOfBusiness')?.hasError('required')
+                  "
+                  >Line Of Business is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Finance Amount</label>
-                <input placeholder="Enter the Finance Amount" type="number" class="form-control mt-1"
-                  formControlName="financeAmount" />
+                <label>Finance Amount<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Finance Amount"
+                  type="number"
+                  class="form-control mt-2"
+                  formControlName="financeAmount"
+                  [min]="0"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('financeAmount')?.touched || isSubmitted) && loanDetailsForm.get('financeAmount')?.hasError('required') ">Finance
-                  Amount is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('financeAmount')?.touched ||
+                      isSubmitted) &&
+                    loanDetailsForm.get('financeAmount')?.hasError('required')
+                  "
+                  >Finance Amount is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Tenure</label>
-                <input placeholder="Enter the Tenure" type="number" class="form-control mt-1"
-                  formControlName="tenure" />
+                <label>Tenure<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Tenure"
+                  type="number"
+                  maxlength="2"
+                  class="form-control mt-2"
+                  formControlName="tenure"
+                  [min]="0"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('tenure')?.touched || isSubmitted) && loanDetailsForm.get('tenure')?.hasError('required') ">Tenure
-                  is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('tenure')?.touched || isSubmitted) &&
+                    loanDetailsForm.get('tenure')?.hasError('required')
+                  "
+                  >Tenure is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Tenure Type</label>
+                <label>Tenure Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="tenureType">
-                  <option>--Select--</option>
-                  <option>Month</option>
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of tenureTypeLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('tenureType')?.touched || isSubmitted) && loanDetailsForm.get('tenureType')?.hasError('required') ">Tenure
-                  Type is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('tenureType')?.touched ||
+                      isSubmitted) &&
+                    loanDetailsForm.get('tenureType')?.hasError('required')
+                  "
+                  >Tenure Type is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Rate</label>
-                <input placeholder="Enter the Rate " type="number" class="form-control mt-1" formControlName="rate" />
+                <label>Rate<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Rate "
+                  type="number"
+                  maxlength="3"
+                  class="form-control mt-2"
+                  formControlName="rate"
+                  [min]="0"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('rate')?.touched || isSubmitted) && loanDetailsForm.get('rate')?.hasError('required') ">Rate
-                  is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('rate')?.touched || isSubmitted) &&
+                    loanDetailsForm.get('rate')?.hasError('required')
+                  "
+                  >Rate is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Repayment Frequency</label>
-                <select class="form-select mt-2" formControlName="repaymentFrequency">
-                  <option>--Select--</option>
-                  <option>Monthly</option>
-                  <option>Quarterly</option>
-                  <option>yearly</option>
-                  <option>Annually</option>
+                <label
+                  >Repayment Frequency<span class="text-danger">*</span></label
+                >
+                <select
+                  class="form-select mt-2"
+                  formControlName="repaymentFrequency"
+                >
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of repaymentFrequencyLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('repaymentFrequency')?.touched || isSubmitted) && loanDetailsForm.get('repaymentFrequency')?.hasError('required') ">Repayment
-                  Frequency is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('repaymentFrequency')?.touched ||
+                      isSubmitted) &&
+                    loanDetailsForm
+                      .get('repaymentFrequency')
+                      ?.hasError('required')
+                  "
+                  >Repayment Frequency is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Leave Period</label>
-                <input placeholder="Enter the Leave Period" type="text" class="form-control mt-1"
-                  formControlName="leavePeriod" />
+                <label>Leave Period<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Leave Period"
+                  type="number"
+                  maxlength="1"
+                  class="form-control mt-2"
+                  formControlName="leavePeriod"
+                  [min]="0"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('leavePeriod')?.touched || isSubmitted) && loanDetailsForm.get('leavePeriod')?.hasError('required') ">Leave
-                  Period is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('leavePeriod')?.touched ||
+                      isSubmitted) &&
+                    loanDetailsForm.get('leavePeriod')?.hasError('required')
+                  "
+                  >Leave Period is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Field Executive</label>
-                <select class="form-select mt-2" formControlName="fieldExecutive">
-                  <option>--Select--</option>
+                <label>Field Executive<span class="text-danger">*</span></label>
+                <select
+                  class="form-select mt-2"
+                  formControlName="fieldExecutive"
+                >
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of fieldExecutives"
+                    [value]="c.fieldExecutiveId"
+                  >
+                    {{ c.fieldExecutiveName }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('fieldExecutive')?.touched || isSubmitted) && loanDetailsForm.get('fieldExecutive')?.hasError('required') ">Field
-                  Executive is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('fieldExecutive')?.touched ||
+                      isSubmitted) &&
+                    loanDetailsForm.get('fieldExecutive')?.hasError('required')
+                  "
+                  >Field Executive is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Document Category</label>
-                <select class="form-select mt-2" formControlName="documentCategory">
-                  <option>--Select--</option>
+                <label
+                  >Document Category<span class="text-danger">*</span></label
+                >
+                <select
+                  class="form-select mt-2"
+                  formControlName="documentCategory"
+                >
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of documentCategoryLookup"
+                    [value]="c.documentCategoryId"
+                  >
+                    {{ c.documentCategoryDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(loanDetailsForm.get('documentCategory')?.touched || isSubmitted) && loanDetailsForm.get('documentCategory')?.hasError('required') ">Document
-                  Category is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (loanDetailsForm.get('documentCategory')?.touched ||
+                      isSubmitted) &&
+                    loanDetailsForm
+                      .get('documentCategory')
+                      ?.hasError('required')
+                  "
+                  >Document Category is required</span
+                >
               </div>
-
             </div>
           </form>
-
         </div>
         <div class="loan-details-box my-3">
           <form class="loan-details-form" [formGroup]="assetDetailsForm">
-            <caption>Asset
-              Details</caption>
-            <div class="row d-flex">
+            <caption>
+              Asset Details
+            </caption>
+            <div class="row d-flex gy-2">
               <div class="col-12 col-lg-4">
-                <label>Asset Class</label>
+                <label>Asset Class<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetClass">
-                  <option>--Select--</option>
-                  <option>Private</option>
-                  <option>Swift Car</option>
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of assetClassLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('assetClass')?.touched || isSubmitted) && assetDetailsForm.get('assetClass')?.hasError('required') ">Asset
-                  Class is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('assetClass')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('assetClass')?.hasError('required')
+                  "
+                  >Asset Class is required</span
+                >
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Asset Name</label>
+                <label>Asset Name<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetName">
-                  <option>--Select--</option>
-                  <option>Ashok Laylend</option>
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of assetMakeLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('assetName')?.touched || isSubmitted) && assetDetailsForm.get('assetName')?.hasError('required') ">Asset
-                  Name is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('assetName')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('assetName')?.hasError('required')
+                  "
+                  >Asset Name is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Asset Type</label>
+                <label>Asset Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetType">
-                  <option>--Select--</option>
-                  <option>Car</option>
-                  <option>Load/Goods</option>
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of assetTypeLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('assetType')?.touched || isSubmitted) && assetDetailsForm.get('assetType')?.hasError('required') ">Asset
-                  Type is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('assetType')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('assetType')?.hasError('required')
+                  "
+                  >Asset Type is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Asset Model</label>
+                <label>Asset Model<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="assetModel">
-                  <option>--Select--</option>
-                  <option>Swift</option>
-                  <option>Wagon</option>
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of assetModelLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('assetModel')?.touched || isSubmitted) && assetDetailsForm.get('assetModel')?.hasError('required') ">Asset
-                  Model is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('assetModel')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('assetModel')?.hasError('required')
+                  "
+                  >Asset Model is required</span
+                >
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Vehicle Number</label>
-                <input placeholder="Enter the Vehicle Number " type="number" class="form-control mt-1"
-                  formControlName="vehicleNumber" />
+                <label>Vehicle Number<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Vehicle Number "
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="vehicleNumber"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('vehicleNumber')?.touched || isSubmitted) && assetDetailsForm.get('vehicleNumber')?.hasError('required') ">Vehicle
-                  Number is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('vehicleNumber')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('vehicleNumber')?.hasError('required')
+                  "
+                  >Vehicle Number is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Engine Number</label>
-                <input placeholder="Enter the Engine Number " type="number" class="form-control mt-1"
-                  formControlName="engineNumber" />
+                <label>Engine Number<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Engine Number "
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="engineNumber"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('engineNumber')?.touched || isSubmitted) && assetDetailsForm.get('engineNumber')?.hasError('required') ">Engine
-                  Number is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('engineNumber')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('engineNumber')?.hasError('required')
+                  "
+                  >Engine Number is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Chassis Number</label>
-                <input placeholder="Enter the Chassis Number " type="number" class="form-control mt-1"
-                  formControlName="chassisNumber" />
+                <label>Chassis Number<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Chassis Number "
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="chassisNumber"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('chassisNumber')?.touched || isSubmitted) && assetDetailsForm.get('chassisNumber')?.hasError('required') ">Chassis
-                  Number is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('chassisNumber')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('chassisNumber')?.hasError('required')
+                  "
+                  >Chassis Number is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Serial Number</label>
-                <input placeholder="Enter the Serial Number " type="number" class="form-control mt-1"
-                  formControlName="serialNumber" />
+                <label>Serial Number<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Serial Number "
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="serialNumber"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('serialNumber')?.touched || isSubmitted) && assetDetailsForm.get('serialNumber')?.hasError('required') ">Serial
-                  Number is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('serialNumber')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('serialNumber')?.hasError('required')
+                  "
+                  >Serial Number is required</span
+                >
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Ownership</label>
+                <label>Ownership<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="ownership">
-                  <option>--Select--</option>
-                  <option>First</option>
-                  <option>Second</option>
-                  <option>Third</option>
-
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of ownershipLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('ownership')?.touched || isSubmitted) && assetDetailsForm.get('ownership')?.hasError('required') ">Ownership
-                  is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('ownership')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('ownership')?.hasError('required')
+                  "
+                  >Ownership is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Model</label>
-                <input placeholder="Enter the Model " type="text" class="form-control mt-1" formControlName="model" />
+                <label>Model<span class="text-danger">*</span></label>
+                <input
+                  placeholder="Enter the Model "
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="model"
+                  [maxlength]="4"
+                />
 
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('model')?.touched || isSubmitted) && assetDetailsForm.get('model')?.hasError('required') ">Model
-                  is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('model')?.touched || isSubmitted) &&
+                    assetDetailsForm.get('model')?.hasError('required')
+                  "
+                  >Model is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Vehicle Type</label>
+                <label>Vehicle Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="vehicleType">
-                  <option>--Select--</option>
-                  <option>Own</option>
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of vehicleTypeLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('vehicleType')?.touched || isSubmitted) && assetDetailsForm.get('vehicleType')?.hasError('required') ">Vehicle
-                  Type is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('vehicleType')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('vehicleType')?.hasError('required')
+                  "
+                  >Vehicle Type is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Tax Type</label>
+                <label>Tax Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="taxType">
-                  <option>--Select--</option>
-                  <option>Life Time</option>
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of taxTypeLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('taxType')?.touched || isSubmitted) && assetDetailsForm.get('taxType')?.hasError('required') ">Tax
-                  Type is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('taxType')?.touched || isSubmitted) &&
+                    assetDetailsForm.get('taxType')?.hasError('required')
+                  "
+                  >Tax Type is required</span
+                >
               </div>
               <div class="col-12 col-lg-4">
-                <label>Fuel Type*</label>
+                <label>Fuel Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="fuelType">
-                  <option>--Select--</option>
-                  <option>Gas</option>
-                  <option>Petrol</option>
+                  <option value="" disabled>--Select--</option>
+                  <option
+                    *ngFor="let c of fuelTypeLookup"
+                    [value]="c.lookupValueId"
+                  >
+                    {{ c.lookupValueDescription }}
+                  </option>
                 </select>
-                <span class="massage-text"
-                  *ngIf="(assetDetailsForm.get('fuelType')?.touched || isSubmitted) && assetDetailsForm.get('fuelType')?.hasError('required') ">Fuel
-                  Type is required</span>
+                <span
+                  class="massage-text"
+                  *ngIf="
+                    (assetDetailsForm.get('fuelType')?.touched ||
+                      isSubmitted) &&
+                    assetDetailsForm.get('fuelType')?.hasError('required')
+                  "
+                  >Fuel Type is required</span
+                >
               </div>
-
             </div>
           </form>
           <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
-            <button class="option-button d-flex align-items-center" (click)="submit()">
+            <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" (click)="submit()">
               Submit
             </button>
-
           </div>
         </div>
       </mat-tab>
@@ -290,6 +566,5 @@
       <mat-tab label=" Guarantor 1 "></mat-tab>
       <mat-tab label=" Guarantor 2"> </mat-tab>
     </mat-tab-group>
-
   </div>
 </div>

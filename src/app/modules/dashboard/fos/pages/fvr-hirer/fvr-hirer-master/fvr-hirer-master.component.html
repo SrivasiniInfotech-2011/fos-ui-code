@@ -3,9 +3,11 @@
     <div class="fvrhirer-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none d-flex align-items-center"><mat-icon class="me-2">home</mat-icon>FVR
-              Hirer</a>
+          <li class="breadcrumb-item d-flex align-items-center">
+            <mat-icon class="me-2">home</mat-icon>
+            <a href="#" class="text-decoration-none d-flex align-items-center"></a>
+            FVR
+              Hirer
           </li>
         </ol>
       </nav>
@@ -15,26 +17,29 @@
         <caption class="d-flex">
           FVR Hirer
         </caption>
-        <div class="row d-flex">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
-            <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="number" class="form-control mt-1"
-              formControlName="leadNumber" />
+            <label>Lead Number<span class="text-danger">*</span></label>
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2" formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()"/>
 
-            <span class="massage-text" *ngIf="(fvrHirerLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrHirerLeadForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
+            <!-- <span class="massage-text"
+              *ngIf="(fvrHirerLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrHirerLeadForm.get('leadNumber')?.hasError('required')">Lead
+              Number is required</span> -->
           </div>
           <div class="col-12 col-lg-4">
-            <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-1"
-              formControlName="vehicleNumber" />
+            <label>Vehicle Number<span class="text-danger">*</span></label>
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
+              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()"/>
 
-            <span class="massage-text"  *ngIf="(fvrHirerLeadForm.get('vehicleNumber')?.touched || isSubmitted) && fvrHirerLeadForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
+            <!-- <span class="massage-text"
+              *ngIf="(fvrHirerLeadForm.get('vehicleNumber')?.touched || isSubmitted) && fvrHirerLeadForm.get('vehicleNumber')?.hasError('required')">Vehicle
+              Number is required</span> -->
           </div>
         </div>
       </form>
       <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
-        <button class="option-button d-flex align-items-center">Go</button>
-        <button class="option-button d-flex align-items-center">Clear</button>
+        <button class="option-button d-flex align-items-center" (click)="go()">Go</button>
+        <button class="option-button d-flex align-items-center" (click)="clear()">Clear</button>
       </div>
     </div>
     <div class="fvrhirer-details-box my-3">
@@ -42,51 +47,43 @@
         <caption class="d-flex">
           Lead Details
         </caption>
-        <div class="row d-flex">
+        <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Lead Number " type="number" class="form-control mt-1" formControlName="leadNumber" />
-
-            <span class="massage-text"  *ngIf="(fvrHirerLeadDetailsForm.get('leadNumber')?.touched || isSubmitted) && fvrHirerLeadDetailsForm.get('leadNumber')?.hasError('required')">Lead Number is required</span>
+            <input placeholder="Lead Number " type="text" class="form-control mt-2" formControlName="leadNumber"
+              readonly />
           </div>
           <div class="col-12 col-lg-4">
             <label>Lead Date</label>
             <input placeholder="
-              Lead Date" type="date" class="form-control mt-1" formControlName="leadDate" />
-
-            <span class="massage-text" *ngIf="(fvrHirerLeadDetailsForm.get('leadDate')?.touched || isSubmitted) && fvrHirerLeadDetailsForm.get('leadDate')?.hasError('required')">Lead Date is required</span>
+              Lead Date" type="date" class="form-control mt-2" formControlName="leadDate" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Branch</label>
-            <input placeholder="Branch" type="text" class="form-control mt-1" formControlName="branch" />
-
-            <span class="massage-text" *ngIf="(fvrHirerLeadDetailsForm.get('branch')?.touched || isSubmitted) && fvrHirerLeadDetailsForm.get('branch')?.hasError('required')">Branch is required</span>
+            <input placeholder="Branch" type="text" class="form-control mt-2" formControlName="branch" readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Prospect Name</label>
-            <input placeholder="Prospect Name" type="text" class="form-control mt-1" formControlName="prospectName" />
-
-            <span class="massage-text" *ngIf="(fvrHirerLeadDetailsForm.get('prospectName')?.touched || isSubmitted) && fvrHirerLeadDetailsForm.get('prospectName')?.hasError('required')">Prospect Name is required</span>
+            <input placeholder="Prospect Name" type="text" class="form-control mt-2" formControlName="prospectName"
+              readonly />
           </div>
           <div class="col-12 col-lg-4">
             <label>Mobile Number </label>
-            <input placeholder=" Mobile Number" type="number" class="form-control mt-1" formControlName="mobileNumber" />
-            <span class="massage-text" *ngIf="(fvrHirerLeadDetailsForm.get('mobileNumber')?.touched || isSubmitted) && fvrHirerLeadDetailsForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</span>
+            <input placeholder=" Mobile Number" type="number" class="form-control mt-2" formControlName="mobileNumber"
+              readonly />
           </div>
 
           <div class="col-12 col-lg-4">
             <label>Vehicle Number </label>
-            <input placeholder="Vehicle Number" type="number" class="form-control mt-1" formControlName="vehicleNumber" />
-            <span class="massage-text" *ngIf="(fvrHirerLeadDetailsForm.get('vehicleNumber')?.touched || isSubmitted) && fvrHirerLeadDetailsForm.get('vehicleNumber')?.hasError('required')">Vehicle Number is required</span>
-
+            <input placeholder="Vehicle Number" type="text" class="form-control mt-2" formControlName="vehicleNumber"
+              readonly />
           </div>
           <div class="col-12 col-lg-4">
             <label>Prospect Address </label>
-            <textarea class="w-100" rows="4" mt-1 formControlName="prospectAddress"></textarea>
+            <textarea class="w-100" rows="4" mt-2 formControlName="prospectAddress" readonly></textarea>
           </div>
-          <span class="massage-text"  *ngIf="(fvrHirerLeadDetailsForm.get('prospectAddress')?.touched || isSubmitted) && fvrHirerLeadDetailsForm.get('prospectAddress')?.hasError('required')">Prospect Address is required</span>
         </div>
       </form>
 

@@ -5,8 +5,8 @@
 
 
 .content-box {
-  width: calc(100% - 240px);
-  margin-left: 240px;
+  width: calc(100% - 300px);
+  margin-left: 300px;
   height: 100%;
   background-color: var(--background-color);
   margin-top: 80px;
@@ -114,8 +114,165 @@
         }
 
       }
+
+      .lead-master-box {
+        border: 1px solid #cfd9e8;
+        border-radius: 5px;
+        padding: 20px;
+
+
+        .breadcrumb {
+          li {
+            color: var(--text-color);
+          }
+        }
+
+        .lead-master-form {
+          caption {
+            font-size: 20px;
+            color: var(--text-bold-color);
+            padding-top: 0;
+            line-height: 28px;
+            font-weight: 600;
+          }
+
+          label,
+          input {
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 400;
+            color: var(--text-color);
+
+            &:focus {
+              box-shadow: unset;
+            }
+          }
+
+          input {
+            border: 1px solid var(--input-border);
+            background-color: var(--input-background);
+            border-radius: 5px;
+          }
+
+          select {
+            border: 1px solid var(--input-border);
+            background-color: var(--input-background);
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 400;
+            color: var(--text-dark);
+
+            option {
+              font-size: 14px;
+              line-height: 18px;
+              font-weight: 400;
+            }
+
+            &:focus {
+              box-shadow: unset;
+            }
+          }
+
+
+          .massage-text {
+            color: #f7811e;
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            display: inline-bVCBNlock;
+          }
+
+
+
+        }
+
+
+        .lead-master-table {
+          border: 1px solid var(--border-color);
+
+          thead {
+            tr {
+              th {
+                background-color: var(--table-header-background);
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 20px;
+                color: var(--header-text-color);
+              }
+            }
+          }
+
+          tr {
+            td {
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 20px;
+              color: var(--text-dark)
+            }
+          }
+
+        }
+
+        .pagination {
+          .page-link {
+            color: #f7811e;
+          }
+        }
+      }
+    }
   }
-}
+
+  .mat-mdc-header-row {
+    background-color: var(--table-header-background);
+    height: unset;
+
+  }
+  ::ng-deep .mat-mdc-form-field-infix{
+    padding: 0 !important;
+    min-height: unset !important;
+    height: unset !important;
+    // background-color: red !important;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper{
+    background-color: transparent !important;
+  }
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+    border-bottom-color: #fff !important;
+    padding-top: 10px !important;
+  }
+  ::ng-deep .mat-mdc-input-element::placeholder{
+    color: #fff !important;
+  }
+  ::ng-deep .mat-mdc-input-element{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    color: #fff !important;
+  }
+  ::ng-deep .mat-sort-header-arrow {
+    color: #fff !important;
+  }
+  ::ng-deep .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align{
+    display: none !important;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    height: 68px;
+  }
+
+  .table-header {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--header-text-color);
+
+  }
+
 
 @media only screen and (max-width: 992px) {
 

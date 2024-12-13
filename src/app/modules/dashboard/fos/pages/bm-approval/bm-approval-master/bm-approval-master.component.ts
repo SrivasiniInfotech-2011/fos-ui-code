@@ -13,8 +13,8 @@ export class BmApprovalMasterComponent {
 
   constructor(){
     this.bmApprovalMasterForm = new FormGroup({
-      leadNumber:new FormControl('', [Validators.required]),
-      vehicleNumber:new FormControl('', [Validators.required])
+      leadNumber:new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z0-9 ]+$')]),
+      vehicleNumber:new FormControl('')
     })
   }
 

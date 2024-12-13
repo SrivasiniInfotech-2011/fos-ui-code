@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-asset-create',
@@ -11,7 +12,7 @@ export class AssetCreateComponent {
     public assetCreateForm:FormGroup;
     public isSubmitted:boolean = false;
 
-    constructor(){
+    constructor(private router:Router){
       this.assetCreateForm = new FormGroup({
         assetCategoryType:new FormControl('', [Validators.required]),
         assetCategoryDescription:new FormControl('', [Validators.required]),
@@ -24,5 +25,9 @@ export class AssetCreateComponent {
       if(this.assetCreateForm.valid){
         this.isSubmitted = false;
       }
+    }
+
+    cancel(){
+      this.router.navigate(['/admin/asset-master']);
     }
 }

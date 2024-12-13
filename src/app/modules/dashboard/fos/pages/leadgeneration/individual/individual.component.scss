@@ -5,8 +5,8 @@
 
 
 .content-box {
-  width: calc(100% - 240px);
-  margin-left: 240px;
+  width: calc(100% - 300px);
+  margin-left: 300px;
   margin-top: 80px;
   background-color: var(--background-color);
   z-index: 0;
@@ -24,7 +24,7 @@
 .individual-details-box {
     border: 1px solid #cfd9e8;
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
 
       .option-button {
         font-size: 14px;

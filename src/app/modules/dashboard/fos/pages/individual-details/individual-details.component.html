@@ -1,6 +1,6 @@
 <div class="content-box pt-2">
   <div class="container">
-    <div class="tab-box d-flex align-items-center gap-2 my-3">
+    <div class="tab-box d-flex align-items-center gap-2 mb-3">
       <mat-icon>home</mat-icon><mat-icon>keyboard_arrow_right</mat-icon>Lead
       Generation
     </div>
@@ -26,132 +26,397 @@
     </div>
     <div class="individual-details-box my-3">
       <form class="individual-details-form" [formGroup]="individualDetailsForm">
-          <caption class="d-flex">Individual Details</caption>
-          <div class="row d-flex ">
-            <div class="col-12 col-lg-3">
-              <label>Father Name</label>
-              <input type="text" class="form-control mt-1" formControlName="fatherName">
-              <div *ngIf="individualDetailsForm.get('fatherName')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('fatherName')?.hasError('required')">Father Name is required</span>
-              </div>
+        <caption class="d-flex">
+          Individual Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-3">
+            <label>Father Name</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="fatherName"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('fatherName')?.touched || isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm.get('fatherName')?.hasError('required')
+                "
+                >Father Name is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label>Mother Name</label>
-              <input type="text" class="form-control mt-1" formControlName="motherName">
-              <div *ngIf="individualDetailsForm.get('motherName')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('motherName')?.hasError('required')">Mother Name is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Mother Name</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="motherName"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('motherName')?.touched || isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm.get('motherName')?.hasError('required')
+                "
+                >Mother Name is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label>Marital Status</label>
-              <input type="text" class="form-control mt-1" formControlName="maritalStatus">
-              <div *ngIf="individualDetailsForm.get('maritalStatus')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('maritalStatus')?.hasError('required')">Marital Status is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Marital Status</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="maritalStatus"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('maritalStatus')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('maritalStatus')
+                    ?.hasError('required')
+                "
+                >Marital Status is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label>Employment</label>
-              <input type="text" class="form-control mt-1" formControlName="employment">
-              <div *ngIf="individualDetailsForm.get('employment')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('employment')?.hasError('required')">Employment is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Employment</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="employment"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('employment')?.touched || isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm.get('employment')?.hasError('required')
+                "
+                >Employment is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >Net Salary</label>
-              <input type="number" class="form-control mt-1" formControlName="netSalary">
-              <div *ngIf="individualDetailsForm.get('netSalary')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('netSalary')?.hasError('required')">Net Salary is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Net Salary</label>
+            <input
+              type="number"
+              class="form-control mt-2"
+              formControlName="netSalary"
+              [min]="0"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('netSalary')?.touched || isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm.get('netSalary')?.hasError('required')
+                "
+                >Net Salary is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label>No of Adult Dependents</label>
-              <input type="number" class="form-control mt-1" formControlName="noOfAdultDependents">
-              <div *ngIf="individualDetailsForm.get('noOfAdultDependents')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('noOfAdultDependents')?.hasError('required')">No of Adult Dependents is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>No of Adult Dependents</label>
+            <input
+              type="number"
+              class="form-control mt-2"
+              formControlName="noOfAdultDependents"
+              [min]="0"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('noOfAdultDependents')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('noOfAdultDependents')
+                    ?.hasError('required')
+                "
+                >No of Adult Dependents is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label>No of Child Dependents</label>
-              <input type="number" class="form-control mt-1" formControlName="noOfChildDependents">
-              <div *ngIf="individualDetailsForm.get('noOfChildDependents')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('noOfChildDependents')?.hasError('required')">No of Child Dependents is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>No of Child Dependents</label>
+            <input
+              type="number"
+              class="form-control mt-2"
+              formControlName="noOfChildDependents"
+              [min]="0"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('noOfChildDependents')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('noOfChildDependents')
+                    ?.hasError('required')
+                "
+                >No of Child Dependents is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >House Type</label>
-              <input type="text" class="form-control mt-1" formControlName="houseType">
-              <div *ngIf="individualDetailsForm.get('houseType')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('houseType')?.hasError('required')">House Type is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>House Type</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="houseType"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('houseType')?.touched || isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm.get('houseType')?.hasError('required')
+                "
+                >House Type is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >Floor/Flat-Number</label>
-              <input type="text" class="form-control mt-1" formControlName="floorFlatNumber">
-              <div *ngIf="individualDetailsForm.get('floorFlatNumber')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('floorFlatNumber')?.hasError('required')">Floor/Flat-Number is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Floor/Flat-Number</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="floorFlatNumber"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('floorFlatNumber')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('floorFlatNumber')
+                    ?.hasError('required')
+                "
+                >Floor/Flat-Number is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >House Status</label>
-              <input type="text" class="form-control mt-1" formControlName="houseStatus">
-              <div *ngIf="individualDetailsForm.get('houseStatus')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('houseStatus')?.hasError('required')">House Status is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>House Status</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="houseStatus"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('houseStatus')?.touched || isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm.get('houseStatus')?.hasError('required')
+                "
+                >House Status is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >Rental/Lease Amount</label>
-              <input type="number" class="form-control mt-1" formControlName="rentalLeaseAmount">
-              <div *ngIf="individualDetailsForm.get('rentalLeaseAmount')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('rentalLeaseAmount')?.hasError('required')">Rental/Lease Amount is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Rental/Lease Amount</label>
+            <input
+              type="number"
+              class="form-control mt-2"
+              formControlName="rentalLeaseAmount"
+              [min]="0"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('rentalLeaseAmount')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('rentalLeaseAmount')
+                    ?.hasError('required')
+                "
+                >Rental/Lease Amount is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >Owned 2 Wheeler</label>
-              <input type="text" class="form-control mt-1" formControlName="owned2Wheeler">
-              <div *ngIf="individualDetailsForm.get('owned2Wheeler')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('owned2Wheeler')?.hasError('required')">Owned 2 Wheeler is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Owned 2 Wheeler</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="owned2Wheeler"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('owned2Wheeler')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('owned2Wheeler')
+                    ?.hasError('required')
+                "
+                >Owned 2 Wheeler is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >Owned 4 Wheeler</label>
-              <input type="text" class="form-control mt-1" formControlName="owned4Wheeler">
-              <div *ngIf="individualDetailsForm.get('owned4Wheeler')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('owned4Wheeler')?.hasError('required')">Owned 4 Wheeler is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Owned 4 Wheeler</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="owned4Wheeler"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('owned4Wheeler')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('owned4Wheeler')
+                    ?.hasError('required')
+                "
+                >Owned 4 Wheeler is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >Owned Heavy Vehicle</label>
-              <input type="text" class="form-control mt-1" formControlName="ownedHeavyVehicle">
-              <div *ngIf="individualDetailsForm.get('ownedHeavyVehicle')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('ownedHeavyVehicle')?.hasError('required')">Owned Heavy Vehicle is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Owned Heavy Vehicle</label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="ownedHeavyVehicle"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('ownedHeavyVehicle')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('ownedHeavyVehicle')
+                    ?.hasError('required')
+                "
+                >Owned Heavy Vehicle is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >Existing Loan in Alive</label>
-              <input type="number" class="form-control mt-1" formControlName="existingLoan">
-              <div *ngIf="individualDetailsForm.get('existingLoan')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('existingLoan')?.hasError('required')">Existing Loan in Alive is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Existing Loan in Alive</label>
+            <input
+              type="number"
+              class="form-control mt-2"
+              formControlName="existingLoan"
+              [min]="0"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('existingLoan')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('existingLoan')
+                    ?.hasError('required')
+                "
+                >Existing Loan in Alive is required</span
+              >
             </div>
-            <div class="col-12 col-lg-3">
-              <label >Total Existing Loans Monthly EMI</label>
-              <input type="number" class="form-control mt-1" formControlName="totalExistingLoans">
-              <div *ngIf="individualDetailsForm.get('totalExistingLoans')?.touched || isSubmitted">
-                <span class="massage-text" *ngIf="individualDetailsForm.get('totalExistingLoans')?.hasError('required')">Total Existing Loans Monthly EMI is required</span>
-              </div>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label>Total Existing Loans Monthly EMI</label>
+            <input
+              type="number"
+              class="form-control mt-2"
+              formControlName="totalExistingLoans"
+              [min]="0"
+            />
+            <div
+              *ngIf="
+                individualDetailsForm.get('totalExistingLoans')?.touched ||
+                isSubmitted
+              "
+            >
+              <span
+                class="massage-text"
+                *ngIf="
+                  individualDetailsForm
+                    .get('totalExistingLoans')
+                    ?.hasError('required')
+                "
+                >Total Existing Loans Monthly EMI is required</span
+              >
             </div>
-
-            <div class="col-auto pt-2">
-              <button class="next-button d-flex align-items-center  mt-4 px-4 rounded" (click)="submit()"> <mat-icon
-                  class="d-flex align-items-center"
-                  style="font-size: 14px"
-                  >arrow_forward</mat-icon>Submit</button>
-            </div>
-
-
           </div>
 
-        </form>
-     </div>
+          <div class="col-auto pt-2">
+            <button
+              class="next-button d-flex align-items-center mt-4 px-4 rounded"
+              (click)="submit()"
+            >
+              <mat-icon
+                class="d-flex align-items-center"
+                style="font-size: 14px"
+                >arrow_forward</mat-icon
+              >Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
