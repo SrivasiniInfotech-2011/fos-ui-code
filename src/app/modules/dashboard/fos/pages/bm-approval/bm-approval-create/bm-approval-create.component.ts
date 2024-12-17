@@ -20,13 +20,13 @@ export class BmApprovalCreateComponent {
     }
 
     submit(){
-
+      this.isSubmitted = true
       if(this.bmApprovalForm.get('leadNumber')?.valid || this.bmApprovalForm.get('vehicleNumber')?.valid ){
         this.isSubmitted = false;
         this.bmApprovalForm.reset()
        }
       else{
-        this.toastr.error('Enter either lead number or vehicle number', 'Error');
+        this.toastr.error('Enter either Lead Number or Vehicle Number', 'Error');
 
       }
     }

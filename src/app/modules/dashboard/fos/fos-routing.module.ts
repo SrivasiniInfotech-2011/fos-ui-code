@@ -6,9 +6,6 @@ import { BmApprovalMasterComponent } from './pages/bm-approval/bm-approval-maste
 import { DisbursementDetailCreateComponent } from './pages/disbursement/disbursement-detail-create/disbursement-detail-create.component';
 import { DisbursementDetailMasterComponent } from './pages/disbursement/disbursement-detail-master/disbursement-detail-master.component';
 import { DocumentCollectionMasterComponent } from './pages/document-collection/document-collection-master/document-collection-master.component';
-import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
-import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
-import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
 import { IndividualDetailsComponent } from './pages/individual-details/individual-details.component';
 import { Guarantor1Component } from './pages/leadgeneration/guarantor-1/guarantor-1.component';
 import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guarantor-2.component';
@@ -56,18 +53,6 @@ const routes: Routes = [
       {
         path: 'lead-guarantor-2',
         component: Guarantor2Component,
-      },
-      {
-        path: 'FVR-hirer',
-        component: FvrHirerMasterComponent,
-      },
-      {
-        path: 'FVR-guarantor',
-        component: FvrGuarantorComponent,
-      },
-      {
-        path:'FVR-vehicle',
-        component:FvrVehicleComponent,
       },
       {
         path:'BM-approval',
