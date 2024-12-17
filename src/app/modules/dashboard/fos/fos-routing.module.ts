@@ -19,6 +19,7 @@ import { LoanDetailsComponent } from './pages/leadgeneration/loan-details/loan-d
 import { ListingPageComponent } from './pages/listing-page/listing-page.component';
 import { ProspectDetailsComponent } from './pages/prospect-details/prospect-details.component';
 import { ViewloanDetailsComponent } from './pages/viewloan-details/viewloan-details.component';
+import { NonIndividualComponent } from './pages/leadgeneration/non-individual/non-individual.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
       {
         path: 'lead-individual',
         component: IndividualComponent,
+      },
+      {
+        path: 'lead-non-individual',
+        component: NonIndividualComponent,
       },
       {
         path: 'lead-guarantor-2',

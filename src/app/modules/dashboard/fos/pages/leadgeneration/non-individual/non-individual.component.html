@@ -1,1 +1,179 @@
-<p>non-individual works!</p>
+<div class="content-box pt-2">
+  <div class="container">
+    <mat-tab-group
+      (selectedTabChange)="onTabChanged($event)"
+      [selectedIndex]="selectedTab"
+    >
+      <mat-tab label="Prospect Details" [disabled]="true"></mat-tab>
+      <mat-tab label="Loan Details"> </mat-tab>
+      <mat-tab label="Individual"> </mat-tab>
+      <mat-tab label="Non-Individual">
+    <div class="non-individual-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item">
+            <a routerLink="/fos/lead-generation" class="text-decoration-none d-flex align-items-center"><mat-icon
+                class="me-2">home</mat-icon>Lead Generation</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+           Non-Individual Details
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="non-individual-details-box my-3">
+      <form class="non-individual-details-form" [formGroup]="nonIndividualForm">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number<span class="text-danger">*</span></label>
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2" formControlName="leadNumber"
+              oninput="this.value = this.value.toUpperCase()" />
+            <span class="massage-text" *ngIf="
+                (nonIndividualForm.get('leadNumber')?.touched || isSubmitted) &&
+                nonIndividualForm.get('leadNumber')?.hasError('required')
+              ">Lead Number is required</span>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number<span class="text-danger">*</span></label>
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
+              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()" />
+
+            <span class="massage-text" *ngIf="
+                (nonIndividualForm.get('vehicleNumber')?.touched ||
+                  isSubmitted) &&
+                nonIndividualForm.get('vehicleNumber')?.hasError('required')
+              ">Vehicle Number is required</span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="non-individual-details-box my-3">
+      <form class="non-individual-details-form" [formGroup]="nonIndividualDetailsForm">
+        <caption>
+          Non-Individual Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Public / Closely Held</label>
+            <select class="form-select mt-2" formControlName="publicCloselyHeld">
+              <option>Item 1</option>
+              <option>Item 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>No Of Directors</label>
+            <input placeholder="Enter No Of Directors" type="number" class="form-control mt-2"
+              formControlName="noOfDirectors" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Listed Exchange</label>
+            <input placeholder="Enter Listed Exchange" type="text" class="form-control mt-2"
+              formControlName="listedExchange" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Paid Up Capital</label>
+            <input placeholder="Enter The Amount" type="number" class="form-control mt-2"
+              formControlName="paidUpCapital" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Face Value Of Shares</label>
+            <input placeholder="Enter The Amount" type="number" class="form-control mt-2"
+            formControlName="sharesFaceValue" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Book Value Of Shares</label>
+            <input placeholder="Enter The Amount" type="number" class="form-control mt-2"
+            formControlName="sharesBookValue" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Business Profile</label>
+            <input placeholder="Enter The Profile" type="text" class="form-control mt-2" formControlName="businessProfile" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Geographical Coverage</label>
+            <input placeholder="Enter Geographical Coverage" type="text" class="form-control mt-2" formControlName="geographicalCoverage" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>No Of Branches</label>
+            <input placeholder="Enter No Of Branches" type="number" class="form-control mt-2"
+              formControlName="noOfBranches"  />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Government / Institutional Participation </label>
+            <select class="form-select mt-2" formControlName="governmentInstitutionalParticipation">
+              <option>Item 1</option>
+              <option>Item 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Promoter Stake</label>
+            <input placeholder="Enter The Count" type="number" class="form-control mt-2"
+            formControlName="promoterStake" />
+          </div>
+
+           <div class="col-12 col-lg-4">
+            <label>JV Partner Name</label>
+            <input placeholder="Enter Partner Name" type="text" class="form-control mt-2" formControlName="jvPartnerName" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>JV Partner Stake %</label>
+            <input placeholder="Enter The Count" type="number" class="form-control mt-2" formControlName="jvPartnerStake" />
+          </div>
+
+           <div class="col-12 col-lg-4">
+            <label>CEO Name<span class="text-danger">*</span></label>
+            <input placeholder="Enter The Name" type="text" class="form-control mt-2" formControlName="ceoName" />
+            <span class="massage-text" *ngIf="(nonIndividualDetailsForm.get('ceoName')?.touched || isSubmitted) && nonIndividualDetailsForm.get('ceoName')?.hasError('required')">CEO Name is required</span>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>CEO Date Of Birth<span class="text-danger">*</span></label>
+            <input type="date" class="form-control mt-2" formControlName="ceoDateOfBirth" />
+            <span class="massage-text" *ngIf="(nonIndividualDetailsForm.get('ceoDateOfBirth')?.touched || isSubmitted) && nonIndividualDetailsForm.get('ceoDateOfBirth')?.hasError('required')">CEO Date Of Birth is required</span>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>CEO Age<span class="text-danger">*</span></label>
+            <input placeholder="Enter The Age" type="text" class="form-control mt-2" formControlName="ceoAge" />
+            <span class="massage-text" *ngIf="(nonIndividualDetailsForm.get('ceoAge')?.touched || isSubmitted) && nonIndividualDetailsForm.get('ceoAge')?.hasError('required')">CEO Age is required</span>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Experience In Years</label>
+            <input placeholder="Enter The Years" type="number" class="form-control mt-2" formControlName="experienceInYears" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Wedding Anniversary Date</label>
+            <input type="date" class="form-control mt-2" formControlName="weddingAnniversaryDate" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Residential Address</label>
+            <textarea rows="4" formControlName="residentialAddress" mt-2  placeholder="Enter Residential Address" class="w-100"></textarea>
+          </div>
+
+        </div>
+      </form>
+      <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
+        <button class="option-button d-flex align-items-center" (click)="back()">Back</button>
+        <button class="option-button d-flex align-items-center"  (click)="submit()">Submit</button>
+      </div>
+    </div>
+    </mat-tab>
+      <mat-tab label="Guarantor 1"></mat-tab>
+      <mat-tab label="Guarantor 2"> </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

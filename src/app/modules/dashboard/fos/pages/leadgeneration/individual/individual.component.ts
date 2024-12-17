@@ -18,6 +18,7 @@ import { LoaderService } from '../../../../../../../data/services/shared/loader.
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../../../../../../shared/components/modal/modal-component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-individual',
@@ -47,7 +48,7 @@ export class IndividualComponent implements OnInit {
     private loaderService: LoaderService,
     private toasterService: ToastrService,
     public dialog: MatDialog,
-    // private location: Location,
+     private location: Location,
     private route: ActivatedRoute
   ) {
     if (localStorage.getItem('userDetails')) {
@@ -199,7 +200,7 @@ export class IndividualComponent implements OnInit {
   }
 
   onTabChanged(event: MatTabChangeEvent) {
-    if (this.action['view']) {
+    if (this.action['view'] == "true") {
       switch (event.index) {
         case 0:
           this.router.navigate(['/fos/lead-prospect-detail'], {
@@ -220,47 +221,59 @@ export class IndividualComponent implements OnInit {
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
+          this.router.navigate(['/fos/lead-non-individual'], {
             queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
             queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
       }
-    } else if (this.action['modify']) {
+    } else if (this.action['view'] == "false") {
       switch (event.index) {
         case 0:
           this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 1:
           this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 2:
           this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { modify: this.action['modify'] },
+          this.router.navigate(['/fos/lead-non-individual'], {
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
@@ -283,11 +296,16 @@ export class IndividualComponent implements OnInit {
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
+          this.router.navigate(['/fos/lead-non-individual'], {
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
             state: { value: event.index },
           });
@@ -295,19 +313,18 @@ export class IndividualComponent implements OnInit {
       }
     }
   }
-
   setLookups() {
     let lookup = JSON.parse(
       localStorage.getItem('leadGenerationLookups')!
     ) as IFOSLookup[];
-    this.maritalStatusLookup = lookup.filter((s) => s.lookupTypeId == 32);
-    this.houseStatusLookup = lookup.filter((s) => s.lookupTypeId == 15);
-    this.houseTypeLookup = lookup.filter((s) => s.lookupTypeId == 14);
-    this.employmentLookup = lookup.filter((s) => s.lookupTypeId == 16);
+    this.maritalStatusLookup = lookup?.filter((s) => s.lookupTypeId == 32);
+    this.houseStatusLookup = lookup?.filter((s) => s.lookupTypeId == 15);
+    this.houseTypeLookup = lookup?.filter((s) => s.lookupTypeId == 14);
+    this.employmentLookup = lookup?.filter((s) => s.lookupTypeId == 16);
   }
 
   back() {
-    // this.location.back();
+     this.location.back();
   }
 
   submit() {
