@@ -38,6 +38,7 @@ export class FvrGuarantorComponent {
     }
 
     clear(){
-      this.fvrGuarantorLeadForm.reset()
+      this.fvrGuarantorLeadForm.reset();
+      this.isSubmitted = false
     }
 }

@@ -42,51 +42,51 @@
         </div>
       </form>
       <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
-        <button class="option-button d-flex align-items-center">Go</button>
+        <button class="option-button d-flex align-items-center" (click)="go()">Go</button>
       </div>
     </div>
     <div class="disbursement-create-box my-3">
-      <form class="disbursement-create-form">
+      <form class="disbursement-create-form" [formGroup]="disbursementDetailForm">
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Line Of Business</label>
-            <input type="text" class="form-control mt-2" readonly />
+            <input type="text" class="form-control mt-2" formControlName="lineOfBusiness" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Location</label>
-            <input type="text" class="form-control mt-2" readonly />
+            <input type="text" class="form-control mt-2" formControlName="location" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Customer Type</label>
-            <input type="text" class="form-control mt-2" readonly />
+            <input type="text" class="form-control mt-2" formControlName="customerType" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Customer Name</label>
-            <input type="text" class="form-control mt-2" readonly />
+            <input type="text" class="form-control mt-2" formControlName="customerName" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Finance Amount</label>
-            <input type="number" class="form-control mt-2" readonly />
+            <input type="number" class="form-control mt-2" formControlName="financeAmount" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Tenure(M)</label>
-            <input type="text" class="form-control mt-2" readonly />
+            <input type="text" class="form-control mt-2" formControlName="tenure" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Rate %</label>
-            <input type="text" class="form-control mt-2" readonly />
+            <input type="text" class="form-control mt-2" formControlName="rate" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Repayment Frequency</label>
-            <input type="text" class="form-control mt-2" readonly />
+            <input type="text" class="form-control mt-2" formControlName="repaymentFrequency" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4 .">
             <label>Total Repayment Amount</label>
-            <input type="text" class="form-control mt-2" readonly />
+            <input type="text" class="form-control mt-2" formControlName="totalRepaymentAmount" [readonly]="true" />
           </div>
           <div class="col-12 col-lg-4">
             <label>Lead Date</label>
-            <input type="date" class="form-control mt-2" readonly />
+            <input type="date" class="form-control mt-2" formControlName="leadDate" [readonly]="true" />
           </div>
         </div>
       </form>

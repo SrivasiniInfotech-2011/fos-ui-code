@@ -20,7 +20,7 @@
         </caption>
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
-            <label>Mobile Number<span class="required">*</span></label>
+            <label>Mobile Number<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="Enter Mobile Number"
@@ -45,7 +45,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <label>Aadhar Number<span class="required">*</span></label>
+            <label>Aadhar Number<span class="text-danger">*</span></label>
             <input
               class="form-control mt-2 "
               oninput="this.value = this.value.slice(0,12)"
@@ -70,7 +70,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <label>PAN Number<span class="required">*</span></label>
+            <label>PAN Number<span class="text-danger">*</span></label>
             <input
               type="text"
               class="form-control mt-2"
@@ -124,7 +124,7 @@
         </caption>
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
-            <label class="label">Branch<span class="required">*</span></label>
+            <label class="label">Branch<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="Enter Branch"
@@ -144,7 +144,7 @@
 
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Prospect Name<span class="required">*</span></label
+              >Prospect Name<span class="text-danger">*</span></label
             >
             <input
               type="text"
@@ -164,7 +164,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Date of Birth<span class="required">*</span></label
+              >Date of Birth<span class="text-danger">*</span></label
             >
             <input
               type="date"
@@ -183,7 +183,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Mobile Number<span class="required">*</span></label
+              >Mobile Number<span class="text-danger">*</span></label
             >
             <input
               type="text"
@@ -212,7 +212,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Prospect Type<span class="required">*</span></label
+              >Prospect Type<span class="text-danger">*</span></label
             >
             <select
               formControlName="prospectType"
@@ -237,7 +237,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Age<span class="required">*</span></label>
+            <label class="label">Age<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="Enter the Age"
@@ -265,7 +265,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Prospect Date<span class="required">*</span></label
+              >Prospect Date<span class="text-danger">*</span></label
             >
             <input
               type="date"
@@ -293,7 +293,7 @@
             />
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Gender<span class="required">*</span></label>
+            <label class="label">Gender<span class="text-danger">*</span></label>
             <select
               formControlName="gender"
               class="form-select mt-2"
@@ -339,7 +339,7 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Address Line 1<span class="required">*</span></label
+              >Address Line 1<span class="text-danger">*</span></label
             >
             <input
               type="text"
@@ -368,7 +368,7 @@
             />
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Landmark<span class="required">*</span></label>
+            <label class="label">Landmark<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="Landmark"
@@ -387,7 +387,7 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">City<span class="required">*</span></label>
+            <label class="label">City<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="City"
@@ -406,7 +406,7 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">State<span class="required">*</span></label>
+            <label class="label">State<span class="text-danger">*</span></label>
             <select
               formControlName="state"
               class="form-select mt-2 "
@@ -429,7 +429,7 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">Country<span class="required">*</span></label>
+            <label class="label">Country<span class="text-danger">*</span></label>
             <select formControlName="country" class="form-select mt-2 ">
               <option value="" disabled>Choose Country</option>
               <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
@@ -447,7 +447,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Pin Code<span class="required">*</span></label>
+            <label class="label">Pin Code<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="Pin Code"
@@ -482,7 +482,7 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Address Line 1<span class="required">*</span></label
+              >Address Line 1<span class="text-danger">*</span></label
             >
             <input
               type="text"
@@ -512,7 +512,7 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">Landmark<span class="required">*</span></label>
+            <label class="label">Landmark<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="Landmark"
@@ -531,7 +531,7 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">City<span class="required">*</span></label>
+            <label class="label">City<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="City"
@@ -549,7 +549,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">State<span class="required">*</span></label>
+            <label class="label">State<span class="text-danger">*</span></label>
             <select
               formControlName="state"
               class="form-select mt-2"
@@ -572,7 +572,7 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">Country<span class="required">*</span></label>
+            <label class="label">Country<span class="text-danger">*</span></label>
             <select formControlName="country" class="form-select mt-2 ">
               <option value="" disabled>Choose Country</option>
               <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
@@ -590,7 +590,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Pin Code<span class="required">*</span></label>
+            <label class="label">Pin Code<span class="text-danger">*</span></label>
             <input
               type="text"
               placeholder="Pin Code"
@@ -619,7 +619,7 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Aadhar Number<span class="required">*</span></label
+              >Aadhar Number<span class="text-danger">*</span></label
             >
             <input
               type="text"
@@ -639,7 +639,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Pan Number<span class="required">*</span></label
+              >Pan Number<span class="text-danger">*</span></label
             >
             <input
               type="text"
@@ -660,7 +660,7 @@
 
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Prospect Image<span class="required">*</span></label
+              >Prospect Image<span class="text-danger">*</span></label
             >
             <input
               type="file"
@@ -681,7 +681,7 @@
 
           <div class="col-12 col-lg-4">
             <label class="label"
-              >Aadhar Image<span class="required">*</span></label
+              >Aadhar Image<span class="text-danger">*</span></label
             >
 
             <input
@@ -703,7 +703,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label class="label"
-              >PAN Image<span class="required">*</span></label
+              >PAN Image<span class="text-danger">*</span></label
             >
 
             <input

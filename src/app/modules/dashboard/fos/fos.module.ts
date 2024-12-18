@@ -14,12 +14,8 @@ import { LeadMasterComponent } from './pages/leadgeneration/lead-master/lead-mas
 import { IndividualComponent } from './pages/leadgeneration/individual/individual.component';
 import { Guarantor1Component } from './pages/leadgeneration/guarantor-1/guarantor-1.component';
 import { Guarantor2Component } from './pages/leadgeneration/guarantor-2/guarantor-2.component';
-import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
-import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 
 import { MatTableModule } from '@angular/material/table';
-
-import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
 import { BmApprovalMasterComponent } from './pages/bm-approval/bm-approval-master/bm-approval-master.component';
 import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-create/bm-approval-create.component';
 import { DocumentCollectionMasterComponent } from './pages/document-collection/document-collection-master/document-collection-master.component';
@@ -45,9 +41,6 @@ import { NonIndividualComponent } from './pages/leadgeneration/non-individual/no
     IndividualComponent,
     Guarantor1Component,
     Guarantor2Component,
-    FvrHirerMasterComponent,
-    FvrGuarantorComponent,
-    FvrVehicleComponent,
     BmApprovalMasterComponent,
     BmApprovalCreateComponent,
     DocumentCollectionMasterComponent,

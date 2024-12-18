@@ -75,5 +75,6 @@ ngAfterViewInit(): void {
 
   clear(){
     this.fvrVehicleLeadForm.reset();
+    this.showTable = false;
   }
 }
