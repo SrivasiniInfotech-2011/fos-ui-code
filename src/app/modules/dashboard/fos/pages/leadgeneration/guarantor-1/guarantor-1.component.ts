@@ -393,7 +393,7 @@ export class Guarantor1Component implements OnInit {
   }
 
   onTabChanged(event: MatTabChangeEvent) {
-    if (this.action['view']) {
+    if (this.action['view'] == "true") {
       switch (event.index) {
         case 0:
           this.router.navigate(['/fos/lead-prospect-detail'], {
@@ -414,47 +414,59 @@ export class Guarantor1Component implements OnInit {
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
+          this.router.navigate(['/fos/lead-non-individual'], {
             queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
             queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
       }
-    } else if (this.action['modify']) {
+    } else if (this.action['view'] == "false") {
       switch (event.index) {
         case 0:
           this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 1:
           this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 2:
           this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { modify: this.action['modify'] },
+          this.router.navigate(['/fos/lead-non-individual'], {
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
@@ -477,11 +489,16 @@ export class Guarantor1Component implements OnInit {
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
+          this.router.navigate(['/fos/lead-non-individual'], {
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
             state: { value: event.index },
           });
@@ -545,18 +562,18 @@ export class Guarantor1Component implements OnInit {
   }
 
   skip() {
-    if (this.action['view']) {
+    if (this.action['view'] == "true") {
       this.router.navigate(['/fos/lead-guarantor-2'], {
         queryParams: { view: this.action['view'] },
-        state: { value: 4 },
+        state: { value: 5 },
       });
-    } else if (this.action['modify']) {
+    } else if (this.action['view'] == "false") {
       this.router.navigate(['/fos/lead-guarantor-2'], {
-        queryParams: { modify: this.action['modify'] },
-        state: { value: 4 },
+        queryParams: { view: this.action['view'] },
+        state: { value: 5 },
       });
     } else {
-      this.router.navigate(['/fos/lead-guarantor-2'], { state: { value: 4 } });
+      this.router.navigate(['/fos/lead-guarantor-2'], { state: { value: 5 } });
     }
   }
 

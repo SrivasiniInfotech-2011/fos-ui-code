@@ -102,10 +102,10 @@ export class ListingPageComponent implements AfterViewInit {
   }
 
   view(leadId: any) {
-    this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { 'view': leadId }, state: { 'value': 0 } })
+    this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { view: true }, state: { value: 0 } })
   }
 
   modify(leadId: any) {
-    this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { 'modify': leadId }, state: { 'value': 0 }  })
+    this.router.navigate(['/fos/lead-prospect-detail'], { queryParams: { view: false }, state: { value: 0 } })
   }
 }

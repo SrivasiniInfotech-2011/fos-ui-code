@@ -80,11 +80,11 @@ export class Guarantor2Component implements OnInit {
     let tabValue = window.history.state?.value;
     this.selectedTab = tabValue;
 
-    if (localStorage.getItem('selectedIndex')) {
-      this.selectedTab = JSON.parse(
-        localStorage.getItem('selectedIndex') || ''
-      );
-    }
+    // if (localStorage.getItem('selectedIndex')) {
+    //   this.selectedTab = JSON.parse(
+    //     localStorage.getItem('selectedIndex') || ''
+    //   );
+    // }
 
     this.leadHeader = JSON.parse(
       localStorage.getItem('leadHeader')!
@@ -180,11 +180,11 @@ export class Guarantor2Component implements OnInit {
       }
 
 
-      this.leadId = leadDetails.header?.leadId!;
+      this.leadId = leadDetails?.header?.leadId!;
       this.setGuarantorDetails(
-        leadDetails.lobId,
-        leadDetails.header!,
-        leadDetails.guarantors![0]!
+        leadDetails?.lobId,
+        leadDetails?.header!,
+        leadDetails?.guarantors![0]!
       );
 
     });
@@ -289,105 +289,105 @@ export class Guarantor2Component implements OnInit {
     this.leadHeader = this.leadHeader;
     this.guarantor2DetailsForm
       .get('guarantorName')!
-      .setValue(guarantor!.guarantorName);
+      .setValue(guarantor?.guarantorName);
 
     this.guarantor2DetailsForm
       .get('relationship')!
-      .setValue(guarantor!.guarantorRelationshipLookupValueId);
+      .setValue(guarantor?.guarantorRelationshipLookupValueId);
 
-    this.guarantor2DetailsForm.get('gender')!.setValue(guarantor!.genderId);
+    this.guarantor2DetailsForm.get('gender')!.setValue(guarantor?.genderId);
 
     this.guarantor2DetailsForm
       .get('dateOfBirth')!
-      .setValue(guarantor!.guaranterDateOfBirth);
+      .setValue(guarantor?.guaranterDateOfBirth);
 
     this.guarantor2DetailsForm
       .get('mobileNumber')!
-      .setValue(guarantor!.mobileNumber);
+      .setValue(guarantor?.mobileNumber);
 
     this.guarantor2DetailsForm
       .get('alternateMobileNumber')!
-      .setValue(guarantor!.alternateMobileNumber);
+      .setValue(guarantor?.alternateMobileNumber);
 
     this.guarantor2DetailsForm
       .get('guarantorAmount')!
-      .setValue(guarantor!.guarantorAmount);
+      .setValue(guarantor?.guarantorAmount);
 
     this.guarantor2CommunicationAddressForm
       .get('addressLine1')!
-      .setValue(guarantor!.communicationAddress?.addressLine1);
+      .setValue(guarantor?.communicationAddress?.addressLine1);
 
     this.guarantor2CommunicationAddressForm
       .get('addressLine2')!
-      .setValue(guarantor!.communicationAddress?.addressLine2);
+      .setValue(guarantor?.communicationAddress?.addressLine2);
 
     this.guarantor2CommunicationAddressForm
       .get('landmark')!
-      .setValue(guarantor!.communicationAddress?.landmark);
+      .setValue(guarantor?.communicationAddress?.landmark);
 
     this.guarantor2CommunicationAddressForm
       .get('city')!
-      .setValue(guarantor!.communicationAddress?.city);
+      .setValue(guarantor?.communicationAddress?.city);
 
     this.guarantor2CommunicationAddressForm
       .get('state')!
-      .setValue(guarantor!.communicationAddress?.stateId);
+      .setValue(guarantor?.communicationAddress?.stateId);
 
     this.guarantor2CommunicationAddressForm
       .get('country')!
-      .setValue(guarantor!.communicationAddress?.countryId);
+      .setValue(guarantor?.communicationAddress?.countryId);
 
     this.guarantor2CommunicationAddressForm
       .get('pincode')!
-      .setValue(guarantor!.communicationAddress?.pincode);
+      .setValue(guarantor?.communicationAddress?.pincode);
 
     this.guarantor2PermanentAddressForm
       .get('addressLine1')!
-      .setValue(guarantor!.permanentAddress?.addressLine1);
+      .setValue(guarantor?.permanentAddress?.addressLine1);
 
     this.guarantor2PermanentAddressForm
       .get('addressLine2')!
-      .setValue(guarantor!.permanentAddress?.addressLine2);
+      .setValue(guarantor?.permanentAddress?.addressLine2);
 
     this.guarantor2PermanentAddressForm
       .get('landmark')!
-      .setValue(guarantor!.permanentAddress?.landmark);
+      .setValue(guarantor?.permanentAddress?.landmark);
 
     this.guarantor2PermanentAddressForm
       .get('city')!
-      .setValue(guarantor!.permanentAddress?.city);
+      .setValue(guarantor?.permanentAddress?.city);
 
     this.guarantor2PermanentAddressForm
       .get('state')!
-      .setValue(guarantor!.permanentAddress?.stateId);
+      .setValue(guarantor?.permanentAddress?.stateId);
 
     this.guarantor2PermanentAddressForm
       .get('country')!
-      .setValue(guarantor!.permanentAddress?.countryId);
+      .setValue(guarantor?.permanentAddress?.countryId);
 
     this.guarantor2PermanentAddressForm
       .get('pincode')!
-      .setValue(guarantor!.permanentAddress?.pincode);
+      .setValue(guarantor?.permanentAddress?.pincode);
 
     this.guarantor2KYCForm
       .get('aadharNumber')!
-      .setValue(guarantor!.permanentAddress?.addressLine1);
+      .setValue(guarantor?.permanentAddress?.addressLine1);
 
-    this.guarantor2KYCForm.get('panNumber')!.setValue(guarantor.panNumber);
+    this.guarantor2KYCForm.get('panNumber')!.setValue(guarantor?.panNumber);
 
     this.guarantor2KYCForm
       .get('guarantorImage')!
-      .setValue(guarantor.guarantorImagePath);
+      .setValue(guarantor?.guarantorImagePath);
 
     this.guarantor2KYCForm
       .get('aadharImage')!
-      .setValue(guarantor.aadharImagePath);
+      .setValue(guarantor?.aadharImagePath);
 
-    this.guarantor2KYCForm.get('panImage')!.setValue(guarantor.panImagePath);
+    this.guarantor2KYCForm.get('panImage')!.setValue(guarantor?.panImagePath);
   }
 
   onTabChanged(event: MatTabChangeEvent) {
-    if (this.action['view']) {
+    if (this.action['view'] == "true") {
       switch (event.index) {
         case 0:
           this.router.navigate(['/fos/lead-prospect-detail'], {
@@ -408,47 +408,59 @@ export class Guarantor2Component implements OnInit {
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
+          this.router.navigate(['/fos/lead-non-individual'], {
             queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
             queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
       }
-    } else if (this.action['modify']) {
+    } else if (this.action['view'] == "false") {
       switch (event.index) {
         case 0:
           this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 1:
           this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 2:
           this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { modify: this.action['modify'] },
+          this.router.navigate(['/fos/lead-non-individual'], {
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { view: this.action['view'] },
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { modify: this.action['modify'] },
+            queryParams: { view: this.action['view'] },
             state: { value: event.index },
           });
           break;
@@ -471,11 +483,16 @@ export class Guarantor2Component implements OnInit {
           });
           break;
         case 3:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
+          this.router.navigate(['/fos/lead-non-individual'], {
             state: { value: event.index },
           });
           break;
         case 4:
+          this.router.navigate(['/fos/lead-guarantor-1'], {
+            state: { value: event.index },
+          });
+          break;
+        case 5:
           this.router.navigate(['/fos/lead-guarantor-2'], {
             state: { value: event.index },
           });
@@ -483,20 +500,19 @@ export class Guarantor2Component implements OnInit {
       }
     }
   }
-
   back() {
     this.location.back();
   }
 
   skip() {
-    if (this.action['view']) {
+    if (this.action['view'] == "true") {
       this.router.navigate(['/fos/lead-prospect-detail'], {
         queryParams: { view: this.action['view'] },
         state: { value: 0 },
       });
-    } else if (this.action['modify']) {
+    } else if (this.action['view'] == "false") {
       this.router.navigate(['/fos/lead-prospect-detail'], {
-        queryParams: { modify: this.action['modify'] },
+        queryParams: { view: this.action['view'] },
         state: { value: 0 },
       });
     } else {
@@ -555,7 +571,7 @@ export class Guarantor2Component implements OnInit {
     );
     this.guarantorTypeLookup = lookup.filter((s) => s.lookupTypeId == 17);
   }
-  
+
   save() {
     this.isSubmitted = true;
     if (

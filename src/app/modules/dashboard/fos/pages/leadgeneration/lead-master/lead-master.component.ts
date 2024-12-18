@@ -214,7 +214,7 @@ export class LeadMasterComponent implements OnInit {
         let lead = response.message as ILead;
         localStorage.setItem('leadDetails', JSON.stringify(lead));
         this.router.navigate(['fos/lead-prospect-detail'], {
-          queryParams: { view: true, value: 1 },
+          queryParams: { view: true }, state: { value: 0 }
         });
       },
       error: (error: any) => {
@@ -234,8 +234,8 @@ export class LeadMasterComponent implements OnInit {
       next: (response: any) => {
         let lead = response.message as ILead;
         localStorage.setItem('leadDetails', JSON.stringify(lead));
-        this.router.navigate(['fos/lead-loan-details'], {
-          queryParams: { view: false },
+        this.router.navigate(['fos/lead-prospect-detail'], {
+          queryParams: { view: false }, state: { value: 0 }
         });
       },
       error: (error: any) => {
