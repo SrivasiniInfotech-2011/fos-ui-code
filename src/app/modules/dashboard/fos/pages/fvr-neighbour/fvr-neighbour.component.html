@@ -1,0 +1,113 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="fvr-neighbour-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item d-flex align-items-center">
+            <mat-icon class="me-2">home</mat-icon>
+            <a href="#" class="text-decoration-none d-flex align-items-center"></a>
+            FVR Neighbour
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="fvr-neighbour-details-box my-3">
+      <form class="fvr-neighbour-details-form" [formGroup]="fvrNeighbourLeadForm">
+        <caption class="d-flex">
+          Lead Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2" formControlName="leadNumber"
+              oninput="this.value = this.value.toUpperCase()" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
+              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Prospect Name</label>
+            <input placeholder="Enter Prospect Name" type="text" class="form-control mt-2"
+              formControlName="prospectName" oninput="this.value = this.value.toUpperCase()" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="fvr-neighbour-details-box my-3">
+      <form class="fvr-neighbour-details-form" [formGroup]="fvrNeighbourDetailsForm">
+        <caption class="d-flex">
+          FVR Neighbour
+        </caption>
+        <div class="row d-flex gy-2">
+
+          <div class="col-12 col-lg-4">
+            <label>Does Hirer Stay Here<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="hirerLocation">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>No Of Years Of Stay<span class="text-danger">*</span></label>
+            <input placeholder="Enter No Of Years Of Stay" type="number" class="form-control mt-2"
+              formControlName="yearsOfStay">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>House Ownership Status<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="ownershipStatus">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Residence Sub Type<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="residenceSubType">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Name Of Neighbour<span class="text-danger">*</span></label>
+            <input placeholder="Enter Name Of Neighbour" type="text" class="form-control mt-2"
+              formControlName="neighbourName">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Neighbour Phone Number<span class="text-danger">*</span></label>
+            <input placeholder="Enter Neighbour Phone Number" type="tel" class="form-control mt-2"
+              formControlName="neighbourNumber">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Neighbour Address<span class="text-danger">*</span></label>
+            <input placeholder="Enter Neighbour Address" type="text" class="form-control mt-2"
+              formControlName="neighbourAddress">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Comments<span class="text-danger">*</span></label>
+            <textarea class="w-100" rows="3" mt-2 placeholder="Enter Comments" formControlName="comment"></textarea>
+          </div>
+
+          <div class="col-12 d-flex flex-column">
+            <label>Neighbour House Photo<span class="text-danger">*</span></label>
+            <mat-icon class="addimage-icon">add_a_photo</mat-icon>
+            <input type="file" class="file-input" formControlName="neighbourHousePhoto">
+          </div>
+
+        </div>
+      </form>
+      <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
+        <button class="option-button d-flex align-items-center">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

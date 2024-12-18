@@ -1,0 +1,194 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="fvr-observation-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item d-flex align-items-center">
+            <mat-icon class="me-2">home</mat-icon>
+            <a href="#" class="text-decoration-none d-flex align-items-center"></a>
+            FVR Observation
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="fvr-observation-details-box my-3">
+      <form class="fvr-observation-details-form" [formGroup]="fvrObservationLeadForm">
+        <caption class="d-flex">
+          Lead Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2" formControlName="leadNumber"
+              oninput="this.value = this.value.toUpperCase()" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
+              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Prospect Name</label>
+            <input placeholder="Enter Prospect Name" type="text" class="form-control mt-2"
+              formControlName="prospectName" oninput="this.value = this.value.toUpperCase()" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="fvr-observation-details-box my-3">
+      <form class="fvr-observation-details-form" [formGroup]="fvrObservationDetailsForm">
+        <caption class="d-flex">
+          FVR Observation
+        </caption>
+        <div class="row d-flex gy-2">
+
+          <div class="col-12 col-lg-4">
+            <label>Accessibility Of House<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="houseAccessibility">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Locality<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="locality">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Type Of House<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="houseType">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Type Of Flooring<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="flooringType">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Type Of Roofing<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="roofingType">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Standard Of Living<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="livingStandard">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Entry Permitted<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="entryPermitted">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Approx Size Of House (IN SQ FT)<span class="text-danger">*</span></label>
+            <input placeholder="Enter Approx Size Of House" type="text" class="form-control mt-2"
+              formControlName="houseSize">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Landmark<span class="text-danger">*</span></label>
+            <input placeholder="Enter Landmark" type="text" class="form-control mt-2"
+              formControlName="landmark">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Recommend<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="recommend">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Earlier Visited<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="earlierVisit">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Photograph Of Political Leaders Noticed<span class="text-danger">*</span></label>
+            <select class="form-select mt-2 mb-1" formControlName="politicalLeaderPhotograph">
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Verifier Name<span class="text-danger">*</span></label>
+            <input placeholder="Enter Verifier Name" type="text" class="form-control mt-2"
+              formControlName="verifierName">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Reason<span class="text-danger">*</span></label>
+            <input placeholder="Enter Reason" type="text" class="form-control mt-2"
+              formControlName="reason">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Verifier Id<span class="text-danger">*</span></label>
+            <input placeholder="Enter Verifier Id" type="text" class="form-control mt-2"
+              formControlName="verifierId">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Time<span class="text-danger">*</span></label>
+            <input placeholder="Enter Time" type="time" class="form-control mt-2"
+              formControlName="time">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Branch Name<span class="text-danger">*</span></label>
+            <input placeholder="Enter Branch Name" type="text" class="form-control mt-2"
+              formControlName="branchName">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Date Of Visit<span class="text-danger">*</span></label>
+            <input type="date" class="form-control mt-2"
+              formControlName="dateOfVisit">
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Asset seen inside the house<span class="text-danger">*</span></label>
+            <input placeholder="Enter Branch Name" type="text" class="form-control mt-2"
+              formControlName="assetInHouse">
+          </div>
+
+          <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+            <label>Hirer House Photo<span class="text-danger">*</span></label>
+            <mat-icon class="addimage-icon">add_a_photo</mat-icon>
+            <input type="file" class="file-input" formControlName="hirerHousePhoto">
+          </div>
+
+        </div>
+      </form>
+      <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
+        <button class="option-button d-flex align-items-center">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

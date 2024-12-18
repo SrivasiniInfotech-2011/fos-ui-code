@@ -14,10 +14,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { LoanDetailsComponent } from './fos/pages/loan-details/loan-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { FvrHirerNeighbourComponent } from './fos/pages/fvr-hirer-neighbour/fvr-hirer-neighbour.component';
+import { FvrNeighbourComponent } from './fos/pages/fvr-neighbour/fvr-neighbour.component';
+import { FvrObservationComponent } from './fos/pages/fvr-observation/fvr-observation.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, FosComponent, AdminComponent, HomeComponent, LoanDetailsComponent],
+  declarations: [DashboardComponent, FosComponent, AdminComponent, HomeComponent, LoanDetailsComponent, FvrHirerNeighbourComponent, FvrNeighbourComponent, FvrObservationComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
