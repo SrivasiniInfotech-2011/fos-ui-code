@@ -7,6 +7,7 @@ import { AuthGuard } from '../../../core/guards/auth.guard';
 import { FvrHirerNeighbourComponent } from './fos/pages/fvr-hirer-neighbour/fvr-hirer-neighbour.component';
 import { FvrNeighbourComponent } from './fos/pages/fvr-neighbour/fvr-neighbour.component';
 import { FvrObservationComponent } from './fos/pages/fvr-observation/fvr-observation.component';
+import { FvrVehicleDetailsComponent } from './fos/pages/fvr-vehicle-details/fvr-vehicle-details.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path:'FVR-observation',
         component:FvrObservationComponent
+      },
+      {
+        path:'FVR-vehicle-detail',
+        component:FvrVehicleDetailsComponent
       },
       {
         path: '',
