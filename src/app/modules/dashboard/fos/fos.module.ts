@@ -28,6 +28,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NonIndividualComponent } from './pages/leadgeneration/non-individual/non-individual.component';
+
 @NgModule({
   declarations: [
     ListingPageComponent,
@@ -47,7 +48,7 @@ import { NonIndividualComponent } from './pages/leadgeneration/non-individual/no
     DisbursementDetailMasterComponent,
     DisbursementDetailCreateComponent,
     NonIndividualComponent,
-  ],
+   ],
   imports: [
     CommonModule,
     FosRoutingModule,

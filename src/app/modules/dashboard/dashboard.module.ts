@@ -22,10 +22,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { FvrHirerNeighbourComponent } from './fos/pages/fvr-hirer-neighbour/fvr-hirer-neighbour.component';
+import { FvrNeighbourComponent } from './fos/pages/fvr-neighbour/fvr-neighbour.component';
+import { FvrObservationComponent } from './fos/pages/fvr-observation/fvr-observation.component';
+import { FvrVehicleDetailsComponent } from './fos/pages/fvr-vehicle-details/fvr-vehicle-details.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, FosComponent, AdminComponent, HomeComponent, LoanDetailsComponent, FvrHirerMasterComponent, FvrGuarantorComponent, FvrVehicleComponent],
+  declarations: [DashboardComponent, FosComponent, AdminComponent, HomeComponent, LoanDetailsComponent, FvrHirerMasterComponent, FvrGuarantorComponent, FvrVehicleComponent, FvrHirerNeighbourComponent, FvrNeighbourComponent, FvrObservationComponent,  FvrVehicleDetailsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

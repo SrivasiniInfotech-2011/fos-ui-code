@@ -7,6 +7,10 @@ import { AuthGuard } from '../../../core/guards/auth.guard';
 import { FvrGuarantorComponent } from './fos/pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
 import { FvrHirerMasterComponent } from './fos/pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
 import { FvrVehicleComponent } from './fos/pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
+import { FvrHirerNeighbourComponent } from './fos/pages/fvr-hirer-neighbour/fvr-hirer-neighbour.component';
+import { FvrNeighbourComponent } from './fos/pages/fvr-neighbour/fvr-neighbour.component';
+import { FvrObservationComponent } from './fos/pages/fvr-observation/fvr-observation.component';
+import { FvrVehicleDetailsComponent } from './fos/pages/fvr-vehicle-details/fvr-vehicle-details.component';
 
 const routes: Routes = [
   {
@@ -45,6 +49,22 @@ const routes: Routes = [
       {
         path: 'FVR-vehicle',
         component: FvrVehicleComponent,
+      },
+      {
+        path:'FVR-hirer-neighbour',
+        component:FvrHirerNeighbourComponent
+      },
+      {
+        path:'FVR-neighbour',
+        component:FvrNeighbourComponent
+      },
+      {
+        path:'FVR-observation',
+        component:FvrObservationComponent
+      },
+      {
+        path:'FVR-vehicle-detail',
+        component:FvrVehicleDetailsComponent
       },
       {
         path: '',
