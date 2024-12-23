@@ -39,7 +39,7 @@ const routes: Routes = [
         // canActivate: [AuthGuard],
       },
       {
-        path: 'FVR-hirer',
+        path: 'fvr-hirer',
         component: FvrHirerMasterComponent,
       },
       {

@@ -5,9 +5,11 @@
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item d-flex align-items-center">
             <mat-icon class="me-2">home</mat-icon>
-            <a href="#" class="text-decoration-none d-flex align-items-center"></a>
-            FVR
-              Hirer
+            <a
+              href="#"
+              class="text-decoration-none d-flex align-items-center"
+            ></a>
+            FVR Hirer
           </li>
         </ol>
       </nav>
@@ -20,7 +22,13 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number<span class="text-danger">*</span></label>
-            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2" formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()"/>
+            <input
+              placeholder="Enter Lead Number"
+              type="text"
+              class="form-control mt-2"
+              formControlName="leadNumber"
+              oninput="this.value = this.value.toUpperCase()"
+            />
 
             <!-- <span class="massage-text"
               *ngIf="(fvrHirerLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrHirerLeadForm.get('leadNumber')?.hasError('required')">Lead
@@ -28,8 +36,13 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number<span class="text-danger">*</span></label>
-            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
-              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()"/>
+            <input
+              placeholder="Enter Vehicle Number"
+              type="text"
+              class="form-control mt-2"
+              formControlName="vehicleNumber"
+              oninput="this.value = this.value.toUpperCase()"
+            />
 
             <!-- <span class="massage-text"
               *ngIf="(fvrHirerLeadForm.get('vehicleNumber')?.touched || isSubmitted) && fvrHirerLeadForm.get('vehicleNumber')?.hasError('required')">Vehicle
@@ -37,56 +50,116 @@
           </div>
         </div>
       </form>
-      <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
-        <button class="option-button d-flex align-items-center" (click)="go()">Go</button>
-        <button class="option-button d-flex align-items-center" (click)="clear()">Clear</button>
+      <div
+        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
+      >
+        <button
+          class="option-button d-flex align-items-center"
+          (click)="fetchFvrDetails()"
+        >
+          Go
+        </button>
+        <button
+          class="option-button d-flex align-items-center"
+          (click)="clear()"
+        >
+          Clear
+        </button>
       </div>
     </div>
     <div class="fvrhirer-details-box my-3">
-      <form class="fvrhirer-details-form" [formGroup]="fvrHirerLeadDetailsForm">
-        <caption class="d-flex">
-          Lead Details
-        </caption>
-        <div class="row d-flex gy-2">
-          <div class="col-12 col-lg-4">
-            <label>Lead Number</label>
-            <input placeholder="Lead Number " type="text" class="form-control mt-2" formControlName="leadNumber"
-              [readonly]="true" />
-          </div>
-          <div class="col-12 col-lg-4">
-            <label>Lead Date</label>
-            <input placeholder="
-              Lead Date" type="date" class="form-control mt-2" formControlName="leadDate" [readonly]="true" />
-          </div>
+      <mat-tab-group>
+        <mat-tab label="Prospect Details">
+          <form
+            class="fvrhirer-details-form"
+            [formGroup]="fvrHirerLeadDetailsForm"
+          >
+            <caption class="d-flex">
+              Lead Details
+            </caption>
+            <div class="row d-flex gy-2">
+              <div class="col-12 col-lg-4">
+                <label>Lead Number</label>
+                <input
+                  placeholder="Lead Number"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="leadNumber"
+                  readonly
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Lead Date</label>
+                <input
+                  placeholder="
+                  Lead Date"
+                  type="date"
+                  class="form-control mt-2"
+                  formControlName="leadDate"
+                  readonly
+                />
+              </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Branch</label>
-            <input placeholder="Branch" type="text" class="form-control mt-2" formControlName="branch" [readonly]="true" />
-          </div>
+              <div class="col-12 col-lg-4">
+                <label>Branch</label>
+                <input
+                  placeholder="Branch"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="branch"
+                  readonly
+                />
+              </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Prospect Name</label>
-            <input placeholder="Prospect Name" type="text" class="form-control mt-2" formControlName="prospectName"
-              [readonly]="true" />
-          </div>
-          <div class="col-12 col-lg-4">
-            <label>Mobile Number </label>
-            <input placeholder=" Mobile Number" type="tel" class="form-control mt-2" formControlName="mobileNumber"
-              [readonly]="true" />
-          </div>
+              <div class="col-12 col-lg-4">
+                <label>Prospect Name</label>
+                <input
+                  placeholder="Prospect Name"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="prospectName"
+                  readonly
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Mobile Number </label>
+                <input
+                  placeholder=" Mobile Number"
+                  type="number"
+                  class="form-control mt-2"
+                  formControlName="mobileNumber"
+                  readonly
+                />
+              </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Vehicle Number </label>
-            <input placeholder="Vehicle Number" type="text" class="form-control mt-2" formControlName="vehicleNumber"
-              [readonly]="true" />
-          </div>
-          <div class="col-12 col-lg-4">
-            <label>Prospect Address </label>
-            <textarea class="w-100" rows="4" mt-2 formControlName="prospectAddress" [readonly]="true"></textarea>
-          </div>
-        </div>
-      </form>
-
+              <div class="col-12 col-lg-4">
+                <label>Vehicle Number </label>
+                <input
+                  placeholder="Vehicle Number"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="vehicleNumber"
+                  readonly
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Prospect Address </label>
+                <textarea
+                  class="w-100"
+                  rows="4"
+                  mt-2
+                  formControlName="prospectAddress"
+                  readonly
+                ></textarea>
+              </div>
+            </div>
+          </form>
+        </mat-tab>
+        <mat-tab label="Fvr Hirer"
+          ><app-fvr-observation></app-fvr-observation
+        ></mat-tab>
+        <mat-tab label="Fvr Neighbour"> </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </div>
