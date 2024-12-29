@@ -93,7 +93,7 @@ export const FOSApiEndPoints = {
   STATES_LOOKUP_API: '/api/Prospects/GetStates',
   EXISTING_PROSPECT_API: '/api/Prospects/GetExistingProspectDetailsForCustomer',
   CREATE_PROSPECT_API: '/api/Prospects/CreateNewProspect',
-  REQUESTS_API: '/my-requests',
+  EXPORT_PROSPECTS: '/api/Prospects/ExportProspectData?fileOutputType={fileOutputType}',
   USER_CONFIG_LOCAL: '/core/config/user-config.json',
   TAB_CONFIG_LOCAL: '/core/config/tab-config.json',
   NAV_MENU_LOCAL: '/core/config/nav-menu.json',

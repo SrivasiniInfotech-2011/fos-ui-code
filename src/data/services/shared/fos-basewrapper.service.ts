@@ -32,8 +32,8 @@ export abstract class FOSBaseWrapperService {
    * @param params Optional HttpParams for the request
    * @returns An observable of type T for the response
    */
-  get<T>(url: string, params?: HttpParams): Observable<any> {
-    return this.http.get<any>(url, { params }).pipe(
+  get<T>(url: string, params?: any): Observable<any> {
+    return this.http.get<any>(url, params).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => {
           return error;
