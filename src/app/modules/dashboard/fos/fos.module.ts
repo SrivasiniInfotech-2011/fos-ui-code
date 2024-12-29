@@ -21,13 +21,21 @@ import { BmApprovalCreateComponent } from './pages/bm-approval/bm-approval-creat
 import { DocumentCollectionMasterComponent } from './pages/document-collection/document-collection-master/document-collection-master.component';
 import { DisbursementDetailMasterComponent } from './pages/disbursement/disbursement-detail-master/disbursement-detail-master.component';
 import { DisbursementDetailCreateComponent } from './pages/disbursement/disbursement-detail-create/disbursement-detail-create.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { NonIndividualComponent } from './pages/leadgeneration/non-individual/non-individual.component';
+import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
+import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
+import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
+import { FvrHirerNeighbourComponent } from './pages/fvr-hirer-neighbour/fvr-hirer-neighbour.component';
+import { FvrNeighbourComponent } from './pages/fvr-neighbour/fvr-neighbour.component';
+import { FvrObservationComponent } from './pages/fvr-observation/fvr-observation.component';
+import { FvrVehicleDetailsComponent } from './pages/fvr-vehicle-details/fvr-vehicle-details.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +56,14 @@ import { NonIndividualComponent } from './pages/leadgeneration/non-individual/no
     DisbursementDetailMasterComponent,
     DisbursementDetailCreateComponent,
     NonIndividualComponent,
-   ],
+    FvrHirerMasterComponent,
+    FvrGuarantorComponent,
+    FvrVehicleComponent,
+    FvrHirerNeighbourComponent,
+    FvrNeighbourComponent,
+    FvrObservationComponent,
+    FvrVehicleDetailsComponent,
+  ],
   imports: [
     CommonModule,
     FosRoutingModule,
@@ -60,6 +75,7 @@ import { NonIndividualComponent } from './pages/leadgeneration/non-individual/no
     MatFormFieldModule,
     MatSortModule,
     MatInputModule,
+    MatCardModule
   ],
 })
 export class FosModule {}

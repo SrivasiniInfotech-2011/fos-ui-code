@@ -83,6 +83,27 @@ export class FOSFvrService {
   }
 
   /**
+   * Method to fetch the Fvr Neighbourhood Lookup.
+   */
+  getFvrNeighbourLookup(companyId: number, userId: number): Observable<any> {
+    let endPoint = this.utilsService.buildApiEndpoint(
+      environment.prospectsApi,
+      FOSApiEndPoints.Fvr.GET_FVR_NEIGHBOUR_LOOKUP.replace(
+        '{companyId}',
+        String(companyId)
+      ).replace('{userId}', String(userId))
+    );
+    if (endPoint.trim()) {
+      //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
+    }
+    return this.fosBaseWrapper.get(endPoint).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  /**
    * Method to fetch the Prospect Lookup.
    */
   getFvrNeighbourHoodDetails(

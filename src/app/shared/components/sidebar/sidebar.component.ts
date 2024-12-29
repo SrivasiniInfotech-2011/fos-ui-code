@@ -40,7 +40,8 @@ export class SidebarComponent implements OnInit {
   }
 
   goToMenuItemDetail(moduleName: any, menuTitle: any) {
-    let menu = menuTitle.replace(/\s/g, "-").toLowerCase();
+    //let menu = menuTitle.replace(/\s/g, "-").toLowerCase();
+    let menu = menuTitle.toLowerCase();
     let module = moduleName.toLowerCase()
     this.router.navigate(['/dashboard', module, menu])
   }

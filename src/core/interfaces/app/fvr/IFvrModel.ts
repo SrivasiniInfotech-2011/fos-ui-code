@@ -67,9 +67,10 @@ export interface IFvrNeighbourHood {
 
 export interface IFvrAssetDetail {
   fieldVerificationId?: number;
+  prospectName?:string;
   taxType?: number;
   taxExpiryDate?: Date;
-  permisStatus?: number;
+  permitStatus?: number;
   permitType?: number;
   permitExpiryDate?: Date;
   insuranceExpiryDate?: Date;
@@ -92,9 +93,11 @@ export interface IFvrAssetDetail {
   visitDate?: Date;
   duplicateKey?: number;
   assetDocuments?: string[];
+  verifierCode:string;
   verifierName?: string;
   verifierId?: number;
   verificationPlace?: string;
+  vehicleRegistrationNumber:string;
 }
 
 export interface IFvrDocument {
@@ -102,4 +105,9 @@ export interface IFvrDocument {
   documentTypeId?: number;
   documentDescription?: string;
   documentPath?: string;
+}
+
+export interface IFvrAsset{
+  fvrAssetDetail:IFvrAssetDetail;
+  fvrDocuments:IFvrDocument[];
 }

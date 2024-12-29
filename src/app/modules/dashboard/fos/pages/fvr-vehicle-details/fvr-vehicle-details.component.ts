@@ -8,10 +8,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FvrVehicleDetailsComponent {
 
-  public fvrVehicleLeadForm: FormGroup;
-    public fvrVehicle1Form: FormGroup;
-    public fvrVehicle2Form: FormGroup;
-    public isSubmitted: boolean = false;
+    public fvrVehicleLeadForm: FormGroup;
+      public fvrVehicle1Form: FormGroup;
+      public fvrVehicle2Form: FormGroup;
+      public isSubmitted: boolean = false;
 
 
     constructor() {

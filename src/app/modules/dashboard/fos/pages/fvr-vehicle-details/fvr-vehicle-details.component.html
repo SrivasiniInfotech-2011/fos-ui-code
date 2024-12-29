@@ -5,7 +5,10 @@
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item d-flex align-items-center">
             <mat-icon class="me-2">home</mat-icon>
-            <a href="#" class="text-decoration-none d-flex align-items-center"></a>
+            <a
+              href="#"
+              class="text-decoration-none d-flex align-items-center"
+            ></a>
             FVR Vehicle
           </li>
         </ol>
@@ -19,18 +22,33 @@
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number</label>
-            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2" formControlName="leadNumber"
-              oninput="this.value = this.value.toUpperCase()" />
+            <input
+              placeholder="Enter Lead Number"
+              type="text"
+              class="form-control mt-2"
+              formControlName="leadNumber"
+              oninput="this.value = this.value.toUpperCase()"
+            />
           </div>
           <div class="col-12 col-lg-4">
             <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
-              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()" />
+            <input
+              placeholder="Enter Vehicle Number"
+              type="text"
+              class="form-control mt-2"
+              formControlName="vehicleNumber"
+              oninput="this.value = this.value.toUpperCase()"
+            />
           </div>
           <div class="col-12 col-lg-4">
             <label>Prospect Name</label>
-            <input placeholder="Enter Prospect Name" type="text" class="form-control mt-2"
-              formControlName="prospectName" oninput="this.value = this.value.toUpperCase()" />
+            <input
+              placeholder="Enter Prospect Name"
+              type="text"
+              class="form-control mt-2"
+              formControlName="prospectName"
+              oninput="this.value = this.value.toUpperCase()"
+            />
           </div>
         </div>
       </form>
@@ -43,36 +61,60 @@
               FVR Vehicle
             </caption>
             <div class="row d-flex gy-2">
-
-              <div class="col-12 col-lg-4 ">
+              <div class="col-12 col-lg-4">
                 <label>Verifier Name<span class="text-danger">*</span></label>
-                <input placeholder="Enter Verifier Name" type="text" class="form-control mt-2"
-                  formControlName="verifierName">
+                <input
+                  placeholder="Enter Verifier Name"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="verifierName"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Verifier Id<span class="text-danger">*</span></label>
-                <input placeholder="Enter Verifier Id" type="text" class="form-control mt-2" formControlName="verifierId">
+                <input
+                  placeholder="Enter Verifier Id"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="verifierId"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Branch Name<span class="text-danger">*</span></label>
-                <input placeholder="Enter Branch Name" type="text" class="form-control mt-2" formControlName="branchName">
+                <input
+                  placeholder="Enter Branch Name"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="branchName"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Date Of Visit<span class="text-danger">*</span></label>
-                <input type="date" class="form-control mt-2" formControlName="dateOfVisit">
+                <input
+                  type="date"
+                  class="form-control mt-2"
+                  formControlName="dateOfVisit"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Time<span class="text-danger">*</span></label>
-                <input type="time" class="form-control mt-2" formControlName="time">
+                <input
+                  type="time"
+                  class="form-control mt-2"
+                  formControlName="time"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Tax Expiry<span class="text-danger">*</span></label>
-                <select class="form-select mt-2 mb-1" formControlName="taxExpiry">
+                <select
+                  class="form-select mt-2 mb-1"
+                  formControlName="taxExpiry"
+                >
                   <option>Option 1</option>
                   <option>Option 2</option>
                 </select>
@@ -80,53 +122,116 @@
 
               <div class="col-12 col-lg-4">
                 <label>Tax Expiry Date<span class="text-danger">*</span></label>
-                <input type="date" class="form-control mt-2" formControlName="taxExpiryDate">
+                <input
+                  type="date"
+                  class="form-control mt-2"
+                  formControlName="taxExpiryDate"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Permit Status<span class="text-danger">*</span></label>
-                <select class="form-select mt-2 mb-1" formControlName="permitStatus">
+                <select
+                  class="form-select mt-2 mb-1"
+                  formControlName="permitStatus"
+                >
                   <option>Option 1</option>
                   <option>Option 2</option>
                 </select>
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Insurance Expiry Date<span class="text-danger">*</span></label>
-                <input type="date" class="form-control mt-2" formControlName="insuranceExpiryDate">
+                <label
+                  >Insurance Expiry Date<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="date"
+                  class="form-control mt-2"
+                  formControlName="insuranceExpiryDate"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Field Executive Comment<span class="text-danger">*</span></label>
-                <input placeholder="Enter Field Executive Comment" type="text" class="form-control mt-2" formControlName="fieldExecutiveComment">
+                <label
+                  >Field Executive Comment<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  placeholder="Enter Field Executive Comment"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="fieldExecutiveComment"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Inspected Value Of Vehicle<span class="text-danger">*</span></label>
-                <input placeholder="Enter Inspected Value Of Vehicle" type="number" class="form-control mt-2" formControlName="inspectedVehicleValue">
+                <label
+                  >Inspected Value Of Vehicle<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  placeholder="Enter Inspected Value Of Vehicle"
+                  type="number"
+                  class="form-control mt-2"
+                  formControlName="inspectedVehicleValue"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Rc Registration Date<span class="text-danger">*</span></label>
-                <input type="date" class="form-control mt-2" formControlName="rcRegistrationDate">
+                <label
+                  >Rc Registration Date<span class="text-danger">*</span></label
+                >
+                <input
+                  type="date"
+                  class="form-control mt-2"
+                  formControlName="rcRegistrationDate"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Makers Classification / Vehicle Description<span class="text-danger">*</span></label>
-                <input placeholder="Enter Makers Classification / Vehicle Description" type="text" class="form-control mt-2" formControlName="vehicleDescription">
+                <label
+                  >Makers Classification / Vehicle Description<span
+                    class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  placeholder="Enter Makers Classification / Vehicle Description"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="vehicleDescription"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Condition Of Front Tyres<span class="text-danger">*</span></label>
-                <select class="form-select mt-2 mb-1" formControlName="frontTyreCondition">
+                <label
+                  >Condition Of Front Tyres<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <select
+                  class="form-select mt-2 mb-1"
+                  formControlName="frontTyreCondition"
+                >
                   <option>Option 1</option>
                   <option>Option 2</option>
                 </select>
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Condition Of Rear Tyres<span class="text-danger">*</span></label>
-                <select class="form-select mt-2 mb-1" formControlName="rearTyreCondition">
+                <label
+                  >Condition Of Rear Tyres<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <select
+                  class="form-select mt-2 mb-1"
+                  formControlName="rearTyreCondition"
+                >
                   <option>Option 1</option>
                   <option>Option 2</option>
                 </select>
@@ -134,66 +239,137 @@
 
               <div class="col-12 col-lg-4">
                 <label>Colour<span class="text-danger">*</span></label>
-                <input placeholder="Enter Colour" type="text" class="form-control mt-2" formControlName="colour">
+                <input
+                  placeholder="Enter Colour"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="colour"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Vehicle Body Condition<span class="text-danger">*</span></label>
-                <select class="form-select mt-2 mb-1" formControlName="vehicleCondition">
+                <label
+                  >Vehicle Body Condition<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <select
+                  class="form-select mt-2 mb-1"
+                  formControlName="vehicleCondition"
+                >
                   <option>Option 1</option>
                   <option>Option 2</option>
                 </select>
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Inspected Place Of Vehicle<span class="text-danger">*</span></label>
-                <input placeholder="Enter Inspected Place Of Vehicle" type="text" class="form-control mt-2" formControlName="inspectedVehiclePlace">
+                <label
+                  >Inspected Place Of Vehicle<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  placeholder="Enter Inspected Place Of Vehicle"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="inspectedVehiclePlace"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Type Of Body<span class="text-danger">*</span></label>
-                <select class="form-select mt-2 mb-1" formControlName="bodyType">
+                <select
+                  class="form-select mt-2 mb-1"
+                  formControlName="bodyType"
+                >
                   <option>Option 1</option>
                   <option>Option 2</option>
                 </select>
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Body Length In Feet<span class="text-danger">*</span></label>
-                <input placeholder="Enter Body Length In Feet" type="text" class="form-control mt-2" formControlName="bodyLength">
+                <label
+                  >Body Length In Feet<span class="text-danger">*</span></label
+                >
+                <input
+                  placeholder="Enter Body Length In Feet"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="bodyLength"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>National Permit Detail/Validity<span class="text-danger">*</span></label>
-                <input placeholder="Enter National Permit Detail/Validity" type="text" class="form-control mt-2" formControlName="nationalPermitValidity">
+                <label
+                  >National Permit Detail/Validity<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  placeholder="Enter National Permit Detail/Validity"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="nationalPermitValidity"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>State Permit Detail/Validity<span class="text-danger">*</span></label>
-                <input placeholder="Enter State Permit Detail/Validity" type="text" class="form-control mt-2" formControlName="statePermitValidity">
+                <label
+                  >State Permit Detail/Validity<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  placeholder="Enter State Permit Detail/Validity"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="statePermitValidity"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Present Owner Of The Vehicle<span class="text-danger">*</span></label>
-                <input placeholder="Enter Present Owner Of The Vehicle" type="text" class="form-control mt-2" formControlName="vehiclePresentOwner">
+                <label
+                  >Present Owner Of The Vehicle<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  placeholder="Enter Present Owner Of The Vehicle"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="vehiclePresentOwner"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Engine Condition<span class="text-danger">*</span></label>
-                <input placeholder="Enter Engine Condition" type="text" class="form-control mt-2" formControlName="engineCondition">
+                <label
+                  >Engine Condition<span class="text-danger">*</span></label
+                >
+                <input
+                  placeholder="Enter Engine Condition"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="engineCondition"
+                />
               </div>
 
               <div class="col-12 col-lg-4">
-                <label>Duplicate Key Verified<span class="text-danger">*</span></label>
-                <select class="form-select mt-2 mb-1" formControlName="verifiedDuplicateKey">
+                <label
+                  >Duplicate Key Verified<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <select
+                  class="form-select mt-2 mb-1"
+                  formControlName="verifiedDuplicateKey"
+                >
                   <option>Option 1</option>
                   <option>Option 2</option>
                 </select>
               </div>
-
             </div>
           </form>
-         </div>
+        </div>
       </mat-tab>
 
       <mat-tab label="FVR VEHICLE 2">
@@ -203,115 +379,217 @@
               FVR Vehicle
             </caption>
             <div class="row d-flex gy-2">
-
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
                 <label>Scan Front<span class="text-danger">*</span></label>
-                 <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanFront">
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanFront"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
                 <label>Scan Back<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanBack">
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanBack"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
                 <label>Scan Inside<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanInside">
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanInside"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
                 <label>Scan Engine<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanEngine">
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanEngine"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
                 <label>Scan Kms<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanKms">
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanKms"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
                 <label>Scan Chassis<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanChassis">
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanChassis"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Scan Front Left Tyre<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanFrontLeftTyre">
+                <label
+                  >Scan Front Left Tyre<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanFrontLeftTyre"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Scan Front Right Tyre<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanFrontRightTyre">
+                <label
+                  >Scan Front Right Tyre<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanFrontRightTyre"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Scan Back Left Tyre<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanBackLeftTyre">
+                <label
+                  >Scan Back Left Tyre<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanBackLeftTyre"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Scan Back Right Tyre<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanBackRightTyre">
+                <label
+                  >Scan Back Right Tyre<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanBackRightTyre"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Scan Left Side Of Vehicle<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanVehicleLeftSide">
+                <label
+                  >Scan Left Side Of Vehicle<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanVehicleLeftSide"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Scan Right Side Of Vehicle<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="scanVehicleRightSide">
+                <label
+                  >Scan Right Side Of Vehicle<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanVehicleRightSide"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Additional Scanner 1<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="additionalScanner1">
+                <label
+                  >Additional Scanner 1<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner1"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Additional Scanner 2<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="additionalScanner2">
+                <label
+                  >Additional Scanner 2<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner2"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Additional Scanner 3<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="additionalScanner3">
+                <label
+                  >Additional Scanner 3<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner3"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Additional Scanner 4<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="additionalScanner4">
+                <label
+                  >Additional Scanner 4<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner4"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Additional Scanner 5<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="additionalScanner5">
+                <label
+                  >Additional Scanner 5<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner5"
+                />
               </div>
 
               <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
-                <label>Chassis Number Pencil Print<span class="text-danger">*</span></label>
-               <img src="/assets/images/add-doc.png" class="addimage-icon">
-                <input type="file" class="file-input" formControlName="chassisNumberPencilPrint">
+                <label
+                  >Chassis Number Pencil Print<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="chassisNumberPencilPrint"
+                />
               </div>
-
             </div>
           </form>
           <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
@@ -320,7 +598,7 @@
             </button>
           </div>
         </div>
-     </mat-tab>
+      </mat-tab>
     </mat-tab-group>
   </div>
 </div>
