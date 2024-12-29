@@ -4,9 +4,6 @@ import { DashboardComponent } from './dashboard.component';
 import { ListingPageComponent } from './fos/pages/listing-page/listing-page.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from '../../../core/guards/auth.guard';
-import { FvrGuarantorComponent } from './fos/pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
-import { FvrHirerMasterComponent } from './fos/pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
-import { FvrVehicleComponent } from './fos/pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
 
 const routes: Routes = [
   {
@@ -33,18 +30,6 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         // canActivate: [AuthGuard],
-      },
-      {
-        path: 'FVR-hirer',
-        component: FvrHirerMasterComponent,
-      },
-      {
-        path: 'FVR-guarantor',
-        component: FvrGuarantorComponent,
-      },
-      {
-        path: 'FVR-vehicle',
-        component: FvrVehicleComponent,
       },
       {
         path: '',

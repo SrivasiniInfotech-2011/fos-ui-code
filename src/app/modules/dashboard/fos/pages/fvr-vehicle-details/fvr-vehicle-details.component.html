@@ -1,6 +1,6 @@
 <div class="content-box pt-2">
   <div class="container">
-    <div class="fvrvehicle-details-box">
+    <div class="fvr-vehicle-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item d-flex align-items-center">
@@ -14,54 +14,8 @@
         </ol>
       </nav>
     </div>
-    <div class="fvrvehicle-details-box my-3">
-      <form class="fvrvehicle-details-form" [formGroup]="fvrVehicleLeadForm">
-        <caption class="d-flex">
-          FVR Vehicle
-        </caption>
-        <div class="row d-flex gy-2">
-          <div class="col-12 col-lg-4">
-            <label>Lead Number</label>
-            <input
-              placeholder="Enter Lead Number"
-              type="text"
-              class="form-control mt-2"
-              formControlName="leadNumber"
-              oninput="this.value = this.value.toUpperCase()"
-            />
-          </div>
-          <div class="col-12 col-lg-4">
-            <label>Vehicle Number</label>
-            <input
-              placeholder="Enter Vehicle Number"
-              type="text"
-              class="form-control mt-2"
-              formControlName="vehicleNumber"
-              oninput="this.value = this.value.toUpperCase()"
-            />
-          </div>
-        </div>
-      </form>
-      <div
-        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
-      >
-        <button
-          class="option-button d-flex align-items-center"
-          (click)="searchVehiclesForLead()"
-        >
-          Go
-        </button>
-        <button
-          class="option-button d-flex align-items-center"
-          (click)="clear()"
-        >
-          Clear
-        </button>
-      </div>
-    </div>
-
     <div class="fvr-vehicle-details-box my-3">
-      <form class="fvr-vehicle-details-form" [formGroup]="fvrVehicleProspectForm">
+      <form class="fvr-vehicle-details-form" [formGroup]="fvrVehicleLeadForm">
         <caption class="d-flex">
           Lead Details
         </caption>
@@ -161,13 +115,8 @@
                   class="form-select mt-2 mb-1"
                   formControlName="taxExpiry"
                 >
-                  <option value="" disabled>Select Tax Expiry</option>
-                  <option
-                    *ngFor="let c of taxTypeLookup"
-                    [value]="c.lookupValueId"
-                  >
-                    {{ c.lookupValueDescription }}
-                  </option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
                 </select>
               </div>
 
@@ -186,13 +135,8 @@
                   class="form-select mt-2 mb-1"
                   formControlName="permitStatus"
                 >
-                  <option value="" disabled>Select Permit Status</option>
-                  <option
-                    *ngFor="let c of permitLookup"
-                    [value]="c.lookupValueId"
-                  >
-                    {{ c.lookupValueDescription }}
-                  </option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
                 </select>
               </div>
 
@@ -273,13 +217,8 @@
                   class="form-select mt-2 mb-1"
                   formControlName="frontTyreCondition"
                 >
-                  <option value="" disabled>Select Tyre Condition</option>
-                  <option
-                    *ngFor="let c of tyreLookup"
-                    [value]="c.lookupValueId"
-                  >
-                    {{ c.lookupValueDescription }}
-                  </option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
                 </select>
               </div>
 
@@ -293,13 +232,8 @@
                   class="form-select mt-2 mb-1"
                   formControlName="rearTyreCondition"
                 >
-                  <option value="" disabled>Select Tyre Condition</option>
-                  <option
-                    *ngFor="let c of tyreLookup"
-                    [value]="c.lookupValueId"
-                  >
-                    {{ c.lookupValueDescription }}
-                  </option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
                 </select>
               </div>
 
@@ -323,13 +257,8 @@
                   class="form-select mt-2 mb-1"
                   formControlName="vehicleCondition"
                 >
-                  <option value="" disabled>Select Vehicle Condition</option>
-                  <option
-                    *ngFor="let c of bodyLookup"
-                    [value]="c.lookupValueId"
-                  >
-                    {{ c.lookupValueDescription }}
-                  </option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
                 </select>
               </div>
 
@@ -353,13 +282,8 @@
                   class="form-select mt-2 mb-1"
                   formControlName="bodyType"
                 >
-                  <option value="" disabled>Select Body Type</option>
-                  <option
-                    *ngFor="let c of bodyTypeLookup"
-                    [value]="c.lookupValueId"
-                  >
-                    {{ c.lookupValueDescription }}
-                  </option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
                 </select>
               </div>
 
@@ -439,13 +363,8 @@
                   class="form-select mt-2 mb-1"
                   formControlName="verifiedDuplicateKey"
                 >
-                  <option value="" disabled>Select Duplicate Key</option>
-                  <option
-                    *ngFor="let c of defaultLookup"
-                    [value]="c.lookupValueId"
-                  >
-                    {{ c.lookupValueDescription }}
-                  </option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
                 </select>
               </div>
             </div>
@@ -459,20 +378,225 @@
             <caption class="d-flex">
               FVR Vehicle
             </caption>
-            <div class="container-vehicle responsive-grid">
-              <mat-card *ngFor="let card of vehicleImages" (click)="openMaximizeWindow(card)">
-                <mat-card-header>
-                  <mat-card-title>{{ card.documentDescription }}</mat-card-title>
-                </mat-card-header>
-                <br />
-                <img mat-card-image [src]="card.documentPath" />
-                <!-- <mat-card-content>
-                  <br />
-                  <p>{{ card.documentDescription }}</p>
-                </mat-card-content> -->
-              </mat-card>
+            <div class="row d-flex gy-2">
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Scan Front<span class="text-danger">*</span></label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanFront"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Scan Back<span class="text-danger">*</span></label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanBack"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Scan Inside<span class="text-danger">*</span></label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanInside"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Scan Engine<span class="text-danger">*</span></label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanEngine"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Scan Kms<span class="text-danger">*</span></label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanKms"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Scan Chassis<span class="text-danger">*</span></label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanChassis"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Scan Front Left Tyre<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanFrontLeftTyre"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Scan Front Right Tyre<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanFrontRightTyre"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Scan Back Left Tyre<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanBackLeftTyre"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Scan Back Right Tyre<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanBackRightTyre"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Scan Left Side Of Vehicle<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanVehicleLeftSide"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Scan Right Side Of Vehicle<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="scanVehicleRightSide"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Additional Scanner 1<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner1"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Additional Scanner 2<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner2"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Additional Scanner 3<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner3"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Additional Scanner 4<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner4"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Additional Scanner 5<span class="text-danger">*</span></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="additionalScanner5"
+                />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label
+                  >Chassis Number Pencil Print<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input
+                  type="file"
+                  class="file-input"
+                  formControlName="chassisNumberPencilPrint"
+                />
+              </div>
             </div>
           </form>
+          <div class="d-flex align-items-center flex-wrap gap-3 pt-4">
+            <button class="option-button d-flex align-items-center">
+              Cancel
+            </button>
+          </div>
         </div>
       </mat-tab>
     </mat-tab-group>

@@ -194,7 +194,7 @@ export class ProspectDetailsComponent implements OnInit {
     this.permanantAddressForm.get('landmark')!.setValue(data!.landmark);
     this.permanantAddressForm.get('city')!.setValue(data!.city);
     this.permanantAddressForm.get('state')!.setValue(data!.stateId);
-    this.permanantAddressForm.get('country')!.setValue(+data!.countryId);
+    this.permanantAddressForm.get('country')!.setValue(data!.countryId);
   }
 
   aadharOrPanRequired(control: AbstractControl): ValidationErrors | null {

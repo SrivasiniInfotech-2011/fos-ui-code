@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal-component';
+import { CarouselHostComponent } from './components/carousel/carousel.host.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ModalComponent } from './components/modal/modal-component';
     SidebarComponent,
     LoaderComponent,
     ModalComponent,
+    CarouselHostComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { ModalComponent } from './components/modal/modal-component';
     MatProgressSpinnerModule,
     MatMenuModule,
     MatDialogModule,
+    CarouselHostComponent
   ],
 })
 export class SharedModule {}

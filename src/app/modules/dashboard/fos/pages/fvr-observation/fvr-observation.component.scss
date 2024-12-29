@@ -10,8 +10,17 @@
   height: 100%;
   background-color: var(--background-color);
   margin-top: 80px;
-  z-index: 0;
-  position: relative;
+
+
+  .tab-box {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      padding: 10px;
+  }
 
   .option-button {
       font-size: 14px;
@@ -23,7 +32,7 @@
       padding: 5px 10px;
   }
 
-  .fvrhirer-details-box {
+  .fvr-observation-details-box {
       border: 1px solid var(--border-color);
       border-radius: 5px;
       padding: 10px;
@@ -33,7 +42,7 @@
       }
       }
 
-      .fvrhirer-details-form {
+      .fvr-observation-details-form {
           caption {
               font-size: 20px;
               color: var(--text-bold-color);
@@ -41,6 +50,18 @@
               line-height: 28px;
               font-weight: 600;
           }
+
+          .addimage-icon {
+            font-size: 100px;
+            width: 100px;
+            height: 100px;
+            color:var(--text-color);
+        }
+        .file-input{
+                background-color: initial;
+                border: none;
+                color: transparent;
+        }
 
           label,
           input {
@@ -89,95 +110,15 @@
 
       }
   }
-
-  .container-box {
-    width: 100%;
-    height: 100%;
-    background-color: var(--background-color);
-
-    .fvr-hirer-tabs-details-box {
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      padding: 10px;
-
-      .breadcrumb {
-        li {
-          color: var(--text-color);
-        }
-      }
-
-      .fvr-hirer-tabs-details-form {
-        caption {
-          font-size: 20px;
-          color: var(--text-bold-color);
-          padding-top: 0;
-          line-height: 28px;
-          font-weight: 600;
-        }
-
-        label,
-        input {
-          font-size: 14px;
-          line-height: 18px;
-          font-weight: 400;
-          color: var(--text-color);
-
-          &:focus {
-            box-shadow: unset;
-          }
-        }
-
-        input, textarea {
-          border: 1px solid var(--input-border);
-          background-color: var(--input-background);
-          border-radius: 5px;
-          color: var(--text-dark);
-        }
-
-        .addimage-icon {
-          font-size: 100px;
-          width: 100px;
-          height: 100px;
-          color: var(--text-color);
-        }
-
-        .file-input {
-          background-color: initial;
-          border: none;
-          color: transparent;
-        }
-
-        .massage-text {
-          color: #f7811e;
-          font-size: 12px;
-          line-height: 18px;
-          font-weight: 400;
-          margin-bottom: 15px;
-          display: inline-block;
-        }
-
-        textarea {
-          border-radius: 5px;
-          font-size: 14px;
-          line-height: 18px;
-          font-weight: 400;
-          color: #173662;
-        }
-
-      }
-    }
-  }
 }
-
-
 
 @media only screen and (max-width: 992px) {
   .content-box {
       margin-left: 0;
       width: 100%;
 
-      .fvrhirer-table-box {
-          .serach-box {
+      .fvr-observation-table-box {
+          .search-box {
               width: 100%;
           }
       }

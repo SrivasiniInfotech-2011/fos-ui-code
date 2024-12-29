@@ -23,9 +23,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
-
 @NgModule({
-  declarations: [DashboardComponent, FosComponent, AdminComponent, HomeComponent, LoanDetailsComponent, FvrHirerMasterComponent, FvrGuarantorComponent, FvrVehicleComponent],
+  declarations: [
+    DashboardComponent,
+    FosComponent,
+    AdminComponent,
+    HomeComponent,
+    LoanDetailsComponent,
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -38,8 +43,14 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatFormFieldModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: FOSRequestInterceptor, multi: true }]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FOSRequestInterceptor,
+      multi: true,
+    },
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

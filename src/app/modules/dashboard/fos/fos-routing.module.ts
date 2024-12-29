@@ -17,6 +17,13 @@ import { ListingPageComponent } from './pages/listing-page/listing-page.componen
 import { ProspectDetailsComponent } from './pages/prospect-details/prospect-details.component';
 import { ViewloanDetailsComponent } from './pages/viewloan-details/viewloan-details.component';
 import { NonIndividualComponent } from './pages/leadgeneration/non-individual/non-individual.component';
+import { FvrHirerMasterComponent } from './pages/fvr-hirer/fvr-hirer-master/fvr-hirer-master.component';
+import { FvrGuarantorComponent } from './pages/fvr-guarantor/fvr-guarantor/fvr-guarantor.component';
+import { FvrVehicleComponent } from './pages/fvr-vehicle/fvr-vehicle/fvr-vehicle.component';
+import { FvrHirerNeighbourComponent } from './pages/fvr-hirer-neighbour/fvr-hirer-neighbour.component';
+import { FvrNeighbourComponent } from './pages/fvr-neighbour/fvr-neighbour.component';
+import { FvrObservationComponent } from './pages/fvr-observation/fvr-observation.component';
+import { FvrVehicleDetailsComponent } from './pages/fvr-vehicle-details/fvr-vehicle-details.component';
 
 const routes: Routes = [
   {
@@ -78,7 +85,35 @@ const routes: Routes = [
       {
         path:'document-collection',
         component:DocumentCollectionMasterComponent,
-      }
+      },
+      {
+        path: 'fvr-hirer',
+        component: FvrHirerMasterComponent,
+      },
+      {
+        path: 'fvr-guarantor',
+        component: FvrGuarantorComponent,
+      },
+      {
+        path: 'fvr-vehicle',
+        component: FvrVehicleComponent,
+      },
+      {
+        path:'FVR-hirer-neighbour',
+        component:FvrHirerNeighbourComponent
+      },
+      {
+        path:'FVR-neighbour',
+        component:FvrNeighbourComponent
+      },
+      {
+        path:'FVR-observation',
+        component:FvrObservationComponent
+      },
+      {
+        path:'FVR-vehicle-detail',
+        component:FvrVehicleDetailsComponent
+      },
     ],
   },
 ];
