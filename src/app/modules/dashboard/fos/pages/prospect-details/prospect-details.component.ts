@@ -19,6 +19,7 @@ import { UtilsService } from '../../../../../../data/services/shared/utils.servi
 import { LoaderService } from '../../../../../../data/services/shared/loader.service';
 import { ToastrService } from 'ngx-toastr';
 import { EncryptionService } from '../../../../../../data/services/shared/encryption.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-prospect-details',
@@ -49,13 +50,14 @@ export class ProspectDetailsComponent implements OnInit {
     private loaderService: LoaderService,
     private toasterService: ToastrService,
     private encryptionService: EncryptionService
-  ) { }
+  ) {}
   ngOnInit(): void {
     if (localStorage.getItem('userDetails')) {
       const encryptedUserData = localStorage.getItem('userDetails');
       if (encryptedUserData) {
         // Decrypt data
-        const decryptedUserData = this.encryptionService.decrypt(encryptedUserData);
+        const decryptedUserData =
+          this.encryptionService.decrypt(encryptedUserData);
         this.loggedInUser = decryptedUserData || '';
       }
     }
@@ -268,7 +270,7 @@ export class ProspectDetailsComponent implements OnInit {
         next(data: any) {
           console.log(data);
         },
-        error(err: any) { },
+        error(err: any) {},
       });
   }
 
@@ -459,5 +461,25 @@ export class ProspectDetailsComponent implements OnInit {
         }
       },
     });
+  }
+
+  exportProspectList(fileOutput: string) {
+    this.loaderService.showLoader();
+    this.prospectService
+      .exportProspects(fileOutput)
+      .subscribe((response) => {
+        this.loaderService.hideLoader();
+        const blob = new Blob([response.body as Blob], {
+          type: response.headers.get('Content-Type') || 'application/octet-stream',
+        });
+
+        let extn=fileOutput=="EXCEL"?"xlsx":"pdf";
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Prospect_List_${this.utilityService.transformDate(String(new Date()),"DD_MM_YYYY")}.${extn}`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
   }
 }

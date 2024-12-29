@@ -47,7 +47,7 @@
           <div class="col-12 col-lg-4">
             <label>Aadhar Number<span class="text-danger">*</span></label>
             <input
-              class="form-control mt-2 "
+              class="form-control mt-2"
               oninput="this.value = this.value.slice(0,12)"
               type="text"
               placeholder="Enter Aadhar Number"
@@ -106,7 +106,23 @@
         <div class="col-auto pt-2 d-flex justify-content-end">
           <button
             class="next-button d-flex align-items-center px-4 rounded"
-            (click)="getCustomerProspect()"
+            (click)="exportProspectList('EXCEL')"
+          >
+            <mat-icon class="d-flex align-items-center" style="font-size: 14px"
+              >arrow_down</mat-icon
+            >Excel
+          </button>
+          <button
+            class="next-button d-flex align-items-center px-4 rounded"
+            (click)="exportProspectList('PDF')"
+          >
+            <mat-icon class="d-flex align-items-center" style="font-size: 14px"
+              >arrow_down</mat-icon
+            >PDF
+          </button>
+          <button
+            class="next-button d-flex align-items-center px-4 rounded"
+            (click)="exportProspectList('PDF')"
           >
             <mat-icon class="d-flex align-items-center" style="font-size: 14px"
               >arrow_forward</mat-icon
@@ -124,7 +140,9 @@
         </caption>
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
-            <label class="label">Branch<span class="text-danger">*</span></label>
+            <label class="label"
+              >Branch<span class="text-danger">*</span></label
+            >
             <input
               type="text"
               placeholder="Enter Branch"
@@ -207,7 +225,7 @@
               type="text"
               placeholder="Enter Prospect Code"
               formControlName="prospectCode"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
           </div>
           <div class="col-12 col-lg-4">
@@ -216,7 +234,7 @@
             >
             <select
               formControlName="prospectType"
-              class="form-select mt-2 "
+              class="form-select mt-2"
               name="prospectType"
             >
               <option
@@ -242,7 +260,7 @@
               type="text"
               placeholder="Enter the Age"
               formControlName="age"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -260,7 +278,7 @@
               type="text"
               placeholder="Alternate Mobile"
               formControlName="alternateMobileNumber"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
           </div>
           <div class="col-12 col-lg-4">
@@ -289,11 +307,13 @@
               type="text"
               placeholder="Website Name"
               formControlName="website"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Gender<span class="text-danger">*</span></label>
+            <label class="label"
+              >Gender<span class="text-danger">*</span></label
+            >
             <select
               formControlName="gender"
               class="form-select mt-2"
@@ -322,7 +342,7 @@
               type="email"
               placeholder="Enter the Email"
               formControlName="email"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
           </div>
         </div>
@@ -345,7 +365,7 @@
               type="text"
               placeholder="Address Line 1"
               formControlName="addressLine1"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -368,7 +388,9 @@
             />
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Landmark<span class="text-danger">*</span></label>
+            <label class="label"
+              >Landmark<span class="text-danger">*</span></label
+            >
             <input
               type="text"
               placeholder="Landmark"
@@ -392,7 +414,7 @@
               type="text"
               placeholder="City"
               formControlName="city"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -409,7 +431,7 @@
             <label class="label">State<span class="text-danger">*</span></label>
             <select
               formControlName="state"
-              class="form-select mt-2 "
+              class="form-select mt-2"
               name="state"
             >
               <option value="" disabled>Choose State</option>
@@ -429,8 +451,10 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">Country<span class="text-danger">*</span></label>
-            <select formControlName="country" class="form-select mt-2 ">
+            <label class="label"
+              >Country<span class="text-danger">*</span></label
+            >
+            <select formControlName="country" class="form-select mt-2">
               <option value="" disabled>Choose Country</option>
               <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
@@ -447,12 +471,14 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Pin Code<span class="text-danger">*</span></label>
+            <label class="label"
+              >Pin Code<span class="text-danger">*</span></label
+            >
             <input
               type="text"
               placeholder="Pin Code"
               formControlName="pincode"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -467,7 +493,7 @@
         </div>
       </form>
       <form [formGroup]="permanantAddressForm" class="prospect-details-form">
-        <div class="row d-flex py-4 ">
+        <div class="row d-flex py-4">
           <div class="col-12 d-flex align-items-center">
             <input
               type="checkbox"
@@ -488,7 +514,7 @@
               type="text"
               placeholder="Address Line 1"
               formControlName="addressLine1"
-              class="form-control mt-2 "
+              class="form-control mt-2"
             />
             <div
               class="massage-text"
@@ -512,7 +538,9 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">Landmark<span class="text-danger">*</span></label>
+            <label class="label"
+              >Landmark<span class="text-danger">*</span></label
+            >
             <input
               type="text"
               placeholder="Landmark"
@@ -572,8 +600,10 @@
           </div>
 
           <div class="col-12 col-lg-4">
-            <label class="label">Country<span class="text-danger">*</span></label>
-            <select formControlName="country" class="form-select mt-2 ">
+            <label class="label"
+              >Country<span class="text-danger">*</span></label
+            >
+            <select formControlName="country" class="form-select mt-2">
               <option value="" disabled>Choose Country</option>
               <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
@@ -590,7 +620,9 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <label class="label">Pin Code<span class="text-danger">*</span></label>
+            <label class="label"
+              >Pin Code<span class="text-danger">*</span></label
+            >
             <input
               type="text"
               placeholder="Pin Code"
@@ -676,7 +708,9 @@
             >
               Prospect Image is required
             </div>
-            <a type="blank" href="{{ prospectImageFilePath }}">PAN Image Link</a>
+            <a type="blank" href="{{ prospectImageFilePath }}"
+              >PAN Image Link</a
+            >
           </div>
 
           <div class="col-12 col-lg-4">
@@ -721,7 +755,9 @@
             >
               PAN Number Imapge is required
             </div>
-            <a type="blank" href="{{ panNumberImageFilePath }}">PAN Image Link</a>
+            <a type="blank" href="{{ panNumberImageFilePath }}"
+              >PAN Image Link</a
+            >
           </div>
         </div>
       </form>
