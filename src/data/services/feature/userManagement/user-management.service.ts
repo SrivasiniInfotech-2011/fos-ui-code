@@ -35,7 +35,7 @@ export class UserManagementService {
    * @param data
    */
 fetchUserLevelLookup(data:IUserLevelLookupRequest): Observable<any>{
-  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.USER_LEVEL_LOOKUP_API);
+  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.Users.USER_LEVEL_LOOKUP_API);
   if(endPoint.trim()){
   }
   return this.fosBaseWrapper
@@ -53,7 +53,7 @@ fetchUserLevelLookup(data:IUserLevelLookupRequest): Observable<any>{
    * @param data
    */
 fetchUserReportingLevelLookup(data:IUserReportingLevelLookupRequest): Observable<any>{
-  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.USER_REPORTING_LEVEL_LOOKUP_API);
+  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.Users.USER_REPORTING_LEVEL_LOOKUP_API);
   if(endPoint.trim()){
   }
   return this.fosBaseWrapper
@@ -71,7 +71,7 @@ fetchUserReportingLevelLookup(data:IUserReportingLevelLookupRequest): Observable
    * @param data
    */
 fetchUserDesignationtLookup(data:IUserDesignationLookupRequest): Observable<any>{
-  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.USER_DESIGNATION_LOOKUP_API);
+  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.Users.USER_DESIGNATION_LOOKUP_API);
   if(endPoint.trim()){
   }
   return this.fosBaseWrapper
@@ -90,7 +90,7 @@ fetchUserDesignationtLookup(data:IUserDesignationLookupRequest): Observable<any>
    * @param data
    */
 fetchExistingUserDetails(request:IExistinghUserRequest): Observable<any>{
-  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.USER_EXISTING_DETAILS_API);
+  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.Users.USER_EXISTING_DETAILS_API);
   if(endPoint.trim()){
   }
   return this.fosBaseWrapper
@@ -107,7 +107,7 @@ fetchExistingUserDetails(request:IExistinghUserRequest): Observable<any>{
    * @param data
    */
 fetchExistingUserDetailss(request:IExistinghUserRequest): Observable<any>{
-  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.USER_EXISTING_DETAILS_API);
+  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.Users.USER_EXISTING_DETAILS_API);
   if(endPoint.trim()){
   }
   return this.fosBaseWrapper
@@ -147,7 +147,7 @@ fetchExistingUserDetailss(request:IExistinghUserRequest): Observable<any>{
    * @param data
    */
 fetchExistingUserDetailsTranlander(request:IExistinghUserRequestTranslander): Observable<any>{
-  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.USER_EXISTING_DETAILS_TRANSLANDER_API);
+  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.Users.USER_EXISTING_DETAILS_TRANSLANDER_API);
   if(endPoint.trim()){
   }
   return this.fosBaseWrapper
@@ -162,7 +162,7 @@ fetchExistingUserDetailsTranlander(request:IExistinghUserRequestTranslander): Ob
 
 
 insertUserDetails(request:IInsertUserDetails): Observable<any>{
-  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.USER_INSERT_API);
+  let endPoint = this.utilsService.buildApiEndpoint(environment.apiBaseUrl,FOSApiEndPoints.Users.USER_INSERT_API);
   if(endPoint.trim()){
   }
   return this.fosBaseWrapper
