@@ -193,6 +193,41 @@ export class FOSFvrService {
     );
   }
 
+  /**
+   * Method to fetch the Prospect Lookup.
+   */
+  getFvrGuarantorDetails(
+    companyId: number,
+    userId: number,
+    leadId: number,
+    personType: number
+  ): Observable<any> {
+    let endPoint = this.utilsService.buildApiEndpoint(
+      environment.prospectsApi,
+      FOSApiEndPoints.Fvr.GET_FVR_GUARANTOR_DETAILS.replace(
+        '{companyId}',
+        String(companyId)
+      )
+        .replace('{userId}', String(userId))
+        .replace('{leadId}', String(leadId))
+        .replace('{personType}', String(personType))
+    );
+    if (endPoint.trim()) {
+      //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
+    }
+    return this.fosBaseWrapper.get(endPoint).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+  /**
+   *
+   * @param companyId Add Fvr Hirer Details
+   * @param leadId: Lead Id.
+   * @param fvrDetail: Fvr Detail object
+   * @returns An integer indicating if the process was successful.
+   */
   addFvrHirerDetail(
     companyId: number,
     leadId: number,

@@ -1,0 +1,14 @@
+@import "../../../../core/assets/themes/mixins.scss";
+
+.background {
+  background: linear-gradient(0deg, #EEEEEE, #EEEEEE), linear-gradient(0deg, #FAFAFA, #FAFAFA);
+}
+
+.access-denied {
+  background: #002855;
+}
+
+.message {
+  color: #FFFFFF;
+  @include font($font-size: 18px)
+}

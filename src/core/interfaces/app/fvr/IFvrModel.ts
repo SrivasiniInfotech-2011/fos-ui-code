@@ -2,7 +2,7 @@ export interface IFvrDetail {
   fvrProspectDetail?: IFvrLeadProspectDetail;
   fvrHirerDetail?: IFVrHirer;
   fvrNeighbourHood?: IFvrNeighbourHood;
-  fvrNeighbourHoodDocuments?: IFvrDocument[];
+  fvrDocuments?: IFvrDocument[];
 }
 
 export interface IFvrLeadProspectDetail {

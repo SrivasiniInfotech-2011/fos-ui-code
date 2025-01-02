@@ -137,6 +137,7 @@ export const FOSApiEndPoints = {
     GET_LEAD_HIRER_DETAILS:'/api/FieldVerification/GetLeadHirerDetails?companyId={companyId}&userId={userId}&mode={mode}&leadNumber={leadNumber}&vehicleNumber={vehicleNumber}',
     POST_FVR_HIRER_DETAILS:'/api/FieldVerification/AddFvrHirerDetail?companyId={companyId}&leadId={leadId}',
     POST_FVR_ASSET_DETAILS:'/api/FieldVerification/AddFvrAssetDetail?companyId={companyId}&userId={userId}&leadId={leadId}',
+    GET_FVR_GUARANTOR_DETAILS:'/api/FieldVerification/GetFvrGuarantorDetails?companyId={companyId}&userId={userId}&leadId={leadId}&personType={personType}',
   }
 };
 
