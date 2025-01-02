@@ -85,29 +85,36 @@ export const FOSCCApiQueryParams = {
 };
 
 /*
- * Literals for the API end points
- * **/
-export const FOSApiEndPoints = {
-  PROSPECT_LOOKUP_API: '/api/Prospects/GetProspectLookup',
-  BRANCH_LOOKUP_API: '/api/Prospects/GetBranchLocations',
-  STATES_LOOKUP_API: '/api/Prospects/GetStates',
-  EXISTING_PROSPECT_API: '/api/Prospects/GetExistingProspectDetailsForCustomer',
-  CREATE_PROSPECT_API: '/api/Prospects/CreateNewProspect',
+* Literals for the API end points
+* **/
+export const FOSApiEndPoints ={
+  PROSPECT_LOOKUP_API : "/api/Prospects/GetProspectLookup",
+  BRANCH_LOOKUP_API:"/api/Prospects/GetBranchLocations",
+  STATES_LOOKUP_API:"/api/Prospects/GetStates",
+  EXISTING_PROSPECT_API:"/api/Prospects/GetExistingProspectDetailsForCustomer",
+  CREATE_PROSPECT_API:"/api/Prospects/CreateNewProspect",
+  REQUESTS_API : "/my-requests",
+  USER_CONFIG_LOCAL:"/core/config/user-config.json",
+  TAB_CONFIG_LOCAL:"/core/config/tab-config.json",
+  NAV_MENU_LOCAL:"/core/config/nav-menu.json",
+  LANGUAGE_LOCAL:"/core/config/language.json",
+  REQUESTERS_API:"/requesters",
+  EXPORT_MY_REQUESTS:"/my-requests/export",
+  USER_SETTINGS_API : "/user-settings",
+  TAB_CONFIG_API:"/tab-config",
+  REQUEST_API:'/requests/',
+  REQUEST_INTERESTED_PARTY_API:'/request/:id/interested-parties',
+  INTERESTED_PARTY_CONFIG_LOCAL:"/core/config/interested-party-config.json",
+  USER_LOGIN_API:"/api/Auth/GetUserByUserNameAndPassword",
+  USER_REFRESH_TOKEN_API:"/api/Auth/RefreshToken",
+  SIDEBAR_API: "/api/Home/GetUserMenus/{userId}",
+  USER_LEVEL_LOOKUP_API:"/api/UserManagement/GetUserlevelLookup",
+  USER_REPORTING_LEVEL_LOOKUP_API:"/api/UserManagement/GetUserreportinglevel",
+  USER_DESIGNATION_LOOKUP_API:"/api/UserManagement/GetUserdesignationlevel",
+  USER_INSERT_API:"/api/UserManagement/UserInsert",
+  USER_EXISTING_DETAILS_API:"/api/UserManagement/GetExistingUserDetails",
+  USER_EXISTING_DETAILS_TRANSLANDER_API:"/api/UserManagement/GetUserTranslander",
   EXPORT_PROSPECTS: '/api/Prospects/ExportProspectData?fileOutputType={fileOutputType}',
-  USER_CONFIG_LOCAL: '/core/config/user-config.json',
-  TAB_CONFIG_LOCAL: '/core/config/tab-config.json',
-  NAV_MENU_LOCAL: '/core/config/nav-menu.json',
-  LANGUAGE_LOCAL: '/core/config/language.json',
-  REQUESTERS_API: '/requesters',
-  EXPORT_MY_REQUESTS: '/my-requests/export',
-  USER_SETTINGS_API: '/user-settings',
-  TAB_CONFIG_API: '/tab-config',
-  REQUEST_API: '/requests/',
-  REQUEST_INTERESTED_PARTY_API: '/request/:id/interested-parties',
-  INTERESTED_PARTY_CONFIG_LOCAL: '/core/config/interested-party-config.json',
-  USER_LOGIN_API: '/api/Users/GetUserByUserNameAndPassword',
-  SIDEBAR_API: '/api/Home/GetUserMenus/{userId}',
-  USER_REFRESH_TOKEN_API: '/api/Users/RefreshToken',
   GET_DOCUMENT_CATEGORIES:
     '/api/Prospects/GetDocumentCategories?companyId={companyId}&userId={userId}',
   Leads: {
