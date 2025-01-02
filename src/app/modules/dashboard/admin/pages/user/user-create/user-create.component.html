@@ -3,20 +3,22 @@
     <div class="user-create-box mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item d-flex align-items-center"><mat-icon
-            class="me-2">home</mat-icon><a  [routerLink]="['/admin/user-management']" class="text-decoration-none">User Management</a></li>
-          <li class="breadcrumb-item active" aria-current="page">User Create</li>
+          <li class="breadcrumb-item d-flex align-items-center"><mat-icon class="me-2">home</mat-icon><a
+              [routerLink]="['/admin/user-management']" class="text-decoration-none">User Management</a></li>
+          <!-- <li class="breadcrumb-item active" aria-current="page">User Create</li>    -->
+          <li class="breadcrumb-item active" aria-current="page">{{ breadcrumbText }}</li>
+
         </ol>
       </nav>
     </div>
     <div class="user-create-box my-3">
       <form class="user-create-form" [formGroup]="userManagementForm">
-        <caption class="d-flex">User
+        <caption class="d-flex">User    
           Management</caption>
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>User ID<span class="text-danger">*</span></label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The User ID" formControlName="userId">
+            <input type="text" class="form-control mt-2" placeholder="Enter The User ID" formControlName="userIdCode">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('userId')?.touched || isSubmitted) && userManagementForm.get('userId')?.hasError('required')">
               User ID is
@@ -32,9 +34,17 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Gender<span class="text-danger">*</span></label>
-            <select class="form-select mt-2" formControlName="gender">
-              <option>Male</option>
-              <option>Female</option>
+
+            <select 
+            formControlName="gender"  
+            class="form-select mt-2 mb-1"
+            name="gender">
+          <option value="" disabled>Select Gender</option>
+          <option 
+          *ngFor="let c of genderLookup" 
+          [ngValue]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+          </option>
             </select>
             <span class="massage-text"
               *ngIf="(userManagementForm.get('gender')?.touched || isSubmitted) && userManagementForm.get('gender')?.hasError('required')">Gender
@@ -51,8 +61,12 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Mobile Number<span class="text-danger">*</span></label>
-            <input type="number" class="form-control mt-2" placeholder="Enter The Mobile Number"
-              formControlName="mobileNumber">
+            <input type="text" class="form-control mt-2"
+             placeholder="Enter The Mobile Number"
+              formControlName="mobileNumber" 
+              maxlength="10" 
+              (keypress)="allowOnlyNumbers($event)"
+              (input)="limitMobileNumberLength($event)">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('mobileNumber')?.touched || isSubmitted) && userManagementForm.get('mobileNumber')?.hasError('required')">
               Mobile Number is
@@ -61,7 +75,7 @@
           <div class="col-12 col-lg-4">
             <label>Emergency Contact Number<span class="text-danger">*</span>
             </label>
-            <input type="number" class="form-control mt-2" placeholder="Enter Emergency Contact Number"
+            <input type="text" class="form-control mt-2" placeholder="Enter Emergency Contact Number"
               formControlName="emergencyContactNumber">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('emergencyContactNumber')?.touched || isSubmitted) && userManagementForm.get('emergencyContactNumber')?.hasError('required')">
@@ -86,56 +100,48 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Designation<span class="text-danger">*</span></label>
-            <select class="form-select mt-2" formControlName="designation">
-              <option>ACCOUNTS EXECUTIVE</option>
-              <option>ACCOUNTS MANAGER</option>
-              <option>ASSISTANT BRANCH MANAGER</option>
-              <option>ASSISTANT CLUSTER MANAGER</option>
-              <option>ASSISTANT MANAGER - DISBURSEMENT</option>
-              <option>ASSISTANT MANAGER - OPERATION</option>
-              <option>ASSISTANT MANAGER - RTO</option>
-              <option>BACK OFFICE EXECUTIVE</option>
-              <option>BRANCH CO-ORDINATOR</option>
-              <option>BRANCH MANAGER</option>
-              <option>BRANCH OPERATION EXECUTIVE</option>
-              <option>CLUSTER MANAGER</option>
-              <option>COMPANY SECRETARY</option>
-              <option>EXECUTIVE - ACCOUNTS</option>
-              <option>EXECUTIVE - OPERATION</option>
-              <option>FIELD EXECUTIVE</option>
-              <option>FINANCE ACCOUNTS</option>
-              <option>LEGAL MANAGER</option>
-              <option>MANAGER - CREDIT</option>
-              <option>MANAGER - DISBURSEMENT</option>
-              <option>MANAGER - IT</option>
+            <select formControlName="designation" class="form-select mt-2 " name="designation">
+              <option *ngFor="let c of setUserDesignationLevel" [ngValue]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
+
+
             <span class="massage-text"
               *ngIf="(userManagementForm.get('designation')?.touched || isSubmitted) && userManagementForm.get('designation')?.hasError('required')">Designation
               is required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>User Level<span class="text-danger">*</span></label>
-            <select class="form-select mt-2" formControlName="userLevel">
-              <option>Manager</option>
-              <option>Officer level</option>
-              <option>Staff level</option>
-              <option>System Admin</option>
-              <option>Top Management</option>
+            <select formControlName="userLevel" class="form-select mt-2 " name="userLevel">
+              <option value="" disabled>Select User Level</option>
+              <option *ngFor="let c of setUserLevel" [ngValue]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
             <span class="massage-text"
               *ngIf="(userManagementForm.get('userLevel')?.touched || isSubmitted) && userManagementForm.get('userLevel')?.hasError('required')">User
               Level is
               required</span>
           </div>
+
+
           <div class="col-12 col-lg-4">
             <label>Reporting - Next Level<span class="text-danger">*</span></label>
-            <input type="password" class="form-control mt-2" placeholder="--Select--"
-              formControlName="reportingNextLevel">
+            <select formControlName="reportingNextLevel" class="form-select mt-2 "
+            >
+              <!-- (change)="onReportingLevelChange($event)" -->
+              
+              <option value="" disabled>Select Reporting Level</option>
+              <option *ngFor="let c of setUserReportingLevel" [ngValue]="c.userID">
+                {{ c.userName }}
+              </option>
+            </select>
           </div>
           <div class="col-12 col-lg-4">
             <label>User Group</label>
             <select class="form-select mt-2" formControlName="userGroup">
-              <option>Admin</option>
+              <option value="1">Admin</option>
             </select>
           </div>
           <div class="col-12 col-lg-4">
@@ -150,18 +156,18 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Date of birth<span class="text-danger">*</span></label>
-            <input type="date" class="form-control mt-2" formControlName="dateOfBirth">
+            <input type="date" class="form-control mt-2" formControlName="dateOfBirth" (change)="calculateAge()">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('dateOfBirth')?.touched || isSubmitted) && userManagementForm.get('dateOfBirth')?.hasError('required')">Date
-              of birth is
-              required</span>
+              of birth is required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Age</label>
-            <input type="text" class="form-control mt-2" placeholder="age" formControlName="age">
+            <input type="text" class="form-control mt-2" placeholder="age" formControlName="age" [readonly]="true">
           </div>
-        </div>
 
+         
+        </div>
       </form>
     </div>
     <div class="user-create-box my-2">
@@ -189,40 +195,79 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Marital Status<span class="text-danger">*</span></label>
-            <select class="form-select mt-2" formControlName="maritalStatus">
-              <option>Single</option>
-              <option>Married</option>
-              <option>Separated</option>
-              <option>Divorced</option>
+            <select formControlName="maritalStatus" class="form-select mt-2 ">
+              <option value="" disable>--Select--</option>
+              <option *ngFor="let c of maritalStatusLookup" [ngValue]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
             </select>
+
             <span class="massage-text"
               *ngIf="(userPersonalDetails.get('maritalStatus')?.touched || isSubmitted) && userPersonalDetails.get('maritalStatus')?.hasError('required')">Marital
               Status is required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Aadhar Number</label>
-            <input type="password" class="form-control mt-2" placeholder="Enter Aadhar Number"
-              formControlName="aadharNumber">
+            <input type="text" class="form-control mt-2" placeholder="Enter Aadhar Number"
+              formControlName="aadharNumber" maxlength="12" (keypress)="allowOnlyNumbers($event)">
           </div>
           <div class="col-12 col-lg-4">
             <label>PAN Number</label>
-            <input type="number" class="form-control mt-2" placeholder="Enter PAN Number" formControlName="panNumber">
+            <input type="text" 
+            class="form-control mt-2" 
+            placeholder="Enter PAN Number" 
+            formControlName="panNumber"
+            maxlength="10"
+            >
           </div>
-
+          <div class="col-12 col-lg-4 "  >
+            <label>Spouse Name</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter spouse name" formControlName="spouseName">
+          </div>
+          <!-- <div class="col-12 col-lg-4 "  *ngIf="userPersonalDetails.get('maritalStatus')?.value === 'Married'">
+            <label>Spouse Name</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter spouse name" formControlName="spouseName">
+          </div> -->  
         </div>
-
+        <div class="row mb-4 gy-2">
+          <div class="row mb-4 gy-2">
+            <div class="col-12 d-flex flex-column">
+              <label>User Photo</label>
+              <div class="image-container">
+                <!-- Replace mat-icon with the selected image if present -->
+                <mat-icon 
+                  *ngIf="!selectedImage" 
+                  class="addimage-icon">
+                  add_a_photo
+                </mat-icon>
+                <img 
+                  *ngIf="selectedImage" 
+                  [src]="selectedImage" 
+                  alt="Selected User Photo" 
+                  class="preview-image">
+              </div>
+              <input 
+                type="file"            
+                class="file-input" 
+                (change)="onImageSelected($event)" 
+               >
+            </div>
+          </div>
+          
+          <!-- <div class="row mb-4 gy-2">
+            <div class="col-12 d-flex flex-column">
+              <label>User Photo</label>
+              <mat-icon class="addimage-icon">add_a_photo</mat-icon>
+              <input type="file" class="file-input" (change)="onImageSelected($event)" formControlName="userPhoto">
+              <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected User Photo" class="preview-image">
+            </div>
+          </div> -->
+          <div class="button-box col-12 d-flex flex-row justify-content-end gap-1 flex-wrap">
+            <button class="save-button col-12 col-lg-1 px-4" (click)="insertUser()">Save</button>
+            <button class="back-button px-4 col-12 col-lg-1" (click)="back()">Back</button>
+          </div>
+        </div>
       </form>
-    </div>
-    <div class="row mb-4 gy-2">
-      <div class="col-12 d-flex flex-column">
-        <label>User Photo</label>
-       <img src="/assets/images/add-doc.png" class="addimage-icon">
-        <input type="file" class="file-input">
-      </div>
-      <div class="button-box col-12 d-flex flex-row justify-content-end gap-1 flex-wrap">
-        <button class="save-button col-12 col-lg-1 px-4" (click)="save()">Save</button>
-        <button class="back-button px-4 col-12 col-lg-1" (click)="back()">Back</button>
-      </div>
     </div>
   </div>
 </div>

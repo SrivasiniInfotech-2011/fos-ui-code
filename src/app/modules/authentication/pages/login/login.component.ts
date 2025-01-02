@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isSubmitted = true;
+    this.router.navigate(['/dashboard']);
     if (this.loginForm.valid) {
       this.isSubmitted = false;
       this.isLoading = true;
