@@ -93,7 +93,6 @@ export const FOSApiEndPoints = {
   STATES_LOOKUP_API: '/api/Prospects/GetStates',
   EXISTING_PROSPECT_API: '/api/Prospects/GetExistingProspectDetailsForCustomer',
   CREATE_PROSPECT_API: '/api/Prospects/CreateNewProspect',
-  EXPORT_PROSPECTS: '/api/Prospects/ExportProspectData?fileOutputType={fileOutputType}',
   USER_CONFIG_LOCAL: '/core/config/user-config.json',
   TAB_CONFIG_LOCAL: '/core/config/tab-config.json',
   NAV_MENU_LOCAL: '/core/config/nav-menu.json',
@@ -105,11 +104,23 @@ export const FOSApiEndPoints = {
   REQUEST_API: '/requests/',
   REQUEST_INTERESTED_PARTY_API: '/request/:id/interested-parties',
   INTERESTED_PARTY_CONFIG_LOCAL: '/core/config/interested-party-config.json',
-  USER_LOGIN_API: '/api/Users/GetUserByUserNameAndPassword',
+  USER_LOGIN_API: '/api/Auth/GetUserByUserNameAndPassword',
+  USER_REFRESH_TOKEN_API: '/api/Auth/RefreshToken',
   SIDEBAR_API: '/api/Home/GetUserMenus/{userId}',
-  USER_REFRESH_TOKEN_API: '/api/Users/RefreshToken',
+  EXPORT_PROSPECTS:
+    '/api/Prospects/ExportProspectData?fileOutputType={fileOutputType}',
   GET_DOCUMENT_CATEGORIES:
     '/api/Prospects/GetDocumentCategories?companyId={companyId}&userId={userId}',
+  Users: {
+    USER_LEVEL_LOOKUP_API: '/api/UserManagement/GetUserlevelLookup',
+    USER_REPORTING_LEVEL_LOOKUP_API:
+      '/api/UserManagement/GetUserreportinglevel',
+    USER_DESIGNATION_LOOKUP_API: '/api/UserManagement/GetUserdesignationlevel',
+    USER_INSERT_API: '/api/UserManagement/UserInsert',
+    USER_EXISTING_DETAILS_API: '/api/UserManagement/GetExistingUserDetails',
+    USER_EXISTING_DETAILS_TRANSLANDER_API:
+      '/api/UserManagement/GetUserTranslander',
+  },
   Leads: {
     GET_ASSETLOOKUP: '/api/Leads/GetAssetLookup',
     GET_LEADDETAILS: '/api/Leads/GetLeadDetails',
@@ -128,16 +139,24 @@ export const FOSApiEndPoints = {
     GET_FIELDEXECUTIVES:
       '/api/Leads/GetFieldExecutives?companyId={companyId}&userId={userId}&prefix=FOS',
   },
-  Fvr:{
-    GET_FVR_HIRER_LOOKUP:'/api/FieldVerification/GetFvrHirerLookup?companyId={companyId}&userId={userId}',
-    GET_FVR_ASSET_LOOKUP:'/api/FieldVerification/GetFvrAssetLookup?companyId={companyId}&userId={userId}',
-    GET_FVR_NEIGHBOUR_LOOKUP:'/api/FieldVerification/GetFvrNeighbourLookup?companyId={companyId}&userId={userId}',
-    GET_FVR_NEIGHBOURHOOD_DETAILS:'/api/FieldVerification/GetFvrNeighbourHoodDetails?companyId={companyId}&userId={userId}&leadId={leadId}&fieldVerificationId={fieldVerificationId}',
-    GET_LEAD_ASSET_DETAILS:'/api/FieldVerification/GetLeadAssetDetails?companyId={companyId}&userId={userId}&leadNumber={leadNumber}&vehicleNumber={vehicleNumber}',
-    GET_LEAD_HIRER_DETAILS:'/api/FieldVerification/GetLeadHirerDetails?companyId={companyId}&userId={userId}&mode={mode}&leadNumber={leadNumber}&vehicleNumber={vehicleNumber}',
-    POST_FVR_HIRER_DETAILS:'/api/FieldVerification/AddFvrHirerDetail?companyId={companyId}&leadId={leadId}',
-    POST_FVR_ASSET_DETAILS:'/api/FieldVerification/AddFvrAssetDetail?companyId={companyId}&userId={userId}&leadId={leadId}',
-  }
+  Fvr: {
+    GET_FVR_HIRER_LOOKUP:
+      '/api/FieldVerification/GetFvrHirerLookup?companyId={companyId}&userId={userId}',
+    GET_FVR_ASSET_LOOKUP:
+      '/api/FieldVerification/GetFvrAssetLookup?companyId={companyId}&userId={userId}',
+    GET_FVR_NEIGHBOUR_LOOKUP:
+      '/api/FieldVerification/GetFvrNeighbourLookup?companyId={companyId}&userId={userId}',
+    GET_FVR_NEIGHBOURHOOD_DETAILS:
+      '/api/FieldVerification/GetFvrNeighbourHoodDetails?companyId={companyId}&userId={userId}&leadId={leadId}&fieldVerificationId={fieldVerificationId}',
+    GET_LEAD_ASSET_DETAILS:
+      '/api/FieldVerification/GetLeadAssetDetails?companyId={companyId}&userId={userId}&leadNumber={leadNumber}&vehicleNumber={vehicleNumber}',
+    GET_LEAD_HIRER_DETAILS:
+      '/api/FieldVerification/GetLeadHirerDetails?companyId={companyId}&userId={userId}&mode={mode}&leadNumber={leadNumber}&vehicleNumber={vehicleNumber}',
+    POST_FVR_HIRER_DETAILS:
+      '/api/FieldVerification/AddFvrHirerDetail?companyId={companyId}&leadId={leadId}',
+    POST_FVR_ASSET_DETAILS:
+      '/api/FieldVerification/AddFvrAssetDetail?companyId={companyId}&userId={userId}&leadId={leadId}',
+  },
 };
 
 /**
