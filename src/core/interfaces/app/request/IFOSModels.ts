@@ -212,6 +212,8 @@ export interface IUserReportingLevelLookupRequest {
   userId?: number;
   companyId?: number;
   PrefixText?: string;
+  LOB_ID?:number;
+  location_ID?:number;
 }
 
 export interface IUserDesignationLookupRequest {
