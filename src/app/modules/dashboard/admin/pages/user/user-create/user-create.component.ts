@@ -297,12 +297,16 @@ export class UserCreateComponent implements OnInit {
   getUserReportingLevel() {
     const companyId = this.loggedInUser?.companyId || 1; // Default to 1 if companyId is missing
     const userId = this.loggedInUser?.userId || 1;
+    const lobId =this.loggedInUser?.lobId || 1;
+    const locationId =this.loggedInUser?.locationId || 1;
     this.loaderService.showLoader();
     this.useManagementService
       .fetchUserReportingLevelLookup({
         companyId: companyId,
         userId: userId,
         PrefixText: '',
+        LOB_ID:lobId,
+  location_ID:locationId,
       })
       .subscribe({
         next: (data: any) => {
