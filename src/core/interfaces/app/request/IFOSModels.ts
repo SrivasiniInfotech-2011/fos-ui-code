@@ -89,7 +89,7 @@ export interface IFOSInterestedPartyData {
 /**
  * Interface for Matched Companies
  */
-export interface IFOSMatchedCompanies extends IFOSInterestedPartyData {}
+export interface IFOSMatchedCompanies extends IFOSInterestedPartyData { }
 
 /**
  *
@@ -160,6 +160,43 @@ export interface ICustomerProspectRequest {
   mobileNumber?: string;
   aadharNumber?: string;
   panNumber?: string;
+}
+
+export interface CompanyMasterFetch {
+  companyId: number
+}
+
+export interface CompanyMasterGet {
+  companyId: number,
+  companyCode: string,
+  companyName: string,
+  companyAddress: string,
+  city: string,
+  state: string,
+  country: string,
+  zipCode: number,
+  constitutionalStatusId: number,
+  cdCeoHeadName: string,
+  cdTelephoneNumber: number,
+  cdMobileNumber: number,
+  cdEmailId: string,
+  cdWebsite: string,
+  cdSysAdminUserCode: string,
+  cdSysAdminUserPassword: string,
+  odCommunicationAddress: string,
+  odAddress1: string,
+  odCity: string,
+  odState: string,
+  odCountry: string,
+  odZipCode: number,
+  odDateOfIncorporation: Date,
+  odRegLicNumber: number,
+  odValidityOfRegLicNumber: Date,
+  odIncomeTaxPanNumber: string,
+  currency: string,
+  odRemarks: string,
+  active: number,
+  constitutionalStatus: string
 }
 
 export interface IAddress {
@@ -247,17 +284,17 @@ export interface IExistinghUserRequestData {
   userCode?: string;
   userName?: string;
   genderId?: number;
-  genderName?:string;
+  genderName?: string;
   password?: string;
   doj?: Date;
   mobileNumber?: string;
   emergencycontactNumber?: string;
   designation?: number;
   userLevelID?: number;
-  userLevel?:string;
+  userLevel?: string;
   reportingNextlevel?: number;
-  ReportingGHigherLevel?:string;
-  marutialStatusDiscription?:string;
+  ReportingGHigherLevel?: string;
+  marutialStatusDiscription?: string;
   userGroup?: number;
   emailID?: string;
   dateofbirth?: Date;
@@ -296,7 +333,7 @@ export interface IInsertUserDetails {
   panNumber?: string;
   address?: string;
   userImagepath?: string;
-  userImageContent?:string;
+  userImageContent?: string;
   isActive?: boolean;
   createdBy?: number;
   errorCode?: number;

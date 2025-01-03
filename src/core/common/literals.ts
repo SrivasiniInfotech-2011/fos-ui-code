@@ -107,6 +107,7 @@ export const FOSApiEndPoints = {
   USER_LOGIN_API: '/api/Auth/GetUserByUserNameAndPassword',
   USER_REFRESH_TOKEN_API: '/api/Auth/RefreshToken',
   SIDEBAR_API: '/api/Home/GetUserMenus/{userId}',
+  COMPANY_MASTER_FETCH_API: '/api/Prospects/GetCompanyMasterDetails',
   EXPORT_PROSPECTS:
     '/api/Prospects/ExportProspectData?fileOutputType={fileOutputType}',
   GET_DOCUMENT_CATEGORIES:
