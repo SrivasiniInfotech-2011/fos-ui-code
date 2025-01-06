@@ -21,3 +21,10 @@ export interface IPrimeNgColumnsState {
 export interface IGenericObjectString {
   [type: string]: boolean | string
 }
+
+export interface MenuItem {
+  title: string;
+  url?: string;
+  children?: MenuItem[];
+  menuModule?:string;
+}

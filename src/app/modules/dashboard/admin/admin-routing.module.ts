@@ -24,7 +24,7 @@ const routes: Routes = [
 
     {
       
-        path:'user-create',
+      path:'user-create',
       component:UserCreateComponent
     },
     {

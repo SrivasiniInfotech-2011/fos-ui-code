@@ -203,7 +203,7 @@ export interface IAddress {
   addressLine1: string;
   addressLine2: string;
   landmark: string;
-  city: number;
+  city: string;
   stateId: number;
   countryId: number;
   pincode: string;
