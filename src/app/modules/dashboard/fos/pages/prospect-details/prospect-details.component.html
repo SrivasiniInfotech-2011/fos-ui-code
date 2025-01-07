@@ -406,41 +406,43 @@
 
           <div class="col-12 col-lg-4">
             <label class="label">Prospect Image<span class="text-danger">*</span></label>
-            <input type="file" class="form-control mt-2" formControlName="prospectImage" />
+            <input type="file" class="form-control mt-2" formControlName="prospectImage" #prospectImage
+              (change)="onProspectImageChange($event)" />
             <div class="massage-text" *ngIf="
                 kycDetailForm.controls.prospectImage.touched &&
                 kycDetailForm.controls.prospectImage.errors?.required
               ">
               Prospect Image is required
             </div>
-            <a type="blank" href="{{ prospectImageFilePath }}">PAN Image Link</a>
+            <a [href]="prospectImageFilePath" target="_blank" rel="noopener noreferrer">Image Link</a>
           </div>
 
           <div class="col-12 col-lg-4">
             <label class="label">Aadhar Image<span class="text-danger">*</span></label>
 
-            <input type="file" placeholder="Select Aadhar Image" class="form-control mt-2"
-              formControlName="aadharImage" />
+            <input type="file" placeholder="Select Aadhar Image" class="form-control mt-2" formControlName="aadharImage"
+              #aadharImage (change)="onAadharImageChange($event)" />
             <div class="massage-text" *ngIf="
                 kycDetailForm.controls.aadharImage.touched &&
                 kycDetailForm.controls.aadharImage.errors?.required
               ">
               Aadhar Image is required
             </div>
-            <a type="blank" href="{{ aadharImageFilePath }}">PAN Image Link</a>
+            <a [href]="aadharImageFilePath" target="_blank" rel="noopener noreferrer">Image Link</a>
           </div>
           <div class="col-12 col-lg-4">
             <label class="label">PAN Image<span class="text-danger">*</span></label>
 
             <input type="file" placeholder="Select PAN Number Image" class="form-control mt-2"
-              formControlName="panImage" />
+              formControlName="panImage" #panImage (change)="onPanImageChange($event)" />
             <div class="massage-text" *ngIf="
                 kycDetailForm.controls.panImage.touched &&
                 kycDetailForm.controls.panImage.errors?.required
               ">
               PAN Number Image is required
             </div>
-            <a type="blank" href="{{ panNumberImageFilePath }}">PAN Image Link</a>
+
+            <a [href]="panNumberImageFilePath" target="_blank" rel="noopener noreferrer">Image Link</a>
           </div>
         </div>
       </form>

@@ -40,9 +40,17 @@ export class ProspectDetailsComponent implements OnInit {
   public prospectTypeLookup: IFOSLookup[] = [];
   public customerProspectData: ICustomerProspectData = {};
   public loggedInUser: any = {};
+  public aadharFileName: string = '';
+  public prospectFileName: string = '';
+  public panFileName: string = '';
+  public aadharFileContent: string = '';
+  public prospectFileContent: string = '';
+  public panFileContent: string = '';
+  private allowedExtensions: string[] = ['png', 'jpg', 'jpeg'];
+  public prospectImageFilePath: string = '';
   public aadharImageFilePath: string = '';
   public panNumberImageFilePath: string = '';
-  public prospectImageFilePath: string = '';
+
   constructor(
     private fb: FormBuilder,
     private prospectService: FOSProspectService,
@@ -229,7 +237,8 @@ export class ProspectDetailsComponent implements OnInit {
     this.communicationAddressForm.get('landmark')!.setValue(data!.landmark);
     this.communicationAddressForm.get('city')!.setValue(data!.city);
     this.communicationAddressForm.get('state')!.setValue(data!.stateId);
-    this.communicationAddressForm.get('country')!.setValue(+data!.countryId);
+    this.communicationAddressForm.get('country')!.setValue(data!.countryId);
+    this.communicationAddressForm.get('pincode')!.setValue(data!.pincode);
   }
 
   setPermanentAddressData(data?: IAddress) {
@@ -239,6 +248,7 @@ export class ProspectDetailsComponent implements OnInit {
     this.permanantAddressForm.get('city')!.setValue(data!.city);
     this.permanantAddressForm.get('state')!.setValue(data!.stateId);
     this.permanantAddressForm.get('country')!.setValue(data!.countryId);
+    this.permanantAddressForm.get('pincode')!.setValue(data!.pincode);
   }
 
   copyCommunicationAddress(event: any) {
@@ -291,6 +301,7 @@ export class ProspectDetailsComponent implements OnInit {
       return prospectDetail.dob && prospectDetail.age && prospectDetail.gender;
     }
   }
+
   getProspectLookup() {
     this.loaderService.showLoader();
     this.prospectService.fetchProspectLookup().subscribe({
@@ -435,14 +446,12 @@ export class ProspectDetailsComponent implements OnInit {
                 .get('panNumber')!
                 .setValue(this.customerProspectData.panNumber);
 
-              this.basicDetailForm
-                .get('panNumber')!
-                .setValue(this.customerProspectData.panNumber);
-
               this.aadharImageFilePath =
                 this.customerProspectData.aadharImagePath!;
+
               this.panNumberImageFilePath =
                 this.customerProspectData.panNumberImagePath!;
+
               this.prospectImageFilePath =
                 this.customerProspectData.prospectImagePath!;
 
@@ -450,6 +459,7 @@ export class ProspectDetailsComponent implements OnInit {
                 this.setCommunicationAddressData(
                   this.customerProspectData.communicationAddress
                 );
+
               if (this.customerProspectData.permanentAddress)
                 this.setPermanentAddressData(
                   this.customerProspectData.permanentAddress
@@ -485,14 +495,16 @@ export class ProspectDetailsComponent implements OnInit {
       const prospectData = this.prospectDetailForm.value;
       const communicationAddress = this.communicationAddressForm.value;
       const permanentAddress = this.permanantAddressForm.value;
-
+      let aadharFilePath=this.aadharFileName ?this.aadharFileName:this.aadharImageFilePath;
+      let panFilePath=this.panFileName ?this.panFileName:this.panNumberImageFilePath;
+      let prospectImagePath=this.prospectFileName ?this.prospectFileName:this.prospectImageFilePath;
       var customerProspectRequestData = {
         aadharNumber: kycData.aadharNumber,
         companyId: this.loggedInUser.companyId,
         mobileNumber: prospectData.mobileNumber,
         panNumber: kycData.panNumber,
         prospectId: 0,
-        aadharImagePath: kycData.aadharImage,
+        aadharImagePath: aadharFilePath,
         alternateMobileNumber: prospectData.alternateMobileNumber,
         communicationAddress: {
           addressLine1: communicationAddress.addressLine1,
@@ -508,7 +520,7 @@ export class ProspectDetailsComponent implements OnInit {
         genderName: '',
         locationDescription: '',
         locationId: 0,
-        panNumberImagePath: kycData.panImage,
+        panNumberImagePath: panFilePath,
         permanentAddress: {
           addressLine1: permanentAddress.addressLine1,
           addressLine2: permanentAddress.addressLine2,
@@ -523,10 +535,13 @@ export class ProspectDetailsComponent implements OnInit {
         customerCode: '',
         customerId: 1,
         dateofBirth: prospectData.dob,
-        prospectImagePath: kycData.prospectImage,
+        prospectImagePath:prospectImagePath,
         prospectName: prospectData.prospectName,
         prospectTypeId: prospectData.prospectType,
         website: prospectData.website,
+        aadharImageContent: this.aadharFileContent,
+        panNumberImageContent: this.panFileContent,
+        prospectImageContent: this.prospectFileContent,
       } as ICustomerProspectData;
 
       var request = {
@@ -580,5 +595,92 @@ export class ProspectDetailsComponent implements OnInit {
       a.click();
       window.URL.revokeObjectURL(url);
     });
+  }
+
+  onAadharImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0];
+
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.aadharFileName = '';
+        this.aadharFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.aadharFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.aadharFileName = file.name;
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onPanImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0];
+
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.panFileName = '';
+        this.panFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.panFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.panFileName = file.name;
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onProspectImageChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files?.length) {
+      const file = input.files[0];
+
+      const extension = file.name.split('.').pop()?.toLowerCase();
+
+      // Validate file extension
+      if (extension && !this.allowedExtensions.includes(extension)) {
+        this.prospectFileName = '';
+        this.prospectFileContent = '';
+        this.toasterService.show(
+          'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.prospectFileContent = reader.result.toString().split(',')[1];
+        }
+      };
+      this.prospectFileName = file.name;
+
+      reader.readAsDataURL(file);
+    }
   }
 }

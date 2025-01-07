@@ -230,6 +230,9 @@ export interface ICustomerProspectData {
   permanentAddress?: IAddress;
   aadharNumber?: string;
   aadharImagePath?: string;
+  aadharImageContent?:string;
+  panNumberImageContent?:string;
+  prospectImageContent?:string;
   panNumber?: string;
   panNumberImagePath?: string;
   prospectImagePath?: string;
