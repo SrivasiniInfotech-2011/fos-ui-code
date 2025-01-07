@@ -203,7 +203,7 @@ export interface IAddress {
   addressLine1: string;
   addressLine2: string;
   landmark: string;
-  city: number;
+  city: string;
   stateId: number;
   countryId: number;
   pincode: string;
@@ -230,6 +230,9 @@ export interface ICustomerProspectData {
   permanentAddress?: IAddress;
   aadharNumber?: string;
   aadharImagePath?: string;
+  aadharImageContent?:string;
+  panNumberImageContent?:string;
+  prospectImageContent?:string;
   panNumber?: string;
   panNumberImagePath?: string;
   prospectImagePath?: string;

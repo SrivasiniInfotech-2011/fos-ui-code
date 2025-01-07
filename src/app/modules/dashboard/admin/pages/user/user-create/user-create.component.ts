@@ -30,10 +30,8 @@ import { Extension } from 'typescript';
   styleUrl: './user-create.component.scss',
 })
 export class UserCreateComponent implements OnInit {
-
-  @ViewChild(MatPaginator) paginator !: MatPaginator;
-  @ViewChild(MatSort) sort !: MatSort;
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   userId: string | null = null;
   action: string | null = null;
@@ -49,7 +47,7 @@ export class UserCreateComponent implements OnInit {
   public maritalStatusLookup: IFOSLookup[] = [];
   public userImageFilepath: string = '';
   public userImageFileContent: string = '';
-  private allowedExtention: string[]=['png','jpg','jpeg']
+  private allowedExtention: string[] = ['png', 'jpg', 'jpeg'];
   public setUserLevel: IFOSLookup[] = [];
   public setUserReportingLevel: IFOSUserReportingLookup[] = [];
   public existingUserDetails: IExistinghUserRequestData = {};
@@ -67,17 +65,15 @@ export class UserCreateComponent implements OnInit {
     private route: ActivatedRoute // private encryptionService: EncryptionService
   ) {}
 
-
-
   ngOnInit(): void {
     this.setuserManagement();
     this.fetAllLookups();
-  
+
     this.route.queryParams.subscribe((params) => {
       this.userId = params['userId'] || null;
       this.action = params['action'] || null;
       this.isEditMode = this.action === 'modify';
-  
+
       // Update the breadcrumb text based on the action
       if (this.action === 'view') {
         this.breadcrumbText = 'User View';
@@ -92,24 +88,23 @@ export class UserCreateComponent implements OnInit {
         this.userManagementForm.enable();
         this.userPersonalDetails.enable();
       }
-  
+
       if (this.userId) {
         this.fetchExistingUserDetails(this.userId);
       }
     });
   }
- 
 
-  onImageSelected(event:Event):void{
-   const input = event.target as HTMLInputElement;
-    if(input?.files?.length){
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files?.length) {
       const file = input.files[0];
 
       const extension = file.name.split('.').pop()?.toLowerCase();
       //validate file extension
-      if(extension && !this.allowedExtention.includes(extension)){
-        this.userImageFilepath ='';
-        this.userImageFileContent ='';
+      if (extension && !this.allowedExtention.includes(extension)) {
+        this.userImageFilepath = '';
+        this.userImageFileContent = '';
         this.selectedImage = null; // Clear the selected image
         this.toasterService.show(
           'Invalid file type.Please upload A png or Jpg file.',
@@ -118,13 +113,13 @@ export class UserCreateComponent implements OnInit {
       }
 
       const reader = new FileReader();
-      reader.onload=()=>{
-        if(reader.result){
+      reader.onload = () => {
+        if (reader.result) {
           this.selectedImage = reader.result.toString(); // Set the image data URL
-          this.userImageFileContent=reader.result.toString().split(',')[1];
+          this.userImageFileContent = reader.result.toString().split(',')[1];
         }
       };
-      this.userImageFilepath =file.name;
+      this.userImageFilepath = file.name;
       reader.readAsDataURL(file);
     }
   }
@@ -196,7 +191,6 @@ export class UserCreateComponent implements OnInit {
       input.value = input.value.slice(0, 10); // Trim to 10 characters
     }
   }
-  
 
   getProspectLookup() {
     this.loaderService.showLoader();
@@ -220,7 +214,7 @@ export class UserCreateComponent implements OnInit {
     const companyId = this.loggedInUser?.companyId || 1; // Default to 1 if companyId is missing
     const userId = this.loggedInUser?.userId || 1;
     this.loaderService.showLoader();
-    
+
     this.leadsService.fetchLeadGenerationLookup(companyId, userId).subscribe({
       next: (data: any) => {
         this.loaderService.hideLoader();
@@ -250,13 +244,7 @@ export class UserCreateComponent implements OnInit {
   calculateAge(): void {
     const dateOfBirth = this.userManagementForm.get('dateOfBirth')?.value;
     if (dateOfBirth) {
-      const dob = new Date(dateOfBirth);
-      const today = new Date();
-      let age = today.getFullYear() - dob.getFullYear();
-      const m = today.getMonth() - dob.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-        age--;
-      }
+      let age = this.utilityService.getAge(dateOfBirth);
       this.userManagementForm.get('age')?.setValue(age);
     }
   }
@@ -291,22 +279,19 @@ export class UserCreateComponent implements OnInit {
       });
   }
 
-
-  
-
   getUserReportingLevel() {
     const companyId = this.loggedInUser?.companyId || 1; // Default to 1 if companyId is missing
     const userId = this.loggedInUser?.userId || 1;
-    const lobId =this.loggedInUser?.lobId || 1;
-    const locationId =this.loggedInUser?.locationId || 1;
+    const lobId = this.loggedInUser?.lobId || 1;
+    const locationId = this.loggedInUser?.locationId || 1;
     this.loaderService.showLoader();
     this.useManagementService
       .fetchUserReportingLevelLookup({
         companyId: companyId,
         userId: userId,
         PrefixText: '',
-        LOB_ID:lobId,
-  location_ID:locationId,
+        LOB_ID: lobId,
+        location_ID: locationId,
       })
       .subscribe({
         next: (data: any) => {
@@ -351,19 +336,19 @@ export class UserCreateComponent implements OnInit {
       });
   }
 
-
   handleMaritalStatusChange() {
-    this.userPersonalDetails.get('maritalStatus')?.valueChanges.subscribe((status: string) => {
-      const spouseNameControl = this.userPersonalDetails.get('spouseName');
-      if (status === 'Married') {
-        spouseNameControl?.setValidators(Validators.required);
-      } else {
-        spouseNameControl?.clearValidators();
-      }
-      spouseNameControl?.updateValueAndValidity();
-    });
+    this.userPersonalDetails
+      .get('maritalStatus')
+      ?.valueChanges.subscribe((status: string) => {
+        const spouseNameControl = this.userPersonalDetails.get('spouseName');
+        if (status === 'Married') {
+          spouseNameControl?.setValidators(Validators.required);
+        } else {
+          spouseNameControl?.clearValidators();
+        }
+        spouseNameControl?.updateValueAndValidity();
+      });
   }
-  
 
   fetAllLookups() {
     this.getProspectLookup();
@@ -425,34 +410,34 @@ export class UserCreateComponent implements OnInit {
                 .setValue(this.existingUserDetails.mobileNumber ?? '');
               this.userManagementForm
                 .get('emergencyContactNumber')!
-                .setValue(this.existingUserDetails.emergencycontactNumber ?? '');
+                .setValue(
+                  this.existingUserDetails.emergencycontactNumber ?? ''
+                );
 
-                const Dataofjoininhg = this.existingUserDetails.doj;
-                if (Dataofjoininhg) {
-                  this.userManagementForm
-                    .get('joiningDate')!
-                    .setValue(
-                      this.utilityService.transformDate(
-                        String(Dataofjoininhg),
-                        'YYYY-MM-DD'
-                      )
-                    );            
-                }
-           
+              const Dataofjoininhg = this.existingUserDetails.doj;
+              if (Dataofjoininhg) {
+                this.userManagementForm
+                  .get('joiningDate')!
+                  .setValue(
+                    this.utilityService.transformDate(
+                      String(Dataofjoininhg),
+                      'YYYY-MM-DD'
+                    )
+                  );
+              }
+
               this.userManagementForm
                 .get('designation')!
                 .setValue(this.existingUserDetails.designation ?? '');
               this.userManagementForm
                 .get('userLevel')!
                 .setValue(this.existingUserDetails.userLevelID ?? '');
-                this.userManagementForm
+              this.userManagementForm
                 .get('userGroup')!
                 .setValue(this.existingUserDetails.userGroup ?? '');
               this.userManagementForm
                 .get('reportingNextLevel')!
-                .setValue(
-                  this.existingUserDetails.reportingNextlevel ?? ''
-                );
+                .setValue(this.existingUserDetails.reportingNextlevel ?? '');
               this.userManagementForm
                 .get('emailId')!
                 .setValue(this.existingUserDetails.emailID ?? '');
@@ -487,22 +472,20 @@ export class UserCreateComponent implements OnInit {
                 .setValue(this.existingUserDetails.motherName ?? '');
               this.userPersonalDetails
                 .get('maritalStatus')!
-                .setValue(
-                  this.existingUserDetails.maritialID ?? ''
-                );
+                .setValue(this.existingUserDetails.maritialID ?? '');
               this.userPersonalDetails
                 .get('aadharNumber')!
                 .setValue(this.existingUserDetails.aadharNumber ?? '');
               this.userPersonalDetails
                 .get('panNumber')!
                 .setValue(this.existingUserDetails.panNumber ?? '');
-                this.userPersonalDetails
+              this.userPersonalDetails
                 .get('spouseName')!
                 .setValue(this.existingUserDetails.spouseName ?? '');
-                // this.userPersonalDetails
-                // .get('userPhoto')!
-                // .setValue(this.existingUserDetails.userImagepath ?? '');
-                this.selectedImage=this.existingUserDetails.userImagepath ?? '';
+              // this.userPersonalDetails
+              // .get('userPhoto')!
+              // .setValue(this.existingUserDetails.userImagepath ?? '');
+              this.selectedImage = this.existingUserDetails.userImagepath ?? '';
 
               this.loaderService.hideLoader();
             }
@@ -519,24 +502,22 @@ export class UserCreateComponent implements OnInit {
         });
     }
   }
- 
 
   /**
- * Utility function to mark all fields in the form as touched
- * @param formGroup The form group to mark as touched
- */
-markAllFieldsAsTouched(formGroup: FormGroup) {
-  Object.keys(formGroup.controls).forEach(field => {
-    const control = formGroup.get(field);
-    control?.markAsTouched({ onlySelf: true });
-  });
-}
-  
-  insertUser() {
+   * Utility function to mark all fields in the form as touched
+   * @param formGroup The form group to mark as touched
+   */
+  markAllFieldsAsTouched(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
+  }
 
+  insertUser() {
     this.loaderService.showLoader();
     const companyId = this.loggedInUser?.companyId || 1;
-  
+
     // Create request object
     const request = {
       companyId: companyId,
@@ -546,7 +527,8 @@ markAllFieldsAsTouched(formGroup: FormGroup) {
       password: this.userManagementForm.value.password,
       dOJ: this.userManagementForm.value.joiningDate,
       mobileNumber: this.userManagementForm.value.mobileNumber,
-      emergencycontactNumber: this.userManagementForm.value.emergencyContactNumber,
+      emergencycontactNumber:
+        this.userManagementForm.value.emergencyContactNumber,
       designation: this.userManagementForm.value.designation,
       userLevelID: this.userManagementForm.value.userLevel,
       reportingNextlevel: this.userManagementForm.value.reportingNextLevel,
@@ -563,31 +545,38 @@ markAllFieldsAsTouched(formGroup: FormGroup) {
       userImageContent: this.userImageFileContent,
       address: '',
     } as IInsertUserDetails;
-  
+
     // Add userID only in modify mode
-  if (this.isEditMode && this.userId) {
-    request.userID = Number(this.userId); // Convert userId to a number
-  }
+    if (this.isEditMode && this.userId) {
+      request.userID = Number(this.userId); // Convert userId to a number
+    }
     // Log the request object
     console.log('Request object for insertUser:', request);
-  
+
     // Call the service to insert or update user details
     this.useManagementService.insertUserDetails(request).subscribe({
       next: (data: any) => {
         this.loaderService.hideLoader();
-  
+
         // Show a success message if API returns successfully
         if (data?.status === 0 && data?.error === null) {
-          this.toasterService.success('User details updated successfully!', 'Success', {
-            timeOut: 3000,
-          });
+          this.toasterService.success(
+            'User details updated successfully!',
+            'Success',
+            {
+              timeOut: 3000,
+            }
+          );
         } else {
-          this.toasterService.warning(data?.message || 'Unexpected response from the server.', 'Warning', {
-            timeOut: 3000,
-          });
+          this.toasterService.warning(
+            data?.message || 'Unexpected response from the server.',
+            'Warning',
+            {
+              timeOut: 3000,
+            }
+          );
         }
-        
-  
+
         // Fetch all lookup data again
         this.fetAllLookups();
       },
@@ -602,5 +591,4 @@ markAllFieldsAsTouched(formGroup: FormGroup) {
       },
     });
   }
-  
 }

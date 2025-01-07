@@ -3,9 +3,8 @@ export const environment = {
   name: 'localhost',
   label: '*** localhost ***',
   appBaseUrl: 'http://localhost:4200',
-   apiBaseUrl: 'https://localhost:56181',
-    // apiBaseUrl: 'http://localhost:803',
-  prospectsApi: 'http://localhost:802',
+  apiBaseUrl: 'https://localhost:1502',
+  prospectsApi: 'https://localhost:1504',
   loadConfigFromApi: true,
-  secretKey: 'FOS2024keyToEncrypt'
+  secretKey: 'FOS2024keyToEncrypt',
 };
