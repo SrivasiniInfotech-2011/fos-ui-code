@@ -109,7 +109,7 @@ export class ProspectDetailsComponent implements OnInit {
       },
       { validators: this.validateFieldsByProspectType() }
     );
-    this.prospectDetailForm.get('age')?.disable();
+    // this.prospectDetailForm.get('age')?.disable();
     this.prospectDetailForm.get('prospectCode')?.disable();
   };
 
@@ -139,7 +139,7 @@ export class ProspectDetailsComponent implements OnInit {
     }
   }
 
-  calculateAge(): void {
+  calculateAge() {
     const dateOfBirth = this.prospectDetailForm.get('dob')?.value;
     if (dateOfBirth) {
       let age = this.utilityService.getAge(dateOfBirth);
@@ -261,6 +261,7 @@ export class ProspectDetailsComponent implements OnInit {
         city: this.communicationAddressForm.value.city,
         stateId: this.communicationAddressForm.value.state,
         countryId: this.communicationAddressForm.value.country,
+        pincode: this.communicationAddressForm.value.pincode,
       } as IAddress;
 
     this.setPermanentAddressData(commAddress);
@@ -491,13 +492,20 @@ export class ProspectDetailsComponent implements OnInit {
       this.communicationAddressForm.valid &&
       this.permanantAddressForm.valid
     ) {
+      this.loaderService.showLoader();
       const kycData = this.kycDetailForm.value;
       const prospectData = this.prospectDetailForm.value;
       const communicationAddress = this.communicationAddressForm.value;
       const permanentAddress = this.permanantAddressForm.value;
-      let aadharFilePath=this.aadharFileName ?this.aadharFileName:this.aadharImageFilePath;
-      let panFilePath=this.panFileName ?this.panFileName:this.panNumberImageFilePath;
-      let prospectImagePath=this.prospectFileName ?this.prospectFileName:this.prospectImageFilePath;
+      let aadharFilePath = this.aadharFileName
+        ? this.aadharFileName
+        : this.aadharImageFilePath;
+      let panFilePath = this.panFileName
+        ? this.panFileName
+        : this.panNumberImageFilePath;
+      let prospectImagePath = this.prospectFileName
+        ? this.prospectFileName
+        : this.prospectImageFilePath;
       var customerProspectRequestData = {
         aadharNumber: kycData.aadharNumber,
         companyId: this.loggedInUser.companyId,
@@ -535,7 +543,7 @@ export class ProspectDetailsComponent implements OnInit {
         customerCode: '',
         customerId: 1,
         dateofBirth: prospectData.dob,
-        prospectImagePath:prospectImagePath,
+        prospectImagePath: prospectImagePath,
         prospectName: prospectData.prospectName,
         prospectTypeId: prospectData.prospectType,
         website: prospectData.website,
