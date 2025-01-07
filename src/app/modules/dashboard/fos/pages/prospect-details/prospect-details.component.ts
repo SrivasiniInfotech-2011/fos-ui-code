@@ -163,7 +163,43 @@ export class ProspectDetailsComponent implements OnInit {
     this.registerDisableFieldsByProspectType();
   }
 
+  private clearForm() {
+    this.aadharImageFilePath = '';
+    this.panNumberImageFilePath = '';
+    this.prospectImageFilePath = '';
+    this.setCommunicationAddressData({} as IAddress);
+    this.setPermanentAddressData({} as IAddress);
+    this.prospectDetailForm.get('branch')!.setValue('');
+    this.prospectDetailForm.get('prospectCode')!.setValue('');
+    this.prospectDetailForm.get('prospectDate')!.setValue('');
+    this.prospectDetailForm.get('prospectName')!.setValue('');
+    this.prospectDetailForm.get('prospectType')!.setValue('');
+    this.prospectDetailForm.get('website')!.setValue('');
+    this.prospectDetailForm.get('dob')!.setValue('');
+    this.prospectDetailForm.get('age')!.setValue('');
+    this.prospectDetailForm.get('gender')!.setValue('');
+    this.prospectDetailForm.get('mobileNumber')!.setValue('');
+    this.prospectDetailForm.get('alternateMobileNumber')!.setValue('');
+    this.prospectDetailForm.get('email')!.setValue('');
+    this.kycDetailForm.get('aadharNumber')!.setValue('');
+    this.kycDetailForm.get('panNumber')!.setValue('');
+    this.kycDetailForm.get('aadharImage')!.setValue('');
+    this.kycDetailForm.get('panImage')!.setValue('');
+    this.kycDetailForm.get('prospectImage')!.setValue('');
+  }
+  
   setPrimaryKYCUplods() {
+    this.kycDetailForm = this.fb.group(
+      {
+        aadharNumber: this.fb.control(''),
+        panNumber: this.fb.control(''),
+        aadharImage: this.fb.control(''),
+        panImage: this.fb.control(''),
+        prospectImage: this.fb.control(''),
+      },
+      { validators: this.aadharOrPanRequired(['aadharNumber', 'panNumber']) }
+    );
+
     this.kycDetailForm = this.fb.group(
       {
         aadharNumber: this.fb.control(''),
@@ -279,27 +315,33 @@ export class ProspectDetailsComponent implements OnInit {
   }
 
   validateKycFields() {
-    let prospectDetail = this.prospectDetailForm.value;
-    let kycDetail = this.kycDetailForm.value;
-    if (prospectDetail.prospectType == '1') {
-      return (
-        kycDetail.aadharNumber &&
-        kycDetail.panNumber &&
-        kycDetail.prospectImage &&
-        kycDetail.panImage &&
-        kycDetail.aadharImage
-      );
-    } else {
-      return (
-        kycDetail.panNumber && kycDetail.prospectImage && kycDetail.panImage
-      );
+    if (this.prospectDetailForm && this.kycDetailForm) {
+      let prospectDetail = this.prospectDetailForm.value;
+      let kycDetail = this.kycDetailForm.value;
+      if (prospectDetail.prospectType == '1') {
+        return (
+          kycDetail.aadharNumber &&
+          kycDetail.panNumber &&
+          kycDetail.prospectImage &&
+          kycDetail.panImage &&
+          kycDetail.aadharImage
+        );
+      } else {
+        return (
+          kycDetail.panNumber && kycDetail.prospectImage && kycDetail.panImage
+        );
+      }
     }
   }
 
   validateFieldsByProspectType() {
-    let prospectDetail = this.prospectDetailForm.value;
-    if (prospectDetail.prospectType == '1') {
-      return prospectDetail.dob && prospectDetail.age && prospectDetail.gender;
+    if (this.prospectDetailForm) {
+      let prospectDetail = this.prospectDetailForm.value;
+      if (prospectDetail.prospectType == '1') {
+        return (
+          prospectDetail.dob && prospectDetail.age && prospectDetail.gender
+        );
+      }
     }
   }
 
@@ -563,7 +605,7 @@ export class ProspectDetailsComponent implements OnInit {
             timeOut: 3000,
           });
           this.loaderService.hideLoader();
-          this.refreshForm();
+          this.clearForm();
         },
         error: (error: any) => {
           this.loaderService.hideLoader();
