@@ -5,9 +5,7 @@
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item d-flex align-items-center"><mat-icon class="me-2">home</mat-icon><a
               [routerLink]="['/admin/user-management']" class="text-decoration-none">User Management</a></li>
-          <!-- <li class="breadcrumb-item active" aria-current="page">User Create</li>    -->
           <li class="breadcrumb-item active" aria-current="page">{{ breadcrumbText }}</li>
-
         </ol>
       </nav>
     </div>
@@ -26,7 +24,10 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>User Name<span class="text-danger">*</span></label>
-            <input type="text" class="form-control mt-2" placeholder="Enter The User Name" formControlName="userName">
+            <input type="text" class="form-control mt-2" placeholder="Enter The User Name" 
+            formControlName="userName"
+            inputmode="text"
+            (keypress)="allowOnlyAlphabets($event)">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('userName')?.touched || isSubmitted) && userManagementForm.get('userName')?.hasError('required')">
               User Name is
@@ -61,7 +62,7 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Mobile Number<span class="text-danger">*</span></label>
-            <input type="text" class="form-control mt-2"
+            <input type="text" class="form-control mt-2 right-align"
              placeholder="Enter The Mobile Number"
               formControlName="mobileNumber" 
               maxlength="10" 
@@ -75,7 +76,7 @@
           <div class="col-12 col-lg-4">
             <label>Emergency Contact Number<span class="text-danger">*</span>
             </label>
-            <input type="text" class="form-control mt-2" placeholder="Enter Emergency Contact Number"
+            <input type="text" class="form-control mt-2 right-align" placeholder="Enter Emergency Contact Number"
               formControlName="emergencyContactNumber">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('emergencyContactNumber')?.touched || isSubmitted) && userManagementForm.get('emergencyContactNumber')?.hasError('required')">
@@ -101,6 +102,7 @@
           <div class="col-12 col-lg-4">
             <label>Designation<span class="text-danger">*</span></label>
             <select formControlName="designation" class="form-select mt-2 " name="designation">
+              <option value="" disabled>Select Designation</option>
               <option *ngFor="let c of setUserDesignationLevel" [ngValue]="c.lookupValueId">
                 {{ c.lookupValueDescription }}
               </option>
@@ -156,17 +158,30 @@
           </div>
           <div class="col-12 col-lg-4">
             <label>Date of birth<span class="text-danger">*</span></label>
-            <input type="date" class="form-control mt-2" formControlName="dateOfBirth" (change)="calculateAge()">
+            <input type="date" class="form-control mt-2" 
+            formControlName="dateOfBirth"
+            [max]="maxDate"
+             (change)="calculateAge()">
             <span class="massage-text"
               *ngIf="(userManagementForm.get('dateOfBirth')?.touched || isSubmitted) && userManagementForm.get('dateOfBirth')?.hasError('required')">Date
               of birth is required</span>
           </div>
           <div class="col-12 col-lg-4">
             <label>Age</label>
-            <input type="text" class="form-control mt-2" placeholder="age" formControlName="age" [readonly]="true">
+            <input type="text" class="form-control mt-2 right-align" placeholder="age" formControlName="age" [readonly]="true">
           </div>
-
-         
+          <div class="col-12 col-lg-4" *ngIf="action === 'view' || action === 'modify'">
+            <label>Reliving date<span class="text-danger"></span></label>
+            <input type="date" class="form-control mt-2" formControlName="relivingDate">
+            
+          </div>
+          
+          <div class="col-12 col-lg-4 mt-3" *ngIf="action === 'view' || action === 'modify'">
+            <label class="d-flex align-items-center">
+              <input type="checkbox"  formControlName="isActive" />
+              Active
+            </label>          
+          </div>
         </div>
       </form>
     </div>
@@ -231,7 +246,7 @@
         </div>
         <div class="row mb-4 gy-2">
           <div class="row mb-4 gy-2">
-            <div class="col-12 d-flex flex-column">
+            <div class="col-lg-2 d-flex flex-column">
               <label>User Photo</label>
               <div class="image-container">
                 <!-- Replace mat-icon with the selected image if present -->
@@ -254,16 +269,9 @@
             </div>
           </div>
           
-          <!-- <div class="row mb-4 gy-2">
-            <div class="col-12 d-flex flex-column">
-              <label>User Photo</label>
-              <mat-icon class="addimage-icon">add_a_photo</mat-icon>
-              <input type="file" class="file-input" (change)="onImageSelected($event)" formControlName="userPhoto">
-              <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected User Photo" class="preview-image">
-            </div>
-          </div> -->
+         
           <div class="button-box col-12 d-flex flex-row justify-content-end gap-1 flex-wrap">
-            <button class="save-button col-12 col-lg-1 px-4" (click)="insertUser()">Save</button>
+            <button class="save-button col-12 col-lg-1 px-4"   *ngIf="action !== 'view'" (click)="insertUser()">Save</button>
             <button class="back-button px-4 col-12 col-lg-1" (click)="back()">Back</button>
           </div>
         </div>

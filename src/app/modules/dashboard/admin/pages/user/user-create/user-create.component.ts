@@ -39,7 +39,7 @@ export class UserCreateComponent implements OnInit {
   action: string | null = null;
   selectedImage: string | ArrayBuffer | null = null;
   isEditMode = false; // Flag to toggle edit mode
-
+  maxDate!: string; // Maximum date allowed for 18+
   public userManagementForm: FormGroup | any = new FormGroup({});
   public userPersonalDetails: FormGroup | any = new FormGroup({});
   breadcrumbText: string = 'User Create'; // Default value
@@ -68,10 +68,10 @@ export class UserCreateComponent implements OnInit {
   ) {}
 
 
-
   ngOnInit(): void {
     this.setuserManagement();
     this.fetAllLookups();
+    this.calculateMaxDate();
   
     this.route.queryParams.subscribe((params) => {
       this.userId = params['userId'] || null;
@@ -100,45 +100,57 @@ export class UserCreateComponent implements OnInit {
   }
  
 
-  onImageSelected(event:Event):void{
-   const input = event.target as HTMLInputElement;
-    if(input?.files?.length){
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    
+    if (input?.files?.length) {
       const file = input.files[0];
-
-      const extension = file.name.split('.').pop()?.toLowerCase();
-      //validate file extension
-      if(extension && !this.allowedExtention.includes(extension)){
-        this.userImageFilepath ='';
-        this.userImageFileContent ='';
+  
+      // Check the file size (1MB = 1 * 1024 * 1024 bytes)
+      const maxSizeInBytes = 1 * 1024 * 1024; // 1MB
+  
+      if (file.size > maxSizeInBytes) {
+        // Reset form fields when file is too large
+        this.userImageFilepath = '';
+        this.userImageFileContent = '';
         this.selectedImage = null; // Clear the selected image
-        this.toasterService.show(
-          'Invalid file type.Please upload A png or Jpg file.',
-          'File Upload'
-        );
+        
+        // Show error message
+        this.toasterService.show('File size must be less than 1MB', 'File Upload', { timeOut: 3000 });
+        
+        // Clear file input to prevent selection of oversized file
+        input.value = ''; 
+        return; // Stop further execution
       }
-
+  
+      const extension = file.name.split('.').pop()?.toLowerCase();
+      
+      // Validate file extension
+      if (extension && !this.allowedExtention.includes(extension)) {
+        this.userImageFilepath = '';
+        this.userImageFileContent = '';
+        this.selectedImage = null; // Clear the selected image
+        this.toasterService.show('Invalid file type. Please upload a PNG or JPG file.', 'File Upload', { timeOut: 3000 });
+        input.value = ''; // Clear file input on invalid type
+        return;
+      }
+  
+      // If file size and type are valid, read the file and display image
       const reader = new FileReader();
-      reader.onload=()=>{
-        if(reader.result){
+      reader.onload = () => {
+        if (reader.result) {
           this.selectedImage = reader.result.toString(); // Set the image data URL
-          this.userImageFileContent=reader.result.toString().split(',')[1];
+          this.userImageFileContent = reader.result.toString().split(',')[1];
         }
       };
-      this.userImageFilepath =file.name;
+      this.userImageFilepath = file.name;
       reader.readAsDataURL(file);
     }
   }
+  
+  
 
-  // onImageSelected(event: Event): void {
-  //   const file = (event.target as HTMLInputElement).files?.[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       this.selectedImage = reader.result; // The image's base64 string
-  //     };
-  //     reader.readAsDataURL(file); // Converts the image to a data URL
-  //   }
-  // }
+ 
 
   setuserManagement = () => {
     this.userManagementForm = new FormGroup({
@@ -162,7 +174,9 @@ export class UserCreateComponent implements OnInit {
       userGroup: new FormControl(''),
       emailId: new FormControl('', [Validators.required, Validators.email]),
       dateOfBirth: new FormControl('', [Validators.required]),
+      relivingDate: new FormControl(''),
       age: new FormControl({ value: '', disabled: true }),
+      isActive: new FormControl(false), // Default value
       // dateOfBirth:new FormControl('',[Validators.required]),
       // age:new FormControl(''),
     });
@@ -195,6 +209,18 @@ export class UserCreateComponent implements OnInit {
     if (input.value.length > 10) {
       input.value = input.value.slice(0, 10); // Trim to 10 characters
     }
+  }
+  
+  allowOnlyAlphabets(event: KeyboardEvent): void {
+    const charCode = event.key.charCodeAt(0);
+  
+    // Allow A-Z and a-z only
+    if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
+      return; // Allow input
+    }
+  
+    // Prevent any other character
+    event.preventDefault();
   }
   
 
@@ -247,19 +273,47 @@ export class UserCreateComponent implements OnInit {
     });
   }
 
+ 
+  calculateMaxDate(): void {
+    const today = new Date();
+    const maxSelectableDate = new Date(
+      today.getFullYear() - 18, // Subtract 18 years from the current year
+      today.getMonth(),
+      today.getDate()
+    );
+    this.maxDate = maxSelectableDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+  }
+
   calculateAge(): void {
     const dateOfBirth = this.userManagementForm.get('dateOfBirth')?.value;
     if (dateOfBirth) {
       const dob = new Date(dateOfBirth);
       const today = new Date();
       let age = today.getFullYear() - dob.getFullYear();
-      const m = today.getMonth() - dob.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+      const monthDifference = today.getMonth() - dob.getMonth();
+      if (
+        monthDifference < 0 ||
+        (monthDifference === 0 && today.getDate() < dob.getDate())
+      ) {
         age--;
       }
+
+      // Set the age in the form
       this.userManagementForm.get('age')?.setValue(age);
+
+      // Validate if age is less than 18 and show error
+      if (age < 18) {
+        this.toasterService.error('Age must be 18 or older', 'Invalid Age', {
+          timeOut: 3000
+        });
+      }
     }
   }
+  
+  
+  
+
+ 
 
   private SetLookups(lookItems: IFOSLookup[]) {
     this.genderLookup = lookItems.filter(
@@ -306,7 +360,7 @@ export class UserCreateComponent implements OnInit {
         userId: userId,
         PrefixText: '',
         LOB_ID:lobId,
-  location_ID:locationId,
+        location_ID:locationId,
       })
       .subscribe({
         next: (data: any) => {
@@ -447,7 +501,7 @@ export class UserCreateComponent implements OnInit {
                 .setValue(this.existingUserDetails.userLevelID ?? '');
                 this.userManagementForm
                 .get('userGroup')!
-                .setValue(this.existingUserDetails.userGroup ?? '');
+                .setValue(this.existingUserDetails.userGroup || 'Admin');
               this.userManagementForm
                 .get('reportingNextLevel')!
                 .setValue(
@@ -499,11 +553,25 @@ export class UserCreateComponent implements OnInit {
                 this.userPersonalDetails
                 .get('spouseName')!
                 .setValue(this.existingUserDetails.spouseName ?? '');
-                // this.userPersonalDetails
-                // .get('userPhoto')!
-                // .setValue(this.existingUserDetails.userImagepath ?? '');
-                this.selectedImage=this.existingUserDetails.userImagepath ?? '';
+                
+                //  this.userManagementForm.get('isActive')!.setValue(true);
 
+                // this.userManagementForm.get('isActive')!.setValue(this.existingUserDetails.isActive === 1);
+                const isActiveValue = this.existingUserDetails.isActive === 1;
+                this.userManagementForm.get('isActive')!.setValue(isActiveValue);
+
+                this.selectedImage=this.existingUserDetails.userImagepath ?? '';
+                const RelivingDate = this.existingUserDetails.relivingDate;
+                if (Dataofjoininhg) {
+                  this.userManagementForm
+                    .get('relivingDate')!
+                    .setValue(
+                      this.utilityService.transformDate(
+                        String(RelivingDate),
+                        'YYYY-MM-DD'
+                      )
+                    );            
+                }
               this.loaderService.hideLoader();
             }
           },
@@ -553,6 +621,9 @@ markAllFieldsAsTouched(formGroup: FormGroup) {
       userGroup: this.userManagementForm.value.userGroup,
       emailID: this.userManagementForm.value.emailId,
       dateofbirth: this.userManagementForm.value.dateOfBirth,
+      relivingDate: this.userManagementForm.value.relivingDate
+      ? this.userManagementForm.value.relivingDate 
+      : null,
       fatherName: this.userPersonalDetails.value.fatherName,
       motherName: this.userPersonalDetails.value.motherName,
       spouseName: this.userPersonalDetails.value.spouseName,
@@ -560,6 +631,7 @@ markAllFieldsAsTouched(formGroup: FormGroup) {
       aadharNumber: this.userPersonalDetails.value.aadharNumber,
       panNumber: this.userPersonalDetails.value.panNumber,
       userImagepath: this.userImageFilepath,
+      // isActive:this.userManagementForm.value.isActive,
       userImageContent: this.userImageFileContent,
       address: '',
     } as IInsertUserDetails;
@@ -578,13 +650,17 @@ markAllFieldsAsTouched(formGroup: FormGroup) {
   
         // Show a success message if API returns successfully
         if (data?.status === 0 && data?.error === null) {
-          this.toasterService.success('User details updated successfully!', 'Success', {
-            timeOut: 3000,
-          });
+          alert('User saved successfully!');
+          this.userManagementForm.reset();
+          this.userPersonalDetails.reset();
+          // this.toasterService.success('User details updated successfully!', 'Success', {
+          //   timeOut: 3000,
+          // });
         } else {
-          this.toasterService.warning(data?.message || 'Unexpected response from the server.', 'Warning', {
-            timeOut: 3000,
-          });
+          alert('Unexpected response from the server!');
+          // this.toasterService.warning(data?.message || 'Unexpected response from the server.', 'Warning', {
+          //   timeOut: 3000,
+          // });
         }
         
   

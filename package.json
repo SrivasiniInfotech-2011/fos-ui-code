@@ -27,6 +27,7 @@
     "@types/jest": "^29.5.12",
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
+    "file-saver": "^2.0.5",
     "jest-preset-angular": "^14.0.3",
     "jwt-decode": "^3.1.2",
     "material-design-icons-iconfont": "^6.7.0",
