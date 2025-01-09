@@ -30,6 +30,11 @@
             <span class="massage-text"  *ngIf="companyMasterForm.get('constitutionalStatus')?.touched && companyMasterForm.get('constitutionalStatus')?.hasError('required')">Constitutional Status is required</span>
           </div>
           <div class="col-12 col-lg-4 d-flex flex-column gap-1 mt-3">
+            <label>Company Address</label>
+            <textarea rows="4" formControlName="companyAddress"  placeholder="Enter Company Address"></textarea>
+            <span class="massage-text"  *ngIf="companyMasterForm.get('companyAddress')?.touched && companyMasterForm.get('companyAddress')?.hasError('required')">Company Address is required</span>
+          </div>
+          <div class="col-12 col-lg-4 d-flex flex-column gap-1 mt-3">
             <label>City</label>
             <input type="text" class="form-control mt-2" formControlName="city" placeholder="Enter City"/>
             <span class="massage-text" *ngIf="companyMasterForm.get('city')?.touched && companyMasterForm.get('city')?.hasError('required')">City is required</span>
@@ -48,11 +53,6 @@
             <label>PIN Code/ZIP Code</label>
             <input type="number" class="form-control mt-2" formControlName="pincode"  placeholder="Enter PIN Code/ZIP Code"/>
             <span class="massage-text" *ngIf="companyMasterForm.get('pincode')?.touched && companyMasterForm.get('pincode')?.hasError('required')">PIN Code/ZIP Code is required</span>
-          </div>
-          <div class="col-12 col-lg-4 d-flex flex-column gap-1 mt-3">
-            <label>Company Address</label>
-            <textarea rows="4" formControlName="companyAddress"  placeholder="Enter Company Address"></textarea>
-            <span class="massage-text"  *ngIf="companyMasterForm.get('companyAddress')?.touched && companyMasterForm.get('companyAddress')?.hasError('required')">Company Address is required</span>
           </div>
         </div>
       </form>
@@ -97,9 +97,9 @@
             <span class="massage-text" *ngIf="corporateDetailsForm.get('systemAdminCode')?.touched && corporateDetailsForm.get('systemAdminCode')?.hasError('required')">System Admin User Code is required</span>
           </div>
           <div class="col-12 col-lg-4 d-flex flex-column gap-1 mt-3">
-            <label>System Admin User Password</label>
-            <input type="text" class="form-control mt-2" formControlName="systemAdminPassword" placeholder="Enter System Admin User Password"/>
-            <span class="massage-text" *ngIf="corporateDetailsForm.get('systemAdminPassword')?.touched && corporateDetailsForm.get('systemAdminPassword')?.hasError('required')">System Admin User Password is required</span>
+            <label>GST/TIN Number</label>
+            <input type="text" class="form-control mt-2" formControlName="gstNumber" placeholder="Enter GST/TIN Number"/>
+            <span class="massage-text" *ngIf="corporateDetailsForm.get('gstNumber')?.touched && corporateDetailsForm.get('gstNumber')?.hasError('required')">GST/TIN Number is required</span>
           </div>
 
         </div>

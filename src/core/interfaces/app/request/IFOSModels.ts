@@ -183,6 +183,7 @@ export interface CompanyMasterGet {
   cdWebsite: string,
   cdSysAdminUserCode: string,
   cdSysAdminUserPassword: string,
+  gstNumber: string,
   odCommunicationAddress: string,
   odAddress1: string,
   odCity: string,
