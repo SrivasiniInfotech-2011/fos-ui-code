@@ -4,6 +4,7 @@ import {
   AbstractControl,
   FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
@@ -12,6 +13,7 @@ import {
   IAddress,
   ICreateProspectRequest,
   ICustomerProspectData,
+  IFOBranchLocation,
   IFOSLookup,
 } from '../../../../../../core/interfaces/app/request/IFOSModels';
 import { FOSProspectService } from '../../../../../../data/services/feature/prospectMaster/prospects.service';
@@ -20,7 +22,8 @@ import { LoaderService } from '../../../../../../data/services/shared/loader.ser
 import { ToastrService } from 'ngx-toastr';
 import { EncryptionService } from '../../../../../../data/services/shared/encryption.service';
 import moment from 'moment';
-
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 @Component({
   selector: 'app-prospect-details',
   templateUrl: './prospect-details.component.html',
@@ -50,7 +53,8 @@ export class ProspectDetailsComponent implements OnInit {
   public prospectImageFilePath: string = '';
   public aadharImageFilePath: string = '';
   public panNumberImageFilePath: string = '';
-
+  public branchLookup: IFOBranchLocation[] = [];
+  public filteredBranches!: Observable<IFOBranchLocation[]>;
   constructor(
     private fb: FormBuilder,
     private prospectService: FOSProspectService,
@@ -71,6 +75,25 @@ export class ProspectDetailsComponent implements OnInit {
       }
     }
     this.refreshForm();
+  }
+
+  displayBranchFieldName(id: any) {
+    if (!id) return '';
+    let index = this.branchLookup.findIndex((state) => state.locationId === id);
+    return this.branchLookup[index].locationName;
+  }
+
+  public selectBranch(evt: any) {}
+
+  private _filterBranches(value: any): IFOBranchLocation[] {
+    if (typeof value != 'string') {
+      value = '';
+    }
+    const filterValue = value.toLowerCase();
+
+    return this.branchLookup.filter((option: IFOBranchLocation) =>
+      option.locationName?.toLowerCase().includes(filterValue)
+    );
   }
 
   setBasicDetailsForm = () => {
@@ -109,7 +132,7 @@ export class ProspectDetailsComponent implements OnInit {
       },
       { validators: this.validateFieldsByProspectType() }
     );
-    // this.prospectDetailForm.get('age')?.disable();
+    this.prospectDetailForm.get('age')?.disable();
     this.prospectDetailForm.get('prospectCode')?.disable();
   };
 
@@ -151,6 +174,7 @@ export class ProspectDetailsComponent implements OnInit {
     this.setBasicDetailsForm();
     this.getProspectLookup();
     this.getStates();
+    this.getBranchLocations();
     this.setProspectDetails();
     this.setPrimaryKYCUplods();
     this.setCommunicationAddress();
@@ -187,7 +211,7 @@ export class ProspectDetailsComponent implements OnInit {
     this.kycDetailForm.get('panImage')!.setValue('');
     this.kycDetailForm.get('prospectImage')!.setValue('');
   }
-  
+
   setPrimaryKYCUplods() {
     this.kycDetailForm = this.fb.group(
       {
@@ -397,15 +421,24 @@ export class ProspectDetailsComponent implements OnInit {
     this.prospectService
       .fetchBranchLocation({
         companyId: this.loggedInUser.companyId,
-        isActive: false,
+        isActive: true,
         lobId: 1,
         userId: this.loggedInUser.userId,
       })
       .subscribe({
-        next(data: any) {
-          console.log(data);
+        next: (data: any) => {
+          if (data && data.message) {
+            let lookItems = data.message as IFOBranchLocation[];
+            this.branchLookup = lookItems;
+            this.filteredBranches = this.prospectDetailForm
+              .get('branch')
+              .valueChanges.pipe(
+                startWith(''),
+                map((value) => this._filterBranches(value!))
+              );
+          }
         },
-        error(err: any) {},
+        error: (err: any) => {},
       });
   }
 
@@ -477,6 +510,11 @@ export class ProspectDetailsComponent implements OnInit {
               this.prospectDetailForm
                 .get('alternateMobileNumber')!
                 .setValue(this.customerProspectData.alternateMobileNumber);
+
+                this.prospectDetailForm
+                .get('branch')!
+                .setValue(this.customerProspectData.locationId);
+
               this.prospectDetailForm
                 .get('email')!
                 .setValue(this.customerProspectData.email);
@@ -569,7 +607,7 @@ export class ProspectDetailsComponent implements OnInit {
         genderId: prospectData.gender,
         genderName: '',
         locationDescription: '',
-        locationId: 0,
+        locationId:prospectData.branch,
         panNumberImagePath: panFilePath,
         permanentAddress: {
           addressLine1: permanentAddress.addressLine1,
@@ -605,6 +643,10 @@ export class ProspectDetailsComponent implements OnInit {
             timeOut: 3000,
           });
           this.loaderService.hideLoader();
+          this.utilityService.markAllAsUntouched(this.prospectDetailForm);
+          this.utilityService.markAllAsUntouched(this.kycDetailForm);
+          this.utilityService.markAllAsUntouched(this.communicationAddressForm);
+          this.utilityService.markAllAsUntouched(this.permanantAddressForm);
           this.clearForm();
         },
         error: (error: any) => {

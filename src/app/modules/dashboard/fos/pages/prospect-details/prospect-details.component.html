@@ -187,7 +187,14 @@
           </div>
           <div class="col-12 col-lg-4">
             <label class="label">Branch<span class="text-danger">*</span></label>
-            <input type="text" placeholder="Enter Branch" formControlName="branch" class="form-control mt-2" />
+            <input type="text" matInput formControlName="branch" [matAutocomplete]="autocompletePanel"
+              placeholder="Enter the branch" required class="form-control mt-2" />
+            <mat-autocomplete #autocompletePanel="matAutocomplete" [displayWith]="displayBranchFieldName.bind(this)"
+              (optionSelected)="selectBranch($event)">
+              <mat-option *ngFor="let option of filteredBranches | async" [value]="option.locationId">
+                <div>{{ option.locationName }}</div>
+              </mat-option>
+            </mat-autocomplete>
             <div class="massage-text" *ngIf="
                 prospectDetailForm.controls.branch.touched &&
                 prospectDetailForm.controls.branch.errors?.required
@@ -414,7 +421,8 @@
               ">
               Prospect Image is required
             </div>
-            <a [href]="prospectImageFilePath" target="_blank" rel="noopener noreferrer">Image Link</a>
+            <a [href]="prospectImageFilePath" target="_blank" rel="noopener noreferrer"
+              *ngIf="prospectImageFilePath">Image Link</a>
           </div>
 
           <div class="col-12 col-lg-4">
@@ -428,7 +436,8 @@
               ">
               Aadhar Image is required
             </div>
-            <a [href]="aadharImageFilePath" target="_blank" rel="noopener noreferrer">Image Link</a>
+            <a [href]="aadharImageFilePath" target="_blank" rel="noopener noreferrer" *ngIf="aadharImageFilePath">Image
+              Link</a>
           </div>
           <div class="col-12 col-lg-4">
             <label class="label">PAN Image<span class="text-danger">*</span></label>
@@ -442,7 +451,8 @@
               PAN Number Image is required
             </div>
 
-            <a [href]="panNumberImageFilePath" target="_blank" rel="noopener noreferrer">Image Link</a>
+            <a [href]="panNumberImageFilePath" target="_blank" rel="noopener noreferrer"
+              *ngIf="panNumberImageFilePath">Image Link</a>
           </div>
         </div>
       </form>
