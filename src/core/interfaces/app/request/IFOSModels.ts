@@ -290,6 +290,7 @@ export interface IExistinghUserRequestData {
   genderName?: string;
   password?: string;
   doj?: Date;
+  relivingDate?:Date;
   mobileNumber?: string;
   emergencycontactNumber?: string;
   designation?: number;
@@ -309,9 +310,40 @@ export interface IExistinghUserRequestData {
   panNumber?: number;
   address?: string;
   userImagepath?: string;
-  isActive?: boolean;
+  isActive?: number;
 }
 
+export interface IExistinghUserRequestDatas {
+  companyId?: number;
+  userID?: number;
+  userCode?: string;
+  userName?: string;
+  genderId?: number;
+  genderName?:string;
+  password?: string;
+  doj?: Date;
+  relivingDate?:Date;
+  mobileNumber?: string;
+  emergencycontactNumber?: string;
+  designation?: number;
+  userLevelID?: number;
+  userLevel?:string;
+  reportingNextlevel?: number;
+  ReportingGHigherLevel?:string;
+  marutialStatusDiscription?:string;
+  userGroup?: number;
+  emailID?: string;
+  dateofbirth?: Date;
+  fatherName?: string;
+  motherName?: string;
+  spouseName?: string;
+  maritialID?: number;
+  aadharNumber?: string;
+  panNumber?: number;
+  address?: string;
+  userImagepath?: string;
+  isActive?: number;
+}
 export interface IInsertUserDetails {
   companyId?: number;
   userID?: number;
@@ -324,6 +356,7 @@ export interface IInsertUserDetails {
   emergencycontactNumber?: number;
   designation?: string;
   userLevelID?: number;
+  relivingDate?:Date;
   reportingNextlevel?: number;
   userGroup?: number;
   emailID?: string;
