@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccessDeniedComponent } from '../app/shared/components/access-denied/access-denied.component';
 const routes: Routes = [
   {
     path: 'auth',
@@ -15,12 +14,7 @@ const routes: Routes = [
       import('./modules/dashboard/dashboard.module').then(
         (a) => a.DashboardModule
       ),
-  },
-  {
-    path: 'access-denied',
-    pathMatch: 'full',
-    component: AccessDeniedComponent,
-  },
+  }
 ];
 
 @NgModule({

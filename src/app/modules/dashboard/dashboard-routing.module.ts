@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ListingPageComponent } from './fos/pages/listing-page/listing-page.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from '../../../core/guards/auth.guard';
+import { AccessDeniedComponent } from '../../shared/components/access-denied/access-denied.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,11 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        // canActivate: [AuthGuard],
+      },
+      {
+        path: 'access-denied',
+        pathMatch: 'full',
+        component: AccessDeniedComponent,
       },
       {
         path: '',

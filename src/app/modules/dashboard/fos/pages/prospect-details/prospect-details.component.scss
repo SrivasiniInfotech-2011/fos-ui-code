@@ -15,11 +15,13 @@
     border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 10px;
-    .breadcrumb{
-      li{
-      color: var(--text-color);
+
+    .breadcrumb {
+      li {
+        color: var(--text-color);
+      }
     }
-    }
+
     .prospect-details-form {
       caption {
         font-size: 20px;
@@ -78,6 +80,20 @@
         padding: 5px 10px;
       }
 
+      input:disabled,
+      textarea:disabled,
+      select:disabled {
+        background-color: #f0f0f0;
+        /* Light gray background */
+        color: #999;
+        /* Gray text */
+        border: 1px solid #ccc;
+        /* Light gray border */
+        cursor: not-allowed;
+        /* Indicate that it's not clickable */
+        pointer-events: none;
+        /* Prevent interactions */
+      }
     }
   }
 
@@ -85,7 +101,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    color: var( --button-text-color);
+    color: var(--button-text-color);
     background: var(--background-button);
     border: unset;
     padding: 5px 10px;
