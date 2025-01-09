@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private toastr: ToastrService,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
   ) {
     this.loginForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isSubmitted = true;
-    this.router.navigate(['/dashboard']);
     if (this.loginForm.valid) {
       this.isSubmitted = false;
       this.isLoading = true;

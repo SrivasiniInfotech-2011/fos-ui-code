@@ -5,6 +5,7 @@ import momentTz from 'moment-timezone';
 import { DateFormat, FOSServiceDomain } from '../../../core/common/literals';
 import { environment } from '../../../environments/environment';
 import moment from 'moment';
+import { FormControl, FormGroup } from '@angular/forms';
 @Injectable({
   providedIn: 'root',
 })
@@ -169,7 +170,18 @@ export class UtilsService {
     return age;
   }
 
-  transformDate(value: string,format:string): string {
+  transformDate(value: string, format: string): string {
     return moment(value).format(format);
+  }
+
+  markAllAsUntouched(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach((key) => {
+      const control = formGroup.get(key);
+      if (control instanceof FormControl) {
+        control.markAsUntouched();
+      } else if (control instanceof FormGroup) {
+        this.markAllAsUntouched(control); // Recursive call for nested FormGroups
+      }
+    });
   }
 }

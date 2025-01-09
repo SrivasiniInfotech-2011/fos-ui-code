@@ -7,7 +7,7 @@ import { ListingPageComponent } from './pages/listing-page/listing-page.componen
 import { ProspectDetailsComponent } from './pages/prospect-details/prospect-details.component';
 import { IndividualDetailsComponent } from './pages/individual-details/individual-details.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ViewloanDetailsComponent } from './pages/viewloan-details/viewloan-details.component';
 import { LeadProspectDetailComponent } from './pages/leadgeneration/lead-prospect-detail/lead-prospect-detail.component';
 import { LeadMasterComponent } from './pages/leadgeneration/lead-master/lead-master.component';
@@ -26,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { NonIndividualComponent } from './pages/leadgeneration/non-individual/non-individual.component';
@@ -75,7 +76,9 @@ import { FvrVehicleDetailsComponent } from './pages/fvr-vehicle-details/fvr-vehi
     MatFormFieldModule,
     MatSortModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatAutocompleteModule,
+    FormsModule
   ],
 })
 export class FosModule {}
