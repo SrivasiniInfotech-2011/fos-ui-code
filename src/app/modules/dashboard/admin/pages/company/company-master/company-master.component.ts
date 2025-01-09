@@ -66,6 +66,7 @@ export class CompanyMasterComponent implements OnInit {
       website: new FormControl('', [Validators.required]),
       systemAdminCode: new FormControl('', [Validators.required]),
       systemAdminPassword: new FormControl('', [Validators.required]),
+      gstNumber: new FormControl('', [Validators.required]),
     });
 
     this.otherDetailsForm = new FormGroup({
@@ -109,7 +110,7 @@ export class CompanyMasterComponent implements OnInit {
 
             this.companyMasterForm
               .get('constitutionalStatus')!
-              .setValue(this.companyMasterData.constitutionalStatusId);
+              .setValue(this.companyMasterData.constitutionalStatus);
 
             this.companyMasterForm
               .get('city')!
@@ -156,8 +157,8 @@ export class CompanyMasterComponent implements OnInit {
               .setValue(this.companyMasterData.cdSysAdminUserCode);
 
             this.corporateDetailsForm
-              .get('systemAdminPassword')!
-              .setValue(this.companyMasterData.cdSysAdminUserPassword);
+              .get('gstNumber')!
+              .setValue(this.companyMasterData.gstNumber);
 
             this.otherDetailsForm
               .get('communicationAddress')!
