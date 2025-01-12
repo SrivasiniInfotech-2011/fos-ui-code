@@ -66,6 +66,7 @@ export class LeadMasterComponent implements OnInit {
       status: new FormControl(''),
     });
   }
+
   ngOnInit(): void {
     if (localStorage.getItem('userDetails')) {
       const encryptedUserData = localStorage.getItem('userDetails');
@@ -82,6 +83,7 @@ export class LeadMasterComponent implements OnInit {
         this.onSearch();
       }
     }
+    localStorage.setItem('leadDetails', '');
   }
 
   // Apply filter for a specific column
@@ -175,7 +177,10 @@ export class LeadMasterComponent implements OnInit {
 
   createLead() {
     localStorage.removeItem('leadDetails');
-    this.router.navigate(['fos/lead-prospect-detail'], { state: { value: 0 } });
+    this.router.navigate(['fos/lead-prospect-detail'], {
+      queryParams: { status: '' },
+      state: { value: 0 },
+    });
   }
 
   fetchLeadGenerationLookup() {
@@ -214,7 +219,8 @@ export class LeadMasterComponent implements OnInit {
         let lead = response.message as ILead;
         localStorage.setItem('leadDetails', JSON.stringify(lead));
         this.router.navigate(['fos/lead-prospect-detail'], {
-          queryParams: { view: true }, state: { value: 0 }
+          queryParams: { status: 'View' },
+          state: { value: 0 },
         });
       },
       error: (error: any) => {
@@ -235,7 +241,8 @@ export class LeadMasterComponent implements OnInit {
         let lead = response.message as ILead;
         localStorage.setItem('leadDetails', JSON.stringify(lead));
         this.router.navigate(['fos/lead-prospect-detail'], {
-          queryParams: { view: false }, state: { value: 0 }
+          queryParams: { status: 'Modify' },
+          state: { value: 0 },
         });
       },
       error: (error: any) => {

@@ -45,7 +45,7 @@ export class Guarantor2Component implements OnInit {
   private mode: string = '';
   private leadId: number = 0;
   public action: any = {};
-  public buttonDisabled:boolean=false;
+  public buttonDisabled: boolean = false;
   public aadharFileName: string = '';
   public guarantorFileName: string = '';
   public panFileName: string = '';
@@ -53,6 +53,11 @@ export class Guarantor2Component implements OnInit {
   public guarantorFileContent: string = '';
   public panFileContent: string = '';
   private allowedExtensions: string[] = ['png', 'jpg', 'jpeg'];
+  public guarantorImageFilePath: string = '';
+  public aadharImageFilePath: string = '';
+  public panNumberImageFilePath: string = '';
+  public prospectType: string = '';
+  public isCreateMode: boolean = false;
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -80,20 +85,9 @@ export class Guarantor2Component implements OnInit {
     let tabValue = window.history.state?.value;
     this.selectedTab = tabValue;
 
-    // if (localStorage.getItem('selectedIndex')) {
-    //   this.selectedTab = JSON.parse(
-    //     localStorage.getItem('selectedIndex') || ''
-    //   );
-    // }
-
     this.leadHeader = JSON.parse(
       localStorage.getItem('leadHeader')!
     ) as ILeadHeader;
-
-    this.guarantor2Form = new FormGroup({
-      leadNumber: new FormControl('', [Validators.required]),
-      vehicleNumber: new FormControl('', [Validators.required]),
-    });
 
     if (this.leadHeader) {
       this.guarantor2Form
@@ -104,6 +98,64 @@ export class Guarantor2Component implements OnInit {
         .setValue(this.leadHeader.vehicleRegistrationNumber!);
     }
 
+    this.generateGuarantorForm();
+    this.getStates();
+    this.getProspectLookup();
+    this.sleep(1200);
+
+    this.route.queryParams.subscribe((params: Params) => {
+      this.action = params;
+      if (params['status'] == 'View') {
+        this.guarantor2Form.disable();
+        this.guarantor2DetailsForm.disable();
+        this.guarantor2CommunicationAddressForm.disable();
+        this.guarantor2KYCForm.disable();
+        this.buttonDisabled = true;
+      } else if (params['status'] == 'Modify') {
+        this.guarantor2Form.enable();
+        this.guarantor2DetailsForm.enable();
+        this.guarantor2CommunicationAddressForm.enable();
+        this.guarantor2PermanentAddressForm.enable();
+        this.buttonDisabled = false;
+      } else {
+        this.guarantor2Form.enable();
+        this.guarantor2DetailsForm.enable();
+        this.guarantor2CommunicationAddressForm.enable();
+        this.guarantor2PermanentAddressForm.enable();
+        this.buttonDisabled = false;
+        this.isCreateMode = true;
+      }
+
+      let leadDetails = JSON.parse(
+        localStorage.getItem('leadDetails')!
+      ) as ILead;
+
+      if (leadDetails && leadDetails.header)
+        this.leadHeader = leadDetails.header;
+
+      if (this.leadHeader) {
+        this.guarantor2Form
+          .get('leadNumber')!
+          .setValue(this.leadHeader.leadNumber!);
+        this.guarantor2Form
+          .get('vehicleNumber')!
+          .setValue(this.leadHeader.vehicleRegistrationNumber!);
+      }
+
+      this.leadId = leadDetails?.header?.leadId!;
+      this.setGuarantorDetails(
+        leadDetails?.lobId,
+        leadDetails?.header!,
+        leadDetails?.guarantors![1]!
+      );
+    });
+  }
+
+  private generateGuarantorForm() {
+    this.guarantor2Form = new FormGroup({
+      leadNumber: new FormControl('', [Validators.required]),
+      vehicleNumber: new FormControl('', [Validators.required]),
+    });
     this.guarantor2DetailsForm = new FormGroup({
       guarantorName: new FormControl('', [Validators.required]),
       relationship: new FormControl('', [Validators.required]),
@@ -140,53 +192,6 @@ export class Guarantor2Component implements OnInit {
       guarantorImage: new FormControl('', [Validators.required]),
       aadharImage: new FormControl('', [Validators.required]),
       panImage: new FormControl('', [Validators.required]),
-    });
-
-    this.getStates();
-    this.getProspectLookup();
-    this.sleep(1200);
-
-    this.route.queryParams.subscribe((params: Params) => {
-      this.action = params;
-      if (params['view'] =="true")  {
-        this.guarantor2Form.disable();
-        this.guarantor2DetailsForm.disable();
-        this.guarantor2CommunicationAddressForm.disable();
-        this.guarantor2PermanentAddressForm.disable();
-        this.guarantor2KYCForm.disable();
-        this.buttonDisabled = true;
-      } else {
-        this.guarantor2Form.enable();
-        this.guarantor2DetailsForm.enable();
-        this.guarantor2CommunicationAddressForm.enable();
-        this.guarantor2PermanentAddressForm.enable();
-        this.guarantor2KYCForm.enable();
-        this.buttonDisabled = false;
-      }
-      let leadDetails = JSON.parse(
-        localStorage.getItem('leadDetails')!
-      ) as ILead;
-
-      if (leadDetails && leadDetails.header)
-        this.leadHeader = leadDetails.header;
-
-      if (this.leadHeader) {
-        this.guarantor2Form
-          .get('leadNumber')!
-          .setValue(this.leadHeader.leadNumber!);
-        this.guarantor2Form
-          .get('vehicleNumber')!
-          .setValue(this.leadHeader.vehicleRegistrationNumber!);
-      }
-
-
-      this.leadId = leadDetails?.header?.leadId!;
-      this.setGuarantorDetails(
-        leadDetails?.lobId,
-        leadDetails?.header!,
-        leadDetails?.guarantors![0]!
-      );
-
     });
   }
 
@@ -287,239 +292,177 @@ export class Guarantor2Component implements OnInit {
     guarantor: ILeadGuarantor
   ) {
     this.leadHeader = this.leadHeader;
-    this.guarantor2DetailsForm
-      .get('guarantorName')!
-      .setValue(guarantor?.guarantorName);
 
-    this.guarantor2DetailsForm
-      .get('relationship')!
-      .setValue(guarantor?.guarantorRelationshipLookupValueId);
+    if (this.leadHeader && guarantor) {
+      this.guarantor2DetailsForm
+        .get('guarantorName')!
+        .setValue(guarantor?.guarantorName);
 
-    this.guarantor2DetailsForm.get('gender')!.setValue(guarantor?.genderId);
+      this.guarantor2DetailsForm
+        .get('relationship')!
+        .setValue(guarantor?.guarantorRelationshipLookupValueId);
 
-    this.guarantor2DetailsForm
-      .get('dateOfBirth')!
-      .setValue(guarantor?.guaranterDateOfBirth);
+      this.guarantor2DetailsForm.get('gender')!.setValue(guarantor?.genderId);
 
-    this.guarantor2DetailsForm
-      .get('mobileNumber')!
-      .setValue(guarantor?.mobileNumber);
+      this.guarantor2DetailsForm
+        .get('dateOfBirth')!
+        .setValue(guarantor?.guaranterDateOfBirth);
 
-    this.guarantor2DetailsForm
-      .get('alternateMobileNumber')!
-      .setValue(guarantor?.alternateMobileNumber);
+      this.guarantor2DetailsForm
+        .get('mobileNumber')!
+        .setValue(guarantor?.mobileNumber);
 
-    this.guarantor2DetailsForm
-      .get('guarantorAmount')!
-      .setValue(guarantor?.guarantorAmount);
+      this.guarantor2DetailsForm
+        .get('alternateMobileNumber')!
+        .setValue(guarantor?.alternateMobileNumber);
 
-    this.guarantor2CommunicationAddressForm
-      .get('addressLine1')!
-      .setValue(guarantor?.communicationAddress?.addressLine1);
+      this.guarantor2DetailsForm
+        .get('guarantorAmount')!
+        .setValue(guarantor?.guarantorAmount);
 
-    this.guarantor2CommunicationAddressForm
-      .get('addressLine2')!
-      .setValue(guarantor?.communicationAddress?.addressLine2);
+      this.guarantor2CommunicationAddressForm
+        .get('addressLine1')!
+        .setValue(guarantor?.communicationAddress?.addressLine1);
 
-    this.guarantor2CommunicationAddressForm
-      .get('landmark')!
-      .setValue(guarantor?.communicationAddress?.landmark);
+      this.guarantor2CommunicationAddressForm
+        .get('addressLine2')!
+        .setValue(guarantor?.communicationAddress?.addressLine2);
 
-    this.guarantor2CommunicationAddressForm
-      .get('city')!
-      .setValue(guarantor?.communicationAddress?.city);
+      this.guarantor2CommunicationAddressForm
+        .get('landmark')!
+        .setValue(guarantor?.communicationAddress?.landmark);
 
-    this.guarantor2CommunicationAddressForm
-      .get('state')!
-      .setValue(guarantor?.communicationAddress?.stateId);
+      this.guarantor2CommunicationAddressForm
+        .get('city')!
+        .setValue(guarantor?.communicationAddress?.city);
 
-    this.guarantor2CommunicationAddressForm
-      .get('country')!
-      .setValue(guarantor?.communicationAddress?.countryId);
+      this.guarantor2CommunicationAddressForm
+        .get('state')!
+        .setValue(guarantor?.communicationAddress?.stateId);
 
-    this.guarantor2CommunicationAddressForm
-      .get('pincode')!
-      .setValue(guarantor?.communicationAddress?.pincode);
+      this.guarantor2CommunicationAddressForm
+        .get('country')!
+        .setValue(guarantor?.communicationAddress?.countryId);
 
-    this.guarantor2PermanentAddressForm
-      .get('addressLine1')!
-      .setValue(guarantor?.permanentAddress?.addressLine1);
+      this.guarantor2CommunicationAddressForm
+        .get('pincode')!
+        .setValue(guarantor?.communicationAddress?.pincode);
 
-    this.guarantor2PermanentAddressForm
-      .get('addressLine2')!
-      .setValue(guarantor?.permanentAddress?.addressLine2);
+      this.guarantor2PermanentAddressForm
+        .get('addressLine1')!
+        .setValue(guarantor?.permanentAddress?.addressLine1);
 
-    this.guarantor2PermanentAddressForm
-      .get('landmark')!
-      .setValue(guarantor?.permanentAddress?.landmark);
+      this.guarantor2PermanentAddressForm
+        .get('addressLine2')!
+        .setValue(guarantor?.permanentAddress?.addressLine2);
 
-    this.guarantor2PermanentAddressForm
-      .get('city')!
-      .setValue(guarantor?.permanentAddress?.city);
+      this.guarantor2PermanentAddressForm
+        .get('landmark')!
+        .setValue(guarantor?.permanentAddress?.landmark);
 
-    this.guarantor2PermanentAddressForm
-      .get('state')!
-      .setValue(guarantor?.permanentAddress?.stateId);
+      this.guarantor2PermanentAddressForm
+        .get('city')!
+        .setValue(guarantor?.permanentAddress?.city);
 
-    this.guarantor2PermanentAddressForm
-      .get('country')!
-      .setValue(guarantor?.permanentAddress?.countryId);
+      this.guarantor2PermanentAddressForm
+        .get('state')!
+        .setValue(guarantor?.permanentAddress?.stateId);
 
-    this.guarantor2PermanentAddressForm
-      .get('pincode')!
-      .setValue(guarantor?.permanentAddress?.pincode);
+      this.guarantor2PermanentAddressForm
+        .get('country')!
+        .setValue(guarantor?.permanentAddress?.countryId);
 
-    this.guarantor2KYCForm
-      .get('aadharNumber')!
-      .setValue(guarantor?.permanentAddress?.addressLine1);
+      this.guarantor2PermanentAddressForm
+        .get('pincode')!
+        .setValue(guarantor?.permanentAddress?.pincode);
 
-    this.guarantor2KYCForm.get('panNumber')!.setValue(guarantor?.panNumber);
+      this.guarantor2KYCForm
+        .get('aadharNumber')!
+        .setValue(guarantor?.permanentAddress?.addressLine1);
 
-    this.guarantor2KYCForm
-      .get('guarantorImage')!
-      .setValue(guarantor?.guarantorImagePath);
+      this.guarantor2KYCForm.get('panNumber')!.setValue(guarantor?.panNumber);
 
-    this.guarantor2KYCForm
-      .get('aadharImage')!
-      .setValue(guarantor?.aadharImagePath);
+      this.guarantor2KYCForm
+        .get('guarantorImage')!
+        .setValue(guarantor?.guarantorImagePath);
 
-    this.guarantor2KYCForm.get('panImage')!.setValue(guarantor?.panImagePath);
+      this.guarantor2KYCForm
+        .get('aadharImage')!
+        .setValue(guarantor?.aadharImagePath);
+
+      this.guarantor2KYCForm.get('panImage')!.setValue(guarantor?.panImagePath);
+
+      this.aadharImageFilePath = guarantor.aadharImagePath!;
+      this.panNumberImageFilePath = guarantor.panImagePath!;
+      this.guarantorImageFilePath = guarantor.guarantorImagePath!;
+    }
   }
 
   onTabChanged(event: MatTabChangeEvent) {
-    if (this.action['view'] == "true") {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 3:
-          this.router.navigate(['/fos/lead-non-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 4:
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/fos/lead-prospect-detail'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 1:
+        this.router.navigate(['/fos/lead-loan-details'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 2:
+        this.router.navigate(['/fos/lead-individual'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 3:
+        if (this.prospectType != 'Non Individual')
           this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
+            queryParams: { status: this.action['status'] },
+            state: { value: 3 },
           });
-          break;
-        case 5:
-          this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-      }
-    } else if (this.action['view'] == "false") {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 3:
+        else
           this.router.navigate(['/fos/lead-non-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
+            queryParams: { status: this.action['status'] },
+            state: { value: 3 },
           });
-          break;
-        case 4:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 5:
+        break;
+      case 4:
+        if (this.prospectType != 'Non Individual')
           this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { view: this.action['view'] },
+            queryParams: { status: this.action['status'] },
             state: { value: event.index },
           });
-          break;
-      }
-    } else {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            state: { value: event.index },
-          });
-          break;
-        case 3:
-          this.router.navigate(['/fos/lead-non-individual'], {
-            state: { value: event.index },
-          });
-          break;
-        case 4:
+        else
           this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { status: this.action['status'] },
             state: { value: event.index },
           });
-          break;
-        case 5:
-          this.router.navigate(['/fos/lead-guarantor-2'], {
-            state: { value: event.index },
-          });
-          break;
-      }
+        break;
+      case 5:
+        this.router.navigate(['/fos/lead-guarantor-2'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
     }
   }
+
   back() {
-    this.location.back();
+    this.router.navigate(['/fos/lead-guarantor-1'], {
+      queryParams: { status: this.action['status'] },
+      state: { value: 3 },
+    });
   }
 
   skip() {
-    if (this.action['view'] == "true") {
-      this.router.navigate(['/fos/lead-prospect-detail'], {
-        queryParams: { view: this.action['view'] },
-        state: { value: 0 },
-      });
-    } else if (this.action['view'] == "false") {
-      this.router.navigate(['/fos/lead-prospect-detail'], {
-        queryParams: { view: this.action['view'] },
-        state: { value: 0 },
-      });
-    } else {
-      this.router.navigate(['/fos/lead-prospect-detail'], {
-        state: { value: 0 },
-      });
-    }
+    this.router.navigate(['/fos/lead-prospect-detail'], {
+      queryParams: { status: this.action['status'] },
+      state: { value: 0 },
+    });
   }
 
   getStates() {
@@ -582,6 +525,15 @@ export class Guarantor2Component implements OnInit {
       this.guarantor2KYCForm.valid
     ) {
       this.isSubmitted = false;
+      let aadharFilePath = this.aadharFileName
+        ? this.aadharFileName
+        : this.aadharImageFilePath;
+      let panFilePath = this.panFileName
+        ? this.panFileName
+        : this.panNumberImageFilePath;
+      let guarantorImagePath = this.guarantorFileName
+        ? this.guarantorFileName
+        : this.guarantorImageFilePath;
 
       let guaranterDetail = {
         genderId: this.guarantor2DetailsForm.value.gender,
@@ -598,13 +550,13 @@ export class Guarantor2Component implements OnInit {
         email: '',
         website: '',
         aadharNumber: this.guarantor2KYCForm.value.aadharNumber,
-        aadharImagePath: this.aadharFileName,
-        aadharImageContent:this.aadharFileContent,
+        aadharImagePath: aadharFilePath,
+        aadharImageContent: this.aadharFileContent,
         panNumber: this.guarantor2KYCForm.value.panNumber,
-        panImagePath: this.panFileName,
-        panImageContent:this.panFileContent,
-        guarantorImagePath: this.guarantorFileName,
-        guarantorImageContent:this.guarantorFileContent,
+        panImagePath: panFilePath,
+        panImageContent: this.panFileContent,
+        guarantorImagePath: guarantorImagePath,
+        guarantorImageContent: this.guarantorFileContent,
         prospectId: this.leadHeader.prospectId,
         prospectCode: '',
         communicationAddress: {
@@ -644,6 +596,7 @@ export class Guarantor2Component implements OnInit {
       this.leadService.addLeadGuarantors(lead).subscribe({
         next: (data: any) => {
           this.loaderService.hideLoader();
+          localStorage.setItem('leadDetails', JSON.stringify(lead));
           this.dialog.open(ModalComponent, {
             data: {
               title: 'LEAD GENERATION',
@@ -657,5 +610,47 @@ export class Guarantor2Component implements OnInit {
         },
       });
     }
+  }
+
+  copyCommunicationAddress(event: any) {
+    var commAddress = {} as IAddress;
+    if (event.target.checked)
+      commAddress = {
+        addressLine1:
+          this.guarantor2CommunicationAddressForm.value.addressLine1,
+        addressLine2:
+          this.guarantor2CommunicationAddressForm.value.addressLine2,
+        landmark: this.guarantor2CommunicationAddressForm.value.landmark,
+        city: this.guarantor2CommunicationAddressForm.value.city,
+        stateId: this.guarantor2CommunicationAddressForm.value.state,
+        countryId: this.guarantor2CommunicationAddressForm.value.country,
+        pincode: this.guarantor2CommunicationAddressForm.value.pincode,
+      } as IAddress;
+
+    this.guarantor2PermanentAddressForm
+      .get('addressLine1')!
+      .setValue(commAddress.addressLine1);
+
+    this.guarantor2PermanentAddressForm
+      .get('addressLine2')!
+      .setValue(commAddress.addressLine2);
+
+    this.guarantor2PermanentAddressForm
+      .get('landmark')!
+      .setValue(commAddress.landmark);
+
+    this.guarantor2PermanentAddressForm.get('city')!.setValue(commAddress.city);
+
+    this.guarantor2PermanentAddressForm
+      .get('state')!
+      .setValue(commAddress.stateId);
+
+    this.guarantor2PermanentAddressForm
+      .get('country')!
+      .setValue(commAddress.countryId);
+
+    this.guarantor2PermanentAddressForm
+      .get('pincode')!
+      .setValue(commAddress.pincode);
   }
 }

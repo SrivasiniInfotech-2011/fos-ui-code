@@ -46,6 +46,8 @@ export class LeadProspectDetailComponent implements OnInit {
   public today: string = '';
   public leadTypeLookup: IFOSLookup[] = [];
   private leadId: number = 0;
+  public prospectType: string = '';
+  public isCreateMode: boolean = false;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -110,20 +112,28 @@ export class LeadProspectDetailComponent implements OnInit {
       );
     this.route.queryParams.subscribe((params: Params) => {
       this.action = params;
-      if (params['view'] == 'true') {
+      if (params['status'] == 'View') {
         this.prospectSearchForm.disable();
         this.leadGenerationForm.disable();
+        this.buttonDisabled = true;
+      } else if (params['status'] == 'Modify') {
+        this.prospectSearchForm.enable();
+        this.leadGenerationForm.enable();
         this.buttonDisabled = true;
       } else {
         this.prospectSearchForm.enable();
         this.leadGenerationForm.enable();
         this.buttonDisabled = false;
+        this.isCreateMode = true;
       }
       let leadDetails = JSON.parse(
         localStorage.getItem('leadDetails')!
       ) as ILead;
 
       if (leadDetails) {
+        this.prospectType =
+          leadDetails.leadProspectDetail?.prospectTypeDescription!;
+
         this.leadId = leadDetails.header?.leadId!;
         if (leadDetails && leadDetails.header) {
           this.leadGenerationForm
@@ -138,9 +148,11 @@ export class LeadProspectDetailComponent implements OnInit {
               )
             );
         }
+
         this.setLeadGenerationDetails(leadDetails.leadProspectDetail!);
       }
     });
+
     this.loaderService.hideLoader();
   }
 
@@ -157,121 +169,68 @@ export class LeadProspectDetailComponent implements OnInit {
   }
 
   onTabChanged(event: MatTabChangeEvent) {
-    if (this.action['view'] == "true") {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 3:
-          this.router.navigate(['/fos/lead-non-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 4:
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/fos/lead-prospect-detail'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 1:
+        this.router.navigate(['/fos/lead-loan-details'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 2:
+        this.router.navigate(['/fos/lead-individual'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 3:
+        if (this.prospectType != 'Non Individual')
           this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
+            queryParams: { status: this.action['status'] },
+            state: { value: 3 },
           });
-          break;
-        case 5:
-          this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-      }
-    } else if (this.action['view'] == "false") {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 3:
+        else
           this.router.navigate(['/fos/lead-non-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
+            queryParams: { status: this.action['status'] },
+            state: { value: 3 },
           });
-          break;
-        case 4:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 5:
+        break;
+      case 4:
+        if (this.prospectType != 'Non Individual')
           this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { view: this.action['view'] },
+            queryParams: { status: this.action['status'] },
             state: { value: event.index },
           });
-          break;
-      }
-    } else {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            state: { value: event.index },
-          });
-          break;
-        case 3:
-          this.router.navigate(['/fos/lead-non-individual'], {
-            state: { value: event.index },
-          });
-          break;
-        case 4:
+        else
           this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { status: this.action['status'] },
             state: { value: event.index },
           });
-          break;
-        case 5:
-          this.router.navigate(['/fos/lead-guarantor-2'], {
-            state: { value: event.index },
-          });
-          break;
-      }
+        break;
+      case 5:
+        this.router.navigate(['/fos/lead-guarantor-2'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
     }
   }
 
+  navigateToLoanDetails() {
+    this.router.navigate(['/fos/lead-loan-details'], {
+      queryParams: { status: this.action['status'], state: { value: 1 } },
+    });
+  }
+
   setLeadGenerationDetails(data?: ILeadProspectDetail) {
+    this.prospectSearchForm.get('mobileNumber').setValue(data!.mobileNumber);
+    this.prospectSearchForm.get('aadharNumber').setValue(data!.aadharNumber);
+    this.prospectSearchForm.get('panNumber').setValue(data!.panNumber);
     this.leadGenerationForm.get('branch')!.setValue(data!.locationName);
     this.leadGenerationForm.get('leadType')!.setValue(data!.leadType);
     this.leadGenerationForm.get('prospectName')!.setValue(data!.prospectName);
@@ -302,6 +261,10 @@ export class LeadProspectDetailComponent implements OnInit {
         next: (data: any) => {
           this.leadProspectDetail = data.message as ILeadProspectDetail;
           this.setLeadGenerationDetails(this.leadProspectDetail);
+          localStorage.setItem(
+            'LeadProspectType',
+            this.leadProspectDetail.prospectTypeDescription!
+          );
           this.loaderService.hideLoader();
         },
         error: (error: any) => {

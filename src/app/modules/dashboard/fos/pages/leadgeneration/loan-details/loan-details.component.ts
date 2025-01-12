@@ -49,6 +49,8 @@ export class LoanDetailsComponent implements OnInit {
   private leadId: number = 0;
   public buttonDisabled: boolean = false;
   public action: any = {};
+  public prospectType: string = '';
+  public isCreateMode:boolean=false;
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -79,18 +81,25 @@ export class LoanDetailsComponent implements OnInit {
     this.setFieldExecutives();
     this.setDocumentCategories();
     this.sleep(1200);
+    this.prospectType = String(localStorage.getItem('LeadProspectType'));
     this.route.queryParams.subscribe((params: Params) => {
       this.action = params;
-      if (params['view'] =="true") {
-        this.leadForm.disable();
+      if (params['status'] == 'View') {
+        this.leadForm.enable();
         this.loanDetailsForm.disable();
         this.assetDetailsForm.disable();
         this.buttonDisabled = true;
+      } else if (params['status'] == 'Modify') {
+        this.leadForm.enable();
+        this.loanDetailsForm.enable();
+        this.assetDetailsForm.enable();
+        this.buttonDisabled = false;
       } else {
         this.leadForm.enable();
         this.loanDetailsForm.enable();
         this.assetDetailsForm.enable();
         this.buttonDisabled = false;
+        this.isCreateMode=true;
       }
 
       let leadDetails = JSON.parse(
@@ -99,6 +108,8 @@ export class LoanDetailsComponent implements OnInit {
 
       if (leadDetails) {
         this.leadId = leadDetails.header?.leadId!;
+        this.prospectType =
+          leadDetails.leadProspectDetail?.prospectTypeDescription!;
         this.setLeadLoanDetails(
           leadDetails.lobId,
           leadDetails.header!,
@@ -110,6 +121,14 @@ export class LoanDetailsComponent implements OnInit {
 
   sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  navigateToProspect() {
+    this.onTabChanged({ index: 0 } as MatTabChangeEvent);
+  }
+
+  navigateToIndividual() {
+    this.onTabChanged({ index: 2 } as MatTabChangeEvent);
   }
 
   setLeadLoanDetails(
@@ -193,117 +212,55 @@ export class LoanDetailsComponent implements OnInit {
   }
 
   onTabChanged(event: MatTabChangeEvent) {
-    if (this.action['view'] == "true") {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 3:
-          this.router.navigate(['/fos/lead-non-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 4:
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/fos/lead-prospect-detail'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 1:
+        this.router.navigate(['/fos/lead-loan-details'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 2:
+        this.router.navigate(['/fos/lead-individual'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 3:
+        if (this.prospectType != 'Non Individual')
           this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
+            queryParams: { status: this.action['status'] },
+            state: { value: 3 },
           });
-          break;
-        case 5:
-          this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-      }
-    } else if (this.action['view'] == "false") {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 3:
+        else
           this.router.navigate(['/fos/lead-non-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
+            queryParams: { status: this.action['status'] },
+            state: { value: 3 },
           });
-          break;
-        case 4:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 5:
+        break;
+      case 4:
+        if (this.prospectType != 'Non Individual')
           this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { view: this.action['view'] },
+            queryParams: { status: this.action['status'] },
             state: { value: event.index },
           });
-          break;
-      }
-    } else {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            state: { value: event.index },
-          });
-          break;
-        case 3:
-          this.router.navigate(['/fos/lead-non-individual'], {
-            state: { value: event.index },
-          });
-          break;
-        case 4:
+        else
           this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { status: this.action['status'] },
             state: { value: event.index },
           });
-          break;
-        case 5:
-          this.router.navigate(['/fos/lead-guarantor-2'], {
-            state: { value: event.index },
-          });
-          break;
-      }
+        break;
+      case 5:
+        this.router.navigate(['/fos/lead-guarantor-2'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
     }
   }
 
@@ -498,6 +455,7 @@ export class LoanDetailsComponent implements OnInit {
       this.leadService.addLeadLoanDetails(lead).subscribe({
         next: (data: any) => {
           this.loaderService.hideLoader();
+          localStorage.setItem('leadDetails', JSON.stringify(lead));
           var dialogRef = this.dialog.open(ModalComponent, {
             data: {
               title: 'LEAD GENERATION',

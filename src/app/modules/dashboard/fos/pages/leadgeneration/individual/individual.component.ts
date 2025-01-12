@@ -39,7 +39,8 @@ export class IndividualComponent implements OnInit {
   public action: any;
   public buttonDisabled: boolean = false;
   private leadId: number = 0;
-
+  public prospectType: string = '';
+  public isCreateMode:boolean=false;
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -48,7 +49,7 @@ export class IndividualComponent implements OnInit {
     private loaderService: LoaderService,
     private toasterService: ToastrService,
     public dialog: MatDialog,
-     private location: Location,
+    private location: Location,
     private route: ActivatedRoute
   ) {
     if (localStorage.getItem('userDetails')) {
@@ -71,6 +72,7 @@ export class IndividualComponent implements OnInit {
       localStorage.getItem('leadHeader')!
     ) as ILeadHeader;
 
+    this.prospectType = String(localStorage.getItem('LeadProspectType'));
     this.individualForm = new FormGroup({
       leadNumber: new FormControl('', [Validators.required]),
       vehicleNumber: new FormControl('', [Validators.required]),
@@ -118,23 +120,33 @@ export class IndividualComponent implements OnInit {
 
     this.route.queryParams.subscribe((params: Params) => {
       this.action = params;
-      if (params['view'] =="true") {
+      if (params['status'] == 'View') {
         this.individualForm.disable();
         this.individualDetailsForm.disable();
         this.buttonDisabled = true;
+      } else if (params['status'] == 'Modify') {
+        this.individualForm.enable();
+        this.individualDetailsForm.enable();
+        this.buttonDisabled = false;
       } else {
         this.individualForm.enable();
         this.individualDetailsForm.enable();
         this.buttonDisabled = false;
+        this.isCreateMode=true;
       }
 
       if (leadDetails && leadDetails.individualDetail) {
         this.leadId = leadDetails.header?.leadId!;
         this.setLeadIndividualDetails(leadDetails.individualDetail);
+        this.prospectType =
+          leadDetails.leadProspectDetail?.prospectTypeDescription!;
       }
     });
   }
 
+  navigateToNextTab(){
+    this.onTabChanged({ index: 3 } as MatTabChangeEvent);
+  }
   /**
    * Sets Individual Details.
    * @param individualDetail Individual Detail object.
@@ -200,119 +212,58 @@ export class IndividualComponent implements OnInit {
   }
 
   onTabChanged(event: MatTabChangeEvent) {
-    if (this.action['view'] == "true") {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 3:
-          this.router.navigate(['/fos/lead-non-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 4:
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/fos/lead-prospect-detail'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 1:
+        this.router.navigate(['/fos/lead-loan-details'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 2:
+        this.router.navigate(['/fos/lead-individual'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
+      case 3:
+        if (this.prospectType != 'Non Individual')
           this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
+            queryParams: { status: this.action['status'] },
+            state: { value: 3 },
           });
-          break;
-        case 5:
-          this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-      }
-    } else if (this.action['view'] == "false") {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 3:
+        else
           this.router.navigate(['/fos/lead-non-individual'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
+            queryParams: { status: this.action['status'] },
+            state: { value: 3 },
           });
-          break;
-        case 4:
-          this.router.navigate(['/fos/lead-guarantor-1'], {
-            queryParams: { view: this.action['view'] },
-            state: { value: event.index },
-          });
-          break;
-        case 5:
+        break;
+      case 4:
+        if (this.prospectType != 'Non Individual')
           this.router.navigate(['/fos/lead-guarantor-2'], {
-            queryParams: { view: this.action['view'] },
+            queryParams: { status: this.action['status'] },
             state: { value: event.index },
           });
-          break;
-      }
-    } else {
-      switch (event.index) {
-        case 0:
-          this.router.navigate(['/fos/lead-prospect-detail'], {
-            state: { value: event.index },
-          });
-          break;
-        case 1:
-          this.router.navigate(['/fos/lead-loan-details'], {
-            state: { value: event.index },
-          });
-          break;
-        case 2:
-          this.router.navigate(['/fos/lead-individual'], {
-            state: { value: event.index },
-          });
-          break;
-        case 3:
-          this.router.navigate(['/fos/lead-non-individual'], {
-            state: { value: event.index },
-          });
-          break;
-        case 4:
+        else
           this.router.navigate(['/fos/lead-guarantor-1'], {
+            queryParams: { status: this.action['status'] },
             state: { value: event.index },
           });
-          break;
-        case 5:
-          this.router.navigate(['/fos/lead-guarantor-2'], {
-            state: { value: event.index },
-          });
-          break;
-      }
+        break;
+      case 5:
+        this.router.navigate(['/fos/lead-guarantor-2'], {
+          queryParams: { status: this.action['status'] },
+          state: { value: event.index },
+        });
+        break;
     }
   }
+
   setLookups() {
     let lookup = JSON.parse(
       localStorage.getItem('leadGenerationLookups')!
@@ -324,7 +275,10 @@ export class IndividualComponent implements OnInit {
   }
 
   back() {
-     this.location.back();
+    this.router.navigate(['/fos/lead-loan-details'], {
+      queryParams: { status: this.action['status'] },
+      state: { value: 1 },
+    });
   }
 
   submit() {
@@ -336,8 +290,8 @@ export class IndividualComponent implements OnInit {
         childDependents: this.individualDetailsForm.value.noOfChildDependents,
         doorFloorNumber: this.individualDetailsForm.value.floorFlatNumber,
         employmentLookupValueId: this.individualDetailsForm.value.employment,
-        ExistingLoanEmi: this.individualDetailsForm.value.totalExistingLoans,
-        existingLoanCount: this.individualDetailsForm.value.existingLoans,
+        existingLoanEmi: this.individualDetailsForm.value.existingLoans,
+        existingLoanCount: this.individualDetailsForm.value.totalExistingLoans,
         fatherName: this.individualDetailsForm.value.fatherName,
         houseLookupValueId: this.individualDetailsForm.value.houseType,
         houseRentalAmount: this.individualDetailsForm.value.rentalLeaseAmount,
@@ -366,6 +320,11 @@ export class IndividualComponent implements OnInit {
         .subscribe({
           next: (data: any) => {
             this.loaderService.hideLoader();
+            let leadDetails = JSON.parse(
+              localStorage.getItem('leadDetails')!
+            ) as ILead;
+            leadDetails.individualDetail = individualDetail;
+            localStorage.setItem('leadDetails', JSON.stringify(leadDetails));
             var dialogRef = this.dialog.open(ModalComponent, {
               data: {
                 title: 'LEAD GENERATION',

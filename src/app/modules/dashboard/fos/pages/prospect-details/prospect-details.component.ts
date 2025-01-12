@@ -128,7 +128,7 @@ export class ProspectDetailsComponent implements OnInit {
         gender: this.fb.control('', [Validators.required]),
         mobileNumber: this.fb.control('', [Validators.required]),
         alternateMobileNumber: this.fb.control(''),
-        email: this.fb.control(''),
+        email: this.fb.control('', [Validators.required]),
       },
       { validators: this.validateFieldsByProspectType() }
     );

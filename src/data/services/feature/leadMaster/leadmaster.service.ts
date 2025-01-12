@@ -346,7 +346,7 @@ export class FOSLeadMasterService {
   ): Observable<any> {
     let endPoint = this.utilsService.buildApiEndpoint(
       environment.prospectsApi,
-      `${FOSApiEndPoints.Leads.CREATE_LEAD_INDIVIDUAL_RECORD}?userId=${userId}&leadId=${leadId}`
+      `${FOSApiEndPoints.Leads.CREATE_LEAD_NON_INDIVIDUAL_RECORD}?userId=${userId}&leadId=${leadId}`
     );
     if (endPoint.trim()) {
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this

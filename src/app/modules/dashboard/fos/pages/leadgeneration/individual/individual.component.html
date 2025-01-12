@@ -1,239 +1,137 @@
 <div class="content-box pt-2">
   <div class="container">
-    <mat-tab-group
-      (selectedTabChange)="onTabChanged($event)"
-      [selectedIndex]="selectedTab"
-    >
-      <mat-tab label="Prospect Details" [disabled]="true"></mat-tab>
+    <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTab">
+      <mat-tab label="Prospect Details" [disabled]="isCreateMode"></mat-tab>
       <mat-tab label="Loan Details"> </mat-tab>
       <mat-tab label="Individual">
-        <div class="individual-details-box">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb m-0">
-              <li class="breadcrumb-item">
-                <a routerLink="/fos/lead-generation" class="text-decoration-none d-flex align-items-center"><mat-icon
-                    class="me-2">home</mat-icon>Lead Generation</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Individual Details
-              </li>
-            </ol>
-          </nav>
-        </div>
         <div class="individual-details-box my-3">
           <form class="individual-details-form" [formGroup]="individualForm">
             <div class="row d-flex gy-2">
               <div class="col-12 col-lg-4">
                 <label>Lead Number<span class="text-danger">*</span></label>
-                <input
-                  placeholder="Enter Lead Number"
-                  type="text"
-                  class="form-control mt-2"
-                  formControlName="leadNumber"
-                  oninput="this.value = this.value.toUpperCase()"
-                />
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <input placeholder="Enter Lead Number" type="text" class="form-control mt-2"
+                  formControlName="leadNumber" [readOnly]="true" oninput="this.value = this.value.toUpperCase()" />
+                <span class="massage-text" *ngIf="
                     (individualForm.get('leadNumber')?.touched ||
                       isSubmitted) &&
                     individualForm.get('leadNumber')?.hasError('required')
-                  "
-                  >Lead Number is required</span
-                >
+                  ">Lead Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Vehicle Number<span class="text-danger">*</span></label>
-                <input
-                  placeholder="Enter Vehicle Number"
-                  type="text"
-                  class="form-control mt-2"
-                  formControlName="vehicleNumber"
-                  oninput="this.value = this.value.toUpperCase()"
-                />
+                <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
+                  formControlName="vehicleNumber" [readOnly]="true" oninput="this.value = this.value.toUpperCase()" />
 
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualForm.get('vehicleNumber')?.touched ||
                       isSubmitted) &&
                     individualForm.get('vehicleNumber')?.hasError('required')
-                  "
-                  >Vehicle Number is required</span
-                >
+                  ">Vehicle Number is required</span>
               </div>
             </div>
           </form>
         </div>
         <div class="individual-details-box my-3">
-          <form
-            class="individual-details-form"
-            [formGroup]="individualDetailsForm"
-          >
+          <form class="individual-details-form" [formGroup]="individualDetailsForm">
             <caption>
               Individual Details
             </caption>
             <div class="row d-flex gy-2">
               <div class="col-12 col-lg-4">
                 <label>Father Name<span class="text-danger">*</span></label>
-                <input
-                  placeholder="Enter the Father Name "
-                  type="text"
-                  class="form-control mt-2"
-                  formControlName="fatherName"
-                />
+                <input placeholder="Enter the Father Name " type="text" class="form-control mt-2"
+                  formControlName="fatherName" />
 
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('fatherName')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('fatherName')
                       ?.hasError('required')
-                  "
-                  >Father Name is required</span
-                >
+                  ">Father Name is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Mother Name<span class="text-danger">*</span></label>
-                <input
-                  placeholder="Enter the Mother  Name "
-                  type="text"
-                  class="form-control mt-2"
-                  formControlName="motherName"
-                />
+                <input placeholder="Enter the Mother  Name " type="text" class="form-control mt-2"
+                  formControlName="motherName" />
 
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('motherName')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('motherName')
                       ?.hasError('required')
-                  "
-                  >Mother Name is required</span
-                >
+                  ">Mother Name is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Marital Status<span class="text-danger">*</span></label>
-                <select
-                  class="form-select mt-2"
-                  formControlName="maritalStatus"
-                >
+                <select class="form-select mt-2" formControlName="maritalStatus">
                   <option value="" disabled>--Select--</option>
-                  <option
-                    *ngFor="let c of maritalStatusLookup"
-                    [value]="c.lookupValueId"
-                  >
+                  <option *ngFor="let c of maritalStatusLookup" [value]="c.lookupValueId">
                     {{ c.lookupValueDescription }}
                   </option>
                 </select>
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('maritalStatus')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('maritalStatus')
                       ?.hasError('required')
-                  "
-                  >Marital Status is required</span
-                >
+                  ">Marital Status is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Employment<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="employment">
                   <option value="" disabled>--Select--</option>
-                  <option
-                    *ngFor="let c of employmentLookup"
-                    [value]="c.lookupValueId"
-                  >
+                  <option *ngFor="let c of employmentLookup" [value]="c.lookupValueId">
                     {{ c.lookupValueDescription }}
                   </option>
                 </select>
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('employment')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('employment')
                       ?.hasError('required')
-                  "
-                  >Employment is required</span
-                >
+                  ">Employment is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Net Salary<span class="text-danger">*</span></label>
-                <input
-                  placeholder="Enter the Amount"
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="netSalary"
-                  [min]="0"
-                />
+                <input placeholder="Enter the Amount" type="number" class="form-control mt-2"
+                  formControlName="netSalary" [min]="0" />
 
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('netSalary')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm.get('netSalary')?.hasError('required')
-                  "
-                  >Net Salary is required</span
-                >
+                  ">Net Salary is required</span>
               </div>
 
               <div class="col-12 col-lg-4">
-                <label
-                  >No of adult dependents<span class="text-danger"
-                    >*</span
-                  ></label
-                >
-                <input
-                  placeholder="Enter the Count "
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="noOfAdultDependents"
-                  [min]="0"
-                />
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <label>No of adult dependents<span class="text-danger">*</span></label>
+                <input placeholder="Enter the Count " type="number" class="form-control mt-2"
+                  formControlName="noOfAdultDependents" [min]="0" />
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('noOfAdultDependents')
                       ?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('noOfAdultDependents')
                       ?.hasError('required')
-                  "
-                  >No of adult dependents is required</span
-                >
+                  ">No of adult dependents is required</span>
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Spouse Name</label>
-                <input
-                  placeholder="Enter Spouse Name"
-                  type="text"
-                  class="form-control mt-2"
-                  formControlName="spouseName"
-                />
+                <input placeholder="Enter Spouse Name" type="text" class="form-control mt-2"
+                  formControlName="spouseName" />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>Spouse Employment</label>
-                <select
-                  class="form-select mt-2"
-                  formControlName="spouseEmployment"
-                >
+                <select class="form-select mt-2" formControlName="spouseEmployment">
                   <option value="" disabled>--Select--</option>
-                  <option
-                    *ngFor="let c of employmentLookup"
-                    [value]="c.lookupValueId"
-                  >
+                  <option *ngFor="let c of employmentLookup" [value]="c.lookupValueId">
                     {{ c.lookupValueDescription }}
                   </option>
                 </select>
@@ -241,249 +139,151 @@
 
               <div class="col-12 col-lg-4">
                 <label>Spouse Monthly Salary</label>
-                <input
-                  placeholder="Enter Vehicle Number"
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="spouseMonthlySalary"
-                  [min]="0"
-                />
+                <input placeholder="Enter Vehicle Number" type="number" class="form-control mt-2"
+                  formControlName="spouseMonthlySalary" [min]="0" />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>No of child dependents </label>
-                <input
-                  placeholder="Enter the Count"
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="noOfChildDependents"
-                  [min]="0"
-                />
+                <input placeholder="Enter the Count" type="number" class="form-control mt-2"
+                  formControlName="noOfChildDependents" [min]="0" />
               </div>
 
               <div class="col-12 col-lg-4">
                 <label>House Type<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="houseType">
                   <option value="" disabled>-- Select --</option>
-                  <option
-                    *ngFor="let c of houseTypeLookup"
-                    [value]="c.lookupValueId"
-                  >
+                  <option *ngFor="let c of houseTypeLookup" [value]="c.lookupValueId">
                     {{ c.lookupValueDescription }}
                   </option>
                 </select>
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('houseType')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm.get('houseType')?.hasError('required')
-                  "
-                  >House type is required</span
-                >
+                  ">House type is required</span>
               </div>
 
               <div class="col-12 col-lg-4">
-                <label
-                  >Floor Number /Flat Number<span class="text-danger"
-                    >*</span
-                  ></label
-                >
-                <input
-                  placeholder="EX:Old no/new no"
-                  type="text"
-                  class="form-control mt-2"
-                  formControlName="floorFlatNumber"
-                />
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <label>Floor Number /Flat Number<span class="text-danger">*</span></label>
+                <input placeholder="EX:Old no/new no" type="text" class="form-control mt-2"
+                  formControlName="floorFlatNumber" />
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('floorFlatNumber')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('floorFlatNumber')
                       ?.hasError('required')
-                  "
-                  >Floor / Flat Number is required</span
-                >
+                  ">Floor / Flat Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>House Status<span class="text-danger">*</span></label>
                 <select class="form-select mt-2" formControlName="houseStatus">
                   <option value="" disabled>--Select--</option>
-                  <option
-                    *ngFor="let c of houseStatusLookup"
-                    [value]="c.lookupValueId"
-                  >
+                  <option *ngFor="let c of houseStatusLookup" [value]="c.lookupValueId">
                     {{ c.lookupValueDescription }}
                   </option>
                 </select>
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('houseStatus')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('houseStatus')
                       ?.hasError('required')
-                  "
-                  >House Status is required</span
-                >
+                  ">House Status is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label
-                  >Rental / Lease Amount<span class="text-danger"
-                    >*</span
-                  ></label
-                >
-                <input
-                  placeholder="Enter the Amount"
-                  type="text"
-                  class="form-control mt-2"
-                  formControlName="rentalLeaseAmount"
-                />
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <label>Rental / Lease Amount<span class="text-danger">*</span></label>
+                <input placeholder="Enter the Amount" type="text" class="form-control mt-2"
+                  formControlName="rentalLeaseAmount" />
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('rentalLeaseAmount')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('rentalLeaseAmount')
                       ?.hasError('required')
-                  "
-                  >Amount is required</span
-                >
+                  ">Amount is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Owned 2 Wheeler<span class="text-danger">*</span></label>
-                <input
-                  placeholder="Enter the count "
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="owned2Wheeler"
-                  [min]="0"
-                />
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <input placeholder="Enter the count " type="number" class="form-control mt-2"
+                  formControlName="owned2Wheeler" [min]="0" />
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('owned2Wheeler')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('owned2Wheeler')
                       ?.hasError('required')
-                  "
-                  >Owned 2 Wheeler is required</span
-                >
+                  ">Owned 2 Wheeler is required</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Owned 4 Wheeler<span class="text-danger">*</span></label>
-                <input
-                  placeholder="Enter the count "
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="owned4Wheeler"
-                  [min]="0"
-                />
+                <input placeholder="Enter the count " type="number" class="form-control mt-2"
+                  formControlName="owned4Wheeler" [min]="0" />
 
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('owned4Wheeler')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('owned4Wheeler')
                       ?.hasError('required')
-                  "
-                  >Owned 4 Wheeler is required</span
-                >
+                  ">Owned 4 Wheeler is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label
-                  >Owned Heavy Vehicles<span class="text-danger">*</span></label
-                >
-                <input
-                  placeholder="Enter the count "
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="ownedHeavyVehicle"
-                  [min]="0"
-                />
+                <label>Owned Heavy Vehicles<span class="text-danger">*</span></label>
+                <input placeholder="Enter the count " type="number" class="form-control mt-2"
+                  formControlName="ownedHeavyVehicle" [min]="0" />
 
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('ownedHeavyVehicle')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('ownedHeavyVehicle')
                       ?.hasError('required')
-                  "
-                  >Owned Heavy Vehicles is required</span
-                >
+                  ">Owned Heavy Vehicles is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label
-                  >Existing Loan in Alive<span class="text-danger"
-                    >*</span
-                  ></label
-                >
-                <input
-                  placeholder="Enter the count "
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="existingLoans"
-                  [min]="0"
-                />
+                <label>Existing Loan in Alive<span class="text-danger">*</span></label>
+                <input placeholder="Enter the count " type="number" class="form-control mt-2"
+                  formControlName="existingLoans" [min]="0" />
 
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('existingLoans')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('existingLoans')
                       ?.hasError('required')
-                  "
-                  >Existing Loan in Alive is required</span
-                >
+                  ">Existing Loan in Alive is required</span>
               </div>
               <div class="col-12 col-lg-4">
-                <label
-                  >Total Existing Loans Monthly EMI<span class="text-danger"
-                    >*</span
-                  ></label
-                >
-                <input
-                  placeholder="Enter the Amount "
-                  type="number"
-                  class="form-control mt-2"
-                  formControlName="totalExistingLoans"
-                  [min]="0"
-                />
+                <label>Total Existing Loans Monthly EMI<span class="text-danger">*</span></label>
+                <input placeholder="Enter the Amount " type="number" class="form-control mt-2"
+                  formControlName="totalExistingLoans" [min]="0" />
 
-                <span
-                  class="massage-text"
-                  *ngIf="
+                <span class="massage-text" *ngIf="
                     (individualDetailsForm.get('totalExistingLoans')?.touched ||
                       isSubmitted) &&
                     individualDetailsForm
                       .get('totalExistingLoans')
                       ?.hasError('required')
-                  "
-                  >Total Existing Loans Monthly EMI is required</span
-                >
+                  ">Total Existing Loans Monthly EMI is required</span>
               </div>
             </div>
           </form>
           <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
             <button class="option-button d-flex align-items-center" (click)="back()">Back</button>
-            <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" (click)="submit()">
+            <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" *ngIf="!buttonDisabled"
+              (click)="submit()">
               Submit
+            </button>
+            <button class="option-button d-flex align-items-center" *ngIf="buttonDisabled"
+              (click)="navigateToNextTab()">
+              Next
             </button>
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Non-Individual"></mat-tab>
+      <mat-tab label="Non-Individual" *ngIf="prospectType=='Non Individual'"></mat-tab>
       <mat-tab label="Guarantor 1"></mat-tab>
       <mat-tab label="Guarantor 2"> </mat-tab>
     </mat-tab-group>
