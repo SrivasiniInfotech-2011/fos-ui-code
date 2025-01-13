@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { UtilsService } from '../../../../data/services/shared/utils.service';
 import { EncryptionService } from '../../../../data/services/shared/encryption.service';
 import { MenuItem } from '../../../../core/interfaces/commons';
+import { LoaderService } from '../../../../data/services/shared/loader.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,7 +20,8 @@ export class SidebarComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private utilService: UtilsService,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private loaderService:LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class SidebarComponent implements OnInit {
   }
 
   getSideBarList() {
+    this.loaderService.showLoader();
     if (localStorage.getItem('userDetails')) {
       const encryptedUserData = localStorage.getItem('userDetails');
       if (encryptedUserData) {
@@ -38,6 +41,7 @@ export class SidebarComponent implements OnInit {
           this.userService.getSideBarData(userId),
           this.userService.getSideBarMaster(),
         ]).subscribe((res) => {
+          this.loaderService.hideLoader();
           const userMenus = res[0]?.message?.userMenus;
           const sideBarMasterList = res[1]?.NAV_ITEMS;
           for (let index = 0; index < userMenus.length; index++) {
