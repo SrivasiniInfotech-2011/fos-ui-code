@@ -24,6 +24,7 @@ import { EncryptionService } from '../../../../../../data/services/shared/encryp
 import moment from 'moment';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { Web } from '../../../../../../core/common/literals';
 @Component({
   selector: 'app-prospect-details',
   templateUrl: './prospect-details.component.html',
@@ -217,9 +218,15 @@ export class ProspectDetailsComponent implements OnInit {
       {
         aadharNumber: this.fb.control(''),
         panNumber: this.fb.control(''),
-        aadharImage: this.fb.control(''),
-        panImage: this.fb.control(''),
-        prospectImage: this.fb.control(''),
+        aadharImage: this.fb.control('', [
+          Validators.required
+        ]),
+        panImage: this.fb.control('', [
+          Validators.required
+        ]),
+        prospectImage: this.fb.control('', [
+          Validators.required
+        ]),
       },
       { validators: this.aadharOrPanRequired(['aadharNumber', 'panNumber']) }
     );
@@ -511,7 +518,7 @@ export class ProspectDetailsComponent implements OnInit {
                 .get('alternateMobileNumber')!
                 .setValue(this.customerProspectData.alternateMobileNumber);
 
-                this.prospectDetailForm
+              this.prospectDetailForm
                 .get('branch')!
                 .setValue(this.customerProspectData.locationId);
 
@@ -561,7 +568,7 @@ export class ProspectDetailsComponent implements OnInit {
           },
         });
     } else {
-      this.basicDetailForm.markAllAsTouched();
+      this.utilityService.markAllControls(this.basicDetailForm, true);
     }
   }
 
@@ -607,7 +614,7 @@ export class ProspectDetailsComponent implements OnInit {
         genderId: prospectData.gender,
         genderName: '',
         locationDescription: '',
-        locationId:prospectData.branch,
+        locationId: prospectData.branch,
         panNumberImagePath: panFilePath,
         permanentAddress: {
           addressLine1: permanentAddress.addressLine1,
@@ -643,10 +650,13 @@ export class ProspectDetailsComponent implements OnInit {
             timeOut: 3000,
           });
           this.loaderService.hideLoader();
-          this.utilityService.markAllAsUntouched(this.prospectDetailForm);
-          this.utilityService.markAllAsUntouched(this.kycDetailForm);
-          this.utilityService.markAllAsUntouched(this.communicationAddressForm);
-          this.utilityService.markAllAsUntouched(this.permanantAddressForm);
+          this.utilityService.markAllControls(this.prospectDetailForm, false);
+          this.utilityService.markAllControls(this.kycDetailForm, false);
+          this.utilityService.markAllControls(
+            this.communicationAddressForm,
+            false
+          );
+          this.utilityService.markAllControls(this.permanantAddressForm, false);
           this.clearForm();
         },
         error: (error: any) => {
@@ -660,10 +670,10 @@ export class ProspectDetailsComponent implements OnInit {
         },
       });
     } else {
-      this.prospectDetailForm.markAllAsTouched();
-      this.kycDetailForm.markAllAsTouched();
-      this.communicationAddressForm.markAllAsTouched();
-      this.permanantAddressForm.markAllAsTouched();
+      this.utilityService.markAllControls(this.prospectDetailForm, true);
+      this.utilityService.markAllControls(this.kycDetailForm, true);
+      this.utilityService.markAllControls(this.communicationAddressForm, true);
+      this.utilityService.markAllControls(this.permanantAddressForm, true);
     }
   }
 
@@ -696,13 +706,23 @@ export class ProspectDetailsComponent implements OnInit {
       const file = input.files[0];
 
       const extension = file.name.split('.').pop()?.toLowerCase();
-
+      const fileSizeInMB = file.size / (1024 * 1024);
       // Validate file extension
       if (extension && !this.allowedExtensions.includes(extension)) {
         this.aadharFileName = '';
         this.aadharFileContent = '';
         this.toasterService.show(
           'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.prospectFileName = '';
+        this.prospectFileContent = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
           'File Upload'
         );
       }
@@ -713,7 +733,7 @@ export class ProspectDetailsComponent implements OnInit {
         }
       };
       this.aadharFileName = file.name;
-
+      // this.kycDetailForm.get("aadharImage").setValue(this.aadharFileName );
       reader.readAsDataURL(file);
     }
   }
@@ -723,15 +743,24 @@ export class ProspectDetailsComponent implements OnInit {
 
     if (input?.files?.length) {
       const file = input.files[0];
-
       const extension = file.name.split('.').pop()?.toLowerCase();
-
+      const fileSizeInMB = file.size / (1024 * 1024);
       // Validate file extension
       if (extension && !this.allowedExtensions.includes(extension)) {
         this.panFileName = '';
         this.panFileContent = '';
         this.toasterService.show(
           'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.prospectFileName = '';
+        this.prospectFileContent = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
           'File Upload'
         );
       }
@@ -754,6 +783,7 @@ export class ProspectDetailsComponent implements OnInit {
       const file = input.files[0];
 
       const extension = file.name.split('.').pop()?.toLowerCase();
+      const fileSizeInMB = file.size / (1024 * 1024);
 
       // Validate file extension
       if (extension && !this.allowedExtensions.includes(extension)) {
@@ -764,6 +794,16 @@ export class ProspectDetailsComponent implements OnInit {
           'File Upload'
         );
       }
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.prospectFileName = '';
+        this.prospectFileContent = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
+          'File Upload'
+        );
+      }
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.result) {
@@ -771,7 +811,6 @@ export class ProspectDetailsComponent implements OnInit {
         }
       };
       this.prospectFileName = file.name;
-
       reader.readAsDataURL(file);
     }
   }

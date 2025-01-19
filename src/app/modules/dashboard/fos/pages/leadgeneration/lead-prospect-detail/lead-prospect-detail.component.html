@@ -14,6 +14,11 @@
                       saveDetails) &&
                     prospectSearchForm.get('mobileNumber')?.hasError('required')
                   ">Mobile Number is required</span>
+                <span class="massage-text" *ngIf="
+                                  (prospectSearchForm.get('mobileNumber')?.touched ||
+                                    saveDetails) &&
+                                  prospectSearchForm.get('mobileNumber')?.hasError('pattern')
+                                ">Enter a valid Mobile Number.</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Aadhar Number<span class="text-danger">*</span></label>
@@ -24,6 +29,11 @@
                       saveDetails) &&
                     prospectSearchForm.get('aadharNumber')?.hasError('required')
                   ">Aadhar Number is required</span>
+                <span class="massage-text" *ngIf="
+                                  (prospectSearchForm.get('aadharNumber')?.touched ||
+                                    saveDetails) &&
+                                  prospectSearchForm.get('aadharNumber')?.hasError('pattern')
+                                ">Enter a valid Aadhar Number</span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>PAN Number<span class="text-danger">*</span></label>
@@ -34,6 +44,11 @@
                       saveDetails) &&
                     prospectSearchForm.get('panNumber')?.hasError('required')
                   ">PAN Number is required</span>
+                <span class="massage-text" *ngIf="
+                   (prospectSearchForm.get('panNumber')?.touched ||
+                     saveDetails) &&
+                   prospectSearchForm.get('panNumber')?.hasError('pattern')
+                 ">Enter a valid PAN Number.</span>
               </div>
               <div class="note"
                 *ngIf="prospectSearchForm.errors?.['aadharOrPanRequired'] && prospectSearchForm.touched">
@@ -55,9 +70,8 @@
                 <label>Branch<span class="text-danger">*</span></label>
                 <input placeholder="Enter The Branch" type="text" class="form-control mt-2" formControlName="branch" />
                 <span class="massage-text" *ngIf="
-                    (leadGenerationForm.get('branch')?.touched ||
-                      isSubmitted) &&
-                    leadGenerationForm.get('branch')?.hasError('required')
+                    (leadGenerationForm.get('branch')?.touched &&
+                    leadGenerationForm.get('branch')?.hasError('required'))
                   ">Branch is required</span>
               </div>
               <div class="col-12 col-lg-4">
@@ -89,11 +103,10 @@
                 <input placeholder="Enter The Vehicle Number" type="text" class="form-control mt-2"
                   formControlName="vehicleNumber" />
                 <span class="massage-text" *ngIf="
-                    (leadGenerationForm.get('vehicleNumber')?.touched ||
-                      isSubmitted) &&
+                    (leadGenerationForm.get('vehicleNumber')?.touched &&
                     leadGenerationForm
                       .get('vehicleNumber')
-                      ?.hasError('required')
+                      ?.hasError('required'))
                   ">Vehicle Number is required</span>
               </div>
               <div class="col-12 col-lg-4">

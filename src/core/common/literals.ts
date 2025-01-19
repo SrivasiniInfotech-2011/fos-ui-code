@@ -4,6 +4,7 @@ import { IFOSStatus } from '../interfaces/IFOSMyRequest';
  * Literals related to web/http
  */
 export const Web = {
+  MAX_FILE_SIZE_MB:1.5,
   HttpStatusCode: {
     BadRequest: 400,
     Conflict: 409,

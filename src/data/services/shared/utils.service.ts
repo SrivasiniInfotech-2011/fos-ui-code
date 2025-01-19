@@ -174,13 +174,14 @@ export class UtilsService {
     return moment(value).format(format);
   }
 
-  markAllAsUntouched(formGroup: FormGroup): void {
+  markAllControls(formGroup: FormGroup, markAsTouched: boolean): void {
     Object.keys(formGroup.controls).forEach((key) => {
       const control = formGroup.get(key);
       if (control instanceof FormControl) {
-        control.markAsUntouched();
+        if (markAsTouched)
+          markAsTouched ? control.markAsTouched() : control.markAsUntouched();
       } else if (control instanceof FormGroup) {
-        this.markAllAsUntouched(control); // Recursive call for nested FormGroups
+        this.markAllControls(control, markAsTouched); // Recursive call for nested FormGroups
       }
     });
   }

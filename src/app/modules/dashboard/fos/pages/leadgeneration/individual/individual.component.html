@@ -276,7 +276,7 @@
               (click)="submit()">
               Submit
             </button>
-            <button class="option-button d-flex align-items-center" *ngIf="buttonDisabled"
+            <button class="option-button d-flex align-items-center" *ngIf="!isCreateMode"
               (click)="navigateToNextTab()">
               Next
             </button>

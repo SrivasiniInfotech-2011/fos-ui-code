@@ -417,9 +417,15 @@
               (change)="onProspectImageChange($event)" />
             <div class="massage-text" *ngIf="
                 kycDetailForm.controls.prospectImage.touched &&
-                kycDetailForm.controls.prospectImage.errors?.required
+               !prospectFileName
               ">
               Prospect Image is required
+            </div>
+            <div class="massage-text" *ngIf="
+            kycDetailForm.controls.prospectImage.touched &&
+            kycDetailForm.controls.prospectImage['fileSize']
+          ">
+              Prospect Image size should be less than or equal to 1.5 mb.
             </div>
             <a [href]="prospectImageFilePath" target="_blank" rel="noopener noreferrer"
               *ngIf="prospectImageFilePath">Image Link</a>
@@ -432,9 +438,15 @@
               #aadharImage (change)="onAadharImageChange($event)" />
             <div class="massage-text" *ngIf="
                 kycDetailForm.controls.aadharImage.touched &&
-                kycDetailForm.controls.aadharImage.errors?.required
+               !aadharFileName
               ">
               Aadhar Image is required
+            </div>
+            <div class="massage-text" *ngIf="
+            kycDetailForm.controls.aadharImage.touched &&
+            kycDetailForm.controls.aadharImage['fileSize']
+          ">
+              Aadhar Image size should be less than or equal to 1.5 mb.
             </div>
             <a [href]="aadharImageFilePath" target="_blank" rel="noopener noreferrer" *ngIf="aadharImageFilePath">Image
               Link</a>
@@ -446,11 +458,16 @@
               formControlName="panImage" #panImage (change)="onPanImageChange($event)" />
             <div class="massage-text" *ngIf="
                 kycDetailForm.controls.panImage.touched &&
-                kycDetailForm.controls.panImage.errors?.required
+                !panFileName
               ">
               PAN Number Image is required
             </div>
-
+            <div class="massage-text" *ngIf="
+            kycDetailForm.controls.panImage.touched &&
+            kycDetailForm.controls.errors['fileSize']
+          ">
+              PAN Number Image size should be less than or equal to 1.5 mb.
+            </div>
             <a [href]="panNumberImageFilePath" target="_blank" rel="noopener noreferrer"
               *ngIf="panNumberImageFilePath">Image Link</a>
           </div>

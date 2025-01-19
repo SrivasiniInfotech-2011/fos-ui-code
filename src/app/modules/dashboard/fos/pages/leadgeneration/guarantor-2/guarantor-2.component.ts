@@ -20,6 +20,8 @@ import {
   ILeadHeader,
 } from '../../../../../../../core/interfaces/app/leads/IFOSLeadsModel';
 import { ModalComponent } from '../../../../../../shared/components/modal/modal-component';
+import { guarantorAmountValidator } from '../../../../../../../core/validators/guarantorAmountValidator';
+import { Web } from '../../../../../../../core/common/literals';
 @Component({
   selector: 'app-guarantor-2',
   templateUrl: './guarantor-2.component.html',
@@ -97,8 +99,16 @@ export class Guarantor2Component implements OnInit {
         .get('vehicleNumber')!
         .setValue(this.leadHeader.vehicleRegistrationNumber!);
     }
-
-    this.generateGuarantorForm();
+    this.leadHeader = JSON.parse(
+      localStorage.getItem('leadHeader')!
+    ) as ILeadHeader;
+    let leadDetails = JSON.parse(localStorage.getItem('leadDetails')!) as ILead;
+    let financeAmount =
+      leadDetails && leadDetails.header && leadDetails.guarantors
+        ? leadDetails.header?.financeAmount! +
+          Number(leadDetails.guarantors[0]?.guarantorAmount!)
+        : 0;
+    this.generateGuarantorForm(financeAmount);
     this.getStates();
     this.getProspectLookup();
     this.sleep(1200);
@@ -151,7 +161,7 @@ export class Guarantor2Component implements OnInit {
     });
   }
 
-  private generateGuarantorForm() {
+  private generateGuarantorForm(totalLoanAmount: number) {
     this.guarantor2Form = new FormGroup({
       leadNumber: new FormControl('', [Validators.required]),
       vehicleNumber: new FormControl('', [Validators.required]),
@@ -161,9 +171,18 @@ export class Guarantor2Component implements OnInit {
       relationship: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
       dateOfBirth: new FormControl('', [Validators.required]),
-      mobileNumber: new FormControl('', [Validators.required]),
-      alternateMobileNumber: new FormControl(''),
-      guarantorAmount: new FormControl('', [Validators.required]),
+      mobileNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$'),
+      ]),
+      alternateMobileNumber: new FormControl(
+        '',
+        Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')
+      ),
+      guarantorAmount: new FormControl('', [
+        Validators.required,
+        guarantorAmountValidator(0, totalLoanAmount),
+      ]),
     });
 
     this.guarantor2CommunicationAddressForm = new FormGroup({
@@ -187,8 +206,14 @@ export class Guarantor2Component implements OnInit {
     });
 
     this.guarantor2KYCForm = new FormGroup({
-      aadharNumber: new FormControl('', [Validators.required]),
-      panNumber: new FormControl('', [Validators.required]),
+      aadharNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[2-9][0-9]{3}[0-9]{4}[0-9]{4}$'),
+      ]),
+      panNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$'),
+      ]),
       guarantorImage: new FormControl('', [Validators.required]),
       aadharImage: new FormControl('', [Validators.required]),
       panImage: new FormControl('', [Validators.required]),
@@ -206,7 +231,7 @@ export class Guarantor2Component implements OnInit {
       const file = input.files[0];
 
       const extension = file.name.split('.').pop()?.toLowerCase();
-
+      const fileSizeInMB = file.size / (1024 * 1024);
       // Validate file extension
       if (extension && !this.allowedExtensions.includes(extension)) {
         this.aadharFileName = '';
@@ -222,6 +247,16 @@ export class Guarantor2Component implements OnInit {
           this.aadharFileContent = reader.result.toString().split(',')[1];
         }
       };
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.aadharFileName = '';
+        this.aadharFileContent = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
+          'File Upload'
+        );
+      }
       this.aadharFileName = file.name;
 
       reader.readAsDataURL(file);
@@ -235,13 +270,23 @@ export class Guarantor2Component implements OnInit {
       const file = input.files[0];
 
       const extension = file.name.split('.').pop()?.toLowerCase();
-
+      const fileSizeInMB = file.size / (1024 * 1024);
       // Validate file extension
       if (extension && !this.allowedExtensions.includes(extension)) {
         this.panFileName = '';
         this.panFileContent = '';
         this.toasterService.show(
           'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.panFileContent = '';
+        this.panFileName = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
           'File Upload'
         );
       }
@@ -264,13 +309,23 @@ export class Guarantor2Component implements OnInit {
       const file = input.files[0];
 
       const extension = file.name.split('.').pop()?.toLowerCase();
-
+      const fileSizeInMB = file.size / (1024 * 1024);
       // Validate file extension
       if (extension && !this.allowedExtensions.includes(extension)) {
         this.guarantorFileName = '';
         this.guarantorFileContent = '';
         this.toasterService.show(
           'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.guarantorFileContent = '';
+        this.guarantorFileName = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
           'File Upload'
         );
       }
@@ -583,6 +638,11 @@ export class Guarantor2Component implements OnInit {
         } as IAddress,
       } as ILeadGuarantor;
 
+      let leadDetail = JSON.parse(
+        String(localStorage.getItem('leadDetails'))
+      ) as ILead;
+      let guarantors = leadDetail.guarantors;
+      if (guarantors) guarantors.push(guaranterDetail);
       let lead = {
         header: this.leadHeader,
         companyId: this.loggedInUser.companyId,
@@ -590,7 +650,7 @@ export class Guarantor2Component implements OnInit {
         userId: this.loggedInUser.userId,
         customerId: 1,
         customerCode: '',
-        guarantors: [guaranterDetail] as ILeadGuarantor[],
+        guarantors: guarantors,
       } as ILead;
       this.loaderService.showLoader();
       this.leadService.addLeadGuarantors(lead).subscribe({
@@ -609,6 +669,18 @@ export class Guarantor2Component implements OnInit {
           this.toasterService.show(error);
         },
       });
+    } else {
+      this.utilityService.markAllControls(this.guarantor2Form, true);
+      this.utilityService.markAllControls(this.guarantor2DetailsForm, true);
+      this.utilityService.markAllControls(
+        this.guarantor2CommunicationAddressForm,
+        true
+      );
+      this.utilityService.markAllControls(
+        this.guarantor2PermanentAddressForm,
+        true
+      );
+      this.utilityService.markAllControls(this.guarantor2KYCForm, true);
     }
   }
 

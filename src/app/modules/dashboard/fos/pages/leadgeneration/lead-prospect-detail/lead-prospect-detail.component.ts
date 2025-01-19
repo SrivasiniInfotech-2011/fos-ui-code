@@ -35,7 +35,6 @@ import { ThisReceiver } from '@angular/compiler';
 export class LeadProspectDetailComponent implements OnInit {
   public prospectSearchForm: FormGroup | any = new FormGroup({});
   public leadGenerationForm: FormGroup | any = new FormGroup({});
-  public isSubmitted: boolean = false;
   public saveDetails: boolean = false;
   public selectedTab: any;
   public readOnly: boolean = false;
@@ -79,9 +78,9 @@ export class LeadProspectDetailComponent implements OnInit {
     // );
     this.prospectSearchForm = new FormGroup(
       {
-        mobileNumber: new FormControl('', [Validators.required]),
-        aadharNumber: new FormControl('', [Validators.required]),
-        panNumber: new FormControl('', [Validators.required]),
+        mobileNumber: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')]),
+        aadharNumber: new FormControl('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}\s[0-9]{4}\s[0-9]{4}$')]),
+        panNumber: new FormControl('', [Validators.required, Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$')]),
       },
       { validators: this.aadharOrPanRequired }
     );
@@ -117,8 +116,8 @@ export class LeadProspectDetailComponent implements OnInit {
         this.leadGenerationForm.disable();
         this.buttonDisabled = true;
       } else if (params['status'] == 'Modify') {
-        this.prospectSearchForm.enable();
-        this.leadGenerationForm.enable();
+        this.prospectSearchForm.disable();
+        this.leadGenerationForm.disable();
         this.buttonDisabled = true;
       } else {
         this.prospectSearchForm.enable();
@@ -244,9 +243,7 @@ export class LeadProspectDetailComponent implements OnInit {
   }
 
   searchProspect() {
-    this.isSubmitted = true;
     if (this.prospectSearchForm.valid) {
-      this.isSubmitted = false;
       let request = {
         aadharNumber: this.prospectSearchForm.value.aadharNumber,
         companyId: this.loggedInUser.companyId,
@@ -277,7 +274,7 @@ export class LeadProspectDetailComponent implements OnInit {
           }
         },
       });
-    }
+    } else this.utilityService.markAllControls(this.prospectSearchForm, true);
   }
 
   openLeadGenerationDialog(
@@ -299,9 +296,7 @@ export class LeadProspectDetailComponent implements OnInit {
   }
 
   generateLead() {
-    this.isSubmitted = true;
     if (this.leadGenerationForm.valid) {
-      this.isSubmitted = false;
       this.loaderService.showLoader();
       let leadGenerationHeader = {
         prospectId: this.leadProspectDetail.prospectId!,
@@ -337,6 +332,6 @@ export class LeadProspectDetailComponent implements OnInit {
             }
           },
         });
-    }
+    } else this.utilityService.markAllControls(this.leadGenerationForm, true);
   }
 }

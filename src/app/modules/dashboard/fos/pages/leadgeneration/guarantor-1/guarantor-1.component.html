@@ -1,6 +1,6 @@
 <div class="content-box pt-2">
   <div class="container">
-    <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTab"> 
+    <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTab">
       <mat-tab label="Prospect Details" [disabled]="isCreateMode"></mat-tab>
       <mat-tab label="Loan Details"> </mat-tab>
       <mat-tab label="Individual"> </mat-tab>
@@ -102,11 +102,17 @@
                       .get('mobileNumber')
                       ?.hasError('required')
                   ">Mobile Number is required</span>
+                <span class="massage-text" *ngIf="guarantor1DetailsForm.controls.mobileNumber.errors?.pattern">
+                  Please enter a valid 10-digit mobile number
+                </span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Alternate Mobile Number</label>
                 <input type="text" class="form-control mt-2" placeholder="Enter Alternate Mobile Number"
                   formControlName="alternateMobileNumber" />
+                <span class="massage-text" *ngIf="guarantor1DetailsForm.controls.alternateMobileNumber.errors?.pattern">
+                  Please enter a valid 10-digit mobile number
+                </span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Guarantor Amount<span class="text-danger">*</span></label>
@@ -119,6 +125,11 @@
                       .get('guarantorAmount')
                       ?.hasError('required')
                   ">Guarantor Amount is required</span>
+                <span class="massage-text" *ngIf=" 
+                        guarantor1DetailsForm.get('guarantorAmount')?.touched &&
+                        guarantor1DetailsForm.get('guarantorAmount').errors &&
+                        !guarantor1DetailsForm.get('guarantorAmount').errors?.['validGuarantorAmount'] ">The
+                  Guarantor Amount should not be more than the Loan Amount.</span>
               </div>
             </div>
           </form>
@@ -270,7 +281,9 @@
                       isSubmitted) &&
                     guarantor1KYCForm.get('aadharNumber')?.hasError('required')
                   ">Aadhar Number is required</span>
-
+                <span class="massage-text" *ngIf="guarantor1KYCForm.get('aadharNumber')?.errors?.pattern">
+                  Please enter a valid 12 digit aadhar number
+                </span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>PAN Number<span class="text-danger">*</span></label>
@@ -281,6 +294,9 @@
                       isSubmitted) &&
                     guarantor1KYCForm.get('panNumber')?.hasError('required')
                   ">PAN Number is required</span>
+                <span class="massage-text" *ngIf="guarantor1KYCForm.get('panNumber')?.errors?.pattern">
+                  Please enter a valid 12 digit aadhar number
+                </span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Guarantor Image<span class="text-danger">*</span></label>
@@ -289,9 +305,7 @@
                 <span class="massage-text" *ngIf="
                     (guarantor1KYCForm.get('guarantorImage')?.touched ||
                       isSubmitted) &&
-                    guarantor1KYCForm
-                      .get('guarantorImage')
-                      ?.hasError('required')
+                  !guarantorFileName
                   ">Guarantor Image is required</span>
                 <a target="blank" href="{{ guarantorImageFilePath }}" *ngIf="guarantorImageFilePath">Guarantor Image
                   Link</a>
@@ -303,7 +317,7 @@
                 <span class="massage-text" *ngIf="
                     (guarantor1KYCForm.get('aadharImage')?.touched ||
                       isSubmitted) &&
-                    guarantor1KYCForm.get('aadharImage')?.hasError('required')
+                    !aadharFileName
                   ">Aadhar is required</span>
                 <a target="blank" href="{{ aadharImageFilePath }}" *ngIf="aadharImageFilePath">Aadhar Image Link</a>
               </div>
@@ -314,15 +328,16 @@
                 <span class="massage-text" *ngIf="
                     (guarantor1KYCForm.get('panImage')?.touched ||
                       isSubmitted) &&
-                    guarantor1KYCForm.get('panImage')?.hasError('required')
+                    !panFileName
                   ">PAN is required</span>
-                <a target="blank" href="{{ panNumberImageFilePath }}" *ngIf="panNumberImageFilePath">PAN Image Link</a>
+                <a target="blank" href="{{ panNumberImageFilePath }}" *ngIf="panNumberImageFilePath">Pan Image Link</a>
               </div>
             </div>
           </form>
         </div>
         <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 py-4">
-          <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="save()">
+          <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" *ngIf="!buttonDisabled"
+            (click)="save()">
             Save
           </button>
           <button class="option-button d-flex align-items-center" (click)="back()">

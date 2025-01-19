@@ -50,7 +50,7 @@ export class LoanDetailsComponent implements OnInit {
   public buttonDisabled: boolean = false;
   public action: any = {};
   public prospectType: string = '';
-  public isCreateMode:boolean=false;
+  public isCreateMode: boolean = false;
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -99,7 +99,7 @@ export class LoanDetailsComponent implements OnInit {
         this.loanDetailsForm.enable();
         this.assetDetailsForm.enable();
         this.buttonDisabled = false;
-        this.isCreateMode=true;
+        this.isCreateMode = true;
       }
 
       let leadDetails = JSON.parse(
@@ -420,7 +420,7 @@ export class LoanDetailsComponent implements OnInit {
         fieldExecutiveId: this.loanDetailsForm.value.fieldExecutive,
         financeAmount: parseFloat(this.loanDetailsForm.value.financeAmount),
         tenure: this.loanDetailsForm.value.tenure,
-        tenureLookupTypeId: this.loanDetailsForm.value.tenureType,
+        tenureLookupValueId: this.loanDetailsForm.value.tenureType,
         leadTypeLookupValueId: this.leadHeader.leadTypeLookupValueId,
         leavePeriod: this.loanDetailsForm.value.leavePeriod,
         repaymentFrequencyLookupValueId:

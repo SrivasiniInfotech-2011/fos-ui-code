@@ -34,7 +34,7 @@ export class NonIndividualComponent implements OnInit {
   public publicTypeLookup: IFOSLookup[] = [];
   public instTypeLookup: IFOSLookup[] = [];
   public prospectType: string = '';
-  public isCreateMode:boolean=false;
+  public isCreateMode: boolean = false;
   constructor(
     private utilityService: UtilsService,
     private leadService: FOSLeadMasterService,
@@ -130,7 +130,7 @@ export class NonIndividualComponent implements OnInit {
         this.nonIndividualForm.enable();
         this.nonIndividualDetailsForm.enable();
         this.buttonDisabled = false;
-        this.isCreateMode=true
+        this.isCreateMode = true;
       }
 
       if (leadDetails && leadDetails.nonIndividualDetail) {
@@ -235,7 +235,9 @@ export class NonIndividualComponent implements OnInit {
       .get('residentialAddress')!
       .setValue(nonIndividualDetail!.residentialAddress);
   }
-
+  navigateToNextTab() {
+    this.onTabChanged({ index: 4 } as MatTabChangeEvent);
+  }
   onTabChanged(event: MatTabChangeEvent) {
     switch (event.index) {
       case 0:

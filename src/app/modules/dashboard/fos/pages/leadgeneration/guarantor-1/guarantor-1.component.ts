@@ -21,6 +21,8 @@ import {
 } from '../../../../../../../core/interfaces/app/leads/IFOSLeadsModel';
 import { ModalComponent } from '../../../../../../shared/components/modal/modal-component';
 import { Location } from '@angular/common';
+import { guarantorAmountValidator } from '../../../../../../../core/validators/guarantorAmountValidator';
+import { Web } from '../../../../../../../core/common/literals';
 @Component({
   selector: 'app-guarantor-1',
   templateUrl: './guarantor-1.component.html',
@@ -90,38 +92,34 @@ export class Guarantor1Component implements OnInit {
     this.leadHeader = JSON.parse(
       localStorage.getItem('leadHeader')!
     ) as ILeadHeader;
-
-    this.generateGuarantorForm();
+    let leadDetails = JSON.parse(localStorage.getItem('leadDetails')!) as ILead;
+    this.generateGuarantorForm(
+      leadDetails ? leadDetails.header?.financeAmount! : 0
+    );
     this.getStates();
     this.getProspectLookup();
     this.sleep(1200);
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.action = params;
+      this.guarantor1Form.enable();
       if (params['status'] == 'View') {
-        this.guarantor1Form.disable();
         this.guarantor1DetailsForm.disable();
         this.guarantor1CommunicationAddressForm.disable();
         this.guarantor1PermanentAddressForm.disable();
         this.buttonDisabled = true;
       } else if (params['status'] == 'Modify') {
-        this.guarantor1Form.enable();
         this.guarantor1DetailsForm.enable();
         this.guarantor1CommunicationAddressForm.enable();
         this.guarantor1PermanentAddressForm.enable();
         this.buttonDisabled = false;
       } else {
-        this.guarantor1Form.enable();
         this.guarantor1DetailsForm.enable();
         this.guarantor1CommunicationAddressForm.enable();
         this.guarantor1PermanentAddressForm.enable();
         this.buttonDisabled = false;
         this.isCreateMode = true;
       }
-
-      let leadDetails = JSON.parse(
-        localStorage.getItem('leadDetails')!
-      ) as ILead;
 
       if (leadDetails && leadDetails.header)
         this.leadHeader = leadDetails.header;
@@ -152,7 +150,7 @@ export class Guarantor1Component implements OnInit {
     });
   }
 
-  private generateGuarantorForm() {
+  private generateGuarantorForm(totalLoanAmount: number) {
     this.guarantor1Form = new FormGroup({
       leadNumber: new FormControl('', [Validators.required]),
       vehicleNumber: new FormControl('', [Validators.required]),
@@ -163,9 +161,18 @@ export class Guarantor1Component implements OnInit {
       relationship: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
       dateOfBirth: new FormControl('', [Validators.required]),
-      mobileNumber: new FormControl('', [Validators.required]),
-      alternateMobileNumber: new FormControl(''),
-      guarantorAmount: new FormControl('', [Validators.required]),
+      mobileNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$'),
+      ]),
+      alternateMobileNumber: new FormControl(
+        '',
+        Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')
+      ),
+      guarantorAmount: new FormControl('', [
+        Validators.required,
+        guarantorAmountValidator(0, totalLoanAmount),
+      ]),
     });
 
     this.guarantor1CommunicationAddressForm = new FormGroup({
@@ -214,13 +221,23 @@ export class Guarantor1Component implements OnInit {
       const file = input.files[0];
 
       const extension = file.name.split('.').pop()?.toLowerCase();
-
+      const fileSizeInMB = file.size / (1024 * 1024);
       // Validate file extension
       if (extension && !this.allowedExtensions.includes(extension)) {
         this.aadharFileName = '';
         this.aadharFileContent = '';
         this.toasterService.show(
           'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.aadharFileContent = '';
+        this.aadharFileName = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
           'File Upload'
         );
       }
@@ -241,15 +258,24 @@ export class Guarantor1Component implements OnInit {
 
     if (input?.files?.length) {
       const file = input.files[0];
-
+      const fileSizeInMB = file.size / (1024 * 1024);
       const extension = file.name.split('.').pop()?.toLowerCase();
-
       // Validate file extension
       if (extension && !this.allowedExtensions.includes(extension)) {
         this.panFileName = '';
         this.panFileContent = '';
         this.toasterService.show(
           'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.panFileContent = '';
+        this.panFileName = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
           'File Upload'
         );
       }
@@ -270,7 +296,7 @@ export class Guarantor1Component implements OnInit {
 
     if (input?.files?.length) {
       const file = input.files[0];
-
+      const fileSizeInMB = file.size / (1024 * 1024);
       const extension = file.name.split('.').pop()?.toLowerCase();
 
       // Validate file extension
@@ -279,6 +305,16 @@ export class Guarantor1Component implements OnInit {
         this.guarantorFileContent = '';
         this.toasterService.show(
           'Invalid file type. Please upload a png or jpg file.',
+          'File Upload'
+        );
+      }
+      if (fileSizeInMB > Web.MAX_FILE_SIZE_MB) {
+        this.guarantorFileContent = '';
+        this.guarantorFileName = '';
+        this.toasterService.show(
+          `File size exceeds ${
+            Web.MAX_FILE_SIZE_MB
+          } MB. Current size: ${fileSizeInMB.toFixed(2)} MB.`,
           'File Upload'
         );
       }
@@ -631,8 +667,10 @@ export class Guarantor1Component implements OnInit {
             this.guarantor1CommunicationAddressForm.value.addressLine2,
           landmark: this.guarantor1CommunicationAddressForm.value.landmark,
           city: this.guarantor1CommunicationAddressForm.value.city,
-          stateId: this.guarantor1CommunicationAddressForm.value.state,
-          countryId: this.guarantor1CommunicationAddressForm.value.country,
+          stateId: Number(this.guarantor1CommunicationAddressForm.value.state),
+          countryId: Number(
+            this.guarantor1CommunicationAddressForm.value.country
+          ),
           pincode: String(
             this.guarantor1CommunicationAddressForm.value.pincode
           ),
@@ -642,8 +680,8 @@ export class Guarantor1Component implements OnInit {
           addressLine2: this.guarantor1PermanentAddressForm.value.addressLine2,
           landmark: this.guarantor1PermanentAddressForm.value.landmark,
           city: this.guarantor1PermanentAddressForm.value.city,
-          stateId: this.guarantor1PermanentAddressForm.value.state,
-          countryId: this.guarantor1PermanentAddressForm.value.country,
+          stateId: Number(this.guarantor1PermanentAddressForm.value.state),
+          countryId: Number(this.guarantor1PermanentAddressForm.value.country),
           pincode: String(this.guarantor1PermanentAddressForm.value.pincode),
         } as IAddress,
       } as ILeadGuarantor;
@@ -678,6 +716,18 @@ export class Guarantor1Component implements OnInit {
           this.toasterService.show(error);
         },
       });
+    } else {
+      this.utilityService.markAllControls(this.guarantor1Form, true);
+      this.utilityService.markAllControls(this.guarantor1DetailsForm, true);
+      this.utilityService.markAllControls(
+        this.guarantor1CommunicationAddressForm,
+        true
+      );
+      this.utilityService.markAllControls(
+        this.guarantor1PermanentAddressForm,
+        true
+      );
+      this.utilityService.markAllControls(this.guarantor1KYCForm, true);
     }
   }
 }

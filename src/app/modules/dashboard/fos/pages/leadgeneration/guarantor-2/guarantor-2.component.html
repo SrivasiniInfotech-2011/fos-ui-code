@@ -110,11 +110,17 @@
                       .get('mobileNumber')
                       ?.hasError('required')
                   ">Mobile Number is required</span>
+                <span class="massage-text" *ngIf="guarantor2DetailsForm.controls.mobileNumber.errors?.pattern">
+                  Please enter a valid 10-digit mobile number
+                </span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Alternate Mobile Number</label>
                 <input type="text" class="form-control mt-2" placeholder="Enter Mobile Number"
                   formControlName="alternateMobileNumber" />
+                <span class="massage-text" *ngIf="guarantor2DetailsForm.controls.alternateMobileNumber.errors?.pattern">
+                  Please enter a valid 10-digit mobile number
+                </span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Guarantor Amount<span class="text-danger">*</span></label>
@@ -127,6 +133,11 @@
                       .get('guarantorAmount')
                       ?.hasError('required')
                   ">Guarantor Amount is required</span>
+                <span class="massage-text" *ngIf=" 
+                  guarantor2DetailsForm.get('guarantorAmount')?.touched &&
+                  guarantor2DetailsForm.get('guarantorAmount').errors &&
+                  !guarantor2DetailsForm.get('guarantorAmount').errors?.['validGuarantorAmount'] ">The
+                  Guarantor Amount should not be more than the Loan Amount.</span>
               </div>
             </div>
           </form>
@@ -233,6 +244,9 @@
                       isSubmitted) &&
                     guarantor2KYCForm.get('aadharNumber')?.hasError('required')
                   ">Aadhar Number is required</span>
+                    <span class="massage-text" *ngIf="guarantor2KYCForm.get('aadharNumber')?.errors?.pattern">
+                      Please enter a valid 12 digit aadhar number
+                    </span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>PAN Number<span class="text-danger">*</span></label>
@@ -243,10 +257,13 @@
                       isSubmitted) &&
                     guarantor2KYCForm.get('panNumber')?.hasError('required')
                   ">PAN Number is required</span>
+                   <span class="massage-text" *ngIf="guarantor2KYCForm.get('panNumber')?.errors?.pattern">
+                    Please enter a valid 12 digit aadhar number
+                  </span>
               </div>
               <div class="col-12 col-lg-4">
                 <label>Guarantor Image<span class="text-danger">*</span></label>
-                <input placeholder="Address Line 2 " type="file" class="form-control mt-2"
+                <input  type="file" class="form-control mt-2"
                   formControlName="guarantorImage" (change)="onGuarantorImageChange($event)" />
                 <span class="massage-text" *ngIf="
                     (guarantor2KYCForm.get('guarantorImage')?.touched ||
@@ -284,7 +301,8 @@
           </form>
         </div>
         <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 py-4">
-          <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="save()">
+          <button class="option-button d-flex align-items-center" [disabled]="buttonDisabled" *ngIf="!buttonDisabled"
+            (click)="save()">
             Save
           </button>
           <button class="option-button d-flex align-items-center" (click)="back()">
