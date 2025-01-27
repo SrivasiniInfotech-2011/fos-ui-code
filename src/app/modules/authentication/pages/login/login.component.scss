@@ -71,9 +71,8 @@ body {
                 line-height: 22px;
                 border: 1px solid #f7811e;
                 background-color: #fff;
-
                 &:focus {
-                    outline: unset;
+                  box-shadow: 0px 2px 6px 0px #173662;
                 }
             }
 

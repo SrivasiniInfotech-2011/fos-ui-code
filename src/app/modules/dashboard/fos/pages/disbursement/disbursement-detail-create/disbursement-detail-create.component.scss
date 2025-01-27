@@ -56,9 +56,6 @@
               font-weight: 400;
               color: var(--text-color);
 
-              &:focus {
-                  box-shadow: unset;
-              }
           }
 
           input {
@@ -66,6 +63,9 @@
               background-color: var(--input-background);
               border-radius: 5px;
               color: var(--text-dark);
+              &:focus {
+                box-shadow: 0px 2px 6px 0px #173662;
+              }
           }
 
           .massage-text {

@@ -3,23 +3,23 @@
 :host {
     width: 100%;
   }
-  
+
   .content-box {
     width: calc(100% - 300px);
     margin-left: 300px;
     margin-top: 80px;
-  
+
     .user-create-box {
       border: 1px solid var(--border-color);
       border-radius: 5px;
       padding: 10px;
-  
+
       .breadcrumb {
         li {
           color: var(--text-color);
         }
       }
-  
+
       .user-create-form {
         caption {
           font-size: 20px;
@@ -28,26 +28,27 @@
           line-height: 28px;
           font-weight: 600;
         }
-  
+
         label,
         input {
           font-size: 14px;
           line-height: 18px;
           font-weight: 400;
           color: var(--text-color);
-  
-          &:focus {
-            box-shadow: unset;
-          }
+
+
         }
-  
+
         input {
           border: 1px solid var(--input-border);
           background-color: var(--input-background);
           border-radius: 5px;
           color: var(--text-dark);
+          &:focus {
+            box-shadow: 0px 2px 6px 0px #173662;
+          }
         }
-  
+
         select {
           border: 1px solid var(--input-border);
           background-color: var(--input-background);
@@ -56,18 +57,18 @@
           line-height: 18px;
           font-weight: 400;
           color: var(--text-dark);
-  
+
           option {
             font-size: 14px;
             line-height: 18px;
             font-weight: 400;
           }
-  
+
           &:focus {
-            box-shadow: unset;
+            box-shadow: 0px 2px 6px 0px #173662;
           }
         }
-  
+
         .massage-text {
           color: #f7811e;
           font-size: 12px;
@@ -78,20 +79,20 @@
         }
       }
     }
-  
+
     .addimage-icon {
       font-size: 100px;
       width: 100px;
       height: 100px;
       color: var(--text-color);
     }
-  
+
     .file-input {
       background-color: initial;
       border: none;
       color: transparent;
     }
-  
+
     .preview-image {
       width: 150px;
       height: 150px;
@@ -100,11 +101,11 @@
       border: 1px solid #ccc;
       border-radius: 8px;
     }
-  
+
     .right-align {
       text-align: right;
     }
-    
+
     .save-button,
     .back-button {
       font-size: 14px;
@@ -115,22 +116,22 @@
       border: unset;
       padding: 5px 10px;
     }
-  
+
     .back-button {
       background: #f7811e;
       color: var(--text-color);
     }
   }
-  
+
   @media only screen and (max-width: 992px) {
     .content-box {
       width: 100%;
       margin-left: 0;
       margin-top: 80px;
-  
+
       .button-box {
         padding: 20px 30px;
       }
     }
   }
-  
+
