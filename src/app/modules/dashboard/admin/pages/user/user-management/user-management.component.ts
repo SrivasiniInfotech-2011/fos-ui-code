@@ -166,8 +166,6 @@ viewOrModifyUser(userId: string, action: string): void {
 }
 
 
-
-
 exportToExcel(): void {
   const companyId = 1; // Replace with dynamic companyId if required
   const loggedInUsername = localStorage.getItem('username') || 'Guest'; // Fetch username from localStorage

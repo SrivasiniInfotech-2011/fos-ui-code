@@ -157,6 +157,12 @@ export const FOSApiEndPoints = {
     POST_FVR_ASSET_DETAILS:
       '/api/FieldVerification/AddFvrAssetDetail?companyId={companyId}&userId={userId}&leadId={leadId}',
   },
+  LocationMaster:{
+    GET_HIERARCHY_LOOKUP:'/api/LocationMaster/GetHierarchy',
+    INSERT_LOCATION_MASTER_DETAILS:'/api/LocationMaster/InsertLocationMaster',
+    GET_LOCATION_CORPORATE_DETAILS:'/api/LocationMaster/GetExistingLocationTypeDetails',
+    GET_LOCATION_MASTER_DETAILS:'/api/LocationMaster/GetExistingLocationMaster'
+  }
 };
 
 /**
