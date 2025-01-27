@@ -89,7 +89,7 @@ export interface IFOSInterestedPartyData {
 /**
  * Interface for Matched Companies
  */
-export interface IFOSMatchedCompanies extends IFOSInterestedPartyData {}
+export interface IFOSMatchedCompanies extends IFOSInterestedPartyData { }
 
 /**
  *
@@ -162,11 +162,48 @@ export interface ICustomerProspectRequest {
   panNumber?: string;
 }
 
+export interface CompanyMasterFetch {
+  companyId: number
+}
+
+export interface CompanyMasterGet {
+  companyId: number,
+  companyCode: string,
+  companyName: string,
+  companyAddress: string,
+  city: string,
+  state: string,
+  country: string,
+  zipCode: number,
+  constitutionalStatusId: number,
+  cdCeoHeadName: string,
+  cdTelephoneNumber: number,
+  cdMobileNumber: number,
+  cdEmailId: string,
+  cdWebsite: string,
+  cdSysAdminUserCode: string,
+  cdSysAdminUserPassword: string,
+  odCommunicationAddress: string,
+  odAddress1: string,
+  odCity: string,
+  odState: string,
+  odCountry: string,
+  odZipCode: number,
+  odDateOfIncorporation: Date,
+  odRegLicNumber: number,
+  odValidityOfRegLicNumber: Date,
+  odIncomeTaxPanNumber: string,
+  currency: string,
+  odRemarks: string,
+  active: number,
+  constitutionalStatus: string
+}
+
 export interface IAddress {
   addressLine1: string;
   addressLine2: string;
   landmark: string;
-  city: number;
+  city: string;
   stateId: number;
   countryId: number;
   pincode: string;
@@ -193,6 +230,9 @@ export interface ICustomerProspectData {
   permanentAddress?: IAddress;
   aadharNumber?: string;
   aadharImagePath?: string;
+  aadharImageContent?:string;
+  panNumberImageContent?:string;
+  prospectImageContent?:string;
   panNumber?: string;
   panNumberImagePath?: string;
   prospectImagePath?: string;
@@ -247,7 +287,7 @@ export interface IExistinghUserRequestData {
   userCode?: string;
   userName?: string;
   genderId?: number;
-  genderName?:string;
+  genderName?: string;
   password?: string;
   doj?: Date;
   relivingDate?:Date;
@@ -255,10 +295,10 @@ export interface IExistinghUserRequestData {
   emergencycontactNumber?: string;
   designation?: number;
   userLevelID?: number;
-  userLevel?:string;
+  userLevel?: string;
   reportingNextlevel?: number;
-  ReportingGHigherLevel?:string;
-  marutialStatusDiscription?:string;
+  ReportingGHigherLevel?: string;
+  marutialStatusDiscription?: string;
   userGroup?: number;
   emailID?: string;
   dateofbirth?: Date;
@@ -329,7 +369,7 @@ export interface IInsertUserDetails {
   panNumber?: string;
   address?: string;
   userImagepath?: string;
-  userImageContent?:string;
+  userImageContent?: string;
   isActive?: boolean;
   createdBy?: number;
   errorCode?: number;

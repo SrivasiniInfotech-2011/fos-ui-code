@@ -4,19 +4,18 @@
       <mat-expansion-panel
         (opened)="panelOpenState = true"
         (closed)="panelOpenState = false"
-        [expanded]="true"
-        *ngFor="let item of sideBarList | keyvalue"
+        *ngFor="let item of sideBarList"
       >
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ item?.key }}
+            {{ item?.title }}
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div
-          *ngFor="let menu of item?.value"
-          (click)="goToMenuItemDetail(item?.key, menu.Program_Url)"
+          *ngFor="let menu of item?.children"
+          (click)="goToMenuItemDetail(menu?.menuModule, menu.url)"
         >
-          <p style="cursor: pointer">{{ menu.Program_Name }}</p>
+          <p style="cursor: pointer">{{ menu.title }}</p>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

@@ -1,9 +1,14 @@
-import { FormControl, FormGroup, Validators ,FormBuilder,} from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import{UserManagementService} from'../../../../../../../data/services/feature/userManagement/user-management.service';
- import { UtilsService } from '../../../../../../../data/services/shared/utils.service';
- import { LoaderService } from '../../../../../../../data/services/shared/loader.service';
- import {
+import { UserManagementService } from '../../../../../../../data/services/feature/userManagement/user-management.service';
+import { UtilsService } from '../../../../../../../data/services/shared/utils.service';
+import { LoaderService } from '../../../../../../../data/services/shared/loader.service';
+import {
   IExistinghUserRequest,
   IExistinghUserRequestData,
   IExistinghUserRequestTranslander,
@@ -12,7 +17,7 @@ import{UserManagementService} from'../../../../../../../data/services/feature/us
  
   
 } from '../../../../../../../core/interfaces/app/request/IFOSModels';
-import { AfterViewInit, Component, ViewChild ,OnInit} from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
@@ -25,27 +30,30 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
-  styleUrl: './user-management.component.scss'
+  styleUrl: './user-management.component.scss',
 })
-export class UserManagementComponent  implements  OnInit {
+export class UserManagementComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  @ViewChild(MatPaginator) paginator !: MatPaginator;
-  @ViewChild(MatSort) sort !: MatSort;
-
-
-  public showTable: boolean = false
-  public displayedColumns: string[] = ['userCode', 'userName', 'email', 'designation','userLevel', 'view', 'modify']
-  public dataSource = new MatTableDataSource<any>()
+  public showTable: boolean = false;
+  public displayedColumns: string[] = [
+    'userCode',
+    'userName',
+    'email',
+    'designation',
+    'userLevel',
+    'view',
+    'modify',
+  ];
+  public dataSource = new MatTableDataSource<any>();
   filters: { [key: string]: string } = {};
   public existingUserDetails: IExistinghUserRequestData = {};
 
   users: IExistinghUserRequestTranslanderData[] = []; // Array to store user data
   public loggedInUser: any = {};
 
- 
-
-
-  ngAfterViewInit():void { 
+  ngAfterViewInit(): void {
     if (this.dataSource) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -59,36 +67,35 @@ export class UserManagementComponent  implements  OnInit {
 
 
 
-  constructor( private fb: FormBuilder,
-     private router: Router,
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
     private utilityService: UtilsService,
     private loaderService: LoaderService,
     private toasterService: ToastrService,
-    private useManagementService:UserManagementService,
-    // private encryptionService: EncryptionService
-  ) { }
+    private useManagementService: UserManagementService
+  ) // private encryptionService: EncryptionService
+  {}
 
+  // Apply filter for a specific column
+  applyFilter(event: Event, column: string) {
+    const filterValue = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
 
-  
-// Apply filter for a specific column
-applyFilter(event: Event, column: string) {
-  const filterValue = (event.target as HTMLInputElement).value
-    .trim()
-    .toLowerCase();
+    // Update the filter for the specific column
+    this.filters[column] = filterValue;
 
-  // Update the filter for the specific column
-  this.filters[column] = filterValue;
+    // Combine filters and set the filtered data
+    this.dataSource.filterPredicate = (data: any, filter) => {
+      const filters = JSON.parse(filter);
+      return Object.keys(filters).every((key) =>
+        data[key].toString().toLowerCase().includes(filters[key])
+      );
+    };
 
-  // Combine filters and set the filtered data
-  this.dataSource.filterPredicate = (data: any, filter) => {
-    const filters = JSON.parse(filter);
-    return Object.keys(filters).every((key) =>
-      data[key].toString().toLowerCase().includes(filters[key])
-    );
-  };
-
-  this.dataSource.filter = JSON.stringify(this.filters);
-}
+    this.dataSource.filter = JSON.stringify(this.filters);
+  }
 
   ngOnInit(): void {
     this.getExistingUserDetailsTranlander();
@@ -109,9 +116,6 @@ applyFilter(event: Event, column: string) {
           this.dataSource = new MatTableDataSource(this.users);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-           console.log(this.users)
-
-        
            this.showTable = true
         // Optional: You can call a method to trigger additional UI changes if needed
         // this.displayTable();
@@ -272,5 +276,3 @@ private downloadExcel(buffer: any, fileName: string): void {
 
 
 }
-
-

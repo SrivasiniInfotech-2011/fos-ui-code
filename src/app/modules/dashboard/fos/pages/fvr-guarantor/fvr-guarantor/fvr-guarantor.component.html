@@ -1,86 +1,513 @@
 <div class="content-box pt-2">
   <div class="container">
-    <div class="fvrgaurantor-details-box">
+    <div class="fvrhirer-details-box">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item d-flex align-items-center">
-            <mat-icon class="me-2">home</mat-icon> <a href="#" class="text-decoration-none d-flex align-items-center"></a>
+            <mat-icon class="me-2">home</mat-icon>
+            <a
+              href="#"
+              class="text-decoration-none d-flex align-items-center"
+            ></a>
+            FVR Guarantor
           </li>
-          FVR Guarantor
         </ol>
       </nav>
     </div>
-    <div class="fvrgaurantor-details-box my-3">
-      <form class="fvrgaurantor-details-form" [formGroup]="fvrGuarantorLeadForm">
+    <div class="fvrhirer-details-box my-3">
+      <form class="fvrhirer-details-form" [formGroup]="fvrGuarantorLeadForm">
         <caption class="d-flex">
-          FVR
-          Guarantor
+          FVR Hirer
         </caption>
         <div class="row d-flex gy-2">
           <div class="col-12 col-lg-4">
             <label>Lead Number<span class="text-danger">*</span></label>
-            <input placeholder="Enter Lead Number" type="text" class="form-control mt-2"
-              formControlName="leadNumber" oninput="this.value = this.value.toUpperCase()"/>
-            <span class="massage-text"
-              *ngIf="(fvrGuarantorLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrGuarantorLeadForm.get('leadNumber')?.hasError('required')">Lead
-              Number is required</span>
+            <input
+              placeholder="Enter Lead Number"
+              type="text"
+              class="form-control mt-2"
+              formControlName="leadNumber"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+
+            <!-- <span class="massage-text"
+              *ngIf="(fvrHirerLeadForm.get('leadNumber')?.touched || isSubmitted) && fvrHirerLeadForm.get('leadNumber')?.hasError('required')">Lead
+              Number is required</span> -->
           </div>
           <div class="col-12 col-lg-4">
-            <label>Vehicle Number</label>
-            <input placeholder="Enter Vehicle Number" type="text" class="form-control mt-2"
-              formControlName="vehicleNumber" oninput="this.value = this.value.toUpperCase()"/>
+            <label>Vehicle Number<span class="text-danger">*</span></label>
+            <input
+              placeholder="Enter Vehicle Number"
+              type="text"
+              class="form-control mt-2"
+              formControlName="vehicleNumber"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+
+            <!-- <span class="massage-text"
+              *ngIf="(fvrHirerLeadForm.get('vehicleNumber')?.touched || isSubmitted) && fvrHirerLeadForm.get('vehicleNumber')?.hasError('required')">Vehicle
+              Number is required</span> -->
           </div>
         </div>
       </form>
-      <div class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4">
-        <button class="option-button d-flex align-items-center" (click)="go()">Go</button>
-        <button class="option-button d-flex align-items-center" (click)="clear()">Clear</button>
+      <div
+        class="d-flex align-items-center justify-content-end flex-wrap gap-3 pt-4"
+      >
+        <button
+          class="option-button d-flex align-items-center"
+          (click)="getFvrGuarantorDetails()"
+        >
+          Go
+        </button>
+        <button
+          class="option-button d-flex align-items-center"
+          (click)="clear()"
+        >
+          Clear
+        </button>
       </div>
     </div>
-    <div class="fvrgaurantor-details-box my-3">
-      <form class="fvrgaurantor-details-form" [formGroup]="fvrGuarantorLeadDetailsForm">
-        <caption class="d-flex">
-          Lead Details
-        </caption>
-        <div class="row d-flex gy-2">
-          <div class="col-12 col-lg-4">
-            <label>Lead Number</label>
-            <input placeholder="Lead Number" type="text" class="form-control mt-2" formControlName="leadNumber" [readonly]="true" />
-          </div>
+  </div>
+  <div class="fvrhirer-details-box my-3">
+    <mat-tab-group>
+      <mat-tab label="Prospect Details">
+        <div class="fvrhirer-details-box my-3">
+          <form class="fvrhirer-details-form" [formGroup]="prospectDetailsForm">
+            <caption class="d-flex">
+              Lead Details
+            </caption>
+            <div class="row d-flex gy-2">
+              <div class="col-12 col-lg-4">
+                <label>Lead Number</label>
+                <input
+                  placeholder="Lead Number"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="leadNumber"
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Lead Date</label>
+                <input
+                  placeholder="Lead Date"
+                  type="date"
+                  class="form-control mt-2"
+                  formControlName="leadDate"
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Location</label>
+                <input
+                  placeholder="Branch"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="branch"
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Prospect Name</label>
+                <input
+                  placeholder="Prospect Name"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="prospectName"
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Mobile Number </label>
+                <input
+                  placeholder="Mobile Number"
+                  type="number"
+                  class="form-control mt-2"
+                  formControlName="mobileNumber"
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Vehicle Number </label>
+                <input
+                  placeholder="Vehicle Number"
+                  type="text"
+                  class="form-control mt-2"
+                  formControlName="vehicleNumber"
+                />
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Prospect Address </label>
+                <textarea
+                  class="w-100"
+                  rows="4"
+                  mt-2
+                  formControlName="prospectAddress"
+                ></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+      <mat-tab label="Guarantor Observation">
+        <div class="container-box pt-2">
+          <div class="container">
+            <div class="fvr-hirer-tabs-details-box my-3">
+              <form
+                class="fvr-hirer-tabs-details-form"
+                [formGroup]="fvrGuarantorLeadForm"
+              >
+                <caption class="d-flex">
+                  Lead Details
+                </caption>
+                <div class="row d-flex gy-2">
+                  <div class="col-12 col-lg-4">
+                    <label>Lead Number</label>
+                    <input
+                      placeholder="Enter Lead Number"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="leadNumber"
+                      oninput="this.value = this.value.toUpperCase()"
+                    />
+                  </div>
+                  <div class="col-12 col-lg-4">
+                    <label>Vehicle Number</label>
+                    <input
+                      placeholder="Enter Vehicle Number"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="vehicleNumber"
+                      oninput="this.value = this.value.toUpperCase()"
+                    />
+                  </div>
+                  <div class="col-12 col-lg-4">
+                    <label>Prospect Name</label>
+                    <input
+                      placeholder="Enter Prospect Name"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="prospectName"
+                      oninput="this.value = this.value.toUpperCase()"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="fvr-hirer-tabs-details-box my-3">
+              <form
+                class="fvr-hirer-tabs-details-form"
+                [formGroup]="fvrGuarantorLeadDetailsForm"
+              >
+                <caption class="d-flex">
+                  Guarantor Observation
+                </caption>
+                <div class="row d-flex gy-2">
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Accessibility Of House<span class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="houseAccessibility"
+                    >
+                      <option value="" disabled>
+                        Select House Accessibility
+                      </option>
+                      <option
+                        *ngFor="let c of houseAccessibilityLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Lead Date</label>
-            <input placeholder="
-              Lead Date" type="date" class="form-control mt-2" formControlName="leadDate" [readonly]="true" />
-          </div>
+                  <div class="col-12 col-lg-4">
+                    <label>Locality<span class="text-danger">*</span></label>
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="locality"
+                    >
+                      <option value="" disabled>Select House Locality</option>
+                      <option
+                        *ngFor="let c of localityLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Branch</label>
-            <input placeholder="Branch" type="text" class="form-control mt-2" formControlName="branch" [readonly]="true" />
-          </div>
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Type Of House<span class="text-danger">*</span></label
+                    >
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="houseType"
+                    >
+                      <option value="" disabled>Select House Type</option>
+                      <option
+                        *ngFor="let c of houseTypeLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Prospect Name</label>
-            <input placeholder="Prospect Name" type="text" class="form-control mt-2" formControlName="prospectName" [readonly]="true" />
-          </div>
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Type Of Flooring<span class="text-danger">*</span></label
+                    >
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="flooringType"
+                    >
+                      <option value="" disabled>Select Flooring Type</option>
+                      <option
+                        *ngFor="let c of flooringTypeLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Mobile Number </label>
-            <input placeholder=" Mobile Number" type="tel" class="form-control mt-2" formControlName="mobileNumber" [readonly]="true"/>
-          </div>
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Type Of Roofing<span class="text-danger">*</span></label
+                    >
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="roofingType"
+                    >
+                      <option value="" disabled>Select Roof Type</option>
+                      <option
+                        *ngFor="let c of roofingTypeLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Vehicle Number </label>
-            <input placeholder="Vehicle Number" type="text" class="form-control mt-2" formControlName="vehicleNumber" [readonly]="true" />
-          </div>
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Standard Of Living<span class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="livingStandard"
+                    >
+                      <option value="" disabled>Select Living Standard</option>
+                      <option
+                        *ngFor="let c of livingStandardLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
 
-          <div class="col-12 col-lg-4">
-            <label>Prospect Address </label>
-            <textarea class="w-100" rows="4" mt-2 formControlName="prospectAddress" [readonly]="true"></textarea>
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Entry Permitted<span class="text-danger">*</span></label
+                    >
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="entryPermitted"
+                    >
+                      <option value="" disabled>Was Entry Permitted</option>
+                      <option
+                        *ngFor="let c of defaultLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Approx Size Of House (IN SQ FT)<span class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      placeholder="Enter Approx Size Of House"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="houseSize"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label>Landmark<span class="text-danger">*</span></label>
+                    <input
+                      placeholder="Enter Landmark"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="landmark"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label>Recommend<span class="text-danger">*</span></label>
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="recommend"
+                    >
+                      <option value="" disabled>Recommend</option>
+                      <option
+                        *ngFor="let c of defaultLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Earlier Visited<span class="text-danger">*</span></label
+                    >
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="earlierVisit"
+                    >
+                      <option value="" disabled>Visited Earlier</option>
+                      <option
+                        *ngFor="let c of houseAccessibilityLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Photograph Of Political Leaders Noticed<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <select
+                      class="form-select mt-2 mb-1"
+                      formControlName="politicalLeaderPhotograph"
+                    >
+                      <option value="" disabled>
+                        Political Affiliation If Any
+                      </option>
+                      <option
+                        *ngFor="let c of defaultLookup"
+                        [value]="c.lookupValueId"
+                      >
+                        {{ c.lookupValueDescription }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Verifier Name<span class="text-danger">*</span></label
+                    >
+                    <input
+                      placeholder="Enter Verifier Name"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="verifierName"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label>Reason<span class="text-danger">*</span></label>
+                    <input
+                      placeholder="Enter Reason"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="reason"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label>Verifier Id<span class="text-danger">*</span></label>
+                    <input
+                      placeholder="Enter Verifier Id"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="verifierId"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label>Time<span class="text-danger">*</span></label>
+                    <input
+                      placeholder="Enter Time"
+                      type="time"
+                      class="form-control mt-2"
+                      formControlName="time"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label>Branch Name<span class="text-danger">*</span></label>
+                    <input
+                      placeholder="Enter Branch Name"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="branchName"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Date Of Visit<span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="date"
+                      class="form-control mt-2"
+                      formControlName="dateOfVisit"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Asset seen inside the house<span class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      placeholder="Enter Assets Seen"
+                      type="text"
+                      class="form-control mt-2"
+                      formControlName="assetInHouse"
+                    />
+                  </div>
+
+                  <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                    <label
+                      >Hirer House Photo<span class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <img
+                      src="/assets/images/add-doc.png"
+                      class="addimage-icon"
+                    />
+                    <input
+                      type="file"
+                      class="file-input"
+                      formControlName="hirerHousePhoto"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </form>
-
-    </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
