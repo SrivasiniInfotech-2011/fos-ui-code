@@ -71,7 +71,7 @@ export class LeadProspectDetailComponent implements OnInit {
     // this.prospectSearchForm = new FormGroup(
     //   {
     //     mobileNumber: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')]),
-    //     aadharNumber: new FormControl('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}\s[0-9]{4}\s[0-9]{4}$')]),
+    //     aadharNumber: new FormControl('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}[0-9]{4}[0-9]{4}$')]),
     //     panNumber: new FormControl('', [Validators.required, Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$')]),
     //   },
     //   { validators: this.aadharOrPanRequired }
@@ -79,7 +79,7 @@ export class LeadProspectDetailComponent implements OnInit {
     this.prospectSearchForm = new FormGroup(
       {
         mobileNumber: new FormControl('', [Validators.required, Validators.pattern('^((\\+91-?) |0)?[0-9]{10}$')]),
-        aadharNumber: new FormControl('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}\s[0-9]{4}\s[0-9]{4}$')]),
+        aadharNumber: new FormControl('', [Validators.required, Validators.pattern('^[2-9][0-9]{3}[0-9]{4}[0-9]{4}$')]),
         panNumber: new FormControl('', [Validators.required, Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$')]),
       },
       { validators: this.aadharOrPanRequired }
