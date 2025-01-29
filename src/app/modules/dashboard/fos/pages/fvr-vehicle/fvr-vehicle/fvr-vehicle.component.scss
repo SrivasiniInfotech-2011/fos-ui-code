@@ -309,7 +309,11 @@ img {
 
 }
 
-
+.tab-bar-box ::ng-deep .mat-mdc-tab-body-content> * {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: normal;
+}
 @media only screen and (max-width: 992px) {
 
   .content-box {
