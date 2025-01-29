@@ -1,0 +1,32 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="approval-details-box">
+          <div class="">
+          <ngx-slick-carousel
+            class="carousel"
+            #slickModal="slick-carousel"
+            [config]="slideConfig"
+            (init)="slickInit($event)"
+            (breakpoint)="breakpoint($event)"
+            (afterChange)="afterChange($event)"
+            (beforeChange)="beforeChange($event)"
+          >
+            @for (slide of slides; track slide.img) {
+            <div ngxSlickItem class="slide">
+              <img src="{{ slide.img }}" alt="" width="100%" />
+              <div class="">mmmmmmm</div>
+            </div>
+            }
+          </ngx-slick-carousel>
+
+          <button (click)="addSlide()">Add</button>
+          <button (click)="removeSlide()">Remove</button>
+          <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+          <button (click)="slickModal.unslick()">unslick</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

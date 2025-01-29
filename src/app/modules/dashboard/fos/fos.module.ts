@@ -37,6 +37,8 @@ import { FvrHirerNeighbourComponent } from './pages/fvr-hirer-neighbour/fvr-hire
 import { FvrNeighbourComponent } from './pages/fvr-neighbour/fvr-neighbour.component';
 import { FvrObservationComponent } from './pages/fvr-observation/fvr-observation.component';
 import { FvrVehicleDetailsComponent } from './pages/fvr-vehicle-details/fvr-vehicle-details.component';
+import { ApprovalComponent } from './pages/approval/approval.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { FvrVehicleDetailsComponent } from './pages/fvr-vehicle-details/fvr-vehi
     FvrNeighbourComponent,
     FvrObservationComponent,
     FvrVehicleDetailsComponent,
+    ApprovalComponent,
+
   ],
   imports: [
     CommonModule,
@@ -78,7 +82,8 @@ import { FvrVehicleDetailsComponent } from './pages/fvr-vehicle-details/fvr-vehi
     MatInputModule,
     MatCardModule,
     MatAutocompleteModule,
-    FormsModule
+    FormsModule,
+    SlickCarouselModule,
   ],
 })
 export class FosModule {}
