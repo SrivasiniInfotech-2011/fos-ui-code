@@ -125,7 +125,7 @@
                       .get('guarantorAmount')
                       ?.hasError('required')
                   ">Guarantor Amount is required</span>
-                <span class="massage-text" *ngIf=" 
+                <span class="massage-text" *ngIf="
                         guarantor1DetailsForm.get('guarantorAmount')?.touched &&
                         guarantor1DetailsForm.get('guarantorAmount').errors &&
                         !guarantor1DetailsForm.get('guarantorAmount').errors?.['validGuarantorAmount'] ">The
@@ -298,6 +298,7 @@
                   Please enter a valid 12 digit aadhar number
                 </span>
               </div>
+              <div class="row">
               <div class="col-12 col-lg-4">
                 <label>Guarantor Image<span class="text-danger">*</span></label>
                 <input placeholder="Upload Guarantor Image" type="file" class="form-control mt-2" #guarantorImage
@@ -331,6 +332,7 @@
                     !panFileName
                   ">PAN is required</span>
                 <a target="blank" href="{{ panNumberImageFilePath }}" *ngIf="panNumberImageFilePath">Pan Image Link</a>
+              </div>
               </div>
             </div>
           </form>

@@ -19,7 +19,7 @@
                 <span class="massage-text" *ngIf="
                     (guarantor2Form.get('leadNumber')?.touched ||
                       isSubmitted) &&
-                    guarantor2Form.get('leadNumber')?.hasError('required') 
+                    guarantor2Form.get('leadNumber')?.hasError('required')
                   ">Lead Number is required</span>
               </div>
               <div class="col-12 col-lg-4">
@@ -133,7 +133,7 @@
                       .get('guarantorAmount')
                       ?.hasError('required')
                   ">Guarantor Amount is required</span>
-                <span class="massage-text" *ngIf=" 
+                <span class="massage-text" *ngIf="
                   guarantor2DetailsForm.get('guarantorAmount')?.touched &&
                   guarantor2DetailsForm.get('guarantorAmount').errors &&
                   !guarantor2DetailsForm.get('guarantorAmount').errors?.['validGuarantorAmount'] ">The
@@ -261,6 +261,7 @@
                     Please enter a valid 12 digit aadhar number
                   </span>
               </div>
+              <div class="row">
               <div class="col-12 col-lg-4">
                 <label>Guarantor Image<span class="text-danger">*</span></label>
                 <input  type="file" class="form-control mt-2"
@@ -295,6 +296,7 @@
                       isSubmitted) &&
                     guarantor2KYCForm.get('panImage')?.hasError('required')
                   ">PAN is required</span>
+              </div>
               </div>
               <a target="blank" href="{{ panNumberImageFilePath }}" *ngIf="panNumberImageFilePath">PAN Image Link</a>
             </div>

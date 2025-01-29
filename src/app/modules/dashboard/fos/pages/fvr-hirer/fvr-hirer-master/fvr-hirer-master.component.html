@@ -67,8 +67,9 @@
         </button>
       </div>
     </div>
-  </div>
+
   <div class="fvrhirer-details-box my-3">
+    <div class="tab-bar-box">
     <mat-tab-group>
       <mat-tab label="Prospect Details">
         <div class="fvrhirer-details-box my-3">
@@ -509,13 +510,13 @@
                         >*</span
                       ></label
                     >
-                    <img
+                    <!-- <img
                       src="/assets/images/add-doc.png"
                       class="addimage-icon"
-                    />
+                    /> -->
                     <input
                       type="file"
-                      class="file-input"
+                      class="form-control mt-2"
                       formControlName="hirerHousePhoto"
                     />
                   </div>
@@ -708,11 +709,26 @@
                       formControlName="neighbourAddress"
                     />
                   </div>
-
+                  <div class="col-12 col-lg-4">
+                    <label
+                      >Neighbour House Photo<span class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <!-- <img
+                      src="/assets/images/add-doc.png"
+                      class="addimage-icon"
+                    /> -->
+                    <input
+                      type="file"
+                      class="form-control mt-2 "
+                      formControlName="neighbourHousePhoto"
+                    />
+                  </div>
                   <div class="col-12 col-lg-4">
                     <label>Comments<span class="text-danger">*</span></label>
                     <textarea
-                      class="w-100"
+                      class="w-100 mt-2"
                       rows="3"
                       mt-2
                       placeholder="Enter Comments"
@@ -720,22 +736,7 @@
                     ></textarea>
                   </div>
 
-                  <div class="col-12 d-flex flex-column">
-                    <label
-                      >Neighbour House Photo<span class="text-danger"
-                        >*</span
-                      ></label
-                    >
-                    <img
-                      src="/assets/images/add-doc.png"
-                      class="addimage-icon"
-                    />
-                    <input
-                      type="file"
-                      class="file-input"
-                      formControlName="neighbourHousePhoto"
-                    />
-                  </div>
+
                 </div>
               </form>
             </div>
@@ -743,5 +744,7 @@
         </div>
       </mat-tab>
     </mat-tab-group>
+    </div>
+  </div>
   </div>
 </div>
