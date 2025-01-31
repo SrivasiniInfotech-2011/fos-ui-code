@@ -13,18 +13,77 @@
             (afterChange)="afterChange($event)"
             (beforeChange)="beforeChange($event)"
           >
-            @for (slide of slides; track slide.img) {
-            <div ngxSlickItem class="slide">
-              <img src="{{ slide.img }}" alt="" width="100%" />
-              <div class="">mmmmmmm</div>
-            </div>
-            }
+
+
+            <div ngxSlickItem class="slide" *ngIf="activeSlide == 1">
+              <app-prospect-details></app-prospect-details>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 2">
+              <app-lead-master></app-lead-master>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 3">
+              <app-lead-prospect-detail></app-lead-prospect-detail>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 4">
+              <app-bm-approval-master></app-bm-approval-master>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 5">
+              <app-bm-approval-create></app-bm-approval-create>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 6">
+              <app-disbursement-detail-master></app-disbursement-detail-master>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 7">
+              <app-disbursement-detail-create></app-disbursement-detail-create>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 8">
+              <app-document-collection-master></app-document-collection-master>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 9">
+              <app-fvr-hirer-master></app-fvr-hirer-master>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 10">
+              <app-fvr-guarantor></app-fvr-guarantor>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 11">
+              <app-fvr-vehicle></app-fvr-vehicle>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 12">
+              <app-fvr-hirer-neighbour></app-fvr-hirer-neighbour>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 13">
+              <app-fvr-neighbour></app-fvr-neighbour>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 14">
+              <app-fvr-observation></app-fvr-observation>
+             </div>
+
+             <div ngxSlickItem class="slide" *ngIf="activeSlide == 15">
+              <app-fvr-vehicle-details></app-fvr-vehicle-details>
+             </div>
+
           </ngx-slick-carousel>
 
-          <button (click)="addSlide()">Add</button>
-          <button (click)="removeSlide()">Remove</button>
+          <div *ngFor="let comp of fosComponents">
+            <button (click)="displaySelectedComponent(comp?.index)">{{comp?.title}}</button>
+          </div>
+
+          <!-- <button (click)="removeSlide()">Remove</button>
           <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
-          <button (click)="slickModal.unslick()">unslick</button>
+          <button (click)="slickModal.unslick()">unslick</button> -->
         </div>
       </div>
     </div>

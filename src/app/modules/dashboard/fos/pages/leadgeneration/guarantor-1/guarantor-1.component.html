@@ -102,7 +102,7 @@
                       .get('mobileNumber')
                       ?.hasError('required')
                   ">Mobile Number is required</span>
-                <span class="massage-text" *ngIf="guarantor1DetailsForm.controls.mobileNumber.errors?.pattern">
+                <span class="massage-text" *ngIf="guarantor1DetailsForm.controls.mobileNumber?.errors?.pattern">
                   Please enter a valid 10-digit mobile number
                 </span>
               </div>
@@ -110,7 +110,7 @@
                 <label>Alternate Mobile Number</label>
                 <input type="text" class="form-control mt-2" placeholder="Enter Alternate Mobile Number"
                   formControlName="alternateMobileNumber" />
-                <span class="massage-text" *ngIf="guarantor1DetailsForm.controls.alternateMobileNumber.errors?.pattern">
+                <span class="massage-text" *ngIf="guarantor1DetailsForm.controls.alternateMobileNumber?.errors?.pattern">
                   Please enter a valid 10-digit mobile number
                 </span>
               </div>
@@ -127,8 +127,8 @@
                   ">Guarantor Amount is required</span>
                 <span class="massage-text" *ngIf="
                         guarantor1DetailsForm.get('guarantorAmount')?.touched &&
-                        guarantor1DetailsForm.get('guarantorAmount').errors &&
-                        !guarantor1DetailsForm.get('guarantorAmount').errors?.['validGuarantorAmount'] ">The
+                        guarantor1DetailsForm.get('guarantorAmount')?.errors &&
+                        !guarantor1DetailsForm.get('guarantorAmount')?.errors?.['validGuarantorAmount'] ">The
                   Guarantor Amount should not be more than the Loan Amount.</span>
               </div>
             </div>
