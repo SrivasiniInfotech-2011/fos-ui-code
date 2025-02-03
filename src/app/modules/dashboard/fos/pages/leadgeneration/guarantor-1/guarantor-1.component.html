@@ -303,6 +303,9 @@
                 <label>Guarantor Image<span class="text-danger">*</span></label>
                 <input placeholder="Upload Guarantor Image" type="file" class="form-control mt-2" #guarantorImage
                   (change)="onGuarantorImageChange($event)" />
+                  <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+                  </div>
                 <span class="massage-text" *ngIf="
                     (guarantor1KYCForm.get('guarantorImage')?.touched ||
                       isSubmitted) &&
@@ -315,6 +318,9 @@
                 <label>Aadhar<span class="text-danger">*</span></label>
                 <input placeholder="Upload Aadhar Image" type="file" class="form-control mt-2" #aadharImage
                   (change)="onAadharImageChange($event)" />
+                  <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+                  </div>
                 <span class="massage-text" *ngIf="
                     (guarantor1KYCForm.get('aadharImage')?.touched ||
                       isSubmitted) &&
@@ -326,6 +332,9 @@
                 <label>PAN<span class="text-danger">*</span></label>
                 <input placeholder="Upload PAN Image" type="file" class="form-control mt-2" #panImage
                   (change)="onPanImageChange($event)" />
+                  <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+                  </div>
                 <span class="massage-text" *ngIf="
                     (guarantor1KYCForm.get('panImage')?.touched ||
                       isSubmitted) &&

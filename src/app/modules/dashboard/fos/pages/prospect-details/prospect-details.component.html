@@ -714,6 +714,7 @@
               <label class="label"
                 >Prospect Image<span class="text-danger">*</span></label
               >
+
               <input
                 type="file"
                 class="form-control mt-2"
@@ -721,6 +722,9 @@
                 #prospectImage
                 (change)="onProspectImageChange($event)"
               />
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+              </div>
               <div
                 class="massage-text"
                 *ngIf="
@@ -761,6 +765,9 @@
                 #aadharImage
                 (change)="onAadharImageChange($event)"
               />
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+              </div>
               <div
                 class="massage-text"
                 *ngIf="
@@ -799,6 +806,9 @@
                 #panImage
                 (change)="onPanImageChange($event)"
               />
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+              </div>
               <div
                 class="massage-text"
                 *ngIf="kycDetailForm.controls.panImage.touched && !panFileName"

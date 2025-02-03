@@ -60,6 +60,12 @@
                   box-shadow: 0px 2px 6px 0px #173662;
                 }
             }
+            .image-box{
+              height: 100px;
+              width: 100px;
+              overflow: hidden;
+              border: 1px solid var(--input-border);
+            }
 
             .massage-text {
                 color: #f7811e;
@@ -173,7 +179,11 @@
     }
   }
 
-
+  .tab-bar-box ::ng-deep .mat-mdc-tab-body-content> * {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: normal;
+  }
 
   @media only screen and (max-width: 992px) {
     .content-box {

@@ -43,7 +43,12 @@
 
         }
       }
-
+      .image-box{
+        height: 100px;
+        width: 100px;
+        overflow: hidden;
+        border: 1px solid var(--input-border);
+      }
       input {
         border: 1px solid var(--input-border);
         background-color: var(--input-background);

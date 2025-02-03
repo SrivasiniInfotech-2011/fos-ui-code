@@ -118,33 +118,33 @@ img {
 
     }
 
-    .fvrvehicle-master-table {
-      thead {
-        tr {
-          th {
-            background-color: var(--table-header-background);
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 20px;
-            color: var(--header-text-color);
-            text-wrap: nowrap;
-          }
-        }
-      }
+    // .fvrvehicle-master-table {
+    //   thead {
+    //     tr {
+    //       th {
+    //         background-color: var(--table-header-background);
+    //         font-size: 14px;
+    //         font-weight: 600;
+    //         line-height: 20px;
+    //         color: var(--header-text-color);
+    //         text-wrap: nowrap;
+    //       }
+    //     }
+    //   }
 
-      tr {
-        td {
-          font-size: 14px;
-          font-weight: 600;
-          line-height: 20px;
-          color: var(--text-dark);
-          text-wrap: nowrap;
-        }
-      }
+    //   tr {
+    //     td {
+    //       font-size: 14px;
+    //       font-weight: 600;
+    //       line-height: 20px;
+    //       color: var(--text-dark);
+    //       text-wrap: nowrap;
+    //     }
+    //   }
 
-    }
+    // }
 
-    .lead-master-box {
+    .fvrvehicle-details-box {
       border: 1px solid #cfd9e8;
       border-radius: 5px;
       padding: 20px;
@@ -156,7 +156,7 @@ img {
         }
       }
 
-      .lead-master-form {
+      .fvrvehicle-details-form{
         caption {
           font-size: 20px;
           color: var(--text-bold-color);

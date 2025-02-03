@@ -266,6 +266,9 @@
                 <label>Guarantor Image<span class="text-danger">*</span></label>
                 <input  type="file" class="form-control mt-2"
                   formControlName="guarantorImage" (change)="onGuarantorImageChange($event)" />
+                  <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+                  </div>
                 <span class="massage-text" *ngIf="
                     (guarantor2KYCForm.get('guarantorImage')?.touched ||
                       isSubmitted) &&
@@ -280,6 +283,9 @@
                 <label>Aadhar<span class="text-danger">*</span></label>
                 <input placeholder="Address Line 2 " type="file" class="form-control mt-2" formControlName="aadharImage"
                   (change)="onAadharImageChange($event)" />
+                  <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+                  </div>
                 <span class="massage-text" *ngIf="
                     (guarantor2KYCForm.get('aadharImage')?.touched ||
                       isSubmitted) &&
@@ -291,6 +297,9 @@
                 <label>PAN<span class="text-danger">*</span></label>
                 <input placeholder="Address Line 2 " type="file" class="form-control mt-2" formControlName="panImage"
                   (change)="onPanImageChange($event)" />
+                  <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+
+                  </div>
                 <span class="massage-text" *ngIf="
                     (guarantor2KYCForm.get('panImage')?.touched ||
                       isSubmitted) &&

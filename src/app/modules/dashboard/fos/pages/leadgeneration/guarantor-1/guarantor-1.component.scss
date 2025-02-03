@@ -70,6 +70,12 @@
             box-shadow: 0px 2px 6px 0px #173662;
           }
       }
+      .image-box{
+        height: 100px;
+        width: 100px;
+        overflow: hidden;
+        border: 1px solid var(--input-border);
+      }
 
       select {
           border: 1px solid var(--input-border);
