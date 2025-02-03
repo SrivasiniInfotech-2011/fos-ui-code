@@ -1,0 +1,240 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="prospect-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>Prospect Master
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="prospect-details-box my-3" *ngIf="basicDetailForm">
+      <form class="prospect-details-form" [formGroup]="basicDetailForm">
+        <caption class="d-flex">
+          Basic Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Mobile Number </label>
+            <input type="tel" formControlName="mobileNumber" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Aadhar Number </label>
+            <input class="form-control mt-2" type="number" formControlName="aadharNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>PAN Number </label>
+            <input type="text" class="form-control mt-2" formControlName="panNumber" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Prospect Details Section -->
+    <div class="prospect-details-box my-3" *ngIf="prospectDetailForm">
+      <form [formGroup]="prospectDetailForm" class="prospect-details-form">
+        <caption class="d-flex">
+          Prospect Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label class="label">Prospect Code</label>
+            <input type="text" formControlName="prospectCode" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Prospect Type</label>
+            <select formControlName="prospectType" class="form-select mt-2" name="prospectType">
+              <option value="" disabled>Select Prospect Type</option>
+              <option *ngFor="let c of prospectTypeLookup" [ngValue]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Prospect Name</label>
+            <input type="text" formControlName="prospectName" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Prospect Date</label>
+            <input type="date" value="2024-11-11" formControlName="prospectDate" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Date of Birth</label>
+            <input type="date" formControlName="dob" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Age</label>
+            <input type="text" formControlName="age" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Gender</label>
+            <select formControlName="gender" class="form-select mt-2" name="gender">
+              <option value="" disabled>Select Gender</option>
+              <option *ngFor="let c of genderLookup" [ngValue]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Mobile Number</label>
+            <input type="tel" formControlName="mobileNumber" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Alternate Mobile</label>
+            <input type="text" formControlName="alternateMobileNumber" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Website</label>
+            <input type="text" formControlName="website" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Email</label>
+            <input type="email" formControlName="email" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Branch</label>
+            <input type="text" matInput formControlName="branch" [matAutocomplete]="autocompletePanel"
+              class="form-control mt-2" />
+            <mat-autocomplete #autocompletePanel="matAutocomplete">
+              <mat-option *ngFor="let option of filteredBranches | async" [value]="option.locationId">
+                <div>{{ option.locationName }}</div>
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="prospect-details-box my-3" *ngIf="communicationAddressForm">
+      <form [formGroup]="communicationAddressForm" class="prospect-details-form">
+        <caption class="d-flex">
+          Communication Address
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label class="label">Address Line 1</label>
+            <input type="text" formControlName="addressLine1" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Address Line 2</label>
+            <input type="text" formControlName="addressLine2" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Landmark</label>
+            <input type="text" formControlName="landmark" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">City</label>
+            <input type="text" formControlName="city" class="form-control mt-2" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">State</label>
+            <select formControlName="state" class="form-select mt-2" name="state">
+              <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Country</label>
+            <select formControlName="country" class="form-select mt-2">
+              <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Pin Code</label>
+            <input type="text" formControlName="pincode" class="form-control mt-2" />
+          </div>
+        </div>
+      </form>
+      <form [formGroup]="permanantAddressForm" class="prospect-details-form mt-3">
+        <caption class="d-flex">
+          Permanent Address
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label class="label">Address Line 1</label>
+            <input type="text" formControlName="addressLine1" class="form-control mt-2" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Address Line 2</label>
+            <input type="text" formControlName="addressLine2" class="form-control mt-2" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Landmark</label>
+            <input type="text" formControlName="landmark" class="form-control mt-2" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">City</label>
+            <input type="text" formControlName="city" class="form-control mt-2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">State</label>
+            <select formControlName="state" class="form-select mt-2" name="state">
+              <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Country</label>
+            <select formControlName="country" class="form-select mt-2">
+              <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Pin Code</label>
+            <input type="text" formControlName="pincode" class="form-control mt-2" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="prospect-details-box my-3" *ngIf="kycDetailForm">
+      <form [formGroup]="kycDetailForm" class="prospect-details-form">
+        <caption class="d-flex">
+          Primary KYC Upload
+        </caption>
+        <div class="row d-flex gy-2 ">
+          <div class="col-12 col-lg-4">
+            <label class="label">Aadhar Number</label>
+            <input type="number" class="form-control mt-2" formControlName="aadharNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label class="label">Pan Number</label>
+            <input type="text" class="form-control mt-2" formControlName="panNumber" />
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-4">
+              <label class="label">Prospect Image</label>
+              <input type="file" class="form-control mt-2" formControlName="prospectImage" #prospectImage />
+            </div>
+
+            <div class="col-12 col-lg-4">
+              <label class="label">Aadhar Image</label>
+              <input type="file" class="form-control mt-2" formControlName="aadharImage" />
+              <a [href]="aadharImageFilePath" target="_blank" rel="noopener noreferrer"
+                *ngIf="aadharImageFilePath">Image Link</a>
+            </div>
+            <div class="col-12 col-lg-4">
+              <label class="label">PAN Image</label>
+              <input type="file" class="form-control mt-2" formControlName="panImage" />
+              <a [href]="panNumberImageFilePath" target="_blank" rel="noopener noreferrer"
+                *ngIf="panNumberImageFilePath">Image Link</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

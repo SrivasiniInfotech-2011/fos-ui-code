@@ -1,0 +1,141 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="individual-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>Individual
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="individual-details-box my-3">
+      <form class="individual-details-form" [formGroup]="individualForm">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="individual-details-box my-3">
+      <form class="individual-details-form" [formGroup]="individualDetailsForm">
+        <caption>
+          Individual Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Father Name</label>
+            <input type="text" class="form-control mt-2" formControlName="fatherName" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Mother Name</label>
+            <input type="text" class="form-control mt-2" formControlName="motherName" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Marital Status</label>
+            <select class="form-select mt-2" formControlName="maritalStatus">
+              <option *ngFor="let c of maritalStatusLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Employment</label>
+            <select class="form-select mt-2" formControlName="employment">
+              <option *ngFor="let c of employmentLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Net Salary</label>
+            <input type="number" class="form-control mt-2" formControlName="netSalary" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>No of adult dependents</label>
+            <input type="number" class="form-control mt-2" formControlName="noOfAdultDependents" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Spouse Name</label>
+            <input type="text" class="form-control mt-2" formControlName="spouseName" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Spouse Employment</label>
+            <select class="form-select mt-2" formControlName="spouseEmployment">
+              <option *ngFor="let c of employmentLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Spouse Monthly Salary</label>
+            <input type="number" class="form-control mt-2" formControlName="spouseMonthlySalary" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>No of child dependents </label>
+            <input type="number" class="form-control mt-2" formControlName="noOfChildDependents" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>House Type</label>
+            <select class="form-select mt-2" formControlName="houseType">
+              <option *ngFor="let c of houseTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Floor Number /Flat Number</label>
+            <input type="text" class="form-control mt-2" formControlName="floorFlatNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>House Status</label>
+            <select class="form-select mt-2" formControlName="houseStatus">
+              <option *ngFor="let c of houseStatusLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Rental / Lease Amount</label>
+            <input type="text" class="form-control mt-2" formControlName="rentalLeaseAmount" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Owned 2 Wheeler</label>
+            <input type="number" class="form-control mt-2" formControlName="owned2Wheeler" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Owned 4 Wheeler</label>
+            <input type="number" class="form-control mt-2" formControlName="owned4Wheeler" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Owned Heavy Vehicles</label>
+            <input type="number" class="form-control mt-2" formControlName="ownedHeavyVehicle" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Existing Loan in Alive</label>
+            <input type="number" class="form-control mt-2" formControlName="existingLoans" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Total Existing Loans Monthly EMI</label>
+            <input type="number" class="form-control mt-2" formControlName="totalExistingLoans" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

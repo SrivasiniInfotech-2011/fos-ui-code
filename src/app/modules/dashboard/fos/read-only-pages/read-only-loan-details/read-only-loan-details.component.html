@@ -1,0 +1,189 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="loan-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>Loan Details
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="loan-details-box my-3">
+      <form class="loan-details-form" [formGroup]="leadForm">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber"  />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="loan-details-box my-3">
+      <form class="loan-details-form" [formGroup]="loanDetailsForm">
+        <caption>
+          Loan Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Line Of Business</label>
+            <select formControlName="lineOfBusiness" class="form-select mt-2">
+              <option *ngFor="let c of lineOfBusinesses" [value]="c.lineOfBusinessId">
+                {{ c.lineOfBusinessName }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Finance Amount</label>
+            <input type="number" class="form-control mt-2" formControlName="financeAmount"/>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Tenure</label>
+            <input type="number" class="form-control mt-2" formControlName="tenure" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Tenure Type</label>
+            <select class="form-select mt-2" formControlName="tenureType">
+              <option *ngFor="let c of tenureTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Rate </label>
+            <input type="number" class="form-control mt-2" formControlName="rate" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Repayment Frequency</label>
+            <select class="form-select mt-2" formControlName="repaymentFrequency">
+              <option *ngFor="let c of repaymentFrequencyLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Leave Period</label>
+            <input type="number"  class="form-control mt-2" formControlName="leavePeriod" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Field Executive</label>
+            <select class="form-select mt-2" formControlName="fieldExecutive">
+              <option *ngFor="let c of fieldExecutives" [value]="c.fieldExecutiveId">
+                {{ c.fieldExecutiveName }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Document Category</label>
+            <select class="form-select mt-2" formControlName="documentCategory">
+              <option *ngFor="let c of documentCategoryLookup" [value]="c.documentCategoryId">
+                {{ c.documentCategoryDescription }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="loan-details-box my-3">
+      <form class="loan-details-form" [formGroup]="assetDetailsForm">
+        <caption>
+          Asset Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Asset Class</label>
+            <select class="form-select mt-2" formControlName="assetClass">
+              <option *ngFor="let c of assetClassLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Asset Name</label>
+            <select class="form-select mt-2" formControlName="assetName">
+              <option *ngFor="let c of assetMakeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Asset Type</label>
+            <select class="form-select mt-2" formControlName="assetType">
+              <option *ngFor="let c of assetTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Asset Model</label>
+            <select class="form-select mt-2" formControlName="assetModel">
+              <option *ngFor="let c of assetModelLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Engine Number</label>
+            <input type="text" class="form-control mt-2" formControlName="engineNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Chassis Number</label>
+            <input type="text" class="form-control mt-2" formControlName="chassisNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Serial Number</label>
+            <input type="text" class="form-control mt-2" formControlName="serialNumber" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Ownership</label>
+            <select class="form-select mt-2" formControlName="ownership">
+              <option *ngFor="let c of ownershipLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Model</label>
+            <input type="text" class="form-control mt-2" formControlName="model" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Type</label>
+            <select class="form-select mt-2" formControlName="vehicleType">
+              <option *ngFor="let c of vehicleTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Tax Type</label>
+            <select class="form-select mt-2" formControlName="taxType">
+              <option *ngFor="let c of taxTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Fuel Type</label>
+            <select class="form-select mt-2" formControlName="fuelType">
+              <option *ngFor="let c of fuelTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

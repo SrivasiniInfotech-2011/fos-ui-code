@@ -22,103 +22,84 @@ export class ApprovalComponent {
     // },
     {
       index: 1,
-      title: 'Prospect Master',
-      path: '/fos/prospect-master',
+      title: 'Lead Master',
     },
     {
       index: 2,
-      title: 'Lead Generation',
-      path: '/fos/lead-generation',
+      title: 'Prospect Master',
     },
     {
       index: 3,
       title: 'Prospect Detail',
-      path: '/fos/lead-prospect-detail',
     },
-    // {
-    //   index: 5,
-    //   title: 'Guarantor 1',
-    //   path: '/fos/lead-guarantor-1',
-    // },
-    // {
-    //   index: 6,
-    //   title: 'Guarantor 2',
-    //   path: '/fos/lead-guarantor-2',
-    // },
-    // {
-    //   index: 7,
-    //   title: 'Loan Details',
-    //   path: '/fos/lead-loan-details',
-    // },
-    // {
-    //   index: 8,
-    //   title: 'Individual',
-    //   path: '/fos/lead-individual',
-    // },
-    // {
-    //   index: 9,
-    //   title: 'Non-Individual',
-    //   path: '/fos/lead-non-individual',
-    // },
     {
       index: 4,
-      title: 'BM Approval',
-      path: '/fos/BM-approval',
+      title: 'Loan Details',
     },
     {
       index: 5,
-      title: 'Create BM Approval',
-      path: '/fos/BM-approvalcreate',
+      title: 'Individual',
     },
     {
       index: 6,
-      title: 'Disbursement Details',
-      path: '/fos/Disbursement-details',
+      title: 'Non-Individual',
     },
     {
       index: 7,
-      title: 'Create Disbursement',
-      path: '/fos/disbursement-create',
+      title: 'Guarantor 1',
     },
     {
       index: 8,
-      title: 'Document Collection',
-      path: '/fos/document-collection',
+      title: 'Guarantor 2',
     },
     {
       index: 9,
-      title: 'FVR Hirer',
-      path: '/fos/fvr-hirer',
+      title: 'Create BM Approval',
     },
     {
       index: 10,
-      title: 'FVR Guarantor',
-      path: '/fos/fvr-guarantor',
+      title: 'BM Approval',
     },
     {
       index: 11,
-      title: 'FVR Vehicle',
-      path: '/fos/fvr-vehicle',
+      title: 'Create Disbursement',
     },
     {
       index: 12,
-      title: 'FVR Hirer Neighbour',
-      path: '/fos/FVR-hirer-neighbour',
+      title: 'Disbursement Details',
     },
+
     {
       index: 13,
-      title: 'FVR Neighbour',
-      path: '/fos/FVR-neighbour',
+      title: 'Document Collection',
     },
     {
       index: 14,
-      title: 'FVR Observation',
-      path: '/fos/FVR-observation',
+      title: 'FVR Hirer',
     },
     {
       index: 15,
+      title: 'FVR Neighbour',
+    },
+    {
+      index: 16,
+      title: 'FVR Hirer Neighbour',
+    },
+    {
+      index: 17,
+      title: 'FVR Guarantor',
+    },
+    {
+      index: 18,
+      title: 'FVR Vehicle',
+    },
+    {
+      index: 19,
       title: 'FVR Vehicle Detail',
-      path: '/fos/FVR-vehicle-detail',
+    },
+    {
+      index: 20,
+      title: 'FVR Observation',
     }
   ];
   activeSlide = 1

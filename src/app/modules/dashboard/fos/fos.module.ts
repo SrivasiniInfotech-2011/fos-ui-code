@@ -39,6 +39,12 @@ import { FvrObservationComponent } from './pages/fvr-observation/fvr-observation
 import { FvrVehicleDetailsComponent } from './pages/fvr-vehicle-details/fvr-vehicle-details.component';
 import { ApprovalComponent } from './pages/approval/approval.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { ReadOnlyLeadMasterComponent } from './read-only-pages/read-only-lead-master/read-only-lead-master.component';
+import { ReadOnlyProspectMasterComponent } from './read-only-pages/read-only-prospect-master/read-only-prospect-master.component';
+import { ReadOnlyProspectDetailsComponent } from './read-only-pages/read-only-prospect-details/read-only-prospect-details.component';
+import { ReadOnlyLoanDetailsComponent } from './read-only-pages/read-only-loan-details/read-only-loan-details.component';
+import { ReadOnlyIndividualComponent } from './read-only-pages/read-only-individual/read-only-individual.component';
+import { ReadOnlyNonIndividualComponent } from './read-only-pages/read-only-non-individual/read-only-non-individual.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +73,12 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     FvrObservationComponent,
     FvrVehicleDetailsComponent,
     ApprovalComponent,
+    ReadOnlyLeadMasterComponent,
+    ReadOnlyProspectMasterComponent,
+    ReadOnlyProspectDetailsComponent,
+    ReadOnlyLoanDetailsComponent,
+    ReadOnlyIndividualComponent,
+    ReadOnlyNonIndividualComponent,
 
   ],
   imports: [

@@ -1,0 +1,139 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="non-individual-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>Individual
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="non-individual-details-box my-3">
+      <form class="non-individual-details-form" [formGroup]="nonIndividualForm">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="non-individual-details-box my-3">
+      <form class="non-individual-details-form" [formGroup]="nonIndividualDetailsForm">
+        <caption>
+          Non-Individual Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Public / Closely Held</label>
+            <select class="form-select mt-2" formControlName="publicCloselyHeld">
+              <option *ngFor="let c of publicTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>No Of Directors</label>
+            <input type="number" class="form-control mt-2" formControlName="noOfDirectors" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Listed Exchange</label>
+            <input type="text" class="form-control mt-2" formControlName="listedExchange" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Paid Up Capital</label>
+            <input type="number" class="form-control mt-2" formControlName="paidUpCapital" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Face Value Of Shares</label>
+            <input type="number" class="form-control mt-2" formControlName="sharesFaceValue" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Book Value Of Shares</label>
+            <input type="number" class="form-control mt-2" formControlName="sharesBookValue" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Business Profile</label>
+            <input type="text" class="form-control mt-2" formControlName="businessProfile" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Geographical Coverage</label>
+            <input type="text" class="form-control mt-2" formControlName="geographicalCoverage" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>No Of Branches</label>
+            <input type="number" class="form-control mt-2" formControlName="noOfBranches" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Government / Institutional Participation </label>
+            <select class="form-select mt-2" formControlName="governmentInstitutionalParticipation">
+              <option *ngFor="let c of instTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Promoter Stake</label>
+            <input type="number" class="form-control mt-2" formControlName="promoterStake" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>JV Partner Name</label>
+            <input type="text" class="form-control mt-2" formControlName="jvPartnerName" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>JV Partner Stake %</label>
+            <input type="number" class="form-control mt-2" formControlName="jvPartnerStake" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>CEO Name</label>
+            <input type="text" class="form-control mt-2" formControlName="ceoName" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>CEO Date Of Birth</label>
+            <input type="date" class="form-control mt-2" formControlName="ceoDateOfBirth" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>CEO Age</label>
+            <input type="text" class="form-control mt-2" formControlName="ceoAge" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Experience In Years</label>
+            <input type="number" class="form-control mt-2" formControlName="experienceInYears" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Wedding Anniversary Date</label>
+            <input type="date" class="form-control mt-2" formControlName="weddingAnniversaryDate" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Residential Address</label>
+            <textarea rows="4" formControlName="residentialAddress" mt-2 class="w-100"></textarea>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
