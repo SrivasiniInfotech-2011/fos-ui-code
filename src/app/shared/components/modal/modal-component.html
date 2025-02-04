@@ -1,9 +1,9 @@
-<div>
-  <h2 mat-dialog-title>{{ title }}</h2>
-  <div mat-dialog-content>{{ message }}</div>
-  <div mat-dialog-actions align="end">
+<div class="dialog-box p-4">
+  <h2 class="title m-0">{{ title }}</h2>
+  <div class="description">{{ message }}</div>
+  <div mat-dialog-actions align="end" class="p-0">
     <span>
-      <button mat-button mat-dialog-close class="btn-primary">Ok</button>
+      <button mat-button mat-dialog-close class="option-button rounded">Ok</button>
     </span>
   </div>
 </div>

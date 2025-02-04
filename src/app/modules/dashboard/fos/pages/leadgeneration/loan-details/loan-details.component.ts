@@ -73,6 +73,12 @@ export class LoanDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    var dialogRef = this.dialog.open(ModalComponent, {
+      data: {
+        title: 'LEAD GENERATION',
+        message: `The Lead ${this.leadHeader.leadNumber} has been updated with the Loan Details successfully.`,
+      },
+    });
     let tabValue = window.history.state?.value;
     this.selectedTab = tabValue;
     this.SetupLoanDetailsScreen();
