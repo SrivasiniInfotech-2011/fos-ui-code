@@ -375,3 +375,91 @@ export interface IInsertUserDetails {
   createdBy?: number;
   errorCode?: number;
 }
+
+export interface IHierarchyLookup {
+  CompanyId?: number;
+  // Location_Description?: string;
+  // Is_Active?: number;
+  // Hierarchy?: number;
+
+}
+
+export interface ICorporateLookup {
+  Parent_ID?: number;
+  Company_ID?: number;
+  
+}
+
+export interface GetEXistingLocationMasterDetails {
+  location_ID?:number;
+  Company_ID?: number;
+  
+}
+
+export interface IHierarchyLookup {
+  CompanyId?: number;
+  
+
+}
+export interface IHierarchyLookupDetails {
+  company_ID?: number;
+  location_Description?: string;
+  created_By?: number;
+  hierarchy?: number;
+
+}
+
+export interface GerLoctionTypes{
+  hierarchy_ID?:number;
+  company_ID?:number;
+  location_Code?:string;
+  location_Name?:string;
+  location_ID?:number;
+}
+export interface InsertLocationMaster {
+  Location_ID?: number;
+  Company_ID?: number;
+  Hierarchy_ID?: number;
+  Parent_ID?: number;
+  Location_Code?: string;
+  Location_Name?: string;
+  Address?: string;
+  landMark?: string;
+  State_ID?: number;
+  Country_ID?: number;
+  pincode?: string;
+  Telephone_Number?: string;
+  Mobile_Number?: string;
+  Email_ID?: string;
+  Is_Active?: number;
+  Is_Operational?: number;
+  createdBy?: number;
+  createdOn?: number;
+  modifiedBy?: number;
+  errorCode?: number;
+
+}
+
+export interface GetInsertedtLocationMaster {
+  location_ID?: number;
+  company_ID?: number;
+  hierarchy_ID?: number;
+  parent_ID?: number;
+  location_Code?: string;
+  location_Name?: string;
+  address?: string;
+  landMark?: string;
+  state_ID?: number;
+  country_ID?: number;
+  pincode?: string;
+  telephone_Number?: string;
+  mobile_Number?: string;
+  email_ID?: string;
+  is_Active?: number;
+  is_Operational?: number;
+  createdBy?: number;
+  createdOn?: number;
+  modifiedBy?: number;
+
+}
+

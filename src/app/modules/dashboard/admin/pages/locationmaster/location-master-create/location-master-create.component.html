@@ -1,0 +1,329 @@
+<div class="content-box pt-2">
+    <div class="container">
+      <div class="user-managment-box mb-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item active d-flex align-items-center" aria-current="page"><mat-icon class="me-2">home</mat-icon>Location Master </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ breadcrumbText }}</li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="user-create-box my-3">
+        <form class="user-create-form" [formGroup]="LocationMasterDetails">
+          <!-- <caption class="d-flex">Location Master</caption>          -->
+          <div class="row d-flex gy-2">
+            <div class="col-12 col-lg-4 ">
+              <label for="locationType">Location Type <span class="text-danger">*</span></label>
+              <select formControlName="locationType" 
+              class="form-select  "
+              id="locationType"
+               (change)="onLocationTypeChange($event)" 
+               >
+                <option value="" disabled>Select Location Type</option>
+                <option *ngFor="let c of setHierarchyLookup" [value]="c.hierarchy">
+                  {{ c.location_Description }}
+                </option>               
+              </select>
+             
+            </div>
+            <div class="col-12 col-lg-4" *ngIf="showCorporateDropdown">
+              <label for="corporateDropdown">Corporate <span class="text-danger">*</span></label>
+              <select
+                class="form-select"
+                formControlName="corporate"
+                [(ngModel)]="selectedCorporateParentId"
+                (change)="onCorporateChange($event)"  
+              >
+                <option value="" disabled>Select Corporate</option>
+                <option *ngFor="let c of setCorporateLookup" [value]="c.location_ID">
+                  {{ c.location_Code }}
+                </option>
+              </select>
+            </div>
+            <div class="col-12 col-lg-4" *ngIf="showStateDropdown" >
+              <label  for="stateDropdown">State <span class="text-danger">*</span></label>
+              <select class="form-select " formControlName="state"  [(ngModel)]="selectedStateParentId"  
+               (change)="onStateTypeChange($event)" >
+               <option value="" disabled>Select State</option>
+              <option *ngFor="let c of setStateTypeLookupLookup" [value]="c.location_ID">
+                {{ c.location_Code }}
+              </option> 
+              </select> 
+            </div>
+            <!-- Dynamic Location Code -->
+            <div class="col-12 col-lg-4">
+              <label>
+                {{ locationCodeLabel }} <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                maxlength="4" 
+                class="form-control "
+                placeholder="Enter {{ locationCodeLabel }}"
+                formControlName="locationCode"
+              />
+              <div *ngIf="LocationMasterDetails.get('locationCode')?.invalid && LocationMasterDetails.get('locationCode')?.touched">
+                <small class="text-danger">Location Code is required.</small>
+              </div>
+            </div>
+            <!-- Dynamic Location Description -->
+            <div class="col-12 col-lg-4">
+              <label>
+                {{ locationDescriptionLabel }} <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                class="form-control "
+                placeholder="Enter {{ locationDescriptionLabel }}"
+                formControlName="locationDescription"
+              />
+              <div *ngIf="LocationMasterDetails.get('locationDescription')?.invalid && LocationMasterDetails.get('locationDescription')?.touched">
+                <small class="text-danger">location Description is required.</small>
+              </div>
+            </div>
+          </div>
+            <!-- <div class="col-12 col-lg-4 ">
+              <label for="locationType">Location Type <span class="text-danger">*</span></label>
+              <select formControlName="locationType" 
+              class="form-select  "
+              id="locationType"
+               (change)="onLocationTypeChange($event)" 
+               >
+                <option value="" disabled>Select Location Type</option>
+                <option *ngFor="let c of setHierarchyLookup" [value]="c.hierarchy">
+                  {{ c.location_Description }}
+                </option>               
+              </select>
+             
+            </div> -->
+           
+            <!-- Corporate Dropdown -->
+            <!-- <div class="col-12 col-lg-4" *ngIf="showCorporateDropdown">
+              <label for="corporateDropdown">Corporate <span class="text-danger">*</span></label>
+              <select
+                class="form-select"
+                formControlName="corporate"
+                [(ngModel)]="selectedCorporateParentId"
+                (change)="onCorporateChange($event)"  
+              >
+                <option value="" disabled>Select Corporate</option>
+                <option *ngFor="let c of setCorporateLookup" [value]="c.location_ID">
+                  {{ c.location_Code }}
+                </option>
+              </select>
+            </div> -->
+                  
+  
+            <!-- State Dropdown -->
+            <!-- <div class="col-12 col-lg-4" *ngIf="showStateDropdown" >
+              <label  for="stateDropdown">State <span class="text-danger">*</span></label>
+              <select class="form-select " formControlName="state"  [(ngModel)]="selectedStateParentId"  
+               (change)="onStateTypeChange($event)" >
+              <option *ngFor="let c of setStateTypeLookupLookup" [value]="c.location_ID">
+                {{ c.location_Code }}
+              </option> 
+              </select> 
+            </div> -->
+           
+            <!-- Branch Dropdown -->
+            <!-- <div class="col-12 col-lg-4" *ngIf="selectedLocationType === 'Branch'">
+              <label>Branch <span class="text-danger">*</span></label>
+              <select class="form-select " formControlName="branch">
+                <option value="">--Select--</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Madurai">Madurai</option>
+              </select>
+            </div> -->
+  
+            <!-- Dynamic Location Code -->
+            <!-- <div class="col-12 col-lg-4">
+              <label>
+                {{ locationCodeLabel }} <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                maxlength="4" 
+                class="form-control "
+                placeholder="Enter {{ locationCodeLabel }}"
+                formControlName="locationCode"
+              />
+              <div *ngIf="LocationMasterDetails.get('locationCode')?.invalid && LocationMasterDetails.get('locationCode')?.touched">
+                <small class="text-danger">Location Code is required.</small>
+              </div>
+            </div> -->
+
+            <!-- Dynamic Location Description -->
+            <!-- <div class="col-12 col-lg-4">
+              <label>
+                {{ locationDescriptionLabel }} <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                class="form-control "
+                placeholder="Enter {{ locationDescriptionLabel }}"
+                formControlName="locationDescription"
+              />
+              <div *ngIf="LocationMasterDetails.get('locationDescription')?.invalid && LocationMasterDetails.get('locationDescription')?.touched">
+                <small class="text-danger">location Description is required.</small>
+              </div>
+            </div> -->
+  
+            
+          
+        </form>
+      </div>
+      <div class="user-create-box my-3">
+        <form class="user-create-form" [formGroup]="LocationMasterCommunication">
+         
+            <div class="row d-flex gy-2">
+              <div class="col-12 col-lg-4">
+                <label>Address<span class="text-danger">*</span></label>
+                <input type="text" class="form-control mt-2" placeholder="Enter Address" formControlName="address">
+                <div *ngIf="LocationMasterCommunication.get('address')?.invalid && LocationMasterCommunication.get('address')?.touched">
+                  <small class="text-danger">address is required.</small>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <label>Land Mark<span class="text-danger">*</span></label>
+                <input type="text" class="form-control mt-2" placeholder="Enter Land Mark" formControlName="landmark">
+                <div *ngIf="LocationMasterCommunication.get('landmark')?.invalid && LocationMasterCommunication.get('landmark')?.touched">
+                  <small class="text-danger">Land is required.</small>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <label class="label"
+              >Country<span class="text-danger">*</span></label
+            >
+            <select formControlName="country"  (change)="onCountrySelect($event)" class="form-select mt-2">
+              <option value="" disabled>Choose Country</option>
+              <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+              </div>
+              <div class="col-12 col-lg-4">
+                <label class="label">State<span class="text-danger">*</span></label>
+                <select
+                  formControlName="state"
+                  class="form-select mt-2"
+                  name="state"
+                  (change)="onStateSelect($event)"
+                >
+                  <option value="" disabled>Choose State</option>
+                  <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
+                    {{ c.lookupValueDescription }}
+                  </option>
+                </select>
+                <!-- <div
+                  class="massage-text"
+                  *ngIf="
+                    communicationAddressForm.get('state').errors?.required &&
+                    communicationAddressForm.get('state').touched
+                  "
+                >
+                  State is required
+                </div> -->
+                <!-- <label>State<span class="text-danger">*</span></label>
+                <select  class="form-select mt-2" formControlName="state">
+                  <option>--Select State--</option>
+                  <option>Andaman and Nicobar Islands</option>
+                  <option>Andhra Pradesh</option>
+                  <option>Arunachal Pradesh</option>
+                  <option>Assam</option>
+                  <option>Bihar</option>
+                  <option>Chandigarh</option>
+                  <option>Chhattisgarh</option>
+                  <option>Dadra and Nagar Haveli</option>
+                  <option>Daman and Diu</option>
+                  <option>Delhi</option>
+                  <option>Goa </option>
+                  <option>Gujarat</option>
+                  <option>Haryana</option>
+                  <option>Himachal Pradesh</option>
+                  <option>Jammu and Kashmir</option>
+                  <option>Jharkhand</option>
+                  <option>Karnataka</option>
+                </select> -->
+                <!-- <span class="massage-text"  *ngIf="(entityMasterForm.get('state')?.touched || isSubmitted) && entityMasterForm.get('state')?.hasError('required')">State is required</span> -->
+              </div>
+                <div class="col-12 col-lg-4">
+                    <label>Telephone Number<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control mt-2" placeholder="Enter Telephone Number" 
+                    formControlName="TelephoneNumber"
+                    maxlength="10" 
+                    (keypress)="allowOnlyNumbers($event)"
+                    (input)="limitMobileNumberLength($event)"
+                    >
+                    <div *ngIf="LocationMasterCommunication.get('TelephoneNumber')?.invalid && LocationMasterCommunication.get('TelephoneNumber')?.touched">
+                      <small class="text-danger">TelephoneNumber required.</small>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-4">
+                    <label>Mobile Number<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control mt-2" placeholder="Enter Mobile Number" 
+                    formControlName="MobileNumber"                   
+                    maxlength="10" 
+                    (keypress)="allowOnlyNumbers($event)"
+                    (input)="limitMobileNumberLength($event)"
+                    >
+                    <div *ngIf="LocationMasterCommunication.get('MobileNumber')?.invalid && LocationMasterCommunication.get('MobileNumber')?.touched">
+                      <small class="text-danger">MobileNumber required.</small>
+                    </div>                 
+                  </div>
+                  <div class="col-12 col-lg-4">
+                    <label>Email Id<span class="text-danger">*</span></label>
+                    <input type="email" class="form-control mt-2" placeholder="Enter Email Id" 
+                    formControlName="emailId"
+                    inputmode="text"
+                    >
+                    <div *ngIf="LocationMasterCommunication.get('emailId')?.invalid && LocationMasterCommunication.get('emailId')?.touched">
+                      <small class="text-danger">Email-Id required.</small>
+                    </div> 
+                  </div>
+                  <div class="col-12 col-lg-4">
+                    <label>Pin Code<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control mt-2" placeholder="Enter Mobile Number" 
+                    formControlName="PinCode"                   
+                    maxlength="6" 
+                    (keypress)="allowOnlyNumbers($event)"
+                    
+                    >
+                    <div *ngIf="LocationMasterCommunication.get('PinCode')?.invalid && LocationMasterCommunication.get('PinCode')?.touched">
+                      <small class="text-danger">PinCode required</small>
+                    </div>                 
+                  </div>
+                </div>
+                <div class="row d-flex gy-2 mt-2">
+                  <div class="col-12 col-lg-4 " >
+                    <label class="d-flex align-items-center">
+                      <input class="custom-checkbox" type="checkbox"  formControlName="isActive"  (change)="onIsActiveChange($event)" />
+                     Is Active
+                    </label>          
+                  </div>
+                  <div class="col-12 col-lg-4 " >
+                    <label class="d-flex align-items-center">
+                      <input class="custom-checkbox" type="checkbox"  formControlName="isActive"   (change)="onIsOperationalChange($event)"/>
+                     Is Operational 
+                    </label>          
+                  </div>
+                  <!-- <div class="col-12 col-lg-4">
+                    <label>Pin Code<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control mt-2" placeholder="Enter Mobile Number" 
+                    formControlName="PinCode"                   
+                    maxlength="6" 
+                    (keypress)="allowOnlyNumbers($event)"
+                    
+                    >
+                                  
+                  </div> -->
+                  <div class="button-box col-12 d-flex flex-row justify-content-end gap-1 flex-wrap">
+                    <button  *ngIf="action !== 'view'"  class="save-button col-12 col-lg-1 px-4"  (click)="insertLocationMasterDetails()">Save</button>
+                     <button class="back-button px-4 col-12 col-lg-1" (click)="back()">Back</button> 
+                  </div>
+               </div>
+        </form> 
+      </div>  
+    </div>
+  </div>

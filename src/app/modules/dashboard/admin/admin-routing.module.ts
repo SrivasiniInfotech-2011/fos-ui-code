@@ -10,6 +10,8 @@ import { EntityMasterComponent } from './pages/entity/entity-master/entity-maste
 import { GobalParameterSetupComponent } from './pages/globalparameter/gobal-parameter-setup/gobal-parameter-setup.component';
 import { UserCreateComponent } from './pages/user/user-create/user-create.component';
 import { UserManagementComponent } from './pages/user/user-management/user-management.component';
+import { LocationMasterComponent } from './pages/locationmaster/location-master/location-master.component';
+import { LocationMasterCreateComponent } from './pages/locationmaster/location-master-create/location-master-create.component';
 
 const routes: Routes = [
   {
@@ -58,6 +60,14 @@ const routes: Routes = [
     {
       path:'document-master',
       component:DocumentMasterComponent
+    },
+    {
+      path:'location-master-create',
+      component:LocationMasterCreateComponent
+    },
+    {
+      path:'location-master',
+      component:LocationMasterComponent
     }
 
 
