@@ -1,0 +1,95 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="fvrhirer-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>FVR Hirer Neighbour
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="fvrhirer-details-box my-3">
+      <form class="fvrhirer-details-form" [formGroup]="fvrHirerNeighbourLeadForm">
+        <caption class="d-flex">
+          FVR Hirer Neighbour
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input  type="text" class="form-control mt-2"
+              formControlName="vehicleNumber" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="fvrhirer-details-box my-3">
+      <form class="fvrhirer-details-form" [formGroup]="fvrHirerNeighbourLeadDetailsForm">
+        <caption class="d-flex">
+          Lead Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input  type="text" class="form-control mt-2" formControlName="leadNumber"
+               />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Lead Date</label>
+            <input type="date" class="form-control mt-2" formControlName="leadDate"  />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Location</label>
+            <input type="text" class="form-control mt-2" formControlName="location"  />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Prospect Name</label>
+            <input  type="text" class="form-control mt-2" formControlName="prospectName"
+               />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Mobile Number </label>
+            <input type="tel" class="form-control mt-2" formControlName="mobileNumber"
+               />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number </label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber"
+               />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Prospect Address </label>
+            <textarea class="w-100" rows="4" mt-2 formControlName="prospectAddress" ></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>FVR Hirer</td>
+            <td>Visited By</td>
+            <td>Visited On</td>
+            <td> <button class="option-button d-flex align-items-center">Create</button></td>
+            <td> <button class="option-button d-flex align-items-center">View</button></td>
+          </tr>
+          <tr>
+            <td>FVR Neighbour</td>
+            <td>Visited By</td>
+            <td>Visited On</td>
+            <td> <button class="option-button d-flex align-items-center">Create</button></td>
+            <td> <button class="option-button d-flex align-items-center">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+  </div>
+</div>

@@ -1,0 +1,182 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="fvr-observation-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>FVR Observation
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="fvr-observation-details-box my-3">
+      <form class="fvr-observation-details-form" [formGroup]="fvrObservationLeadForm">
+        <caption class="d-flex">
+          Lead Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Prospect Name</label>
+            <input type="text" class="form-control mt-2" formControlName="prospectName" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="fvr-observation-details-box my-3">
+      <form class="fvr-observation-details-form" [formGroup]="fvrObservationDetailsForm">
+        <caption class="d-flex">
+          FVR Observation
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Accessibility Of House</label>
+            <select class="form-select mt-2 mb-1" formControlName="houseAccessibility">
+              <option *ngFor="let c of houseAccessibilityLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Locality</label>
+            <select class="form-select mt-2 mb-1" formControlName="locality">
+              <option *ngFor="let c of localityLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Type Of House</label>
+            <select class="form-select mt-2 mb-1" formControlName="houseType">
+              <option *ngFor="let c of houseTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Type Of Flooring</label>
+            <select class="form-select mt-2 mb-1" formControlName="flooringType">
+              <option *ngFor="let c of flooringTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Type Of Roofing</label>
+            <select class="form-select mt-2 mb-1" formControlName="roofingType">
+              <option *ngFor="let c of roofingTypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Standard Of Living</label>
+            <select class="form-select mt-2 mb-1" formControlName="livingStandard">
+              <option *ngFor="let c of livingStandardLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Entry Permitted</label>
+            <select class="form-select mt-2 mb-1" formControlName="entryPermitted">
+              <option *ngFor="let c of defaultLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Approx Size Of House (IN SQ FT)</label>
+            <input type="text" class="form-control mt-2" formControlName="houseSize" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Landmark</label>
+            <input type="text" class="form-control mt-2" formControlName="landmark" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Recommend</label>
+            <select class="form-select mt-2 mb-1" formControlName="recommend">
+              <option *ngFor="let c of defaultLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Earlier Visited</label>
+            <select class="form-select mt-2 mb-1" formControlName="earlierVisit">
+              <option *ngFor="let c of houseAccessibilityLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Photograph Of Political Leaders Noticed</label>
+            <select class="form-select mt-2 mb-1" formControlName="politicalLeaderPhotograph">
+              <option *ngFor="let c of defaultLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Verifier Name</label>
+            <input type="text" class="form-control mt-2" formControlName="verifierName" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Reason</label>
+            <input type="text" class="form-control mt-2" formControlName="reason" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Verifier Id</label>
+            <input type="text" class="form-control mt-2" formControlName="verifierId" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Time</label>
+            <input type="time" class="form-control mt-2" formControlName="time" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Branch Name</label>
+            <input type="text" class="form-control mt-2" formControlName="branchName" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Date Of Visit</label>
+            <input type="date" class="form-control mt-2" formControlName="dateOfVisit" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Asset seen inside the house</label>
+            <input type="text" class="form-control mt-2" formControlName="assetInHouse" />
+          </div>
+
+          <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+            <label>Hirer House Photo</label>
+            <input type="file" class="form-control mt-2" formControlName="hirerHousePhoto" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

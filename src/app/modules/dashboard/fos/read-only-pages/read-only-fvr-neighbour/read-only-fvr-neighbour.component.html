@@ -1,0 +1,97 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="fvr-neighbour-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>FVR Neighbour
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="fvr-neighbour-details-box my-3">
+      <form class="fvr-neighbour-details-form" [formGroup]="fvrNeighbourLeadForm">
+        <caption class="d-flex">
+          Lead Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Prospect Name</label>
+            <input type="text" class="form-control mt-2" formControlName="prospectName" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="fvr-neighbour-details-box my-3">
+      <form class="fvr-neighbour-details-form" [formGroup]="fvrNeighbourDetailsForm">
+        <caption class="d-flex">
+          FVR Neighbour
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Does Hirer Stay Here</label>
+            <select class="form-select mt-2 mb-1" formControlName="hirerLocation">
+              <option *ngFor="let c of localityLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>No Of Years Of Stay</label>
+            <input type="number" class="form-control mt-2" formControlName="yearsOfStay" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>House Ownership Status</label>
+            <select class="form-select mt-2 mb-1" formControlName="ownershipStatus">
+              <option *ngFor="let c of defaultLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Residence Sub Type</label>
+            <select class="form-select mt-2 mb-1" formControlName="residenceSubType">
+              <option *ngFor="let c of residenceSubtypeLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Name Of Neighbour</label>
+            <input type="text" class="form-control mt-2" formControlName="neighbourName" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Neighbour Phone Number</label>
+            <input type="tel" class="form-control mt-2" formControlName="neighbourNumber" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label>Neighbour Address</label>
+            <input type="text" class="form-control mt-2" formControlName="neighbourAddress" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Neighbour House Photo</label>
+            <input type="file" class="form-control mt-2 " formControlName="neighbourHousePhoto" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Comments</label>
+            <textarea class="w-100 mt-2" rows="3" mt-2 formControlName="comment"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

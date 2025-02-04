@@ -1,0 +1,30 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="bmaproval-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>BM Approval
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="bmaproval-details-box my-3">
+      <form class="bmaproval-details-form" [formGroup]="bmApprovalMasterForm">
+
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

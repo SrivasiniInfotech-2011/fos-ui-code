@@ -45,6 +45,16 @@ import { ReadOnlyProspectDetailsComponent } from './read-only-pages/read-only-pr
 import { ReadOnlyLoanDetailsComponent } from './read-only-pages/read-only-loan-details/read-only-loan-details.component';
 import { ReadOnlyIndividualComponent } from './read-only-pages/read-only-individual/read-only-individual.component';
 import { ReadOnlyNonIndividualComponent } from './read-only-pages/read-only-non-individual/read-only-non-individual.component';
+import { ReadOnlyGuarantor1Component } from './read-only-pages/read-only-guarantor-1/read-only-guarantor-1.component';
+import { ReadOnlyGuarantor2Component } from './read-only-pages/read-only-guarantor-2/read-only-guarantor-2.component';
+import { ReadOnlyBmApprovalMasterComponent } from './read-only-pages/read-only-bm-approval-master/read-only-bm-approval-master.component';
+import { ReadOnlyDisbursementDetailMasterComponent } from './read-only-pages/read-only-disbursement-detail-master/read-only-disbursement-detail-master.component';
+import { ReadOnlyFvrHirerComponent } from './read-only-pages/read-only-fvr-hirer/read-only-fvr-hirer.component';
+import { ReadOnlyFvrNeighbourComponent } from './read-only-pages/read-only-fvr-neighbour/read-only-fvr-neighbour.component';
+import { ReadOnlyFvrHirerNeighbourComponent } from './read-only-pages/read-only-fvr-hirer-neighbour/read-only-fvr-hirer-neighbour.component';
+import { ReadOnlyFvrObservationComponent } from './read-only-pages/read-only-fvr-observation/read-only-fvr-observation.component';
+import { ReadOnlyFvrGuarantorComponent } from './read-only-pages/read-only-fvr-guarantor/read-only-fvr-guarantor.component';
+import { ReadOnlyFvrVehicleComponent } from './read-only-pages/read-only-fvr-vehicle/read-only-fvr-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +89,16 @@ import { ReadOnlyNonIndividualComponent } from './read-only-pages/read-only-non-
     ReadOnlyLoanDetailsComponent,
     ReadOnlyIndividualComponent,
     ReadOnlyNonIndividualComponent,
+    ReadOnlyGuarantor1Component,
+    ReadOnlyGuarantor2Component,
+    ReadOnlyBmApprovalMasterComponent,
+    ReadOnlyDisbursementDetailMasterComponent,
+    ReadOnlyFvrHirerComponent,
+    ReadOnlyFvrNeighbourComponent,
+    ReadOnlyFvrHirerNeighbourComponent,
+    ReadOnlyFvrObservationComponent,
+    ReadOnlyFvrGuarantorComponent,
+    ReadOnlyFvrVehicleComponent,
 
   ],
   imports: [

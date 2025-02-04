@@ -1,0 +1,202 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="gaurantor-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <mat-icon class="me-2">home</mat-icon>Guarantor 1
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="gaurantor-details-box my-3">
+      <form class="gaurantor-details-form" [formGroup]="guarantor1Form">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="gaurantor-details-box my-3">
+      <form class="gaurantor-details-form" [formGroup]="guarantor1DetailsForm">
+        <caption>
+          Guarantor-1 Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Guarantor Name</label>
+            <input type="text" class="form-control mt-2" formControlName="guarantorName" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Relationship</label>
+            <select class="form-select mt-2" formControlName="relationship">
+              <option *ngFor="let c of guarantorRelationshipLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Gender</label>
+            <select class="form-select mt-2" formControlName="gender">
+              <option *ngFor="let c of genderLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Date Of Birth</label>
+            <input type="date" class="form-control mt-2" formControlName="dateOfBirth" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Mobile Number</label>
+            <input type="text" class="form-control mt-2" formControlName="mobileNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Alternate Mobile Number</label>
+            <input type="text" class="form-control mt-2" formControlName="alternateMobileNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Guarantor Amount</label>
+            <input type="number" class="form-control mt-2" formControlName="guarantorAmount" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="gaurantor-details-box my-3">
+      <form class="gaurantor-details-form" [formGroup]="guarantor1CommunicationAddressForm">
+        <caption>
+          Communication Address
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Address Line 1</label>
+            <input type="text" class="form-control mt-2" formControlName="addressLine1" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Address Line 2</label>
+            <input type="text" class="form-control mt-2" formControlName="addressLine2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Landmark</label>
+            <input type="text" class="form-control mt-2" formControlName="landmark" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>City</label>
+            <input type="text" class="form-control mt-2" formControlName="city" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>State</label>
+            <select class="form-select mt-2" formControlName="state">
+              <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Country</label>
+            <select class="form-select mt-2" formControlName="country">
+              <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Pincode</label>
+            <input type="number" class="form-control mt-2" formControlName="pincode" />
+          </div>
+        </div>
+      </form>
+      <form class="gaurantor-details-form my-3" [formGroup]="guarantor1PermanentAddressForm">
+        <caption>
+          Permanent Address
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Address Line 1</label>
+            <input type="text" class="form-control mt-2" formControlName="addressLine1" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Address Line 2</label>
+            <input type="text" class="form-control mt-2" formControlName="addressLine2" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Landmark</label>
+            <input type="text" class="form-control mt-2" formControlName="landmark" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>City</label>
+            <input type="text" class="form-control mt-2" formControlName="city" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>State</label>
+            <select class="form-select mt-2" formControlName="state">
+              <option *ngFor="let c of stateLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Country</label>
+            <select class="form-select mt-2" formControlName="country">
+              <option *ngFor="let c of countryLookup" [value]="c.lookupValueId">
+                {{ c.lookupValueDescription }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Pincode</label>
+            <input type="number" class="form-control mt-2" formControlName="pincode" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="gaurantor-details-box my-3">
+      <form class="gaurantor-details-form" [formGroup]="guarantor1KYCForm">
+        <caption>
+          Guarantor-1 KYC Upload
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Aadhar Number</label>
+            <input type="text" class="form-control mt-2" formControlName="aadharNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>PAN Number</label>
+            <input type="text" class="form-control mt-2" formControlName="panNumber" />
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-4">
+              <label>Guarantor Image</label>
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+                <img [src]="guarantorImageFilePath" />
+              </div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <label>Aadhar</label>
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+                <img [src]="aadharImageFilePath" />
+              </div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <label>PAN</label>
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
+                <img [src]="panNumberImageFilePath" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

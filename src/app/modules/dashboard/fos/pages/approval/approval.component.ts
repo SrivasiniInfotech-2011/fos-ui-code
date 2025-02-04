@@ -54,51 +54,39 @@ export class ApprovalComponent {
     },
     {
       index: 9,
-      title: 'Create BM Approval',
-    },
-    {
-      index: 10,
       title: 'BM Approval',
     },
     {
-      index: 11,
-      title: 'Create Disbursement',
-    },
-    {
-      index: 12,
+      index: 10,
       title: 'Disbursement Details',
+    },
+    // {
+    //   index: 11,
+    //   title: 'Document Collection',
+    // },
+    {
+      index: 11,
+      title: 'FVR Hirer',
     },
 
     {
-      index: 13,
-      title: 'Document Collection',
-    },
-    {
-      index: 14,
-      title: 'FVR Hirer',
-    },
-    {
-      index: 15,
+      index: 12,
       title: 'FVR Neighbour',
     },
     {
-      index: 16,
+      index: 13,
       title: 'FVR Hirer Neighbour',
     },
     {
-      index: 17,
+      index: 14,
       title: 'FVR Guarantor',
     },
     {
-      index: 18,
+      index: 15,
       title: 'FVR Vehicle',
     },
     {
-      index: 19,
-      title: 'FVR Vehicle Detail',
-    },
-    {
-      index: 20,
+      index: 16,
       title: 'FVR Observation',
     }
   ];
@@ -107,8 +95,6 @@ export class ApprovalComponent {
 
   displaySelectedComponent(index:any){
     this.activeSlide = index
-    console.log(this.activeSlide)
-    // this.router.navigateByUrl(path)
   }
 
   addSlide() {

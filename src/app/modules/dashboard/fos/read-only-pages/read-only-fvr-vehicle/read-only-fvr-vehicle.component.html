@@ -1,0 +1,313 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="fvr-vehicle-details-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item d-flex align-items-center">
+            <mat-icon class="me-2">home</mat-icon>
+            <a href="#" class="text-decoration-none d-flex align-items-center"></a>
+            FVR Vehicle
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="fvr-vehicle-details-box my-3">
+      <form class="fvr-vehicle-details-form" [formGroup]="fvrVehicleLeadForm">
+        <caption class="d-flex">
+          Lead Details
+        </caption>
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4">
+            <label>Lead Number</label>
+            <input type="text" class="form-control mt-2" formControlName="leadNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Vehicle Number</label>
+            <input type="text" class="form-control mt-2" formControlName="vehicleNumber" />
+          </div>
+          <div class="col-12 col-lg-4">
+            <label>Prospect Name</label>
+            <input type="text" class="form-control mt-2" formControlName="prospectName" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <mat-tab-group>
+      <mat-tab label="FVR VEHICLE 1">
+        <div class="fvr-vehicle-details-box my-3">
+          <form class="fvr-vehicle-details-form" [formGroup]="fvrVehicle1Form">
+            <caption class="d-flex">
+              FVR Vehicle
+            </caption>
+            <div class="row d-flex gy-2">
+              <div class="col-12 col-lg-4">
+                <label>Verifier Name</label>
+                <input type="text" class="form-control mt-2" formControlName="verifierName" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Verifier Id</label>
+                <input type="text" class="form-control mt-2" formControlName="verifierId" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Branch Name</label>
+                <input type="text" class="form-control mt-2" formControlName="branchName" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Date Of Visit</label>
+                <input type="date" class="form-control mt-2" formControlName="dateOfVisit" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Time</label>
+                <input type="time" class="form-control mt-2" formControlName="time" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Tax Expiry</label>
+                <select class="form-select mt-2 mb-1" formControlName="taxExpiry">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Tax Expiry Date</label>
+                <input type="date" class="form-control mt-2" formControlName="taxExpiryDate" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Permit Status</label>
+                <select class="form-select mt-2 mb-1" formControlName="permitStatus">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Insurance Expiry Date</label>
+                <input type="date" class="form-control mt-2" formControlName="insuranceExpiryDate" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Field Executive Comment</label>
+                <input type="text" class="form-control mt-2" formControlName="fieldExecutiveComment" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Inspected Value Of Vehicle</label>
+                <input type="number" class="form-control mt-2" formControlName="inspectedVehicleValue" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Rc Registration Date</label>
+                <input type="date" class="form-control mt-2" formControlName="rcRegistrationDate" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Makers Classification / Vehicle Description</label>
+                <input type="text" class="form-control mt-2" formControlName="vehicleDescription" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Condition Of Front Tyres</label>
+                <select class="form-select mt-2 mb-1" formControlName="frontTyreCondition">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Condition Of Rear Tyres</label>
+                <select class="form-select mt-2 mb-1" formControlName="rearTyreCondition">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Colour</label>
+                <input type="text" class="form-control mt-2" formControlName="colour" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Vehicle Body Condition</label>
+                <select class="form-select mt-2 mb-1" formControlName="vehicleCondition">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Inspected Place Of Vehicle</label>
+                <input type="text" class="form-control mt-2" formControlName="inspectedVehiclePlace" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Type Of Body</label>
+                <select class="form-select mt-2 mb-1" formControlName="bodyType">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Body Length In Feet</label>
+                <input type="text" class="form-control mt-2" formControlName="bodyLength" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>National Permit Detail/Validity</label>
+                <input type="text" class="form-control mt-2" formControlName="nationalPermitValidity" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>State Permit Detail/Validity</label>
+                <input type="text" class="form-control mt-2" formControlName="statePermitValidity" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Present Owner Of The Vehicle</label>
+                <input type="text" class="form-control mt-2" formControlName="vehiclePresentOwner" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Engine Condition</label>
+                <input type="text" class="form-control mt-2" formControlName="engineCondition" />
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <label>Duplicate Key Verified</label>
+                <select class="form-select mt-2 mb-1" formControlName="verifiedDuplicateKey">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="FVR VEHICLE 2">
+        <div class="fvr-vehicle-details-box my-3">
+          <form class="fvr-vehicle-details-form" [formGroup]="fvrVehicle2Form">
+            <caption class="d-flex">
+              FVR Vehicle
+            </caption>
+            <div class="row d-flex gy-2">
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Front</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanFront" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Back</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanBack" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Inside</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanInside" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Engine</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanEngine" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Kms</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanKms" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Chassis</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanChassis" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Front Left Tyre</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanFrontLeftTyre" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Front Right Tyre</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanFrontRightTyre" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Back Left Tyre</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanBackLeftTyre" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Back Right Tyre</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanBackRightTyre" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Left Side Of Vehicle</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanVehicleLeftSide" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Right Side Of Vehicle</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="scanVehicleRightSide" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Additional Scanner 1</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="additionalScanner1" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Additional Scanner 2</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="additionalScanner2" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Additional Scanner 3</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="additionalScanner3" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Additional Scanner 4</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="additionalScanner4" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Additional Scanner 5</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="additionalScanner5" />
+              </div>
+
+              <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
+                <label>Chassis Number Pencil Print</label>
+                <img src="/assets/images/add-doc.png" class="addimage-icon" />
+                <input type="file" class="file-input" formControlName="chassisNumberPencilPrint" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
