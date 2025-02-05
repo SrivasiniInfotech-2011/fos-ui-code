@@ -235,10 +235,12 @@
 
                       <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
                         <label>Hirer House Photo</label>
-                        <input type="file" class="form-control mt-2" formControlName="hirerHousePhoto" />
-                        <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded">
-
+                        <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded" *ngIf="hirerHousePhoto">
+                          <img [src]="hirerHousePhoto" />
                         </div>
+                        <div class="d-flex align-items-center justify-content-cnter mt-1" *ngIf="!hirerHousePhoto">There is no hirer house photo available</div>
+
+                        <!-- <input type="file" class="form-control mt-2" formControlName="hirerHousePhoto" /> -->
                       </div>
                     </div>
                   </form>

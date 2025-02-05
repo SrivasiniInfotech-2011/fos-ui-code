@@ -79,6 +79,13 @@
         }
       }
 
+      .image-box{
+        height: 100px;
+        width: 100px;
+        overflow: hidden;
+        border: 1px solid var(--input-border);
+      }
+
       .massage-text {
         color: #f7811e;
         font-size: 12px;

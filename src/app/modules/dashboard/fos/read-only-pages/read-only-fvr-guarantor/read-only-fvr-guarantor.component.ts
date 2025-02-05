@@ -32,6 +32,7 @@ export class ReadOnlyFvrGuarantorComponent implements OnInit{
     public houseOwnershipLookup: IFOSLookup[] = [];
     public residenceSubtypeLookup: IFOSLookup[] = [];
     public houseStatusLookup: IFOSLookup[] = [];
+    public hirerHousePhoto:any
 
     constructor(
       private fvrService: FOSFvrService,
@@ -360,6 +361,7 @@ export class ReadOnlyFvrGuarantorComponent implements OnInit{
       // this.fvrGuarantorLeadDetailsForm
       //   .get('hirerHousePhoto')!
       //   .setValue(fvrHirer!.houseImagePath);
+      this.hirerHousePhoto = fvrHirer!.houseImagePath
     }
 
     setFvrNeighbourhoodDetails(fvrNeighbour: IFvrNeighbourHood) {
