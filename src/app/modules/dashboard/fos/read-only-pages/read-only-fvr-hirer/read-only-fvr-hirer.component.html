@@ -249,7 +249,10 @@
 
                       <div class="col-12 col-lg-4 mt-3 d-flex flex-column">
                         <label>Hirer House Photo</label>
-                        <input type="file" class="form-control mt-2" formControlName="hirerHousePhoto" />
+                        <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded" *ngIf="hirerHousePhoto">
+                          <img [src]="hirerHousePhoto" />
+                        </div>
+                        <div class="image-box d-flex align-items-center justify-content-cnter mt-1" *ngIf="!hirerHousePhoto">There is no hirer house photo available</div>
                       </div>
                     </div>
                   </form>
@@ -346,7 +349,10 @@
                       </div>
                       <div class="col-12 col-lg-4">
                         <label>Neighbour House Photo</label>
-                        <input type="file" class="form-control mt-2 " formControlName="neighbourHousePhoto" />
+                        <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded" *ngIf="neighbourHousePhoto">
+                          <img [src]="neighbourHousePhoto" />
+                        </div>
+                        <div class="image-box d-flex align-items-center justify-content-cnter mt-1" *ngIf="!neighbourHousePhoto">There is no neighbour house photo available</div>
                       </div>
                       <div class="col-12 col-lg-4">
                         <label>Comments</label>

@@ -274,7 +274,7 @@ export class ReadOnlyLoanDetailsComponent  implements OnInit {
       assetName: new FormControl({ value: '', disabled: true }),
       assetType: new FormControl({ value: '', disabled: true }),
       assetModel: new FormControl({ value: '', disabled: true }),
-      vehicleNumber: new FormControl(''),
+      vehicleNumber: new FormControl({ value: '', disabled: true }),
       engineNumber: new FormControl({ value: '', disabled: true }),
       chassisNumber: new FormControl({ value: '', disabled: true }),
       serialNumber: new FormControl({ value: '', disabled: true }),

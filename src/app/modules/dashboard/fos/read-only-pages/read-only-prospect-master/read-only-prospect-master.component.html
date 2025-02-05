@@ -217,20 +217,25 @@
           <div class="row">
             <div class="col-12 col-lg-4">
               <label class="label">Prospect Image</label>
-              <input type="file" class="form-control mt-2" formControlName="prospectImage" #prospectImage />
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded" *ngIf="prospectImageFilePath">
+                <img [src]="prospectImageFilePath" />
+              </div>
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-1" *ngIf="!prospectImageFilePath">There is no Prospect image available</div>
             </div>
 
             <div class="col-12 col-lg-4">
               <label class="label">Aadhar Image</label>
-              <input type="file" class="form-control mt-2" formControlName="aadharImage" />
-              <a [href]="aadharImageFilePath" target="_blank" rel="noopener noreferrer"
-                *ngIf="aadharImageFilePath">Image Link</a>
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded" *ngIf="aadharImageFilePath">
+                <img [src]="aadharImageFilePath" />
+              </div>
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-1" *ngIf="!aadharImageFilePath">There is no Aadhar image available</div>
             </div>
             <div class="col-12 col-lg-4">
               <label class="label">PAN Image</label>
-              <input type="file" class="form-control mt-2" formControlName="panImage" />
-              <a [href]="panNumberImageFilePath" target="_blank" rel="noopener noreferrer"
-                *ngIf="panNumberImageFilePath">Image Link</a>
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-2 rounded" *ngIf="panNumberImageFilePath">
+                <img [src]="panNumberImageFilePath" />
+              </div>
+              <div class="image-box d-flex align-items-center justify-content-cnter mt-1" *ngIf="!panNumberImageFilePath">There is no PAN image available</div>
             </div>
           </div>
         </div>

@@ -33,6 +33,8 @@ export class ReadOnlyFvrHirerComponent {
   public residenceSubtypeLookup: IFOSLookup[] = [];
   public houseStatusLookup: IFOSLookup[] = [];
   private loggedInUser: any = {};
+  public hirerHousePhoto: any;
+  public neighbourHousePhoto: any;
 
   constructor(
     private fvrService: FOSFvrService,
@@ -98,7 +100,7 @@ export class ReadOnlyFvrHirerComponent {
       branchName: new FormControl({ value: '', disabled: true }),
       dateOfVisit: new FormControl({ value: '', disabled: true }),
       assetInHouse: new FormControl({ value: '', disabled: true }),
-      hirerHousePhoto: new FormControl({ value: '', disabled: true }),
+      // hirerHousePhoto: new FormControl({ value: '', disabled: true }),
     });
 
     this.fvrNeighbourLeadForm = new FormGroup({
@@ -116,7 +118,7 @@ export class ReadOnlyFvrHirerComponent {
       neighbourNumber: new FormControl({ value: '', disabled: true }),
       neighbourAddress: new FormControl({ value: '', disabled: true }),
       comment: new FormControl({ value: '', disabled: true }),
-      neighbourHousePhoto: new FormControl({ value: '', disabled: true }),
+     // neighbourHousePhoto: new FormControl({ value: '', disabled: true }),
     });
 
   }
@@ -233,9 +235,10 @@ export class ReadOnlyFvrHirerComponent {
     this.fvrObservationDetailsForm
       .get('assetInHouse')!
       .setValue(fvrHirer!.furnitures);
-    this.fvrObservationDetailsForm
-      .get('hirerHousePhoto')!
-      .setValue(fvrHirer!.houseImagePath);
+    // this.fvrObservationDetailsForm
+    //   .get('hirerHousePhoto')!
+    //   .setValue(fvrHirer!.houseImagePath);
+    this.hirerHousePhoto = fvrHirer!.houseImagePath
   }
 
   setFvrNeighbourhoodDetails(fvrNeighbour: IFvrNeighbourHood) {
@@ -266,71 +269,72 @@ export class ReadOnlyFvrHirerComponent {
     // this.fvrObservationDetailsForm
     //   .get('neighbourHousePhoto')!
     //   .setValue(fvrNeighbour!.);
+    //this.neighbourHousePhoto = fvrNeighbour
   }
 
 
-    private fetchHirerLookups() {
-      this.loaderService.showLoader();
-      forkJoin([
-        this.fvrService.getFvrHirerLookup(
-          this.loggedInUser.companyId,
-          this.loggedInUser.userId
-        ),
-        this.fvrService.getFvrAssetLookup(
-          this.loggedInUser.companyId,
-          this.loggedInUser.userId
-        ),
-        this.fvrService.getFvrNeighbourLookup(
-          this.loggedInUser.companyId,
-          this.loggedInUser.userId
-        ),
-      ]).subscribe({
-        next: (response: any) => {
-          let hirerLookups = response[0].message as IFOSLookup[];
-          let assetLookups = response[1].message as IFOSLookup[];
-          let neighbourHoodLookups = response[2].message as IFOSLookup[];
-          this.flooringTypeLookup = hirerLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 25
-          );
-          this.houseAccessibilityLookup = hirerLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 23
-          );
-          this.localityLookup = hirerLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 24
-          );
-          this.flooringTypeLookup = hirerLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 25
-          );
-          this.roofingTypeLookup = hirerLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 26
-          );
-          this.livingStandardLookup = hirerLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 27
-          );
-          this.defaultLookup = hirerLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 28
-          );
-          this.houseTypeLookup = hirerLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 14
-          );
-          this.houseStatusLookup = neighbourHoodLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 15
-          );
-          this.residenceSubtypeLookup = neighbourHoodLookups.filter(
-            (s: IFOSLookup) => s.lookupTypeId == 36
-          );
-          this.loaderService.hideLoader();
-        },
-        error: (error: any) => {
-          this.loaderService.hideLoader();
-          let errorMessages = error.message.split('|');
-          for (const key in errorMessages) {
-            this.toasterService.error(errorMessages[key], 'Error', {
-              timeOut: 2000,
-            });
-          }
-        },
-      });
-    }
+  private fetchHirerLookups() {
+    this.loaderService.showLoader();
+    forkJoin([
+      this.fvrService.getFvrHirerLookup(
+        this.loggedInUser.companyId,
+        this.loggedInUser.userId
+      ),
+      this.fvrService.getFvrAssetLookup(
+        this.loggedInUser.companyId,
+        this.loggedInUser.userId
+      ),
+      this.fvrService.getFvrNeighbourLookup(
+        this.loggedInUser.companyId,
+        this.loggedInUser.userId
+      ),
+    ]).subscribe({
+      next: (response: any) => {
+        let hirerLookups = response[0].message as IFOSLookup[];
+        let assetLookups = response[1].message as IFOSLookup[];
+        let neighbourHoodLookups = response[2].message as IFOSLookup[];
+        this.flooringTypeLookup = hirerLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 25
+        );
+        this.houseAccessibilityLookup = hirerLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 23
+        );
+        this.localityLookup = hirerLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 24
+        );
+        this.flooringTypeLookup = hirerLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 25
+        );
+        this.roofingTypeLookup = hirerLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 26
+        );
+        this.livingStandardLookup = hirerLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 27
+        );
+        this.defaultLookup = hirerLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 28
+        );
+        this.houseTypeLookup = hirerLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 14
+        );
+        this.houseStatusLookup = neighbourHoodLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 15
+        );
+        this.residenceSubtypeLookup = neighbourHoodLookups.filter(
+          (s: IFOSLookup) => s.lookupTypeId == 36
+        );
+        this.loaderService.hideLoader();
+      },
+      error: (error: any) => {
+        this.loaderService.hideLoader();
+        let errorMessages = error.message.split('|');
+        for (const key in errorMessages) {
+          this.toasterService.error(errorMessages[key], 'Error', {
+            timeOut: 2000,
+          });
+        }
+      },
+    });
+  }
 
 }
