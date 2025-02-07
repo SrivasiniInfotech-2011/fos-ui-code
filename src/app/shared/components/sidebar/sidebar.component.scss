@@ -33,7 +33,10 @@
           background-color: #f0f6ff;
           color: #173662;
       }
-
+      &:active{
+        background-color: #94bcf8;
+        color: #173662;
+      }
   }
 
   .sub-items {
