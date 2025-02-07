@@ -2,8 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="approval-details-box">
-          <div >
+        <div class="approval-details-box ">
+
+
           <ngx-slick-carousel
             class="carousel"
             #slickModal="slick-carousel"
@@ -81,18 +82,24 @@
              <div ngxSlickItem class="slide" *ngIf="activeSlide == 16">
               <app-read-only-fvr-observation></app-read-only-fvr-observation>
              </div>
+             <div ngxSlickItem class="slide image-box d-flex align-items-center justify-content-center" *ngIf="activeSlide == 17">
+               <img src="../../../../../../assets/images/signUpd.png">
+             </div>
 
            </ngx-slick-carousel>
 
-          <div *ngFor="let comp of fosComponents">
-            <button (click)="displaySelectedComponent(comp?.index)">{{comp?.title}}</button>
-          </div>
+        </div>
+           <div class="row row-gap-2 px-3 row pt-4">
+          <div *ngFor="let comp of fosComponents" class="col-2" >
+            <button class="option-button w-100"(click)="displaySelectedComponent(comp?.index)">{{comp?.title}}</button>
+          </div></div>
+
 
           <!-- <button (click)="removeSlide()">Remove</button>
           <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
           <button (click)="slickModal.unslick()">unslick</button> -->
-        </div>
-      </div>
+
+
     </div>
   </div>
 </div>
