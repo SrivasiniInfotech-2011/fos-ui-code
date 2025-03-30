@@ -20,9 +20,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { LocationMasterComponent } from './pages/locationmaster/location-master/location-master.component';
+import { LocationMasterCreateComponent } from './pages/locationmaster/location-master-create/location-master-create.component';
 
 @NgModule({
-  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent, EntityCreateComponent, GobalParameterSetupComponent, DocumentMasterComponent, DocumentCreateComponent],
+  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent, EntityCreateComponent, GobalParameterSetupComponent, DocumentMasterComponent, DocumentCreateComponent, LocationMasterComponent, LocationMasterCreateComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

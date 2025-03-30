@@ -411,6 +411,8 @@ export class ProspectDetailsComponent implements OnInit {
     });
   }
 
+  
+
   private SetLookups(lookItems: IFOSLookup[]) {
     this.prospectTypeLookup = lookItems.filter(
       (s: IFOSLookup) => s.lookupTypeId == 1
