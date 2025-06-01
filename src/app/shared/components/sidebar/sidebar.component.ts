@@ -36,14 +36,12 @@ export class SidebarComponent implements OnInit {
         const decryptedUserData =
           this.encryptionService.decrypt(encryptedUserData);
         let userDetail = decryptedUserData || '';
-        let userId = userDetail?.userId;
         forkJoin([
-          this.userService.getSideBarData(userId),
           this.userService.getSideBarMaster(),
         ]).subscribe((res) => {
           this.loaderService.hideLoader();
-          const userMenus = res[0]?.message?.userMenus;
-          const sideBarMasterList = res[1]?.NAV_ITEMS;
+          const userMenus = userDetail.userMenus;
+          const sideBarMasterList = res[0]?.NAV_ITEMS;
           for (let index = 0; index < userMenus.length; index++) {
             const sideBarList = userMenus[index].menus;
             const filteredSideBars = sideBarList.map((t1: any) => ({

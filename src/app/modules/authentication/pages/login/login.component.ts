@@ -42,15 +42,16 @@ export class LoginComponent implements OnInit {
         .subscribe({
           next: (res: any) => {
             if (res) {
-              let token = res?.message?.token;
+              let token = res?.token;
               localStorage.setItem('userToken', token);
-              localStorage.setItem('refreshToken', res?.message?.refreshToken);
-              let userInfo = res?.message?.user;
+              //localStorage.setItem('refreshToken', res?.message?.refreshToken);
+              let userInfo = res?.user;
               let userData = {
                 userId: userInfo?.userId,
                 userName: userInfo?.userName,
                 companyName: userInfo?.companyName,
                 companyId: userInfo?.companyId,
+                userMenus:res.userMenus
               };
               const encryptedUserData =
                 this.encryptionService.encrypt(userData);

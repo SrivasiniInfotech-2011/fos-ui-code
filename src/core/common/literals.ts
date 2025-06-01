@@ -105,8 +105,8 @@ export const FOSApiEndPoints = {
   REQUEST_API: '/requests/',
   REQUEST_INTERESTED_PARTY_API: '/request/:id/interested-parties',
   INTERESTED_PARTY_CONFIG_LOCAL: '/core/config/interested-party-config.json',
-  USER_LOGIN_API: '/api/Auth/GetUserByUserNameAndPassword',
-  USER_REFRESH_TOKEN_API: '/api/Auth/RefreshToken',
+  USER_LOGIN_API: '/api/auth/validateLoginRequest',
+  USER_REFRESH_TOKEN_API: '/api/auth/RefreshToken',
   SIDEBAR_API: '/api/Home/GetUserMenus/{userId}',
   COMPANY_MASTER_FETCH_API: '/api/Prospects/GetCompanyMasterDetails',
   EXPORT_PROSPECTS:
