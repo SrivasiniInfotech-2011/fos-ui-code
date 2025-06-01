@@ -28,13 +28,13 @@ export class CompanyMaster {
   }
 
 
-  fetchCompanyMaster(data: CompanyMasterFetch): Observable<any> {
+  getAllLocations(): Observable<any> {
     let endPoint = this.utilsService.buildApiEndpoint(environment.prospectsApi, FOSApiEndPoints.COMPANY_MASTER_FETCH_API);
     if (endPoint.trim()) {
       //this.translate.instant('services.configuration'),this.translate.instant('services.errorLoading'); -- Todo - Need to check this
     }
     return this.fosBaseWrapper
-      .post<any, CompanyMasterFetch>(endPoint,data)
+      .post<any, CompanyMasterFetch>(endPoint)
       .pipe(
         catchError((error) => {
           return throwError(() => error);
