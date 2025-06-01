@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { AuthGuard } from '../../../core/guards/auth.guard';
 import { AccessDeniedComponent } from '../../shared/components/access-denied/access-denied.component';
 
 const routes: Routes = [
@@ -10,10 +9,6 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      // {
-      //   path:'',
-      //   component:ListingPageComponent
-      // },
       {
         path: 'system-admin',
         loadChildren: () =>
@@ -41,4 +36,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

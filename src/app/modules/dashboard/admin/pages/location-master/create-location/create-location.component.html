@@ -1,0 +1,206 @@
+<div class="content-box pt-2">
+  <div class="container">
+    <div class="location-master-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item active d-flex align-items-center">
+            <a href="#" class="text-decoration-none d-flex align-items-center">
+              <mat-icon class="me-2">home</mat-icon>Location Master</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="d-flex justify-content-start mt-3">
+    <button class="back-button " mat-button routerLink="/dashboard/location">
+      <mat-icon>chevron_left</mat-icon>
+      <span>Back</span>
+    </button>
+    </div>
+
+    <div class="location-master-box my-3" *ngIf="locationMasterForm">
+      <form [formGroup]="locationMasterForm" class="location-master-form">
+        <div class="row d-flex gy-2">
+          <div class="col-12 col-lg-4 input-box">
+            <label class="label">Location Type<span class="text-danger">*</span></label>
+            <div>
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-select formControlName="locationType" placeholder="Select Location Type">
+                  <mat-option *ngFor="let type of locationTypes" [value]="type">{{ type }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div
+                *ngIf="locationMasterForm.get('locationType')?.touched && locationMasterForm.get('locationType')?.invalid"
+                class="text-danger">
+                <div *ngIf="locationMasterForm.get('locationType')?.hasError('required')">
+                  Location type is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Location Code<span class="text-danger">*</span></label>
+            <input type="text" placeholder="Enter Location Code" formControlName="locationCode"
+              class="form-control mt-2" />
+            <div
+              *ngIf="locationMasterForm.get('locationCode')?.touched && locationMasterForm.get('locationCode')?.invalid"
+              class="text-danger">
+              <div *ngIf="locationMasterForm.get('locationCode')?.hasError('required')">
+                Location code is required.
+              </div>
+              <div *ngIf="locationMasterForm.get('locationCode')?.hasError('pattern')">
+                Only alphabets are allowed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Location Description<span class="text-danger">*</span></label>
+            <textarea formControlName="locationDescription" placeholder="Enter Location Description"
+              class="form-control mt-2 textarea-input"></textarea>
+            <div
+              *ngIf="locationMasterForm.get('locationDescription')?.touched && locationMasterForm.get('locationDescription')?.invalid"
+              class="text-danger">
+              <div *ngIf="locationMasterForm.get('locationDescription')?.hasError('required')">
+                Location description is required.
+              </div>
+              <div *ngIf="locationMasterForm.get('locationDescription')?.hasError('maxlength')">
+                Maximum 50 characters are allowed.
+              </div>
+              <div *ngIf="locationMasterForm.get('locationDescription')?.hasError('pattern')">
+                Only alphabets are allowed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 input-box">
+            <label class="label">Corporate Code</label>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-select formControlName="corporateCode" placeholder="Select Corporate Code">
+                <mat-option *ngFor="let code of corporateCodes" [value]="code">{{ code }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Address<span class="text-danger">*</span></label>
+            <textarea formControlName="address" placeholder="Enter Address"
+              class="form-control mt-2 textarea-input"></textarea>
+            <div *ngIf="locationMasterForm.get('address')?.touched && locationMasterForm.get('address')?.invalid"
+              class="text-danger">
+              <div *ngIf="locationMasterForm.get('address')?.hasError('required')">
+                Address is required.
+              </div>
+              <div *ngIf="locationMasterForm.get('address')?.hasError('maxlength')">
+                Maximum 300 characters are allowed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 input-box">
+            <label class="label">Country<span class="text-danger">*</span></label>
+            <div>
+              <mat-form-field appearance="fill" class="full-width w-100">
+                <mat-select formControlName="country" placeholder="Select Country">
+                  <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="locationMasterForm.get('country')?.touched && locationMasterForm.get('country')?.invalid"
+                class="text-danger">
+                <div *ngIf="locationMasterForm.get('country')?.hasError('required')">
+                  Country is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 input-box">
+            <label class="label">State<span class="text-danger">*</span></label>
+            <div>
+              <mat-form-field appearance="fill" class="full-width w-100">
+                <mat-select formControlName="state" placeholder="Select State">
+                  <mat-option *ngFor="let state of availableStates" [value]="state">{{ state }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="locationMasterForm.get('state')?.touched && locationMasterForm.get('state')?.invalid"
+                class="text-danger">
+                <div *ngIf="locationMasterForm.get('state')?.hasError('required')">
+                  State is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 input-box">
+            <label class="label">State Code</label>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-select formControlName="stateCode" placeholder="Select State Code">
+                <mat-option *ngFor="let code of availableStateCodes" [value]="code">{{ code }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Landmark<span class="text-danger">*</span></label>
+            <input type="text" placeholder="Enter Landmark" formControlName="landmark" class="form-control mt-2"
+              maxlength="100" />
+            <div *ngIf="locationMasterForm.get('landmark')?.touched && locationMasterForm.get('landmark')?.invalid"
+              class="text-danger">
+              <div *ngIf="locationMasterForm.get('landmark')?.hasError('required')">
+                Landmark is required.
+              </div>
+              <div *ngIf="locationMasterForm.get('landmark')?.hasError('maxlength')">
+                Maximum 100 characters are allowed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Pincode<span class="text-danger">*</span></label>
+            <input type="number" placeholder="Enter Pincode" formControlName="pincode" class="form-control mt-2"
+              maxlength="10" />
+            <div *ngIf="locationMasterForm.get('pincode')?.touched && locationMasterForm.get('pincode')?.invalid"
+              class="text-danger">
+              <div *ngIf="locationMasterForm.get('pincode')?.hasError('required')">
+                Pincode is required.
+              </div>
+              <div *ngIf="locationMasterForm.get('pincode')?.hasError('maxlength')">
+                Maximum 10 characters are allowed.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Telephone Number</label>
+            <input type="tel" placeholder="Enter Telephone Number" formControlName="telephoneNumber"
+              class="form-control mt-2" maxlength="15" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="label">Mobile Number</label>
+            <input type="tel" placeholder="Enter Mobile Number" formControlName="mobileNumber" class="form-control mt-2"
+              maxlength="10" />
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <mat-checkbox formControlName="active" class="mt-2">
+              <label class="label">Active</label>
+            </mat-checkbox>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <mat-checkbox formControlName="operational" class="mt-2">
+              <label class="label">Operational</label>
+            </mat-checkbox>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="d-flex w-100 justify-content-end mb-3" (click)="submit()">
+      <button class="submit-button d-flex align-items-center mt-4 px-4 rounded">
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

@@ -35,6 +35,7 @@ import { CarouselHostComponent } from './components/carousel/carousel.host.compo
     HeaderComponent,
     SidebarComponent,
     LoaderComponent,
+    ModalComponent,
     MatIconModule,
     MatExpansionModule,
     MatProgressSpinnerModule,

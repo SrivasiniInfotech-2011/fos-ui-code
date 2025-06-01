@@ -19,10 +19,28 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { LocationListComponent } from './pages/location-master/location-list/location-list.component';
+import { CreateLocationComponent } from './pages/location-master/create-location/create-location.component';
+import { LocationMasterComponent } from './pages/location-master/location-master.component';
 
 @NgModule({
-  declarations: [UserManagementComponent, UserCreateComponent, CompanyMasterComponent, AssetMasterComponent, AssetCreateComponent, EntityMasterComponent, EntityCreateComponent, GobalParameterSetupComponent, DocumentMasterComponent, DocumentCreateComponent],
+  declarations: [
+    UserManagementComponent,
+    UserCreateComponent,
+    CompanyMasterComponent,
+    AssetMasterComponent,
+    AssetCreateComponent,
+    EntityMasterComponent,
+    EntityCreateComponent,
+    GobalParameterSetupComponent,
+    DocumentMasterComponent,
+    DocumentCreateComponent,
+    LocationMasterComponent,
+    LocationListComponent,
+    CreateLocationComponent,
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -34,7 +52,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatCheckboxModule
-  ]
+    MatCheckboxModule,
+    MatIconModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

@@ -1,0 +1,24 @@
+:host {
+  width: 100%;
+}
+
+
+
+.content-box {
+  width: calc(100% - 300px);
+  margin-left: 300px;
+  margin-top: 80px;
+  height: 100%;
+
+  .location-master {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+
+    .breadcrumb {
+      li {
+        color: var(--text-color);
+      }
+    }
+  }
+}

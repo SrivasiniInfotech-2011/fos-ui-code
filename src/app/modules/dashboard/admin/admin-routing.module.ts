@@ -10,63 +10,80 @@ import { EntityMasterComponent } from './pages/entity/entity-master/entity-maste
 import { GobalParameterSetupComponent } from './pages/globalparameter/gobal-parameter-setup/gobal-parameter-setup.component';
 import { UserCreateComponent } from './pages/user/user-create/user-create.component';
 import { UserManagementComponent } from './pages/user/user-management/user-management.component';
+import { LocationMasterComponent } from './pages/location-master/location-master.component';
+import { LocationListComponent } from './pages/location-master/location-list/location-list.component';
+import { CreateLocationComponent } from './pages/location-master/create-location/create-location.component';
 
 const routes: Routes = [
   {
-    path:'user-management',
-    component:UserManagementComponent
+    path: 'user-management',
+    component: UserManagementComponent,
   },
   {
-    path:'',
-    redirectTo:'user-management',
-    pathMatch:'full'
+    path: '',
+    redirectTo: 'user-management',
+    pathMatch: 'full',
   },
 
-    {
-      
-      path:'user-create',
-      component:UserCreateComponent
-    },
-    {
-      path:'company-master',
-      component:CompanyMasterComponent
-    },
-    {
-      path:'asset-master',
-      component:AssetMasterComponent
-    },
-    {
-      path:'asset-create',
-      component:AssetCreateComponent
-    },
-    {
-      path:'entity-master',
-      component:EntityMasterComponent
-    },
-    {
-      path:'entity-create',
-      component:EntityCreateComponent
-    },
-    {
-      path:'global-parameter',
-      component:GobalParameterSetupComponent
-    },
-    {
-      path:'document-create',
-      component:DocumentCreateComponent
-    },
-    {
-      path:'document-master',
-      component:DocumentMasterComponent
-    }
-
-
-
-
+  {
+    path: 'user-create',
+    component: UserCreateComponent,
+  },
+  {
+    path: 'company-master',
+    component: CompanyMasterComponent,
+  },
+  {
+    path: 'asset-master',
+    component: AssetMasterComponent,
+  },
+  {
+    path: 'asset-create',
+    component: AssetCreateComponent,
+  },
+  {
+    path: 'entity-master',
+    component: EntityMasterComponent,
+  },
+  {
+    path: 'entity-create',
+    component: EntityCreateComponent,
+  },
+  {
+    path: 'global-parameter',
+    component: GobalParameterSetupComponent,
+  },
+  {
+    path: 'document-create',
+    component: DocumentCreateComponent,
+  },
+  {
+    path: 'document-master',
+    component: DocumentMasterComponent,
+  },
+  {
+    path: 'location',
+    component: LocationMasterComponent,
+    children: [
+      {
+        path: '',
+        component: LocationListComponent,
+      },
+      {
+        path: 'create',
+        component: CreateLocationComponent,
+      },
+      {
+        path: '',
+        redirectTo: '',
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}
